@@ -1,0 +1,17 @@
+<workspace name="typicalGT_inertia_validation_b" version="5.0.2" crc="91988408">
+  <projects>
+    <project type="library" name="PSCADView" filepath=".\PMView__3_5.pslx" />
+    <project type="project" name="IEEE39_acLine1" filepath="..\ieee39_sz\IEEE39_acLine1.pscx" />
+    <project type="library" name="ETRAN" filepath="..\ieee39_sz\ETRAN.pslx" />
+    <project type="project" name="TypicalGTPMView" filepath=".\TypicalGTPMView.pscx" />
+  </projects>
+  <simulations />
+  <pmr />
+  <messagegrid expanded="">
+    <column name="Icon" />
+    <column name="Id" />
+    <column name="Component" />
+    <column name="Namespace" />
+    <column name="Description" />
+  </messagegrid>
+</workspace>

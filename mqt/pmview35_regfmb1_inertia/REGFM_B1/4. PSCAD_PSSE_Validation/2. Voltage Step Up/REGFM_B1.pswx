@@ -1,0 +1,14 @@
+<workspace name="REGFM_B1" version="5.0.2" crc="87298083">
+  <projects>
+    <project type="project" name="VSM_REGFM_B1" filepath=".\VSM_REGFM_B1.pscx" />
+  </projects>
+  <simulations />
+  <pmr />
+  <messagegrid expanded="">
+    <column name="Icon" />
+    <column name="Id" />
+    <column name="Component" />
+    <column name="Namespace" />
+    <column name="Description" />
+  </messagegrid>
+</workspace>

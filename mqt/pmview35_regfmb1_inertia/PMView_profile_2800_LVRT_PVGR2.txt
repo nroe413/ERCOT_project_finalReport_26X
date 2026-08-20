@@ -1,0 +1,26 @@
+! This profile is for proposed LVRT to align with IEEE2800 (nogrr245) for Solar and Energy Storage.  The #2 at the end indicates this is a piece-wise curve.  The 0.1 pu at end tests protection to intentionally trip the plant. https://www.ercot.com/mktrules/issues/NOGRR245#keydocs
+-100 			1
+0.0 			1
+0.0001 			0
+0.32 			0
+0.3201 			1.00
+1.4 			1.00
+1.401 			0.25
+2.6 			0.25
+2.601 			1.00
+3.6 			1.00
+3.601 			0.5
+6.6 			0.5
+6.601 			1.00
+7.7 			1.00
+7.701 			0.7
+13.7 			0.7
+13.701 			0.90
+17.7 			0.90
+17.7001			0.95
+20.0 			0.95
+20.0001			0.10
+26.0 			0.10
+26.0001			1.00
+30.0			1.00
+ENDFILE:

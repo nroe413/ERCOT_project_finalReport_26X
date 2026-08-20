@@ -1,0 +1,120 @@
+<Meta name="REGFMAPMViewValidation">
+  <messagelist>
+    <message status="normal" label="build" groupid="400002" scope="REGFMAPMViewValidation" id="611164132" classid="MessageObj"><![CDATA[Begin compiling with PSCAD Version 5.0.2]]></message>
+    <message status="warning" label="build" groupid="205001" id="2144281818" classid="CmpNavigator">
+      <User scope="REGFMAPMViewValidation" name="PMView" status="warning" link="1098213079" /><![CDATA[Suspicious floating terminal at node 'NT_1'.]]></message>
+    <message status="normal" label="build" groupid="100006" link="225822540" id="225822540" classid="FileNavigator"><![CDATA[Generating 'C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\REGFMA_inertia_validation\REGFMAPMViewValidation.gf46\REGFMAPMViewValidation.map'.]]><file scope="REGFMAPMViewValidation">C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\REGFMA_inertia_validation\REGFMAPMViewValidation.gf46\REGFMAPMViewValidation.map</file></message>
+    <message status="normal" label="build" groupid="100015" scope="REGFMAPMViewValidation" id="143027502" classid="MessageObj"><![CDATA[The total number of live nodes: 86]]></message>
+    <message status="normal" label="build" groupid="0" link="218296944" id="218296944" classid="FileNavigator"><![CDATA[Coding .mak file: 'C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\REGFMA_inertia_validation\REGFMAPMViewValidation.gf46\\REGFMAPMViewValidation.mak']]><file scope="REGFMAPMViewValidation">C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\REGFMA_inertia_validation\REGFMAPMViewValidation.gf46\\REGFMAPMViewValidation.mak</file></message>
+    <message status="normal" label="build" groupid="400000" scope="REGFMAPMViewValidation" id="1526353197" classid="MessageObj"><![CDATA[Time for Compile: 281ms  Make: 0ms]]></message>
+    <message status="normal" label="build" groupid="400000" scope="REGFMAPMViewValidation" id="1754708381" classid="MessageObj"><![CDATA[Solve Time = 516ms]]></message>
+    <message status="normal" label="build" groupid="100016" scope="REGFMAPMViewValidation" id="1435417266" classid="MessageObj"><![CDATA[Will execute (1): call C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat]]></message>
+    <message status="normal" label="build" groupid="100016" scope="REGFMAPMViewValidation" id="382496562" classid="MessageObj"><![CDATA[Will execute (1): call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat"]]></message>
+    <message status="normal" label="build" groupid="100016" scope="REGFMAPMViewValidation" id="1767228133" classid="MessageObj"><![CDATA[Will execute (2): make -j -f REGFMAPMViewValidation.mak]]></message>
+    <message status="normal" label="build" groupid="100016" scope="REGFMAPMViewValidation" id="1596562360" classid="MessageObj"><![CDATA[Will execute (2): "C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\REGFMA_inertia_validation\REGFMAPMViewValidation.gf46\REGFMAPMViewValidation_mak.bat"]]></message>
+    <message status="normal" label="build" groupid="100005" scope="REGFMAPMViewValidation" id="1745533552" classid="MessageObj"><![CDATA[Creating EMTDC executable...]]></message>
+    <message status="normal" label="build" groupid="0" scope="REGFMAPMViewValidation" id="173005546" classid="MessageObj"><![CDATA[C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\REGFMA_inertia_validation\REGFMAPMViewValidation.gf46>call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat" ]]></message>
+    <message status="normal" label="build" groupid="100004" scope="REGFMAPMViewValidation" id="482987214" classid="MessageObj"><![CDATA[Compiling 'Main.f' into object code.]]></message>
+    <message status="normal" label="build" groupid="100013" scope="REGFMAPMViewValidation" id="1003889160" classid="MessageObj"><![CDATA[Linking objects and libraries into binary 'REGFMAPMViewValidation.exe']]></message>
+    <message status="normal" label="build" groupid="400003" scope="REGFMAPMViewValidation" id="562186356" classid="MessageObj"><![CDATA[Finished compiling with PSCAD Version 5.0.2]]></message>
+  </messagelist>
+  <ViewContext>
+    <Window defn="REGFMAPMViewValidation:AGS_ESR" call="0" />
+  </ViewContext>
+  <List classid="View">
+    <View name="Main" zoomscale="1.2" scrollx="85" scrolly="0" />
+    <View name="PMView" zoomscale="0.96" scrollx="58" scrolly="0" />
+    <View name="PMU_Playback3" zoomscale="1.5" scrollx="1225" scrolly="0" />
+    <View name="AGS_ESR" zoomscale="2.34375" scrollx="5721" scrolly="857" />
+    <View name="SCR" zoomscale="1.5" scrollx="0" scrolly="0" />
+  </List>
+  <Output device="EMTDC" version="2010" date="2026/06/19" time="16:23:27.000000">
+    <Domain name="Time" unit="s" mult="0.0" skew="0.0">
+      <Sample rate="4000.0" end="28000" />
+    </Domain>
+    <List classid="Analog">
+      <Analog name="Main(0):Q_pu1" index="1" gindex="100663297" id="437867552:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):E_drp1" index="2" gindex="100663298" id="1705856903:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):f_drp1" index="3" gindex="100663299" id="931692418:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):P_pu1" index="4" gindex="100663300" id="1521770307:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):I_pu1" index="5" gindex="100663301" id="1217769095:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):V_pu1" index="6" gindex="100663302" id="84441162:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Vinst" index="7" gindex="100663303" id="256065133:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Vsource" index="10" gindex="100663306" id="806557973:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Ppoi" index="11" gindex="100663307" id="1855659138:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Qpoi" index="12" gindex="100663308" id="2002780950:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Ipoi" index="13" gindex="100663309" id="951167744:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Fpoi" index="14" gindex="100663310" id="1568553907:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Vinst_PMU" index="15" gindex="100663311" id="1462200805:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Vinst_DFR" index="18" gindex="100663314" id="372889109:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Pdisp_main" index="21" gindex="100663317" id="2102408622:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):Pdisp_duplicate" index="22" gindex="100663318" id="1013219312:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):BRK1E" index="23" gindex="100663319" id="81892624:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):BRK1D" index="24" gindex="100663320" id="1796345351:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):BRK1C" index="25" gindex="100663321" id="230839326:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):BRK1B" index="26" gindex="100663322" id="2104767216:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0):BRK1A" index="27" gindex="100663323" id="56212106:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\V_Test(0):Ppoi" index="28" gindex="100663324" id="17625964:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\V_Test(0):Qpoi" index="29" gindex="100663325" id="1080656693:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\V_Test(0):Vsource" index="30" gindex="100663326" id="362745485:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\V_Test(0):Angle_profile" index="31" gindex="100663327" id="719337688:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\V_Test(0):V_profile" index="32" gindex="100663328" id="2045629637:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\Frequency_Test(0):Fpoi" index="33" gindex="100663329" id="1030952150:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\SCR(0):P" index="34" gindex="100663330" id="1544807713:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\SCR(0):Q" index="35" gindex="100663331" id="110583461:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\SCR(0):Vabc" index="36" gindex="100663332" id="358054373:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\SCR(0):Vrms" index="39" gindex="100663335" id="1888472503:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\SCR(0):SCMVA" index="40" gindex="100663336" id="931020230:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\SCR(0):SCR" index="41" gindex="100663337" id="1518644295:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\SCR(0):R" index="42" gindex="100663338" id="260764211:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\SCR(0):L" index="43" gindex="100663339" id="847627413:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\SCR(0):Fault" index="44" gindex="100663340" id="386677131:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\DFR_Injector(0):P" index="45" gindex="100663341" id="1120676290:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\DFR_Injector(0):Vin_PMU" index="46" gindex="100663342" id="726424929:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\DFR_Injector(0):Q" index="49" gindex="100663345" id="2068433335:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\DFR_Injector(0):Vrms_PMU" index="50" gindex="100663346" id="1579071273:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\DFR_Injector(0):Vout_rms" index="51" gindex="100663347" id="49416647:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\DFR_Injector(0):Vrms_DFR" index="52" gindex="100663348" id="430349940:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\DFR_Injector(0):Vout_abc" index="53" gindex="100663349" id="863252696:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\DFR_Injector(0):V_DFR" index="56" gindex="100663352" id="191558401:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\PMU_Playback3(0):Ph_profile" index="59" gindex="100663355" id="383319850:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\PMU_Playback3(0):POI_Freq" index="60" gindex="100663356" id="1152187997:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\PMU_Playback3(0):Plogged" index="61" gindex="100663357" id="472644490:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\PMU_Playback3(0):Pmodel" index="62" gindex="100663358" id="860364212:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\PMU_Playback3(0):Qlogged" index="63" gindex="100663359" id="932557930:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\PMU_Playback3(0):Qmodel" index="64" gindex="100663360" id="1947358962:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\PMU_Playback3(0):V_profile" index="65" gindex="100663361" id="1848070037:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):V (Poi)" index="66" gindex="100663362" id="535614201:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):P (Main)" index="67" gindex="100663363" id="1960046082:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):P (Dup)" index="68" gindex="100663364" id="781938609:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):P (Source)" index="69" gindex="100663365" id="1292637940:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):P (Load)" index="70" gindex="100663366" id="1608088423:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):F (Poi)" index="71" gindex="100663367" id="1468632162:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):Q (Main)" index="72" gindex="100663368" id="1586411937:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):Q (Dup)" index="73" gindex="100663369" id="556565361:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):Q (Source)" index="74" gindex="100663370" id="509963246:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):Q (Load)" index="75" gindex="100663371" id="250969491:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):Phi (poi)" index="76" gindex="100663372" id="204751101:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):BRK_S" index="77" gindex="100663373" id="1415839799:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):loadMagPu" index="78" gindex="100663374" id="152770821:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):P_Main" index="79" gindex="100663375" id="1335918261:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):P_Dupl" index="80" gindex="100663376" id="1271676251:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):ST_Dupl" index="81" gindex="100663377" id="1195970157:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):AE_profile" index="82" gindex="100663378" id="1021203944:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):F_profile" index="83" gindex="100663379" id="852827983:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):Angle_profile" index="84" gindex="100663380" id="442664059:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):InertiaEst" index="85" gindex="100663381" id="323136198:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):V_profile" index="86" gindex="100663382" id="462249411:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):SCMVA" index="87" gindex="100663383" id="1558847640:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):SCR" index="88" gindex="100663384" id="1304534822:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):R" index="89" gindex="100663385" id="1333542706:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\AGS_ESR(0):L" index="90" gindex="100663386" id="370686047:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\Transient_Volt(0):P" index="91" gindex="100663387" id="729077222:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\Transient_Volt(0):Q" index="92" gindex="100663388" id="1414412812:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\Transient_Volt(0):Vrms" index="93" gindex="100663389" id="1033115690:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\Transient_Volt(0):Vabc" index="94" gindex="100663390" id="287219601:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\PMView(0)\Transient_Volt(0):Vpu" index="97" gindex="100663393" id="943719278:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    </List>
+    <List classid="Digital" />
+  </Output>
+</Meta>

@@ -1,0 +1,211 @@
+[
+ {
+  "dest": "systems/ieee39/00GFM_all_sync",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz",
+  "tag": "39-bus all-synchronous baseline",
+  "files": 8,
+  "mb": 8.9,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/01GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz1GFM",
+  "tag": "39-bus with 1 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 9,
+  "mb": 8.9,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/02GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz2GFM",
+  "tag": "39-bus with 2 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 10,
+  "mb": 8.9,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/03GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz3GFM",
+  "tag": "39-bus with 3 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 11,
+  "mb": 9.1,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/04GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz4GFM",
+  "tag": "39-bus with 4 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 12,
+  "mb": 9.2,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/05GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz5GFM",
+  "tag": "39-bus with 5 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 13,
+  "mb": 9.5,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/06GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz6GFM",
+  "tag": "39-bus with 6 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 14,
+  "mb": 9.6,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/07GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz7GFM",
+  "tag": "39-bus with 7 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 15,
+  "mb": 9.9,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/08GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz8GFM",
+  "tag": "39-bus with 8 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 16,
+  "mb": 10.0,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/09GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz9GFM",
+  "tag": "39-bus with 9 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 17,
+  "mb": 10.2,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/10GFM",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz10GFM",
+  "tag": "39-bus with 10 REGFM_A1 units (ImaxF=2.0 PNNL default)",
+  "files": 18,
+  "mb": 10.4,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/10GFM_Vsched",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz10GFM_Vsched",
+  "tag": "all-GFM, scheduled-voltage dispatch (ImaxF=2.0)",
+  "files": 18,
+  "mb": 10.4,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/10GFM_Vsched_Ilim1p5",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/ieee39_sz10GFM_Vsched_Ilim1p5",
+  "tag": "all-GFM, practical current limit ImaxF=1.5",
+  "files": 18,
+  "mb": 10.4,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/ieee39/01GFL",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/compassionate-banach-aa8040/ieee39_sz1GFL",
+  "tag": "39-bus with one PNNL GFL unit at bus 32",
+  "files": 14,
+  "mb": 9.8,
+  "excluded": [
+   ".\\ETRAN_GF42.lib",
+   ".\\ETRAN_IF12.lib"
+  ]
+ },
+ {
+  "dest": "systems/smib_siib",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/experiments/smib_3PG_GFMvsSync",
+  "tag": "single-machine / single-inverter infinite-bus fault harnesses (ImaxF=2.0 PNNL default)",
+  "files": 10,
+  "mb": 55.9,
+  "excluded": []
+ },
+ {
+  "dest": "mqt/pmview35_regfma1_inertia",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/REGFMA_inertia_validation",
+  "tag": "PMView 3.5 AGS inertia test rig, PNNL REGFM_A1",
+  "files": 26,
+  "mb": 3.2,
+  "excluded": [
+   "REGFM_A1\\gf46\\PNNL_REGFM_A1_gf46.lib"
+  ]
+ },
+ {
+  "dest": "mqt/pmview35_regfmb1_inertia",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/REGFMB_inertia_validation",
+  "tag": "PMView 3.5 AGS inertia test rig, PNNL REGFM_B1 (VSM)",
+  "files": 96,
+  "mb": 91.7,
+  "excluded": [
+   "REGFM_A1\\gf46\\PNNL_REGFM_A1_gf46.lib",
+   "REGFM_B1\\2. PSCAD Model\\REGFM_B1_GFortran\\REGFM_B1\\gf46\\PNNL_REGFM_B1_gf46.lib",
+   "REGFM_B1\\2. PSCAD Model\\REGFM_B1_IntelClassic\\REGFM_B1\\if18\\PNNL_REGFM_B1_if18.lib",
+   "REGFM_B1\\4. PSCAD_PSSE_Validation\\1. Voltage Step Down\\REGFM_B1\\gf46\\PNNL_REGFM_B1_gf46.lib",
+   "REGFM_B1\\4. PSCAD_PSSE_Validation\\2. Voltage Step Up\\REGFM_B1\\gf46\\PNNL_REGFM_B1_gf46.lib",
+   "REGFM_B1\\4. PSCAD_PSSE_Validation\\3. Frequency Step Down\\REGFM_B1\\gf46\\PNNL_REGFM_B1_gf46.lib",
+   "REGFM_B1\\4. PSCAD_PSSE_Validation\\4. Frequency Step Up\\REGFM_B1\\gf46\\PNNL_REGFM_B1_gf46.lib",
+   "REGFM_B1\\4. PSCAD_PSSE_Validation\\5. Short Term Fault\\REGFM_B1\\gf46\\PNNL_REGFM_B1_gf46.lib",
+   "REGFM_B1\\4. PSCAD_PSSE_Validation\\6. Long Term Fault\\REGFM_B1\\gf46\\PNNL_REGFM_B1_gf46.lib",
+   "REGFM_B1\\4. PSCAD_PSSE_Validation\\7. Long Term High Impedance Fault\\REGFM_B1\\gf46\\PNNL_REGFM_B1_gf46.lib"
+  ]
+ },
+ {
+  "dest": "mqt/pmview35_typicalgt_inertia",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/TypicalGT_inertia_validation",
+  "tag": "PMView 3.5 AGS inertia test rig, ERCOT Gen-32 machine",
+  "files": 27,
+  "mb": 2.6,
+  "excluded": []
+ },
+ {
+  "dest": "mqt/typicalgt_dwg_battery",
+  "source": "C:/UT_research/NateRoe_ERCOT_Project/.claude/worktrees/sharp-jackson-1e89b8/experiments/typicalgt_mqt_battery",
+  "tag": "DWG tests 1-9 multiple-run battery on the Gen-32 machine",
+  "files": 131,
+  "mb": 537.7,
+  "excluded": [
+   "runs\\test_09_Angle_Up\\data_20260813_175630.csv (big)"
+  ]
+ }
+]

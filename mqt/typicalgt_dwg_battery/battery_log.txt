@@ -1,0 +1,258 @@
+2026-08-13 17:31:31  env cleaned: PATH entries 31 -> 26
+2026-08-13 17:31:32  pre-existing .out files in build dir: 0
+2026-08-13 17:31:32  launching PSCAD 5.0.2
+2026-08-13 17:32:01  loading workspace typicalGT_inertia_validation_battery.pswx
+2026-08-13 17:32:05    project time_duration = 40.0
+2026-08-13 17:32:05    project Mruns = 9
+2026-08-13 17:32:05    project MrunType = STANDALONE
+2026-08-13 17:32:05    project time_step = 50.0
+2026-08-13 17:32:05    project sample_step = 250.0
+2026-08-13 17:32:05    project PlotType = OUT
+2026-08-13 17:32:05  running the battery (one multiple-run invocation, 9 runs x 40 s at 50.0 us)
+2026-08-13 17:32:06  run() returned after 0.6 min
+2026-08-13 17:32:06  pscad.quit() ok
+2026-08-13 17:32:06  fresh .out files: 0, fresh .inf: 0
+2026-08-13 17:32:06  FATAL: no fresh output; the freshness guard refuses stale files. Nothing exported.
+2026-08-13 17:33:15  env cleaned: PATH entries 31 -> 26
+2026-08-13 17:33:16  pre-existing .out files in build dir: 0
+2026-08-13 17:33:16  launching PSCAD 5.0.2
+2026-08-13 17:33:38  loading workspace typicalGT_inertia_validation_battery.pswx
+2026-08-13 17:33:42    project time_duration = 40.0
+2026-08-13 17:33:42    project Mruns = 9
+2026-08-13 17:33:42    project MrunType = STANDALONE
+2026-08-13 17:33:42    project time_step = 50.0
+2026-08-13 17:33:42    project sample_step = 250.0
+2026-08-13 17:33:42    project PlotType = OUT
+2026-08-13 17:33:42  running the battery (one multiple-run invocation, 9 runs x 40 s at 50.0 us)
+2026-08-13 17:33:45    msg [TypicalGTPMView] Begin compiling with PSCAD Version 5.0.2
+2026-08-13 17:33:45    msg [TypicalGTPMView] Input port 'profile' is floating. A signal source must be provided.
+2026-08-13 17:33:45    msg [TypicalGTPMView] Compiling 'G_32_0_1_DYR'. Generating network and data files.
+2026-08-13 17:33:45    msg [TypicalGTPMView] Compiling 'PMView'. Generating network and data files.
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_15' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_5' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_13' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_14' type conversion may lose accuracy at connection 'Ctrl'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'BRK1E' type conversion may lose accuracy at connection 'Ctrl'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'transient_enable' type conversion may lose accuracy at connection 'enabl'
+2026-08-13 17:33:45    msg [PSCADView] Parameter 'Nsteps' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.
+2026-08-13 17:33:45    msg [PSCADView] Parameter 'Tfi' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.
+2026-08-13 17:33:45    msg [PSCADView] Compiling 'V_Test'. Generating network and data files.
+2026-08-13 17:33:45    msg [PSCADView] Compiling 'Frequency_Test'. Generating network and data files.
+2026-08-13 17:33:45    msg [PSCADView] Compiling 'SCR'. Generating network and data files.
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_34' type conversion may lose accuracy at connection 'in'
+2026-08-13 17:33:45    msg [PSCADView] Compiling 'DFR_Injector'. Generating network and data files.
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_4' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_5' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:33:45    msg [PSCADView] Compiling 'PMU_Playback3'. Generating network and data files.
+2026-08-13 17:33:45    msg [PSCADView] Parameter 'A' is of type Integer but its value -1 is not; value will be forced to Integer type.
+2026-08-13 17:33:45    msg [PSCADView] Compiling 'AGS_ESR'. Generating network and data files.
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_24' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_25' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_21' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_20' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:33:45    msg [PSCADView] Compiling 'Transient_Volt'. Generating network and data files.
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_13' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:33:45    msg [PSCADView] Signal 'RT_12' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:33:45    msg [TypicalGTPMView] Time for Compile: 1795ms  Make: 0ms
+2026-08-13 17:33:45    msg [TypicalGTPMView] Finished compiling with PSCAD Version 5.0.2
+2026-08-13 17:33:45    msg [TypicalGTPMView] ======== Build: 1 errors, 18 warnings ========
+2026-08-13 17:33:45  run() returned after 0.5 min
+2026-08-13 17:33:45  pscad.quit() ok
+2026-08-13 17:33:45  fresh .out files: 0, fresh .inf: 0
+2026-08-13 17:33:45  FATAL: no fresh output; the freshness guard refuses stale files. Nothing exported.
+2026-08-13 17:34:39  env cleaned: PATH entries 31 -> 26
+2026-08-13 17:34:39  pre-existing .out files in build dir: 0
+2026-08-13 17:34:39  launching PSCAD 5.0.2
+2026-08-13 17:35:01  loading workspace typicalGT_inertia_validation_battery.pswx
+2026-08-13 17:35:04    project time_duration = 40.0
+2026-08-13 17:35:04    project Mruns = 9
+2026-08-13 17:35:04    project MrunType = STANDALONE
+2026-08-13 17:35:04    project time_step = 50.0
+2026-08-13 17:35:04    project sample_step = 250.0
+2026-08-13 17:35:04    project PlotType = OUT
+2026-08-13 17:35:04  running the battery (one multiple-run invocation, 9 runs x 40 s at 50.0 us)
+2026-08-13 17:35:51    msg [TypicalGTPMView] Begin compiling with PSCAD Version 5.0.2
+2026-08-13 17:35:51    msg [TypicalGTPMView] Suspicious floating terminal at node 'NT_1'.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'G_32_0_1_DYR'. Generating network and data files.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'PMView'. Generating network and data files.
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_15' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_5' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_13' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_14' type conversion may lose accuracy at connection 'Ctrl'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'BRK1E' type conversion may lose accuracy at connection 'Ctrl'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'transient_enable' type conversion may lose accuracy at connection 'enabl'
+2026-08-13 17:35:51    msg [PSCADView] Parameter 'Nsteps' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.
+2026-08-13 17:35:51    msg [PSCADView] Parameter 'Tfi' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.
+2026-08-13 17:35:51    msg [PSCADView] Compiling 'V_Test'. Generating network and data files.
+2026-08-13 17:35:51    msg [PSCADView] Compiling 'Frequency_Test'. Generating network and data files.
+2026-08-13 17:35:51    msg [PSCADView] Compiling 'SCR'. Generating network and data files.
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_34' type conversion may lose accuracy at connection 'in'
+2026-08-13 17:35:51    msg [PSCADView] Compiling 'DFR_Injector'. Generating network and data files.
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_4' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_5' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:35:51    msg [PSCADView] Compiling 'PMU_Playback3'. Generating network and data files.
+2026-08-13 17:35:51    msg [PSCADView] Parameter 'A' is of type Integer but its value -1 is not; value will be forced to Integer type.
+2026-08-13 17:35:51    msg [PSCADView] Compiling 'AGS_ESR'. Generating network and data files.
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_24' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_25' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_21' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_20' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:35:51    msg [PSCADView] Compiling 'Transient_Volt'. Generating network and data files.
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_13' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:35:51    msg [PSCADView] Signal 'RT_12' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:35:51    msg [TypicalGTPMView] Generating 'C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\pscad\TypicalGTPMView.gf46\TypicalGTPMView.map'.
+2026-08-13 17:35:51    msg [TypicalGTPMView] The total number of live nodes: 69
+2026-08-13 17:35:51    msg [TypicalGTPMView] Coding .mak file: 'C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\pscad\TypicalGTPMView.gf46\\TypicalGTPMView.mak'
+2026-08-13 17:35:51    msg [TypicalGTPMView] Time for Compile: 1517ms  Make: 16ms
+2026-08-13 17:35:51    msg [TypicalGTPMView] Solve Time = 0ms
+2026-08-13 17:35:51    msg [TypicalGTPMView] Will execute (1): call C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat
+2026-08-13 17:35:51    msg [TypicalGTPMView] Will execute (1): call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat"
+2026-08-13 17:35:51    msg [TypicalGTPMView] Will execute (2): make -j -f TypicalGTPMView.mak
+2026-08-13 17:35:51    msg [TypicalGTPMView] Will execute (2): "C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\pscad\TypicalGTPMView.gf46\TypicalGTPMView_mak.bat"
+2026-08-13 17:35:51    msg [TypicalGTPMView] Creating EMTDC executable...
+2026-08-13 17:35:51    msg [TypicalGTPMView] C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\pscad\TypicalGTPMView.gf46>call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat" 
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'DS.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'Main.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'G_32_0_1_DYR.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'PMView.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'V_Test.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'Frequency_Test.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'SCR.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'DFR_Injector.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'PMU_Playback3.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'AGS_ESR.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] Compiling 'Transient_Volt.f' into object code.
+2026-08-13 17:35:51    msg [TypicalGTPMView] !--Copy: "C:\Program Files (x86)\E-Tran_V6\EMTDCLib\ETRAN_GF46.lib"
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  Main.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  G_32_0_1_DYR.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  PMView.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  V_Test.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  Frequency_Test.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  SCR.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  DFR_Injector.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  PMU_Playback3.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  AGS_ESR.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] gfortran.exe -c -ffree-form -fdefault-real-8 -fdefault-double-8 -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\inc" -I"C:\Program Files (x86)\PSCAD50\emtdc\gf46\windows" -O2 -Wconversion  Transient_Volt.f
+2026-08-13 17:35:51    msg [TypicalGTPMView] copy "C:\Program Files (x86)\E-Tran_V6\EMTDCLib\ETRAN_GF46.lib" "ETRAN_GF46_1.lib"
+2026-08-13 17:35:51    msg [TypicalGTPMView]         1 file(s) copied.
+2026-08-13 17:35:51    msg [TypicalGTPMView] AGS_ESR.f:400.46:
+2026-08-13 17:35:51    msg [TypicalGTPMView]                 ELSEIF (t .LT. 0.0+(59.0-Fn)/-1.0) THEN
+2026-08-13 17:35:51    msg [TypicalGTPMView]                                               1
+2026-08-13 17:35:51    msg [TypicalGTPMView] Warning: Extension: Unary operator following arithmetic operator (use parentheses) at (1)
+2026-08-13 17:35:51    msg [TypicalGTPMView] AGS_ESR.f:401.51:
+2026-08-13 17:35:51    msg [TypicalGTPMView]                         AGS_ESR_F_profile  = Fn + -1.0*(t-0.0)
+2026-08-13 17:35:51    msg [TypicalGTPMView]                                                    1
+2026-08-13 17:35:51    msg [TypicalGTPMView] Warning: Extension: Unary operator following arithmetic operator (use parentheses) at (1)
+2026-08-13 17:35:51    msg [TypicalGTPMView] AGS_ESR.f:404.70:
+2026-08-13 17:35:51    msg [TypicalGTPMView]                         InertiaEst = 0.5*Fn*(Energy/Prated)/((t-0.0)*-1.&
+2026-08-13 17:35:51    msg [TypicalGTPMView]                                                                       1
+2026-08-13 17:35:51    msg [TypicalGTPMView] Warning: Extension: Unary operator following arithmetic operator (use parentheses) at (1)
+2026-08-13 17:35:51    msg [TypicalGTPMView] Linking objects and libraries into binary 'TypicalGTPMView.exe'
+2026-08-13 17:35:51    msg [TypicalGTPMView] Finished compiling with PSCAD Version 5.0.2
+2026-08-13 17:35:51    msg [TypicalGTPMView] Fortran runtime error: Sequential READ or WRITE not allowed after EOF marker, possibly use REWIND or BACKSPACE
+2026-08-13 17:35:51    msg [TypicalGTPMView] The simulation process for 'TypicalGTPMView' has stopped unexpectedly.
+Please review runtime messages for details.
+2026-08-13 17:35:51  run() returned after 1.2 min
+2026-08-13 17:35:52  pscad.quit() ok
+2026-08-13 17:35:52  fresh .out files: 3, fresh .inf: 1
+2026-08-13 17:35:52     TypicalGTPMView_r00001_01.out  (7442599 bytes)
+2026-08-13 17:35:52     TypicalGTPMView_r00001_02.out  (7442599 bytes)
+2026-08-13 17:35:52     TypicalGTPMView_r00001_03.out  (6768559 bytes)
+2026-08-13 17:35:52  output stems: ['TypicalGTPMView_r00001']; fresh run dirs: []
+2026-08-13 17:35:52  raw outputs copied to C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\runs\20260813_173552_raw
+2026-08-13 17:35:52  DONE
+2026-08-13 17:37:14  env cleaned: PATH entries 31 -> 26
+2026-08-13 17:37:14  pre-existing .out files in build dir: 0
+2026-08-13 17:37:14  launching PSCAD 5.0.2
+2026-08-13 17:37:36  loading workspace typicalGT_inertia_validation_battery.pswx
+2026-08-13 17:37:40    project time_duration = 40.0
+2026-08-13 17:37:40    project Mruns = 9
+2026-08-13 17:37:40    project MrunType = STANDALONE
+2026-08-13 17:37:40    project time_step = 50.0
+2026-08-13 17:37:40    project sample_step = 250.0
+2026-08-13 17:37:40    project PlotType = OUT
+2026-08-13 17:37:40  running the battery (one multiple-run invocation, 9 runs x 40 s at 50.0 us)
+2026-08-13 17:56:29    msg [TypicalGTPMView] Begin compiling with PSCAD Version 5.0.2
+2026-08-13 17:56:29    msg [TypicalGTPMView] Suspicious floating terminal at node 'NT_1'.
+2026-08-13 17:56:29    msg [TypicalGTPMView] Compiling 'G_32_0_1_DYR'. Generating network and data files.
+2026-08-13 17:56:29    msg [TypicalGTPMView] Compiling 'PMView'. Generating network and data files.
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_15' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_5' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_13' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_14' type conversion may lose accuracy at connection 'Ctrl'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'BRK1E' type conversion may lose accuracy at connection 'Ctrl'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'transient_enable' type conversion may lose accuracy at connection 'enabl'
+2026-08-13 17:56:29    msg [PSCADView] Parameter 'Nsteps' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.
+2026-08-13 17:56:29    msg [PSCADView] Parameter 'Tfi' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.
+2026-08-13 17:56:29    msg [PSCADView] Compiling 'V_Test'. Generating network and data files.
+2026-08-13 17:56:29    msg [PSCADView] Compiling 'Frequency_Test'. Generating network and data files.
+2026-08-13 17:56:29    msg [PSCADView] Compiling 'SCR'. Generating network and data files.
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_34' type conversion may lose accuracy at connection 'in'
+2026-08-13 17:56:29    msg [PSCADView] Compiling 'DFR_Injector'. Generating network and data files.
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_4' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_5' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:56:29    msg [PSCADView] Compiling 'PMU_Playback3'. Generating network and data files.
+2026-08-13 17:56:29    msg [PSCADView] Parameter 'A' is of type Integer but its value -1 is not; value will be forced to Integer type.
+2026-08-13 17:56:29    msg [PSCADView] Compiling 'AGS_ESR'. Generating network and data files.
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_24' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_25' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_21' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_20' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:56:29    msg [PSCADView] Compiling 'Transient_Volt'. Generating network and data files.
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_13' type conversion may lose accuracy at connection 'IN2'
+2026-08-13 17:56:29    msg [PSCADView] Signal 'RT_12' type conversion may lose accuracy at connection 'IN1'
+2026-08-13 17:56:29    msg [TypicalGTPMView] Generating 'C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\pscad\TypicalGTPMView.gf46\TypicalGTPMView.map'.
+2026-08-13 17:56:29    msg [TypicalGTPMView] The total number of live nodes: 69
+2026-08-13 17:56:29    msg [TypicalGTPMView] Coding .mak file: 'C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\pscad\TypicalGTPMView.gf46\\TypicalGTPMView.mak'
+2026-08-13 17:56:29    msg [TypicalGTPMView] Time for Compile: 1876ms  Make: 16ms
+2026-08-13 17:56:29    msg [TypicalGTPMView] Solve Time = 0ms
+2026-08-13 17:56:29    msg [TypicalGTPMView] Will execute (1): call C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat
+2026-08-13 17:56:29    msg [TypicalGTPMView] Will execute (1): call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat"
+2026-08-13 17:56:29    msg [TypicalGTPMView] Will execute (2): make -j -f TypicalGTPMView.mak
+2026-08-13 17:56:29    msg [TypicalGTPMView] Will execute (2): "C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\pscad\TypicalGTPMView.gf46\TypicalGTPMView_mak.bat"
+2026-08-13 17:56:29    msg [TypicalGTPMView] Creating EMTDC executable...
+2026-08-13 17:56:29    msg [TypicalGTPMView] C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\pscad\TypicalGTPMView.gf46>call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat" 
+2026-08-13 17:56:29    msg [TypicalGTPMView] Linking objects and libraries into binary 'TypicalGTPMView.exe'
+2026-08-13 17:56:29    msg [TypicalGTPMView] Finished compiling with PSCAD Version 5.0.2
+2026-08-13 17:56:29  run() returned after 19.3 min
+2026-08-13 17:56:30  pscad.quit() ok
+2026-08-13 17:56:30  fresh .out files: 36, fresh .inf: 9
+2026-08-13 17:56:30     TypicalGTPMView_r00001_01.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00001_02.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00001_03.out  (38560315 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00002_01.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00002_02.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00002_03.out  (38560315 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00003_01.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00003_02.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00003_03.out  (38560315 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00004_01.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00004_02.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00004_03.out  (38560315 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00005_01.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00005_02.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00005_03.out  (38560315 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00006_01.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00006_02.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00006_03.out  (38560315 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00007_01.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00007_02.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00007_03.out  (38560315 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00008_01.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00008_02.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00008_03.out  (38560315 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_01.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_02.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_03.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_04.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_05.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_06.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_07.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_08.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_09.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_10.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_11.out  (42400339 bytes)
+2026-08-13 17:56:30     TypicalGTPMView_r00009_12.out  (7840123 bytes)
+2026-08-13 17:56:30  output stems: ['TypicalGTPMView_r00001', 'TypicalGTPMView_r00002', 'TypicalGTPMView_r00003', 'TypicalGTPMView_r00004', 'TypicalGTPMView_r00005', 'TypicalGTPMView_r00006', 'TypicalGTPMView_r00007', 'TypicalGTPMView_r00008', 'TypicalGTPMView_r00009']; fresh run dirs: []
+2026-08-13 17:56:31  raw outputs copied to C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\sharp-jackson-1e89b8\experiments\typicalgt_mqt_battery\runs\20260813_175630_raw
+2026-08-13 17:56:31  DONE

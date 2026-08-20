@@ -1,0 +1,119 @@
+<Meta name="NLR_comp_to_A1">
+  <messagelist>
+    <message status="normal" label="build" groupid="400002" scope="NLR_comp_to_A1" id="411237899" classid="MessageObj"><![CDATA[Begin compiling with PSCAD Version 5.0.1]]></message>
+    <message status="warning" label="build" groupid="204503" scope="NLR_comp_to_A1" id="586097875" classid="MessageObj"><![CDATA[One or more Fortran compiler checks and/or warning options are enabled in the project settings. It is recommended that these options be used during debugging only, as their use can result in a reduction of compile and/or simulation speed.]]></message>
+    <message status="normal" label="build" groupid="100006" id="209750754" classid="CmpNavigator">
+      <User scope="NLR_comp_to_A1" name="Grid_Parameters" status="normal" link="2075810676" /><![CDATA[Compiling 'Grid_Parameters'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="434816315" classid="CmpNavigator">
+      <User scope="NLR_comp_to_A1" name="GFM_Inverter_Dev4" status="normal" link="137448792" /><![CDATA[Compiling 'GFM_Inverter_Dev4'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="266205749" classid="CmpNavigator">
+      <User scope="NLR_comp_to_A1" name="PhaseLocked_Loop" status="normal" link="1826373695" /><![CDATA[Compiling 'PhaseLocked_Loop'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="1253003118" classid="CmpNavigator">
+      <User scope="NLR_comp_to_A1" name="Current_Limiter_Scale" status="normal" link="1447285223" /><![CDATA[Compiling 'Current_Limiter_Scale'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="1651134017" classid="CmpNavigator">
+      <User scope="NLR_comp_to_A1" name="Voltage_Loop" status="normal" link="1361756745" /><![CDATA[Compiling 'Voltage_Loop'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="339397745" classid="CmpNavigator">
+      <User scope="NLR_comp_to_A1" name="Current_Loop_1" status="normal" link="2098222847" /><![CDATA[Compiling 'Current_Loop_1'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" link="93028422" id="93028422" classid="FileNavigator"><![CDATA[Generating 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\pnnlAndNLRBench\4. PSCAD_PSSE_Validation\1. Voltage Step Down_NLR\NLR_comp_to_A1.gf46\NLR_comp_to_A1.map'.]]><file scope="NLR_comp_to_A1">C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\pnnlAndNLRBench\4. PSCAD_PSSE_Validation\1. Voltage Step Down_NLR\NLR_comp_to_A1.gf46\NLR_comp_to_A1.map</file></message>
+    <message status="normal" label="build" groupid="100015" scope="NLR_comp_to_A1" id="1247451086" classid="MessageObj"><![CDATA[The total number of live nodes: 39]]></message>
+    <message status="normal" label="build" groupid="0" link="1361218205" id="1361218205" classid="FileNavigator"><![CDATA[Coding .mak file: 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\pnnlAndNLRBench\4. PSCAD_PSSE_Validation\1. Voltage Step Down_NLR\NLR_comp_to_A1.gf46\\NLR_comp_to_A1.mak']]><file scope="NLR_comp_to_A1">C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\pnnlAndNLRBench\4. PSCAD_PSSE_Validation\1. Voltage Step Down_NLR\NLR_comp_to_A1.gf46\\NLR_comp_to_A1.mak</file></message>
+    <message status="normal" label="build" groupid="400000" scope="NLR_comp_to_A1" id="1814087881" classid="MessageObj"><![CDATA[Time for Compile: 438ms  Make: 15ms]]></message>
+    <message status="normal" label="build" groupid="400000" scope="NLR_comp_to_A1" id="1846533232" classid="MessageObj"><![CDATA[Solve Time = 0ms]]></message>
+    <message status="normal" label="build" groupid="100016" scope="NLR_comp_to_A1" id="1216375391" classid="MessageObj"><![CDATA[Will execute (1): call C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat]]></message>
+    <message status="normal" label="build" groupid="100016" scope="NLR_comp_to_A1" id="45944884" classid="MessageObj"><![CDATA[Will execute (1): call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat"]]></message>
+    <message status="normal" label="build" groupid="100016" scope="NLR_comp_to_A1" id="1004683458" classid="MessageObj"><![CDATA[Will execute (2): make -j -f NLR_comp_to_A1.mak]]></message>
+    <message status="normal" label="build" groupid="100016" scope="NLR_comp_to_A1" id="403580029" classid="MessageObj"><![CDATA[Will execute (2): "C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\pnnlAndNLRBench\4. PSCAD_PSSE_Validation\1. Voltage Step Down_NLR\NLR_comp_to_A1.gf46\NLR_comp_to_A1_mak.bat"]]></message>
+    <message status="normal" label="build" groupid="100005" scope="NLR_comp_to_A1" id="128668614" classid="MessageObj"><![CDATA[Creating EMTDC executable...]]></message>
+    <message status="normal" label="build" groupid="0" scope="NLR_comp_to_A1" id="888530000" classid="MessageObj"><![CDATA[C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\pnnlAndNLRBench\4. PSCAD_PSSE_Validation\1. Voltage Step Down_NLR\NLR_comp_to_A1.gf46>call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat" ]]></message>
+    <message status="normal" label="build" groupid="100004" scope="NLR_comp_to_A1" id="1533181569" classid="MessageObj"><![CDATA[Compiling 'Main.f' into object code.]]></message>
+    <message status="normal" label="build" groupid="100013" scope="NLR_comp_to_A1" id="1102695961" classid="MessageObj"><![CDATA[Linking objects and libraries into binary 'NLR_comp_to_A1.exe']]></message>
+    <message status="normal" label="build" groupid="400003" scope="NLR_comp_to_A1" id="696887400" classid="MessageObj"><![CDATA[Finished compiling with PSCAD Version 5.0.1]]></message>
+  </messagelist>
+  <ViewContext>
+    <Window defn="NLR_comp_to_A1:Main" call="0" />
+  </ViewContext>
+  <List classid="View">
+    <View name="Main" zoomscale="0.96" scrollx="0" scrolly="379" />
+    <View name="GFM_Inverter_Dev4" zoomscale="1.2" scrollx="0" scrolly="0" />
+    <View name="Grid_Parameters" zoomscale="1.2" scrollx="0" scrolly="45" />
+  </List>
+  <Output device="EMTDC" version="2010" date="2026/04/28" time="09:39:36.000000">
+    <Domain name="Time" unit="s" mult="0.0" skew="0.0">
+      <Sample rate="22222.2222222" end="266667" />
+    </Domain>
+    <List classid="Analog">
+      <Analog name="Main(0):V_pu" index="1" gindex="100663297" id="392819220:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):I_pu" index="2" gindex="100663298" id="1650654794:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):P_pu" index="3" gindex="100663299" id="397109589:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):f_drp" index="4" gindex="100663300" id="1845441722:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Q_pu" index="5" gindex="100663301" id="1560887543:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Theta_Diff" index="6" gindex="100663302" id="331176544:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):ROCOF" index="7" gindex="100663303" id="481340380:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Headroom" index="8" gindex="100663304" id="423809867:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):ROCOF_Calc" index="9" gindex="100663305" id="323597948:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Pdiff" index="10" gindex="100663306" id="262855315:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Limiting_Status" index="11" gindex="100663307" id="2070324523:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Iref_q_limited" index="12" gindex="100663308" id="1010936264:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Iref_d_limited" index="13" gindex="100663309" id="307034483:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):dP1" index="14" gindex="100663310" id="42997721:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Overload_Enable" index="15" gindex="100663311" id="749291217:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):V_Set_Recover" index="16" gindex="100663312" id="1258686033:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Freq_overload" index="17" gindex="100663313" id="1731074437:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vo_g_diff" index="18" gindex="100663314" id="549388769:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):RT_108" index="19" gindex="100663315" id="824849342:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vo_dq" index="20" gindex="100663316" id="329897583:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):P_Set_Recover" index="21" gindex="100663317" id="1071291691:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):q_err" index="22" gindex="100663318" id="1120698366:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Q_Complete" index="23" gindex="100663319" id="1757406082:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Q" index="24" gindex="100663320" id="1392841367:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Err" index="25" gindex="100663321" id="546971356:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):D" index="26" gindex="100663322" id="74913861:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Ic_q" index="27" gindex="100663323" id="1772804975:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Ic_d" index="28" gindex="100663324" id="1980605707:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vref_regulate" index="29" gindex="100663325" id="399512906:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Untitled" index="30" gindex="100663326" id="1818739875:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):V_error" index="31" gindex="100663327" id="1891905147:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):V_ref" index="32" gindex="100663328" id="2127654133:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vm_ref_q" index="33" gindex="100663329" id="220882990:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vm_ref_d" index="34" gindex="100663330" id="325782643:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Iref_q" index="35" gindex="100663331" id="1643299479:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vref_q_calc" index="36" gindex="100663332" id="1789867650:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):q_droop_error" index="37" gindex="100663333" id="1891290983:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Iref_d" index="38" gindex="100663334" id="1442192853:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vo_q_set" index="39" gindex="100663335" id="1380072265:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Q_meas" index="40" gindex="100663336" id="103639605:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Theta_Int" index="41" gindex="100663337" id="385107874:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Q_instant" index="42" gindex="100663338" id="1070829184:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Freq_Ang_Int" index="43" gindex="100663339" id="1134464311:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):P_set" index="44" gindex="100663340" id="1643862793:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):P_meas" index="45" gindex="100663341" id="2029757723:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):P_instant" index="46" gindex="100663342" id="1492255811:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Ec" index="47" gindex="100663343" id="1612006802:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Eb" index="48" gindex="100663344" id="1636642764:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Io_q" index="49" gindex="100663345" id="177962228:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vg_q" index="50" gindex="100663346" id="663584957:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Ea" index="51" gindex="100663347" id="1248885112:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Io_d" index="52" gindex="100663348" id="938136569:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vg_d" index="53" gindex="100663349" id="696522204:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):voltage_out" index="54" gindex="100663350" id="98086012:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vg2_d_PLL" index="57" gindex="100663353" id="140829325:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):If_q" index="58" gindex="100663354" id="1495096534:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vo_q" index="59" gindex="100663355" id="2038813511:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vg2_abc" index="60" gindex="100663356" id="1831293115:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):If_d" index="63" gindex="100663359" id="530815397:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vo_d" index="64" gindex="100663360" id="664953081:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vi_q" index="65" gindex="100663361" id="524253272:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Rad_Freq_Pll" index="66" gindex="100663362" id="1444905886:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Vi_d" index="67" gindex="100663363" id="126804108:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0):Theta_Pll" index="68" gindex="100663364" id="1446448427:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0)\Current_Limiter_Scale(0):Status" index="69" gindex="100663365" id="1336763816:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0)\Current_Limiter_Scale(0):Idq" index="70" gindex="100663366" id="1721489665:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0)\Current_Limiter_Scale(0):Idq_limit" index="71" gindex="100663367" id="1694220038:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0)\Voltage_Loop(0):Iref_q" index="72" gindex="100663368" id="1336093091:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0)\Voltage_Loop(0):Iref_d" index="73" gindex="100663369" id="2002489582:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0)\Voltage_Loop(0):Iref_d" index="74" gindex="100663370" id="944074093:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\GFM_Inverter_Dev4(0)\Current_Loop_1(0):Vref_d" index="75" gindex="100663371" id="232874203:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    </List>
+    <List classid="Digital" />
+  </Output>
+</Meta>

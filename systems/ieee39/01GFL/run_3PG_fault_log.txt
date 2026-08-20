@@ -1,0 +1,19 @@
+﻿python.exe : INFO     mhi.common.win32           Launching C:\Program Files (x86)\PSCAD50\bin\win64\PSCAD.exe
+At line:2 char:1
++ & "C:\Users\roena\anaconda3\python.exe" run_3PG_fault.py "--rundir=di ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (INFO     mhi.co...win64\PSCAD.exe:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+INFO     mhi.common.win32               Args: ['/startup:au', '/port:61459', '/splash:false', '/silence:true']
+INFO     main                       PSCAD launched (version=5.0.2)
+INFO     main                       dial 4119 -> 14
+INFO     main                       dial 4098 -> 7
+INFO     main                       dial 4118 -> 3
+INFO     main                       dial 4117 -> 0.0833
+INFO     main                       dial 4899 -> 0
+1GFL 39-bus: bolted 3PG at bus 14, t=3.0 s, 5 cyc, no reclose, 10 s window
+Simulation Finished (5.9 min)
+Copied 79 files -> C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees\compassionate-banach-aa8040\experiments\fault_3PG_bus14_1GFL\runs\diag_final_minimal_10s
+  IEEE39_acLine1.inf, IEEE39_acLine1_01.out, IEEE39_acLine1_02.out, IEEE39_acLine1_03.out, IEEE39_acLine1_04.out ...
+Next: cd ../experiments/fault_3PG_bus14_1GFL && python out_to_csv.py && python plot_fault_traces.py

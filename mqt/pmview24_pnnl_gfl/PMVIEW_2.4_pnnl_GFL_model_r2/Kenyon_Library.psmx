@@ -1,0 +1,6 @@
+<Meta name="Kenyon_Library">
+  <messagelist />
+  <ViewContext>
+    <Window defn="Kenyon_Library:Main" call="0" />
+  </ViewContext>
+</Meta>

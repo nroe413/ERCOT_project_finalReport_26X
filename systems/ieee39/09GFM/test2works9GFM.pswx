@@ -1,0 +1,16 @@
+<workspace name="test2works9GFM" version="5.0.2" crc="32381584">
+  <projects>
+    <project type="project" name="IEEE39_acLine1" filepath=".\IEEE39_acLine1.pscx" />
+    <project type="library" name="ETRAN" filepath=".\ETRAN.pslx" />
+    <project type="project" name="REGFM_A1" filepath="..\PNNL_REGFM\REGFM_A1\REGFM_A1\2. PSCAD Model\REGFM_A1_GFortran\REGFM_A1.pscx" />
+  </projects>
+  <simulations />
+  <pmr />
+  <messagegrid expanded="">
+    <column name="Icon" />
+    <column name="Id" />
+    <column name="Component" />
+    <column name="Namespace" />
+    <column name="Description" />
+  </messagegrid>
+</workspace>

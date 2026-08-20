@@ -1,0 +1,51 @@
+{
+  "title": "SMIB device-only 3PG ride-through: bus-39 synchronous machine vs REGFM_A1",
+  "models": {
+    "sync": "single_machine_infinite_bus_1syncMachineValidation/SMIB_SYNC.pscx",
+    "gfm": "single_machine_infinite_bus_1GFMvalidation/REGFM_A1.pscx"
+  },
+  "fault": {
+    "type": "3PG",
+    "location": "device terminal bus",
+    "fault_time_s": 3.0,
+    "fault_duration_s": 0.0833,
+    "fault_duration_cycles": 5,
+    "RON_ohm": 0.001
+  },
+  "grid": {
+    "SCR": 10,
+    "XR": 20,
+    "note": "on each device OWN base; infinite bus held flat (no V/f step)"
+  },
+  "sim": {
+    "duration_s": 10.0,
+    "timestep_us": 15
+  },
+  "devices": {
+    "sync": {
+      "rating": "2000 MVA / 230 kV",
+      "dyr": "IEEE 39 bus TypicalGT.dyr (GENROU+ESST4B+GGOV1+PSS2B)",
+      "dispatch_pu": 0.5,
+      "VT": 1.03,
+      "Pheta_deg": 2.7,
+      "meter_base": "2000 MVA / 230 kV / 5.02 kA"
+    },
+    "gfm": {
+      "rating": "0.1 MVA / 0.48 kV (PNNL release SMIB)",
+      "Preq_pu": 0.6,
+      "ImaxF": 2.0,
+      "I_clip": 2.1,
+      "note": "ImaxF=2.0 is the PNNL default; the 39-bus study used 1.5"
+    }
+  },
+  "results_headline": {
+    "fault_current_pu_own_base": {
+      "sync_peak": 7.8,
+      "gfm_peak": 2.0,
+      "ratio": "~4x"
+    },
+    "voltage": "both recover within ~0.5 s against the strong grid (machine field-forces to ceiling)",
+    "P_recovery": "GFM snaps to Preq almost instantly; machine dips to ~0.1 pu and is still ~5% below dispatch at t=10 s (slow governor)",
+    "frequency": "both tight here; contrast emerges when the grid is weak or lost (islanded cases)"
+  }
+}

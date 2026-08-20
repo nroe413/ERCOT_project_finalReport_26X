@@ -1,0 +1,14 @@
+<workspace name="NLRBenchmark" version="5.0.1" crc="45178123">
+  <projects>
+    <project type="project" name="NLR_comp_to_A1" filepath=".\NLR_comp_to_A1.pscx" />
+  </projects>
+  <simulations />
+  <pmr />
+  <messagegrid expanded="">
+    <column name="Icon" />
+    <column name="Id" />
+    <column name="Component" />
+    <column name="Namespace" />
+    <column name="Description" />
+  </messagegrid>
+</workspace>

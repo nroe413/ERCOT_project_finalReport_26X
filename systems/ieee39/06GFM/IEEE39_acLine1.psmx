@@ -1,0 +1,457 @@
+<Meta name="IEEE39_acLine1">
+  <messagelist>
+    <message status="normal" label="clean" groupid="100000" scope="IEEE39_acLine1" id="14995674" classid="MessageObj"><![CDATA[Removed 0 files]]></message>
+    <message status="normal" label="clean" groupid="100000" scope="IEEE39_acLine1" id="1661665851" classid="MessageObj"><![CDATA[Completed cleaning of temporary files and data.]]></message>
+  </messagelist>
+  <ViewContext>
+    <Window defn="IEEE39_acLine1:P1" call="0" />
+  </ViewContext>
+  <List classid="View">
+    <View name="Main" zoomscale="1.5" scrollx="0" scrolly="0" />
+    <View name="P1" zoomscale="0.590295" scrollx="0" scrolly="53" />
+    <View name="G_30_0_1_DYR" zoomscale="1.5" scrollx="0" scrolly="416" />
+    <View name="G_31_0_1_DYR" zoomscale="1.5" scrollx="0" scrolly="326" />
+    <View name="EtranBreakerControl" zoomscale="1.5" scrollx="0" scrolly="169" />
+    <View name="B_16_17_1" zoomscale="1.5" scrollx="0" scrolly="0" />
+    <View name="B_4_14_1" zoomscale="1.5" scrollx="1982" scrolly="0" />
+    <View name="B_14_15_1" zoomscale="1.5" scrollx="1120" scrolly="0" />
+    <View name="xE_4_14_1" zoomscale="1.5" scrollx="0" scrolly="800" />
+    <View name="B_13_14_1" zoomscale="1.5" scrollx="1500" scrolly="0" />
+    <View name="B_15_16_1" zoomscale="1.5" scrollx="487" scrolly="0" />
+    <View name="B_16_19_1" zoomscale="1.2" scrollx="1035" scrolly="0" />
+    <View name="B_16_21_1" zoomscale="1.2" scrollx="1035" scrolly="0" />
+    <View name="B_16_24_1" zoomscale="1.2" scrollx="1035" scrolly="0" />
+    <View name="G_33_0_1_DYR" zoomscale="1.5" scrollx="0" scrolly="0" />
+    <View name="G_37_0_1_DYR" zoomscale="1.5" scrollx="0" scrolly="0" />
+    <View name="G_38_0_1_DYR" zoomscale="1.5" scrollx="0" scrolly="0" />
+  </List>
+  <Output device="EMTDC" version="2010" date="2026/06/01" time="17:29:22.000000">
+    <Domain name="Time" unit="s" mult="0.0" skew="0.0">
+      <Sample rate="5000.0" end="50000" />
+    </Domain>
+    <List classid="Analog">
+      <Analog name="Main(0)\P1(0):f" index="1" gindex="100663297" id="414952476:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B30VLN" index="2" gindex="100663298" id="793882097:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B30IL" index="5" gindex="100663301" id="944891038:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B38VLN" index="8" gindex="100663304" id="1310884769:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B38IL" index="11" gindex="100663307" id="974327094:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B30P" index="14" gindex="100663310" id="1422768914:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B38P" index="15" gindex="100663311" id="1069406731:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B30Q" index="16" gindex="100663312" id="1472452976:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B38Q" index="17" gindex="100663313" id="731543302:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B30Vrms" index="18" gindex="100663314" id="224209653:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B30Irms" index="19" gindex="100663315" id="941175515:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B38Vrms" index="20" gindex="100663316" id="1227986856:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B38Irms" index="21" gindex="100663317" id="2120140458:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B14VLN" index="22" gindex="100663318" id="2145000003:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B14IL" index="25" gindex="100663321" id="2145000006:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B14P" index="28" gindex="100663324" id="2145000009:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B14Q" index="29" gindex="100663325" id="2145000012:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B14Vrms" index="30" gindex="100663326" id="2145000015:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B14Irms" index="31" gindex="100663327" id="2145000018:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B15VLN" index="32" gindex="100663328" id="2145000022:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B15IL" index="35" gindex="100663331" id="2145000025:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B15P" index="38" gindex="100663334" id="2145000028:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B15Q" index="39" gindex="100663335" id="2145000031:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B15Vrms" index="40" gindex="100663336" id="2145000034:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B15Irms" index="41" gindex="100663337" id="2145000037:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B16VLN" index="42" gindex="100663338" id="2145000041:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B16IL" index="45" gindex="100663341" id="2145000044:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B16P" index="48" gindex="100663344" id="2145000047:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B16Q" index="49" gindex="100663345" id="2145000050:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B16Vrms" index="50" gindex="100663346" id="2145000053:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B16Irms" index="51" gindex="100663347" id="2145000056:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B17VLN" index="52" gindex="100663348" id="2145000060:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B17IL" index="55" gindex="100663351" id="2145000063:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B17P" index="58" gindex="100663354" id="2145000066:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B17Q" index="59" gindex="100663355" id="2145000069:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B17Vrms" index="60" gindex="100663356" id="2145000072:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B17Irms" index="61" gindex="100663357" id="2145000075:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B18VLN" index="62" gindex="100663358" id="2145000079:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B18IL" index="65" gindex="100663361" id="2145000082:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B18P" index="68" gindex="100663364" id="2145000085:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B18Q" index="69" gindex="100663365" id="2145000088:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B18Vrms" index="70" gindex="100663366" id="2145000091:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B18Irms" index="71" gindex="100663367" id="2145000094:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B21VLN" index="72" gindex="100663368" id="2145000098:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B21IL" index="75" gindex="100663371" id="2145000101:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B21P" index="78" gindex="100663374" id="2145000104:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B21Q" index="79" gindex="100663375" id="2145000107:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B21Vrms" index="80" gindex="100663376" id="2145000110:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B21Irms" index="81" gindex="100663377" id="2145000113:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B32VLN" index="82" gindex="100663378" id="1198091835:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B32IL" index="85" gindex="100663381" id="67248473:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B32P" index="88" gindex="100663384" id="1397698238:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B32Q" index="89" gindex="100663385" id="1709600898:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B32Vrms" index="90" gindex="100663386" id="1417926727:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B32Irms" index="91" gindex="100663387" id="402357682:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B33VLN" index="92" gindex="100663388" id="1438161631:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B33IL" index="95" gindex="100663391" id="1747918116:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B33P" index="98" gindex="100663394" id="131152200:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B33Q" index="99" gindex="100663395" id="648216751:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B33Vrms" index="100" gindex="100663396" id="1625661398:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B33Irms" index="101" gindex="100663397" id="1959178131:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B35VLN" index="102" gindex="100663398" id="1731402603:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B35IL" index="105" gindex="100663401" id="1271191012:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B35P" index="108" gindex="100663404" id="1524413313:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B35Q" index="109" gindex="100663405" id="1655924448:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B35Vrms" index="110" gindex="100663406" id="748051959:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B35Irms" index="111" gindex="100663407" id="52669074:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B37VLN" index="112" gindex="100663408" id="2051936601:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B37IL" index="115" gindex="100663411" id="319972069:0" label="" dim="3" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B37P" index="118" gindex="100663414" id="828433314:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B37Q" index="119" gindex="100663415" id="1905214136:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B37Vrms" index="120" gindex="100663416" id="2062197781:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):B37Irms" index="121" gindex="100663417" id="1194708117:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):Q_pu38" index="122" gindex="100663418" id="446816355:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):E_drp38" index="123" gindex="100663419" id="1893725264:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):f_drp38" index="124" gindex="100663420" id="1461768738:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):P_pu38" index="125" gindex="100663421" id="122180505:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):I_pu38" index="126" gindex="100663422" id="71186714:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):V_pu38" index="127" gindex="100663423" id="934541198:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):Q_pu37" index="128" gindex="100663424" id="1585656903:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):E_drp37" index="129" gindex="100663425" id="662316212:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):f_drp37" index="130" gindex="100663426" id="146980039:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):P_pu37" index="131" gindex="100663427" id="1376104259:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):I_pu37" index="132" gindex="100663428" id="1680582328:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):V_pu37" index="133" gindex="100663429" id="202376501:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):Q_pu35" index="134" gindex="100663430" id="657795470:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):E_drp35" index="135" gindex="100663431" id="192160050:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):f_drp35" index="136" gindex="100663432" id="1262532411:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):P_pu35" index="137" gindex="100663433" id="366719946:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):I_pu35" index="138" gindex="100663434" id="1516831405:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):V_pu35" index="139" gindex="100663435" id="834906318:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):Q_pu30" index="140" gindex="100663436" id="1960016213:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):E_drp30" index="141" gindex="100663437" id="153235640:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):f_drp30" index="142" gindex="100663438" id="329065708:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):P_pu30" index="143" gindex="100663439" id="2130521498:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):I_pu30" index="144" gindex="100663440" id="487826707:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):V_pu30" index="145" gindex="100663441" id="271583480:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):Q_pu33" index="146" gindex="100663442" id="2004965855:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):E_drp33" index="147" gindex="100663443" id="1759728730:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):f_drp33" index="148" gindex="100663444" id="943331085:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):P_pu33" index="149" gindex="100663445" id="1479976827:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):I_pu33" index="150" gindex="100663446" id="477945427:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):V_pu33" index="151" gindex="100663447" id="148333830:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):Q_pu" index="152" gindex="100663448" id="176518319:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):E_drp" index="153" gindex="100663449" id="842666834:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):f_drp" index="154" gindex="100663450" id="2042842817:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):P_pu" index="155" gindex="100663451" id="1598493172:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):I_pu" index="156" gindex="100663452" id="616565991:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0):V_pu" index="157" gindex="100663453" id="2074059930:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_1_2_1(0):VRMS 2 230" index="158" gindex="100663454" id="1653691200:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_1_2_1(0):VLG 2 230" index="159" gindex="100663455" id="1582870788:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_1_2_1(0):VRMS 1 230" index="162" gindex="100663458" id="1271495464:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_1_2_1(0):VLG 1 230" index="163" gindex="100663459" id="1026597480:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_1_2_1(0):Q 2-&gt;1 230" index="166" gindex="100663462" id="433527876:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_1_2_1(0):P 2-&gt;1 230" index="167" gindex="100663463" id="1190726693:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_1_2_1(0):Fault 2 Currents" index="168" gindex="100663464" id="4865:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_1_2_1(0):Fault 1 Currents" index="171" gindex="100663467" id="4851:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_2_3_1(0):VRMS 3 230" index="174" gindex="100663470" id="723249234:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_2_3_1(0):VLG 3 230" index="175" gindex="100663471" id="394693696:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_2_3_1(0):VRMS 2 230" index="178" gindex="100663474" id="666860615:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_2_3_1(0):VLG 2 230" index="179" gindex="100663475" id="533095436:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_2_3_1(0):Q 3-&gt;2 230" index="182" gindex="100663478" id="1754427937:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_2_3_1(0):P 3-&gt;2 230" index="183" gindex="100663479" id="171098338:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_2_3_1(0):Fault 2 Currents" index="184" gindex="100663480" id="5369:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_2_3_1(0):Fault 1 Currents" index="187" gindex="100663483" id="5355:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_3_4_1(0):VRMS 4 230" index="190" gindex="100663486" id="1032420111:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_3_4_1(0):VLG 4 230" index="191" gindex="100663487" id="717106580:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_3_4_1(0):VRMS 3 230" index="194" gindex="100663490" id="420391069:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_3_4_1(0):VLG 3 230" index="195" gindex="100663491" id="1888952984:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_3_4_1(0):Q 4-&gt;3 230" index="198" gindex="100663494" id="930371094:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_3_4_1(0):P 4-&gt;3 230" index="199" gindex="100663495" id="212793812:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_3_4_1(0):Fault 2 Currents" index="200" gindex="100663496" id="5873:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_3_4_1(0):Fault 1 Currents" index="203" gindex="100663499" id="5859:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_4_5_1(0):VRMS 5 230" index="206" gindex="100663502" id="760724781:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_4_5_1(0):VLG 5 230" index="207" gindex="100663503" id="1734553905:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_4_5_1(0):VRMS 4 230" index="210" gindex="100663506" id="405428191:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_4_5_1(0):VLG 4 230" index="211" gindex="100663507" id="1381356628:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_4_5_1(0):Q 5-&gt;4 230" index="214" gindex="100663510" id="637816601:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_4_5_1(0):P 5-&gt;4 230" index="215" gindex="100663511" id="1312998999:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_4_5_1(0):Fault 2 Currents" index="216" gindex="100663512" id="6377:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_4_5_1(0):Fault 1 Currents" index="219" gindex="100663515" id="6363:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_5_6_1(0):VRMS 6 230" index="222" gindex="100663518" id="1047387274:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_5_6_1(0):VLG 6 230" index="223" gindex="100663519" id="675071189:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_5_6_1(0):VRMS 5 230" index="226" gindex="100663522" id="284484268:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_5_6_1(0):VLG 5 230" index="227" gindex="100663523" id="933756229:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_5_6_1(0):Q 6-&gt;5 230" index="230" gindex="100663526" id="993706066:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_5_6_1(0):P 6-&gt;5 230" index="231" gindex="100663527" id="71358033:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_5_6_1(0):Fault 2 Currents" index="232" gindex="100663528" id="6879:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_5_6_1(0):Fault 1 Currents" index="235" gindex="100663531" id="6865:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_6_11_1(0):VRMS 11 230" index="238" gindex="100663534" id="1639287405:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_6_11_1(0):VLG 11 230" index="239" gindex="100663535" id="131109198:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_6_11_1(0):VRMS 6 230" index="242" gindex="100663538" id="2032720536:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_6_11_1(0):VLG 6 230" index="243" gindex="100663539" id="1400606788:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_6_11_1(0):Q 11-&gt;6 230" index="246" gindex="100663542" id="402175250:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_6_11_1(0):P 11-&gt;6 230" index="247" gindex="100663543" id="1680680554:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_6_11_1(0):Fault 2 Currents" index="248" gindex="100663544" id="7635:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_6_11_1(0):Fault 1 Currents" index="251" gindex="100663547" id="7621:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_10_11_1(0):VRMS 11 230" index="254" gindex="100663550" id="1328604454:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_10_11_1(0):VLG 11 230" index="255" gindex="100663551" id="1413239411:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_10_11_1(0):VRMS 10 230" index="258" gindex="100663554" id="591917519:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_10_11_1(0):VLG 10 230" index="259" gindex="100663555" id="1737745487:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_10_11_1(0):Q 11-&gt;10 230" index="262" gindex="100663558" id="2091492786:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_10_11_1(0):P 11-&gt;10 230" index="263" gindex="100663559" id="205694293:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_10_11_1(0):Fault 2 Currents" index="264" gindex="100663560" id="8641:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_10_11_1(0):Fault 1 Currents" index="267" gindex="100663563" id="8627:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_10_13_1(0):VRMS 13 230" index="270" gindex="100663566" id="407166174:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_10_13_1(0):VLG 13 230" index="271" gindex="100663567" id="158801608:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_10_13_1(0):VRMS 10 230" index="274" gindex="100663570" id="1213550264:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_10_13_1(0):VLG 10 230" index="275" gindex="100663571" id="758865888:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_10_13_1(0):Q 13-&gt;10 230" index="278" gindex="100663574" id="173702151:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_10_13_1(0):P 13-&gt;10 230" index="279" gindex="100663575" id="506342532:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_10_13_1(0):Fault 2 Currents" index="280" gindex="100663576" id="8891:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_10_13_1(0):Fault 1 Currents" index="283" gindex="100663579" id="8877:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_13_14_1(0):VRMS 14 230" index="286" gindex="100663582" id="594988309:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_13_14_1(0):VLG 14 230" index="287" gindex="100663583" id="1284234347:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_13_14_1(0):VRMS 13 230" index="290" gindex="100663586" id="2005724118:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_13_14_1(0):VLG 13 230" index="291" gindex="100663587" id="1375051662:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_13_14_1(0):Q 14-&gt;13 230" index="294" gindex="100663590" id="2032835442:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_13_14_1(0):P 14-&gt;13 230" index="295" gindex="100663591" id="668218447:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_13_14_1(0):Fault 2 Currents" index="296" gindex="100663592" id="9143:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_13_14_1(0):Fault 1 Currents" index="299" gindex="100663595" id="9129:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_14_15_1(0):VRMS 15 230" index="302" gindex="100663598" id="1142922763:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_14_15_1(0):VLG 15 230" index="303" gindex="100663599" id="2023221111:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_14_15_1(0):VRMS 14 230" index="306" gindex="100663602" id="802574831:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_14_15_1(0):VLG 14 230" index="307" gindex="100663603" id="2052980863:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_14_15_1(0):Q 15-&gt;14 230" index="310" gindex="100663606" id="1395427646:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_14_15_1(0):P 15-&gt;14 230" index="311" gindex="100663607" id="454899452:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_14_15_1(0):Fault 2 Currents" index="312" gindex="100663608" id="9395:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_14_15_1(0):Fault 1 Currents" index="315" gindex="100663611" id="9381:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_15_16_1(0):VRMS 16 230" index="318" gindex="100663614" id="2144003546:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_15_16_1(0):VLG 16 230" index="319" gindex="100663615" id="2109429928:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_15_16_1(0):VRMS 15 230" index="322" gindex="100663618" id="1447510321:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_15_16_1(0):VLG 15 230" index="323" gindex="100663619" id="380678764:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_15_16_1(0):Q 16-&gt;15 230" index="326" gindex="100663622" id="1017025584:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_15_16_1(0):P 16-&gt;15 230" index="327" gindex="100663623" id="2032193478:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_15_16_1(0):Fault 2 Currents" index="328" gindex="100663624" id="9647:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_15_16_1(0):Fault 1 Currents" index="331" gindex="100663627" id="9633:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_17_1(0):VRMS 17 230" index="334" gindex="100663630" id="273123244:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_17_1(0):VLG 17 230" index="335" gindex="100663631" id="196335805:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_17_1(0):VRMS 16 230" index="338" gindex="100663634" id="367070636:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_17_1(0):VLG 16 230" index="339" gindex="100663635" id="1276404441:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_17_1(0):Q 17-&gt;16 230" index="342" gindex="100663638" id="68302603:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_17_1(0):P 17-&gt;16 230" index="343" gindex="100663639" id="419491000:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_17_1(0):Fault 2 Currents" index="344" gindex="100663640" id="9899:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_17_1(0):Fault 1 Currents" index="347" gindex="100663643" id="9885:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_4_14_1(0):VRMS 14 230" index="350" gindex="100663646" id="380723948:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_4_14_1(0):VLG 14 230" index="351" gindex="100663647" id="91759526:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_4_14_1(0):VRMS 4 230" index="354" gindex="100663650" id="1562985067:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_4_14_1(0):VLG 4 230" index="355" gindex="100663651" id="1812969603:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_4_14_1(0):Q 14-&gt;4 230" index="358" gindex="100663654" id="743865411:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_4_14_1(0):P 14-&gt;4 230" index="359" gindex="100663655" id="1321044264:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_4_14_1(0):Fault 2 Currents" index="360" gindex="100663656" id="6629:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_4_14_1(0):Fault 1 Currents" index="363" gindex="100663659" id="6615:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_17_27_1(0):VRMS 27 230" index="366" gindex="100663662" id="1324443417:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_17_27_1(0):VLG 27 230" index="367" gindex="100663663" id="781827848:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_17_27_1(0):VRMS 17 230" index="370" gindex="100663666" id="408236360:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_17_27_1(0):VLG 17 230" index="371" gindex="100663667" id="482619868:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_17_27_1(0):Q 27-&gt;17 230" index="374" gindex="100663670" id="545064759:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_17_27_1(0):P 27-&gt;17 230" index="375" gindex="100663671" id="1119856819:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_17_27_1(0):Fault 2 Currents" index="376" gindex="100663672" id="11159:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_17_27_1(0):Fault 1 Currents" index="379" gindex="100663675" id="11145:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_27_1(0):VRMS 27 230" index="382" gindex="100663678" id="238522553:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_27_1(0):VLG 27 230" index="383" gindex="100663679" id="109821422:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_27_1(0):VRMS 26 230" index="386" gindex="100663682" id="719258433:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_27_1(0):VLG 26 230" index="387" gindex="100663683" id="656011957:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_27_1(0):Q 27-&gt;26 230" index="390" gindex="100663686" id="1974084115:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_27_1(0):P 27-&gt;26 230" index="391" gindex="100663687" id="319730458:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_27_1(0):Fault 2 Currents" index="392" gindex="100663688" id="12419:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_27_1(0):Fault 1 Currents" index="395" gindex="100663691" id="12405:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_28_1(0):VRMS 28 230" index="398" gindex="100663694" id="1714365956:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_28_1(0):VLG 28 230" index="399" gindex="100663695" id="1486986629:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_28_1(0):VRMS 26 230" index="402" gindex="100663698" id="1431072462:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_28_1(0):VLG 26 230" index="403" gindex="100663699" id="615107515:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_28_1(0):Q 28-&gt;26 230" index="406" gindex="100663702" id="1875172905:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_28_1(0):P 28-&gt;26 230" index="407" gindex="100663703" id="794971305:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_28_1(0):Fault 2 Currents" index="408" gindex="100663704" id="12671:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_28_1(0):Fault 1 Currents" index="411" gindex="100663707" id="12657:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_2_25_1(0):VRMS 25 230" index="414" gindex="100663710" id="988749818:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_2_25_1(0):VLG 25 230" index="415" gindex="100663711" id="1050190954:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_2_25_1(0):VRMS 2 230" index="418" gindex="100663714" id="49124392:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_2_25_1(0):VLG 2 230" index="419" gindex="100663715" id="344375419:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_2_25_1(0):Q 25-&gt;2 230" index="422" gindex="100663718" id="1418869960:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_2_25_1(0):P 25-&gt;2 230" index="423" gindex="100663719" id="907772549:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_2_25_1(0):Fault 2 Currents" index="424" gindex="100663720" id="5621:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_2_25_1(0):Fault 1 Currents" index="427" gindex="100663723" id="5607:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_28_29_1(0):VRMS 29 230" index="430" gindex="100663726" id="224972244:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_28_29_1(0):VLG 29 230" index="431" gindex="100663727" id="1605459287:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_28_29_1(0):VRMS 28 230" index="434" gindex="100663730" id="1933427719:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_28_29_1(0):VLG 28 230" index="435" gindex="100663731" id="1081392320:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_28_29_1(0):Q 29-&gt;28 230" index="438" gindex="100663734" id="419324287:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_28_29_1(0):P 29-&gt;28 230" index="439" gindex="100663735" id="315249576:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_28_29_1(0):Fault 2 Currents" index="440" gindex="100663736" id="13175:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_28_29_1(0):Fault 1 Currents" index="443" gindex="100663739" id="13161:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_29_1(0):VRMS 29 230" index="446" gindex="100663742" id="87105520:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_29_1(0):VLG 29 230" index="447" gindex="100663743" id="203682994:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_29_1(0):VRMS 26 230" index="450" gindex="100663746" id="2031475551:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_29_1(0):VLG 26 230" index="451" gindex="100663747" id="1756940955:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_29_1(0):Q 29-&gt;26 230" index="454" gindex="100663750" id="643916591:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_29_1(0):P 29-&gt;26 230" index="455" gindex="100663751" id="134530728:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_26_29_1(0):Fault 2 Currents" index="456" gindex="100663752" id="12923:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_26_29_1(0):Fault 1 Currents" index="459" gindex="100663755" id="12909:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_3_18_1(0):VRMS 18 230" index="462" gindex="100663758" id="308476056:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_3_18_1(0):VLG 18 230" index="463" gindex="100663759" id="300048756:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_3_18_1(0):VRMS 3 230" index="466" gindex="100663762" id="1177507008:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_3_18_1(0):VLG 3 230" index="467" gindex="100663763" id="1750825767:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_3_18_1(0):Q 18-&gt;3 230" index="470" gindex="100663766" id="1462357178:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_3_18_1(0):P 18-&gt;3 230" index="471" gindex="100663767" id="854573807:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_3_18_1(0):Fault 2 Currents" index="472" gindex="100663768" id="6125:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_3_18_1(0):Fault 1 Currents" index="475" gindex="100663771" id="6111:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_25_26_1(0):VRMS 26 230" index="478" gindex="100663774" id="1772023592:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_25_26_1(0):VLG 26 230" index="479" gindex="100663775" id="1421879607:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_25_26_1(0):VRMS 25 230" index="482" gindex="100663778" id="850001747:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_25_26_1(0):VLG 25 230" index="483" gindex="100663779" id="1695233812:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_25_26_1(0):Q 26-&gt;25 230" index="486" gindex="100663782" id="835709287:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_25_26_1(0):P 26-&gt;25 230" index="487" gindex="100663783" id="752006276:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_25_26_1(0):Fault 2 Currents" index="488" gindex="100663784" id="12167:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_25_26_1(0):Fault 1 Currents" index="491" gindex="100663787" id="12153:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_17_18_1(0):VRMS 18 230" index="494" gindex="100663790" id="1684331596:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_17_18_1(0):VLG 18 230" index="495" gindex="100663791" id="1068284929:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_17_18_1(0):VRMS 17 230" index="498" gindex="100663794" id="1901850300:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_17_18_1(0):VLG 17 230" index="499" gindex="100663795" id="1342079172:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_17_18_1(0):Q 18-&gt;17 230" index="502" gindex="100663798" id="678552170:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_17_18_1(0):P 18-&gt;17 230" index="503" gindex="100663799" id="2092189124:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_17_18_1(0):Fault 2 Currents" index="504" gindex="100663800" id="10907:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_17_18_1(0):Fault 1 Currents" index="507" gindex="100663803" id="10893:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_19_1(0):VRMS 19 230" index="510" gindex="100663806" id="1420714794:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_19_1(0):VLG 19 230" index="511" gindex="100663807" id="503565587:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_19_1(0):VRMS 16 230" index="514" gindex="100663810" id="457512914:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_19_1(0):VLG 16 230" index="515" gindex="100663811" id="1641115298:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_19_1(0):Q 19-&gt;16 230" index="518" gindex="100663814" id="753332758:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_19_1(0):P 19-&gt;16 230" index="519" gindex="100663815" id="116706354:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_19_1(0):Fault 2 Currents" index="520" gindex="100663816" id="10151:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_19_1(0):Fault 1 Currents" index="523" gindex="100663819" id="10137:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):VS" index="526" gindex="100663822" id="397540344:0" label="" dim="1" unit="pu" min="-0.1" max="0.1" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):Q" index="527" gindex="100663823" id="1417221192:0" label="" dim="1" unit="MVAR" min="-1000" max="1000" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):P" index="528" gindex="100663824" id="1417155656:0" label="" dim="1" unit="MW" min="-1000" max="1000" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):Vm" index="529" gindex="100663825" id="1121489430:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):TM" index="530" gindex="100663826" id="303300938:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):TE" index="531" gindex="100663827" id="52929422:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):If" index="532" gindex="100663828" id="88953975:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):Ef" index="533" gindex="100663829" id="89216119:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):Wpu" index="534" gindex="100663830" id="1386101143:0" label="" dim="1" unit="pu" min="0.95" max="1.05" />
+      <Analog name="Main(0)\P1(0)\G_34_0_1_DYR(0):Wang" index="535" gindex="100663831" id="142513466:0" label="" dim="1" unit="Deg" min="-180.0" max="180.0" />
+      <Analog name="Main(0)\P1(0)\B_6_7_1(0):VRMS 7 230" index="536" gindex="100663832" id="1801218576:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_6_7_1(0):VLG 7 230" index="537" gindex="100663833" id="1359018080:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_6_7_1(0):VRMS 6 230" index="540" gindex="100663836" id="1319838993:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_6_7_1(0):VLG 6 230" index="541" gindex="100663837" id="442757015:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_6_7_1(0):Q 7-&gt;6 230" index="544" gindex="100663840" id="716459256:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_6_7_1(0):P 7-&gt;6 230" index="545" gindex="100663841" id="41223284:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_6_7_1(0):Fault 2 Currents" index="546" gindex="100663842" id="7383:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_6_7_1(0):Fault 1 Currents" index="549" gindex="100663845" id="7369:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_7_8_1(0):VRMS 8 230" index="552" gindex="100663848" id="680194647:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_7_8_1(0):VLG 8 230" index="553" gindex="100663849" id="1199285650:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_7_8_1(0):VRMS 7 230" index="556" gindex="100663852" id="1759684480:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_7_8_1(0):VLG 7 230" index="557" gindex="100663853" id="1404283442:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_7_8_1(0):Q 8-&gt;7 230" index="560" gindex="100663856" id="1671411646:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_7_8_1(0):P 8-&gt;7 230" index="561" gindex="100663857" id="1711858413:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_7_8_1(0):Fault 2 Currents" index="562" gindex="100663858" id="7887:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_7_8_1(0):Fault 1 Currents" index="565" gindex="100663861" id="7873:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_8_9_1(0):VRMS 9 230" index="568" gindex="100663864" id="410523410:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_8_9_1(0):VLG 9 230" index="569" gindex="100663865" id="1876077972:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_8_9_1(0):VRMS 8 230" index="572" gindex="100663868" id="505359805:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_8_9_1(0):VLG 8 230" index="573" gindex="100663869" id="2049576973:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_8_9_1(0):Q 9-&gt;8 230" index="576" gindex="100663872" id="2141240852:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_8_9_1(0):P 9-&gt;8 230" index="577" gindex="100663873" id="982308526:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_8_9_1(0):Fault 2 Currents" index="578" gindex="100663874" id="8139:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_8_9_1(0):Fault 1 Currents" index="581" gindex="100663877" id="8125:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_9_39_1(0):VRMS 39 230" index="584" gindex="100663880" id="1603790750:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_9_39_1(0):VLG 39 230" index="585" gindex="100663881" id="1498134253:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_9_39_1(0):VRMS 9 230" index="588" gindex="100663884" id="519548162:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_9_39_1(0):VLG 9 230" index="589" gindex="100663885" id="1575619948:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_9_39_1(0):Q 39-&gt;9 230" index="592" gindex="100663888" id="1356902819:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_9_39_1(0):P 39-&gt;9 230" index="593" gindex="100663889" id="196878832:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_9_39_1(0):Fault 2 Currents" index="594" gindex="100663890" id="8391:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_9_39_1(0):Fault 1 Currents" index="597" gindex="100663893" id="8377:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_1_39_1(0):VRMS 39 230" index="600" gindex="100663896" id="1000785302:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_1_39_1(0):VLG 39 230" index="601" gindex="100663897" id="1056659653:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_1_39_1(0):VRMS 1 230" index="604" gindex="100663900" id="1526378250:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_1_39_1(0):VLG 1 230" index="605" gindex="100663901" id="257536136:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_1_39_1(0):Q 39-&gt;1 230" index="608" gindex="100663904" id="2099399784:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_1_39_1(0):P 39-&gt;1 230" index="609" gindex="100663905" id="1838430927:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_1_39_1(0):Fault 2 Currents" index="610" gindex="100663906" id="5117:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_1_39_1(0):Fault 1 Currents" index="613" gindex="100663909" id="5103:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_21_1(0):VRMS 21 230" index="616" gindex="100663912" id="1936065595:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_21_1(0):VLG 21 230" index="617" gindex="100663913" id="530673006:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_21_1(0):VRMS 16 230" index="620" gindex="100663916" id="1313451703:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_21_1(0):VLG 16 230" index="621" gindex="100663917" id="1561194947:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_21_1(0):Q 21-&gt;16 230" index="624" gindex="100663920" id="708408864:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_21_1(0):P 21-&gt;16 230" index="625" gindex="100663921" id="592602733:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_21_1(0):Fault 2 Currents" index="626" gindex="100663922" id="10403:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_21_1(0):Fault 1 Currents" index="629" gindex="100663925" id="10389:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_5_8_1(0):VRMS 8 230" index="632" gindex="100663928" id="1180403754:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_5_8_1(0):VLG 8 230" index="633" gindex="100663929" id="1115592057:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_5_8_1(0):VRMS 5 230" index="636" gindex="100663932" id="1251536072:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_5_8_1(0):VLG 5 230" index="637" gindex="100663933" id="1017506113:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_5_8_1(0):Q 8-&gt;5 230" index="640" gindex="100663936" id="958379659:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_5_8_1(0):P 8-&gt;5 230" index="641" gindex="100663937" id="240031105:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_5_8_1(0):Fault 2 Currents" index="642" gindex="100663938" id="7131:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_5_8_1(0):Fault 1 Currents" index="645" gindex="100663941" id="7117:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_21_22_1(0):VRMS 22 230" index="648" gindex="100663944" id="454070621:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_21_22_1(0):VLG 22 230" index="649" gindex="100663945" id="298459125:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_21_22_1(0):VRMS 21 230" index="652" gindex="100663948" id="1216472050:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_21_22_1(0):VLG 21 230" index="653" gindex="100663949" id="646375510:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_21_22_1(0):Q 22-&gt;21 230" index="656" gindex="100663952" id="1387174659:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_21_22_1(0):P 22-&gt;21 230" index="657" gindex="100663953" id="1615766072:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_21_22_1(0):Fault 2 Currents" index="658" gindex="100663954" id="11411:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_21_22_1(0):Fault 1 Currents" index="661" gindex="100663957" id="11397:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_22_23_1(0):VRMS 23 230" index="664" gindex="100663960" id="508885152:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_22_23_1(0):VLG 23 230" index="665" gindex="100663961" id="2096370465:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_22_23_1(0):VRMS 22 230" index="668" gindex="100663964" id="1810253080:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_22_23_1(0):VLG 22 230" index="669" gindex="100663965" id="1393055108:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_22_23_1(0):Q 23-&gt;22 230" index="672" gindex="100663968" id="316269601:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_22_23_1(0):P 23-&gt;22 230" index="673" gindex="100663969" id="1218830654:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_22_23_1(0):Fault 2 Currents" index="674" gindex="100663970" id="11663:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_22_23_1(0):Fault 1 Currents" index="677" gindex="100663973" id="11649:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):VS" index="680" gindex="100663976" id="1868766201:0" label="" dim="1" unit="pu" min="-0.1" max="0.1" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):Q" index="681" gindex="100663977" id="1234430904:0" label="" dim="1" unit="MVAR" min="-1000" max="1000" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):P" index="682" gindex="100663978" id="1234496440:0" label="" dim="1" unit="MW" min="-1000" max="1000" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):Vm" index="683" gindex="100663979" id="181722735:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):TM" index="684" gindex="100663980" id="1606775247:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):TE" index="685" gindex="100663981" id="1963005607:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):If" index="686" gindex="100663982" id="134078744:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):Ef" index="687" gindex="100663983" id="133816600:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):Wpu" index="688" gindex="100663984" id="774958082:0" label="" dim="1" unit="pu" min="0.95" max="1.05" />
+      <Analog name="Main(0)\P1(0)\G_39_0_1_DYR(0):Wang" index="689" gindex="100663985" id="139895817:0" label="" dim="1" unit="Deg" min="-180.0" max="180.0" />
+      <Analog name="Main(0)\P1(0)\B_23_24_1(0):VRMS 24 230" index="690" gindex="100663986" id="1090413997:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_23_24_1(0):VLG 24 230" index="691" gindex="100663987" id="1218757585:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_23_24_1(0):VRMS 23 230" index="694" gindex="100663990" id="64920530:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_23_24_1(0):VLG 23 230" index="695" gindex="100663991" id="2032607331:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_23_24_1(0):Q 24-&gt;23 230" index="698" gindex="100663994" id="2022136578:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_23_24_1(0):P 24-&gt;23 230" index="699" gindex="100663995" id="1422421741:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_23_24_1(0):Fault 2 Currents" index="700" gindex="100663996" id="11915:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_23_24_1(0):Fault 1 Currents" index="703" gindex="100663999" id="11901:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_24_1(0):VRMS 24 230" index="706" gindex="100664002" id="1474275603:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_24_1(0):VLG 24 230" index="707" gindex="100664003" id="436104011:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_24_1(0):VRMS 16 230" index="710" gindex="100664006" id="742372575:0" label="" dim="1" unit="pu" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_24_1(0):VLG 16 230" index="711" gindex="100664007" id="458774724:0" label="" dim="3" unit="pu" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_24_1(0):Q 24-&gt;16 230" index="714" gindex="100664010" id="217950988:0" label="" dim="1" unit="MVAR" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_24_1(0):P 24-&gt;16 230" index="715" gindex="100664011" id="1473978136:0" label="" dim="1" unit="MW" min="0.8" max="1.2" />
+      <Analog name="Main(0)\P1(0)\B_16_24_1(0):Fault 2 Currents" index="716" gindex="100664012" id="10655:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\B_16_24_1(0):Fault 1 Currents" index="719" gindex="100664015" id="10641:0" label="" dim="3" unit="kA" min="-2.0" max="2.0" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):VS" index="722" gindex="100664018" id="987860845:0" label="" dim="1" unit="pu" min="-0.1" max="0.1" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):Q" index="723" gindex="100664019" id="240391240:0" label="" dim="1" unit="MVAR" min="-1000" max="1000" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):P" index="724" gindex="100664020" id="240325704:0" label="" dim="1" unit="MW" min="-1000" max="1000" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):Vm" index="725" gindex="100664021" id="1788076677:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):TM" index="726" gindex="100664022" id="1082100251:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):TE" index="727" gindex="100664023" id="1438330611:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):If" index="728" gindex="100664024" id="1835720668:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):Ef" index="729" gindex="100664025" id="1835982812:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):Wpu" index="730" gindex="100664026" id="671788594:0" label="" dim="1" unit="pu" min="0.95" max="1.05" />
+      <Analog name="Main(0)\P1(0)\G_31_0_1_DYR(0):Wang" index="731" gindex="100664027" id="1893004843:0" label="" dim="1" unit="Deg" min="-180.0" max="180.0" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):VS" index="732" gindex="100664028" id="1501722492:0" label="" dim="1" unit="pu" min="-0.1" max="0.1" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):Q" index="733" gindex="100664029" id="1956596105:0" label="" dim="1" unit="MVAR" min="-1000" max="1000" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):P" index="734" gindex="100664030" id="1956661641:0" label="" dim="1" unit="MW" min="-1000" max="1000" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):Vm" index="735" gindex="100664031" id="527139746:0" label="" dim="1" unit="pu" min="0.9" max="1.1" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):TM" index="736" gindex="100664032" id="1952192258:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):TE" index="737" gindex="100664033" id="1595961898:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):If" index="738" gindex="100664034" id="1395764379:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):Ef" index="739" gindex="100664035" id="1396026523:0" label="" dim="1" unit="pu" min="-1" max="4" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):Wpu" index="740" gindex="100664036" id="1735755339:0" label="" dim="1" unit="pu" min="0.95" max="1.05" />
+      <Analog name="Main(0)\P1(0)\G_36_0_1_DYR(0):Wang" index="741" gindex="100664037" id="2086881414:0" label="" dim="1" unit="Deg" min="-180.0" max="180.0" />
+    </List>
+    <List classid="Digital" />
+  </Output>
+</Meta>

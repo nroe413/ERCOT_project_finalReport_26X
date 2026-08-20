@@ -1,0 +1,137 @@
+<Meta name="a9_Bus_Zero_Inertia">
+  <messagelist>
+    <message status="normal" label="build" groupid="400002" scope="a9_Bus_Zero_Inertia" id="2126314227" classid="MessageObj"><![CDATA[Begin compiling with PSCAD Version 5.0.1]]></message>
+    <message status="normal" label="build" groupid="100006" id="633656333" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="T7_8" status="normal" link="8336909" /><![CDATA[Compiling 'T7_8'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="926772805" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="T8_9" status="normal" link="238356294" /><![CDATA[Compiling 'T8_9'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="206153873" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="T5_7" status="normal" link="1200896919" /><![CDATA[Compiling 'T5_7'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="667392211" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="T6_9" status="normal" link="2044306914" /><![CDATA[Compiling 'T6_9'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="13813259" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="T4_5" status="normal" link="1426503440" /><![CDATA[Compiling 'T4_5'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="293936602" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="T4_6" status="normal" link="1036163106" /><![CDATA[Compiling 'T4_6'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="686625696" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="Kenyon_Library:Set_Point_Ramp" status="normal" link="1008063" /><![CDATA[Compiling 'Set_Point_Ramp'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="654283712" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="Kenyon_Library:GFL_Inverter_Dev1" status="normal" link="1706885761" /><![CDATA[Compiling 'GFL_Inverter_Dev1'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="1488459905" classid="CmpNavigator">
+      <User scope="Kenyon_Library" name="PhaseLocked_Loop" status="normal" link="2103226003" /><![CDATA[Compiling 'PhaseLocked_Loop'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="2119611174" classid="CmpNavigator">
+      <User scope="Kenyon_Library" name="Generic_RT" status="normal" link="924209981" /><![CDATA[Compiling 'Generic_RT'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="1592560236" classid="CmpNavigator">
+      <User scope="Kenyon_Library" name="Current_Limiter_Scale" status="normal" link="717343383" /><![CDATA[Compiling 'Current_Limiter_Scale'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="1536539353" classid="CmpNavigator">
+      <User scope="Kenyon_Library" name="Current_Loop_1" status="normal" link="1417346096" /><![CDATA[Compiling 'Current_Loop_1'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="190920836" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="Kenyon_Library:GFM_Inverter_Dev4" status="normal" link="1106019667" /><![CDATA[Compiling 'GFM_Inverter_Dev4'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="1975233553" classid="CmpNavigator">
+      <User scope="Kenyon_Library" name="Voltage_Loop" status="normal" link="812804895" /><![CDATA[Compiling 'Voltage_Loop'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" id="1860189882" classid="CmpNavigator">
+      <User scope="a9_Bus_Zero_Inertia" name="Kenyon_Library:GFM_Inverter_Dev2" status="normal" link="376225598" /><![CDATA[Compiling 'GFM_Inverter_Dev2'. Generating network and data files.]]></message>
+    <message status="normal" label="build" groupid="100006" link="1101735410" id="1101735410" classid="FileNavigator"><![CDATA[Generating 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\a9_Bus_Zero_Inertia.map'.]]><file scope="a9_Bus_Zero_Inertia">C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\a9_Bus_Zero_Inertia.map</file></message>
+    <message status="normal" label="build" groupid="100015" scope="a9_Bus_Zero_Inertia" id="1276929374" classid="MessageObj"><![CDATA[The total number of live nodes: 156]]></message>
+    <message status="normal" label="build" groupid="0" link="1439860397" id="1439860397" classid="FileNavigator"><![CDATA[Coding .mak file: 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\\a9_Bus_Zero_Inertia.mak']]><file scope="a9_Bus_Zero_Inertia">C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\\a9_Bus_Zero_Inertia.mak</file></message>
+    <message status="normal" label="build" groupid="100001" scope="a9_Bus_Zero_Inertia" id="2062512663" classid="MessageObj"><![CDATA[Non-professional licenses are limited to a single, electrical subsystem. Subsystem splitting has been internally disabled for this simulation.]]></message>
+    <message status="normal" label="build" groupid="400000" scope="a9_Bus_Zero_Inertia" id="1971853078" classid="MessageObj"><![CDATA[Time for Compile: 1797ms  Make: 16ms]]></message>
+    <message status="normal" label="build" groupid="100011" id="1478479504" classid="CmpNavigator">
+      <Wire scope="a9_Bus_Zero_Inertia" name="New_IEEE_09_CT:TLine_1" status="normal" link="392134517" /><![CDATA[Solving transmission segment using 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\T7_8.tli'.]]></message>
+    <message status="normal" label="build" groupid="100011" id="350412658" classid="CmpNavigator">
+      <Wire scope="a9_Bus_Zero_Inertia" name="New_IEEE_09_CT:TLine_2" status="normal" link="1354660837" /><![CDATA[Solving transmission segment using 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\T8_9.tli'.]]></message>
+    <message status="normal" label="build" groupid="100011" id="2062280157" classid="CmpNavigator">
+      <Wire scope="a9_Bus_Zero_Inertia" name="New_IEEE_09_CT:T5_8" status="normal" link="802219032" /><![CDATA[Solving transmission segment using 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\T5_7.tli'.]]></message>
+    <message status="normal" label="build" groupid="100011" id="514465245" classid="CmpNavigator">
+      <Wire scope="a9_Bus_Zero_Inertia" name="New_IEEE_09_CT:T6_10" status="normal" link="2008548152" /><![CDATA[Solving transmission segment using 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\T6_9.tli'.]]></message>
+    <message status="normal" label="build" groupid="100011" id="1309694487" classid="CmpNavigator">
+      <Wire scope="a9_Bus_Zero_Inertia" name="New_IEEE_09_CT:T4_7" status="normal" link="724169283" /><![CDATA[Solving transmission segment using 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\T4_5.tli'.]]></message>
+    <message status="normal" label="build" groupid="100011" id="1014788978" classid="CmpNavigator">
+      <Wire scope="a9_Bus_Zero_Inertia" name="New_IEEE_09_CT:T4_8" status="normal" link="1669850792" /><![CDATA[Solving transmission segment using 'C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\T4_6.tli'.]]></message>
+    <message status="normal" label="build" groupid="400000" scope="a9_Bus_Zero_Inertia" id="634322381" classid="MessageObj"><![CDATA[Solve Time = 203ms]]></message>
+    <message status="normal" label="build" groupid="100016" scope="a9_Bus_Zero_Inertia" id="1418021040" classid="MessageObj"><![CDATA[Will execute (1): call C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat]]></message>
+    <message status="normal" label="build" groupid="100016" scope="a9_Bus_Zero_Inertia" id="23569812" classid="MessageObj"><![CDATA[Will execute (1): call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat"]]></message>
+    <message status="normal" label="build" groupid="100016" scope="a9_Bus_Zero_Inertia" id="285244934" classid="MessageObj"><![CDATA[Will execute (2): make -j -f a9_Bus_Zero_Inertia.mak]]></message>
+    <message status="normal" label="build" groupid="100016" scope="a9_Bus_Zero_Inertia" id="1561877078" classid="MessageObj"><![CDATA[Will execute (2): "C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46\a9_Bus_Zero_Inertia_mak.bat"]]></message>
+    <message status="normal" label="build" groupid="100005" scope="a9_Bus_Zero_Inertia" id="562961651" classid="MessageObj"><![CDATA[Creating EMTDC executable...]]></message>
+    <message status="normal" label="build" groupid="0" scope="a9_Bus_Zero_Inertia" id="808261321" classid="MessageObj"><![CDATA[C:\Research\NateRoe_ERCOT_Project\SOW_task_2\PMView2.4\PMVIEW_2.4_working_w_gfm_claude_directory_national_lab_of_rockies_GFM_model\a9_Bus_Zero_Inertia.gf46>call "C:\Program Files (x86)\GFortran\4.6\bin\gf46vars.bat" ]]></message>
+    <message status="normal" label="build" groupid="100013" scope="a9_Bus_Zero_Inertia" id="2033805657" classid="MessageObj"><![CDATA[Linking objects and libraries into binary 'a9_Bus_Zero_Inertia.exe']]></message>
+    <message status="normal" label="build" groupid="400003" scope="a9_Bus_Zero_Inertia" id="595717756" classid="MessageObj"><![CDATA[Finished compiling with PSCAD Version 5.0.1]]></message>
+  </messagelist>
+  <ViewContext>
+    <Window defn="Kenyon_Library:GFM_Inverter_Dev2" call="0" />
+  </ViewContext>
+  <List classid="View">
+    <View name="Main" zoomscale="0.768" scrollx="0" scrolly="372" />
+  </List>
+  <Output device="EMTDC" version="2010" date="2026/03/04" time="12:10:35.000000">
+    <Domain name="Time" unit="s" mult="0.0" skew="0.0">
+      <Sample rate="2000.0" end="16000" />
+    </Domain>
+    <List classid="Analog">
+      <Analog name="Main(0):V_1" index="1" gindex="100663297" id="30470429:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):V_2" index="2" gindex="100663298" id="1106242617:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):V_3" index="3" gindex="100663299" id="1034727657:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_2r" index="4" gindex="100663300" id="1628438582:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):V_4" index="5" gindex="100663301" id="1302736278:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):V_5" index="6" gindex="100663302" id="1304072438:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_5r" index="7" gindex="100663303" id="1559430882:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):V_6" index="8" gindex="100663304" id="1552381121:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_8r" index="9" gindex="100663305" id="2004375597:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_3r" index="10" gindex="100663306" id="63511918:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_6r" index="11" gindex="100663307" id="1515105962:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):V_7" index="12" gindex="100663308" id="678378427:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):V_8" index="13" gindex="100663309" id="1021259671:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_9r" index="14" gindex="100663310" id="1511562186:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):V_9" index="15" gindex="100663311" id="1093409049:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_4r" index="16" gindex="100663312" id="1150352641:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_7r" index="17" gindex="100663313" id="518110582:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):P_1" index="18" gindex="100663314" id="1515460770:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):P_2" index="19" gindex="100663315" id="1101838029:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):P_3" index="20" gindex="100663316" id="2020846860:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Q_1" index="21" gindex="100663317" id="925095008:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Q_2" index="22" gindex="100663318" id="768149379:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Q_3" index="23" gindex="100663319" id="1619954333:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_4_1" index="24" gindex="100663320" id="228329633:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_5_4" index="25" gindex="100663321" id="1638899428:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_9_6" index="26" gindex="100663322" id="1502942078:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_9_8" index="27" gindex="100663323" id="516079673:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_7_2" index="28" gindex="100663324" id="1150748707:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_7_5" index="29" gindex="100663325" id="310057876:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_8_7" index="30" gindex="100663326" id="928114737:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_9_3" index="31" gindex="100663327" id="162999344:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_1" index="32" gindex="100663328" id="667883573:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_2" index="33" gindex="100663329" id="1925785763:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_3" index="34" gindex="100663330" id="1770545576:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_4" index="35" gindex="100663331" id="1516491839:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_5" index="36" gindex="100663332" id="68393629:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_6" index="37" gindex="100663333" id="1167662225:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_7" index="38" gindex="100663334" id="1734482391:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_8" index="39" gindex="100663335" id="1698841067:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Ph_9" index="40" gindex="100663336" id="1062648575:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq9" index="41" gindex="100663337" id="371437277:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq8" index="42" gindex="100663338" id="1421570688:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq7" index="43" gindex="100663339" id="219197098:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq6" index="44" gindex="100663340" id="1953720081:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq5" index="45" gindex="100663341" id="103315850:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq4" index="46" gindex="100663342" id="1493554501:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):ROCOF_3_S" index="47" gindex="100663343" id="562949460:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq3" index="48" gindex="100663344" id="683795845:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq2" index="49" gindex="100663345" id="325327732:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq1" index="50" gindex="100663346" id="1685662205:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):ROCOF_3" index="51" gindex="100663347" id="1161202263:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):ROCOF_2_S" index="52" gindex="100663348" id="2012769092:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):ROCOF_2" index="53" gindex="100663349" id="1664525680:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):ROCOF_1_S" index="54" gindex="100663350" id="1235307523:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):ROCOF_1" index="55" gindex="100663351" id="1550617989:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):ROCOF_sys_S" index="56" gindex="100663352" id="507348190:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq_avg_PLL" index="57" gindex="100663353" id="373515188:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):ROCOF_sys" index="58" gindex="100663354" id="562824220:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq_out_3" index="59" gindex="100663355" id="1172852343:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq_out_2" index="60" gindex="100663356" id="1133622223:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq_out_1" index="61" gindex="100663357" id="1044991435:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Freq_avg" index="62" gindex="100663358" id="1073250354:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    </List>
+    <List classid="Digital" />
+  </Output>
+</Meta>

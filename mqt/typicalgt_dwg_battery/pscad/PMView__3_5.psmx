@@ -1,0 +1,48 @@
+<Meta name="PSCADView">
+  <messagelist>
+    <message status="warning" label="build" groupid="206502" id="1514304747" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="1510902525" /><![CDATA[Signal 'RT_15' type conversion may lose accuracy at connection 'IN2']]></message>
+    <message status="warning" label="build" groupid="206502" id="815233329" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="1518763576" /><![CDATA[Signal 'RT_5' type conversion may lose accuracy at connection 'IN1']]></message>
+    <message status="warning" label="build" groupid="206502" id="61773150" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="1518763576" /><![CDATA[Signal 'RT_13' type conversion may lose accuracy at connection 'IN2']]></message>
+    <message status="warning" label="build" groupid="206502" id="879881060" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:select" status="warning" link="1349017838" /><![CDATA[Signal 'RT_14' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502" id="1072519687" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:select" status="warning" link="1419245944" /><![CDATA[Signal 'BRK1E' type conversion may lose accuracy at connection 'Ctrl']]></message>
+    <message status="warning" label="build" groupid="206502" id="1767967727" classid="CmpNavigator">
+      <User scope="PSCADView" name="Transient_Volt" status="warning" link="517537895" /><![CDATA[Signal 'transient_enable' type conversion may lose accuracy at connection 'enabl']]></message>
+    <message status="warning" label="build" groupid="302003" id="1453291860" classid="CmpNavigator">
+      <User scope="PSCADView" name="SCR" status="warning" link="1879050042" /><![CDATA[Parameter 'Nsteps' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.]]></message>
+    <message status="warning" label="build" groupid="302003" id="233627887" classid="CmpNavigator">
+      <User scope="PSCADView" name="SCR" status="warning" link="1879050042" /><![CDATA[Parameter 'Tfi' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.]]></message>
+    <message status="warning" label="build" groupid="206502" id="534457261" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:monostable" status="warning" link="239288680" /><![CDATA[Signal 'RT_34' type conversion may lose accuracy at connection 'in']]></message>
+    <message status="warning" label="build" groupid="206502" id="821455928" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="1866111585" /><![CDATA[Signal 'RT_4' type conversion may lose accuracy at connection 'IN2']]></message>
+    <message status="warning" label="build" groupid="206502" id="246470932" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="1866111585" /><![CDATA[Signal 'RT_5' type conversion may lose accuracy at connection 'IN1']]></message>
+    <message status="warning" label="build" groupid="203002" id="827506998" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:select" status="warning" link="399094901" /><![CDATA[Parameter 'A' is of type Integer but its value -1 is not; value will be forced to Integer type.]]></message>
+    <message status="warning" label="build" groupid="206502" id="791005334" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="941026597" /><![CDATA[Signal 'RT_24' type conversion may lose accuracy at connection 'IN1']]></message>
+    <message status="warning" label="build" groupid="206502" id="1043378240" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="941026597" /><![CDATA[Signal 'RT_25' type conversion may lose accuracy at connection 'IN2']]></message>
+    <message status="warning" label="build" groupid="206502" id="1411996944" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="1663120385" /><![CDATA[Signal 'RT_21' type conversion may lose accuracy at connection 'IN1']]></message>
+    <message status="warning" label="build" groupid="206502" id="766954520" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="1663120385" /><![CDATA[Signal 'RT_20' type conversion may lose accuracy at connection 'IN2']]></message>
+    <message status="warning" label="build" groupid="206502" id="515355658" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="1085764082" /><![CDATA[Signal 'RT_13' type conversion may lose accuracy at connection 'IN2']]></message>
+    <message status="warning" label="build" groupid="206502" id="1133275171" classid="CmpNavigator">
+      <User scope="PSCADView" name="master:logic_mult" status="warning" link="1085764082" /><![CDATA[Signal 'RT_12' type conversion may lose accuracy at connection 'IN1']]></message>
+  </messagelist>
+  <ViewContext>
+    <Window defn="PSCADView:Main" call="0" />
+  </ViewContext>
+  <List classid="View">
+    <View name="Main" zoomscale="0.768" scrollx="0" scrolly="0" />
+    <View name="PMView" zoomscale="1.5" scrollx="0" scrolly="1080" />
+    <View name="AGS_ESR" zoomscale="1.5" scrollx="0" scrolly="0" />
+  </List>
+</Meta>

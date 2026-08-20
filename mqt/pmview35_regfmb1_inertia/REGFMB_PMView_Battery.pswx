@@ -1,0 +1,16 @@
+<workspace name="REGFMB_PMView_Battery" version="5.0.2" crc="71685647">
+  <projects>
+    <project type="library" name="PSCADView" filepath=".\PMView__3_5.pslx" />
+    <project type="project" name="REGFMBPMViewValidation" filepath=".\REGFMBPMViewValidation.pscx" />
+    <project type="project" name="VSM_REGFM_B1" filepath="..\PNNL_REGFM\REGFM_B1\REGFM_B1\2. PSCAD Model\REGFM_B1_GFortran\VSM_REGFM_B1.pscx" />
+  </projects>
+  <simulations />
+  <pmr />
+  <messagegrid expanded="">
+    <column name="Icon" />
+    <column name="Id" />
+    <column name="Component" />
+    <column name="Namespace" />
+    <column name="Description" />
+  </messagegrid>
+</workspace>

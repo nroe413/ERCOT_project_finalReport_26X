@@ -1,0 +1,14 @@
+<workspace name="REGFM_A1_PNNL" version="5.0.2" crc="72150060">
+  <projects>
+    <project type="project" name="REGFM_A1" filepath=".\REGFM_A1.pscx" />
+  </projects>
+  <simulations />
+  <pmr />
+  <messagegrid expanded="">
+    <column name="Icon" />
+    <column name="Id" />
+    <column name="Component" />
+    <column name="Namespace" />
+    <column name="Description" />
+  </messagegrid>
+</workspace>

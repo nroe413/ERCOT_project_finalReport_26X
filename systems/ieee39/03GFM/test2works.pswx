@@ -1,0 +1,15 @@
+<workspace name="test2works" version="5.0.1" crc="27321516">
+  <projects>
+    <project type="project" name="IEEE39_acLine1" filepath=".\IEEE39_acLine1.pscx" />
+    <project type="library" name="ETRAN" filepath=".\ETRAN.pslx" />
+  </projects>
+  <simulations />
+  <pmr />
+  <messagegrid expanded="">
+    <column name="Icon" />
+    <column name="Id" />
+    <column name="Component" />
+    <column name="Namespace" />
+    <column name="Description" />
+  </messagegrid>
+</workspace>

@@ -1,0 +1,12 @@
+{
+ "experiment": "typicalgt_mqt_battery",
+ "test_number": 4,
+ "test_name": "V_Down",
+ "dwg_reference": "DWG Procedure Manual Rev. 24",
+ "machine": "G_32_0_1_DYR (GENROU+ESST4B+GGOV1+PSS2B, 650 MVA, 230 kV, H=5.46 s)",
+ "rig": "pscad/ copy of TypicalGT_inertia_validation; Vrated=230, T0=3 s, multiple-run via master:run_num",
+ "duration_s": 40.0,
+ "rows": 160001,
+ "columns": 30,
+ "source_stamp": "20260813_175630"
+}
