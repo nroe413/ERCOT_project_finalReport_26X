@@ -1,0 +1,256 @@
+% REGFM_A1 outer controls, redrawn one-to-one from the PNNL model
+% specification (Du et al., PNNL-35110, 2023): (a) Fig. 3(a) P-f droop
+% control and overload mitigation control; (b) Fig. 3(b) Q-V droop control
+% with the VFlag switch; (c) Fig. 4 fault current limiting function with
+% Eq. (7). Switch positions drawn as used in the study (VFlag = 1,
+% QVFlag = 1). Plain TikZ, document font; limiter glyphs carry their
+% limit as text.
+\providecommand{\satlim}[4]{%
+  \node[draw, line width=0.7pt, minimum size=0.5cm, inner sep=0pt] (#1) at (#2,#3) {};
+  \draw[line width=0.6pt] (#2,#3) ++(-0.16cm,-0.10cm) -- ++(0.10cm,0) -- ++(0.12cm,0.20cm) -- ++(0.10cm,0);
+  \node[font=\small, anchor=south, yshift=1pt] at (#1.north) {#4};}
+\begin{tikzpicture}[x=0.95cm, y=0.72cm, line cap=round, line join=round,
+    wire/.style={line width=0.7pt},
+    blk/.style={draw, line width=0.7pt, inner sep=3pt, minimum height=0.66cm,
+                font=\normalsize, align=center},
+    sum/.style={draw, circle, line width=0.7pt, inner sep=0pt, minimum size=0.34cm},
+    lbl/.style={font=\normalsize}, note/.style={font=\small, align=left},
+    >={Stealth[length=2.2mm]}]
+  \node[lbl, anchor=west] at (-0.3,5.1) {(a) $P$--$f$ droop control and overload mitigation control};
+  % ---- main droop row (y = 3.6) ---------------------------------------
+  \node[lbl, anchor=east] at (0.0,3.6) {$P_{\mathrm{inv}}$};
+  \node[sum] (s1) at (2.0,3.6) {};
+  \draw[->,wire] (0.05,3.6) -- (s1);
+  \node[lbl] at (1.55,3.95) {$-$};
+  \draw[->,wire] (2.0,2.75) -- (s1);
+  \node[lbl, anchor=north] at (2.0,2.7) {$P_{\mathrm{ref}}$};
+  \node[lbl] at (2.35,3.1) {$+$};
+  \node[blk] (mp) at (3.7,3.6) {$m_{\mathrm{p}}$};
+  \draw[->,wire] (s1) -- (mp);
+  \node[sum] (s2) at (9.0,3.6) {};
+  \draw[->,wire] (mp) -- (s2);
+  \node[lbl] at (8.55,3.95) {$+$};
+  \node[lbl] at (9.35,3.1) {$+$};
+  \node[blk] (w0) at (10.1,3.6) {$\omega_0$};
+  \draw[->,wire] (s2) -- (w0);
+  \node[blk] (int) at (12.2,3.6) {$\frac{1}{s}$};
+  \draw[->,wire] (w0) -- (int);
+  \node[lbl, anchor=south] at (11.15,3.7) {$\Delta\omega$};
+  \draw[->,wire] (int) -- (13.3,3.6);
+  \node[lbl, anchor=west] at (13.35,3.6) {$\delta_{\mathrm{droop}}$};
+  % omega = Delta omega + omega_0
+  \fill (11.15,3.6) circle (1.3pt);
+  \node[sum] (s9) at (11.15,2.4) {};
+  \draw[->,wire] (11.15,3.6) -- (s9);
+  \draw[->,wire] (11.15,1.5) -- (s9);
+  \node[lbl, anchor=north] at (11.15,1.45) {$\omega_0$};
+  \node[lbl] at (10.8,2.85) {$+$};
+  \node[lbl] at (10.8,1.95) {$+$};
+  \draw[->,wire] (s9) -- (12.2,2.4);
+  \node[lbl, anchor=west] at (12.25,2.4) {$\omega$};
+  % ---- P_max branch (y = 1.6 / 1.1 / 2.0) ------------------------------
+  \node[lbl, anchor=east] at (0.0,1.6) {$P_{\max}$};
+  \node[sum] (s4) at (2.0,1.6) {};
+  \draw[->,wire] (0.05,1.6) -- (s4);
+  \node[lbl] at (1.55,1.95) {$+$};
+  \node[lbl] at (2.35,1.1) {$-$};
+  \node[lbl, anchor=east] at (0.0,0.0) {$P_{\mathrm{inv}}$};
+  \draw[wire] (0.05,0.0) -- (2.0,0.0);
+  \fill (2.0,0.0) circle (1.3pt);
+  \draw[->,wire] (2.0,0.0) -- (s4);
+  \node[blk] (kp1) at (4.0,2.1) {$k_{\mathrm{ppmax}}$};
+  \node[blk] (ki1) at (4.0,1.0) {$\frac{k_{\mathrm{ipmax}}}{s}$};
+  \draw[wire] (s4) -- (2.75,1.6);
+  \fill (2.75,1.6) circle (1.3pt);
+  \draw[->,wire] (2.75,1.6) |- (kp1);
+  \draw[->,wire] (2.75,1.6) |- (ki1);
+  \satlim{l1}{5.5}{1.0}{$\le 0$}
+  \draw[->,wire] (ki1) -- (l1);
+  \node[sum] (s5) at (6.4,1.6) {};
+  \draw[->,wire] (kp1.east) -| (s5);
+  \draw[->,wire] (l1.east) -| (s5);
+  \node[lbl] at (6.05,2.05) {$+$};
+  \node[lbl] at (6.05,1.15) {$+$};
+  \satlim{l2}{7.3}{1.6}{$\le 0$}
+  \draw[->,wire] (s5) -- (l2);
+  % ---- P_min branch (y = -1.6 / -1.0 / -2.1) ---------------------------
+  \node[lbl, anchor=east] at (0.0,-1.6) {$P_{\min}$};
+  \node[sum] (s6) at (2.0,-1.6) {};
+  \draw[->,wire] (2.0,0.0) -- (s6);
+  \draw[->,wire] (0.05,-1.6) -- (s6);
+  \node[lbl] at (1.55,-1.95) {$+$};
+  \node[lbl] at (2.35,-1.1) {$-$};
+  \node[blk] (ki2) at (4.0,-1.0) {$\frac{k_{\mathrm{ipmax}}}{s}$};
+  \node[blk] (kp2) at (4.0,-2.1) {$k_{\mathrm{ppmax}}$};
+  \draw[wire] (s6) -- (2.75,-1.6);
+  \fill (2.75,-1.6) circle (1.3pt);
+  \draw[->,wire] (2.75,-1.6) |- (ki2);
+  \draw[->,wire] (2.75,-1.6) |- (kp2);
+  \satlim{l3}{5.5}{-1.0}{$\ge 0$}
+  \draw[->,wire] (ki2) -- (l3);
+  \node[sum] (s7) at (6.4,-1.6) {};
+  \draw[->,wire] (l3.east) -| (s7);
+  \draw[->,wire] (kp2.east) -| (s7);
+  \node[lbl] at (6.05,-1.15) {$+$};
+  \node[lbl] at (6.05,-2.05) {$+$};
+  \satlim{l4}{7.3}{-1.6}{$\ge 0$}
+  \draw[->,wire] (s7) -- (l4);
+  % ---- common sum and feed into the droop row --------------------------
+  \node[sum] (s8) at (8.3,0.0) {};
+  \draw[->,wire] (l2.east) -| (s8);
+  \draw[->,wire] (l4.east) -| (s8);
+  \node[lbl] at (7.95,0.5) {$+$};
+  \node[lbl] at (7.95,-0.5) {$+$};
+  \draw[->,wire] (s8.east) -| (s2);
+  \node[note, anchor=west] at (9.5,0.0) {plant controller changes $P_{\mathrm{ref}}$};
+\end{tikzpicture}
+
+\par\vspace{6pt}
+
+\begin{tikzpicture}[x=0.83cm, y=0.72cm, line cap=round, line join=round,
+    wire/.style={line width=0.7pt},
+    blk/.style={draw, line width=0.7pt, inner sep=3pt, minimum height=0.66cm,
+                font=\normalsize, align=center},
+    sum/.style={draw, circle, line width=0.7pt, inner sep=0pt, minimum size=0.34cm},
+    lbl/.style={font=\normalsize}, note/.style={font=\small, align=left},
+    >={Stealth[length=2.2mm]}]
+  \node[lbl, anchor=west] at (-0.3,6.1) {(b) $Q$--$V$ droop control (VFlag $=1$ and QVFlag $=1$ as used)};
+  % ---- main row (y = 3.6) ----------------------------------------------
+  \node[lbl, anchor=east] at (0.0,3.6) {$Q_{\mathrm{inv}}$};
+  \node[sum] (q1) at (2.0,3.6) {};
+  \draw[->,wire] (0.05,3.6) -- (q1);
+  \node[lbl] at (1.55,3.25) {$-$};
+  \draw[->,wire] (2.0,4.45) -- (q1);
+  \node[lbl, anchor=south] at (2.0,4.5) {$Q_{\mathrm{ref}}$};
+  \node[lbl] at (2.35,4.1) {$+$};
+  \node[blk] (mq) at (3.7,3.6) {$m_{\mathrm{q}}$};
+  \draw[->,wire] (q1) -- (mq);
+  \node[sum] (q2) at (9.0,3.6) {};
+  \draw[->,wire] (mq) -- (q2);
+  \node[lbl] at (8.55,3.25) {$+$};
+  \draw[->,wire] (9.0,4.45) -- (q2);
+  \node[lbl, anchor=south] at (9.0,4.5) {$V_{\mathrm{ref}}$};
+  \node[lbl] at (9.35,4.1) {$+$};
+  \node[lbl] at (9.35,3.1) {$+$};
+  \draw[wire] (q2) -- (10.4,3.6);
+  \node[lbl, anchor=south west] at (9.55,3.7) {$V_{\mathrm{cmd}}$};
+  % VFlag switch: pole at (10.4,3.6); contact 0 above, contact 1 below (blade on 1)
+  \fill (10.4,3.6) circle (1.3pt);
+  \fill (11.5,4.3) circle (1.3pt);
+  \fill (11.5,2.9) circle (1.3pt);
+  \draw[wire] (10.4,3.6) -- (11.5,2.9);
+  \node[lbl, anchor=south] at (10.7,4.8) {VFlag};
+  \node[note, anchor=south west] at (11.55,4.4) {0};
+  \node[note, anchor=east] at (11.3,2.9) {1};
+  % VFlag = 0 path: direct droop through the E limits
+  \draw[->,wire] (11.5,4.3) -- (12.55,4.3);
+  \satlim{e0}{12.8}{4.3}{$E_{\max}$}
+  \node[font=\small, anchor=north, yshift=-1pt] at (e0.south) {$E_{\min}$};
+  \draw[->,wire] (e0) -- (13.9,4.3);
+  \node[lbl, anchor=west] at (13.95,4.3) {$E_{\mathrm{droop}}$};
+  % VFlag = 1 path: PI regulator on the POI voltage (used)
+  \node[sum] (q3) at (11.5,2.1) {};
+  \draw[->,wire] (11.5,2.9) -- (q3);
+  \node[lbl] at (11.85,2.55) {$+$};
+  \node[lbl, anchor=east] at (10.7,2.1) {$V_{\mathrm{inv}}$};
+  \draw[->,wire] (10.75,2.1) -- (q3);
+  \node[lbl] at (11.15,1.75) {$-$};
+  \draw[wire] (q3) -- (12.1,2.1);
+  \fill (12.1,2.1) circle (1.3pt);
+  \node[blk] (kpv) at (13.0,2.6) {$k_{\mathrm{pv}}$};
+  \node[blk] (kiv) at (13.0,1.5) {$\frac{k_{\mathrm{iv}}}{s}$};
+  \draw[->,wire] (12.1,2.1) |- (kpv);
+  \draw[->,wire] (12.1,2.1) |- (kiv);
+  \satlim{e1}{14.1}{1.5}{$E_{\max}$}
+  \node[font=\small, anchor=north, yshift=-1pt] at (e1.south) {$E_{\min}$};
+  \draw[->,wire] (kiv) -- (e1);
+  \node[sum] (q4) at (14.9,2.1) {};
+  \draw[->,wire] (kpv.east) -| (q4);
+  \draw[->,wire] (e1.east) -| (q4);
+  \node[lbl] at (14.55,2.55) {$+$};
+  \node[lbl] at (14.55,1.65) {$+$};
+  \satlim{e2}{15.8}{2.1}{$E_{\max}$}
+  \node[font=\small, anchor=north, yshift=-1pt] at (e2.south) {$E_{\min}$};
+  \draw[->,wire] (q4) -- (e2);
+  \draw[->,wire] (e2) -- (16.8,2.1);
+  \node[lbl, anchor=west] at (16.85,2.1) {$E_{\mathrm{droop}}$};
+  % ---- Q_max branch -----------------------------------------------------
+  \node[lbl, anchor=east] at (0.0,1.6) {$Q_{\max}$};
+  \node[sum] (q5) at (2.0,1.6) {};
+  \draw[->,wire] (0.05,1.6) -- (q5);
+  \node[lbl] at (1.55,1.95) {$+$};
+  \node[lbl] at (2.35,1.1) {$-$};
+  \node[lbl, anchor=east] at (0.0,0.0) {$Q_{\mathrm{inv}}$};
+  \draw[wire] (0.05,0.0) -- (2.0,0.0);
+  \fill (2.0,0.0) circle (1.3pt);
+  \draw[->,wire] (2.0,0.0) -- (q5);
+  \node[blk] (kq1) at (4.0,2.1) {$k_{\mathrm{pqmax}}$};
+  \node[blk] (kqi1) at (4.0,1.0) {$\frac{k_{\mathrm{iqmax}}}{s}$};
+  \draw[wire] (q5) -- (2.75,1.6);
+  \fill (2.75,1.6) circle (1.3pt);
+  \draw[->,wire] (2.75,1.6) |- (kq1);
+  \draw[->,wire] (2.75,1.6) |- (kqi1);
+  \satlim{m1}{5.5}{1.0}{$\le 0$}
+  \draw[->,wire] (kqi1) -- (m1);
+  \node[sum] (q6) at (6.4,1.6) {};
+  \draw[->,wire] (kq1.east) -| (q6);
+  \draw[->,wire] (m1.east) -| (q6);
+  \node[lbl] at (6.05,2.05) {$+$};
+  \node[lbl] at (6.05,1.15) {$+$};
+  \satlim{m2}{7.3}{1.6}{$\le 0$}
+  \draw[->,wire] (q6) -- (m2);
+  % ---- Q_min branch -----------------------------------------------------
+  \node[lbl, anchor=east] at (0.0,-1.6) {$Q_{\min}$};
+  \node[sum] (q7) at (2.0,-1.6) {};
+  \draw[->,wire] (2.0,0.0) -- (q7);
+  \draw[->,wire] (0.05,-1.6) -- (q7);
+  \node[lbl] at (1.55,-1.95) {$+$};
+  \node[lbl] at (2.35,-1.1) {$-$};
+  \node[blk] (kqi2) at (4.0,-1.0) {$\frac{k_{\mathrm{iqmax}}}{s}$};
+  \node[blk] (kq2) at (4.0,-2.1) {$k_{\mathrm{pqmax}}$};
+  \draw[wire] (q7) -- (2.75,-1.6);
+  \fill (2.75,-1.6) circle (1.3pt);
+  \draw[->,wire] (2.75,-1.6) |- (kqi2);
+  \draw[->,wire] (2.75,-1.6) |- (kq2);
+  \satlim{m3}{5.5}{-1.0}{$\ge 0$}
+  \draw[->,wire] (kqi2) -- (m3);
+  \node[sum] (q8) at (6.4,-1.6) {};
+  \draw[->,wire] (m3.east) -| (q8);
+  \draw[->,wire] (kq2.east) -| (q8);
+  \node[lbl] at (6.05,-1.15) {$+$};
+  \node[lbl] at (6.05,-2.05) {$+$};
+  \satlim{m4}{7.3}{-1.6}{$\ge 0$}
+  \draw[->,wire] (q8) -- (m4);
+  % ---- common sum into V_cmd --------------------------------------------
+  \node[sum] (q9) at (8.3,0.0) {};
+  \draw[->,wire] (m2.east) -| (q9);
+  \draw[->,wire] (m4.east) -| (q9);
+  \node[lbl] at (7.95,0.5) {$+$};
+  \node[lbl] at (7.95,-0.5) {$+$};
+  \draw[->,wire] (q9.east) -| (q2);
+  \node[note, anchor=west, text width=6.6cm] at (9.6,-0.4)
+    {QVFlag $=1$: the plant controller changes $V_{\mathrm{ref}}$ and the initialization sets $Q_{\mathrm{ref}}=0$};
+\end{tikzpicture}
+
+\par\vspace{6pt}
+
+\begin{tikzpicture}[x=0.95cm, y=0.72cm, line cap=round, line join=round,
+    wire/.style={line width=0.7pt},
+    lbl/.style={font=\normalsize}, note/.style={font=\small, align=left},
+    >={Stealth[length=2.2mm]}]
+  \node[lbl, anchor=west] at (-0.3,2.2) {(c) fault current limiting function};
+  \node[lbl, anchor=east] at (4.6,1.0) {$E_{\mathrm{droop}}\angle\delta_{\mathrm{droop}}$};
+  \node[lbl, anchor=east] at (4.6,-0.4) {$V\angle\delta_{\mathrm{V}}+jX_{\mathrm{L}}\,I_{\max F}\angle\varphi$};
+  \draw[wire] (4.65,1.0) -- (6.3,1.0);
+  \draw[wire] (4.65,-0.4) -- (6.3,-0.4);
+  \fill (6.3,1.0) circle (1.3pt);
+  \fill (6.3,-0.4) circle (1.3pt);
+  \node[note, anchor=south] at (5.5,1.1) {$I<I_{\max F}$};
+  \node[note, anchor=north] at (5.5,-0.5) {$I\ge I_{\max F}$};
+  \fill (7.2,0.3) circle (1.3pt);
+  \draw[wire] (7.2,0.3) -- (6.3,1.0);
+  \draw[->,wire] (7.2,0.3) -- (8.3,0.3);
+  \node[lbl, anchor=west] at (8.35,0.3) {$E\angle\delta_{\mathrm{E}}$};
+  \node[lbl, anchor=west] at (10.2,0.3)
+    {$I\angle\varphi=\dfrac{E_{\mathrm{droop}}\angle\delta_{\mathrm{droop}}-V\angle\delta_{\mathrm{V}}}{jX_{\mathrm{L}}}$};
+\end{tikzpicture}

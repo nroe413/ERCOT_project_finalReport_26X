@@ -1,0 +1,1115 @@
+% UT/ERCOT year-one technical report.
+% Build: latexmk -pdf main.tex
+\documentclass[11pt]{article}
+\usepackage{ut26x}
+\usepackage{tgcursor}   % Typewriter font with bold support.
+\usepackage{silence}    % Suppress a benign package compatibility notice.
+\WarningFilter{latex}{Command \showhyphens has changed}
+\usepackage[verbose=silent]{microtype}  % Font expansion and margin protrusion.
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc}
+\graphicspath{{figures/}}
+\input{figures/energy_surface_style.tex}
+
+% Keep figures within their section and prefer page-top/page-bottom placement.
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.88}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.80}
+\usepackage[section]{placeins}
+\setcounter{topnumber}{1}
+\setcounter{bottomnumber}{1}
+\setcounter{totalnumber}{2}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{18pt plus 1fil}
+\setlength{\@fpbot}{0pt plus 0.01fil}
+\makeatother
+
+\lstset{basicstyle=\ttfamily\footnotesize, columns=fullflexible,
+  keepspaces=true, frame=single, rulecolor=\color{utlimestone},
+  framesep=6pt, xleftmargin=6pt, xrightmargin=6pt,
+  backgroundcolor=\color{utlimestone!18}, language=Python,
+  commentstyle=\color{utcharcoal!70}, keywordstyle=\color{utblue},
+  stringstyle=\color{utorange!80!utcharcoal}, showstringspaces=false,
+  breaklines=true}
+
+\title{Simulation Testbed for a Power System with a High Penetration of Grid-Forming Inverters}
+\utshorttitle{Year-One EMT Testbed and Analysis}
+\utauthors{Nate Roe \,\textperiodcentered\, Brian Johnson \,\textperiodcentered\, Jakob Triemstra \,\textperiodcentered\, Debjyoti Chatterjee \,\textperiodcentered\, Surya Santoso \,\textperiodcentered\, Prashant Kansal \,\textperiodcentered\, Eliot Jimenez Ortega \,\textperiodcentered\, Scott Zuloaga \,\textperiodcentered\, Fred Huang \,\textperiodcentered\, Jimmy Zhang \,\textperiodcentered\, Amro Quedan \,\textperiodcentered\, Mario de la Garza \,\textperiodcentered\, Yunzhi Cheng \,\textperiodcentered\, Ali Yazdanpanah \,\textperiodcentered\, Prabhu Gnanam \,\textperiodcentered\, Shri Abhyankar \,\textperiodcentered\, Bishnu Prasad Bhattarai \,\textperiodcentered\, Jose Conto \,\textperiodcentered\, Jonathan Rose \,\textperiodcentered\, Jeffrey Billo \,\textperiodcentered\, Sun Wook Kang}
+\utdateline{August 2026}
+
+% Let pages end short rather than stretch to fill: with this many
+% floats, forcing a flush bottom produces overfull \vbox warnings.
+\raggedbottom
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\utcover
+\hypersetup{pageanchor=true}
+\tableofcontents
+\clearpage
+
+% =====================================================================
+\section*{Executive Summary}
+\addcontentsline{toc}{section}{Executive Summary}
+
+We developed a reusable simulation testbed to study power systems with a high share of grid-forming (GFM) inverters. The University of Texas at Austin collaboration with the Electric Reliability Council of Texas (ERCOT) began with an IEEE 39-bus PSS/E network and translated it through E-TRAN into PSCAD. We equipped the adapted benchmark with representative machine dynamics supplied by ERCOT and with inverter models for replacement studies. The first-year work primarily concerns electromagnetic transient (EMT) simulations in PSCAD; the PSS/E starting case provides the network foundation for corresponding positive-sequence studies in the next phase.
+
+Battery storage motivates this work because it can absorb energy when supply is abundant and inject energy when needed. Variable renewable generation and rapidly changing loads increase the importance of this flexibility. ERCOT's advanced grid-support requirements for new inverter-based storage resources also make GFM behavior increasingly relevant to system studies. Understanding how these controls behave in steady state, during faults, and in the post-fault period is therefore important.
+
+The testbed combines configurable network disturbances, resource models, and scripts that process the simulation outputs. We developed eleven configurations by replacing zero through ten synchronous machines with the selected droop-controlled GFM model. Because generator ratings and operating points differ, we identify intermediate configurations by replacement count rather than assigning each unit an equal percentage of generation. The same network framework supports later studies of other GFM controls, grid-following (GFL) resources, mixed generation, and load disturbances.
+
+The reference simulations show recovery of the connected network in configurations spanning the all-machine and all-GFM endpoints. The selected GFM responses settle faster than the corresponding machine responses after the three-phase fault. Inverter fault currents also remain much closer to the configured current limit than the larger machine currents. These observations concern the disturbances and resource configurations studied, and continued network recovery is distinct from continued output by a resource disconnected during clearing.
+
+The analytical comparison connects these observations to familiar machine dynamics. A synchronous machine has a physical rotor whose motion determines its electrical phase, whereas a GFM controller generates an electrical phase without a rotating shaft. Under unsaturated filtered droop, the two models can be written in the same reduced swing-equation form. The GFM droop gain sets an equivalent damping coefficient $D_{\mathrm{eq}}=1/m_{\mathrm{p}}$, while the power-measurement filter and droop gain set equivalent inertia. For the selected parameters, the low-frequency damping coefficient is five times the machine governor droop coefficient on the corresponding normalized bases.
+
+This equivalent damping provides an important interpretation of the strongly damped GFM responses, but it is not the only control property that affects fault recovery. Current and voltage limits change the power that an inverter can deliver during severe disturbances. The inertia estimation tests further show that damping-related power contributes to the estimated inertia over the test window. The preliminary energy-method investigation examines how those reduced dynamics compare with EMT fault-duration limits.
+
+The next phase will align topology, operating points, ratings, bases, applicable controls, and disturbances in corresponding PSS/E and PSCAD studies. The objective is to understand differences between modeling domains, not to force identical trajectories. We will also extend the preliminary analytical work to investigate how current limits, voltage limits, and droop settings influence transient stability. Together, the testbed and analytical interpretation provide a foundation for guidance to manufacturers and power-system engineers.
+
+\clearpage
+\section{Introduction}
+
+This report presents the first-year PSCAD electromagnetic transient (EMT) testbed and its initial application to machine and inverter disturbance studies. It follows the development of the network, the simulated responses, and the reduced dynamic models used to interpret them. The adapted IEEE 39-bus system provides a common setting for this comparison, while its PSS/E origin supports the next phase of corresponding positive-sequence studies.
+The Electric Reliability Council of Texas (ERCOT) hosts 21.7~GW of battery energy storage in the reporting-period integration report \cite{esrint2026}. Approximately 36~GW of additional storage projects hold signed interconnection agreements \cite{gis2026}. These projects indicate substantial development activity, although an agreement does not guarantee commercial operation. Batteries provide energy to ERCOT customers and can also support frequency regulation and load smoothing.
+
+Artificial intelligence (AI) data centers introduce rapid demand changes during model training and serving. Batteries can reduce the power ramps presented to the grid, depending on facility design and control \cite{mohammadi2026}. They may connect directly to the grid or provide on-site power alongside uninterruptible power supplies. These applications motivate understanding the dynamic behavior of the inverter interface through which a battery exchanges power.
+
+A battery connects to a three-phase AC network through a DC--AC inverter, as Figure~\ref{fig:invsymbol} illustrates. Semiconductor switches and passive capacitors and inductors shape the AC output from the DC source. A microcontroller changes each switch's duty cycle, the fraction of a switching period spent on, using measured voltage and current. The resulting commands regulate the electrical variables needed to deliver the selected power output.
+
+An LCL filter places two inductors and a shunt capacitor between the converter and the grid. The controller regulates current through the converter-side inductor and voltage across the filter capacitor, while outer controls govern power and voltage behavior. Different control approaches use this same physical interface differently. This report focuses on grid-forming (GFM) control and compares its response with conventional synchronous machines.
+
+\begin{figure}[b]\centering
+\input{figures/tikz_inverter_overview.tex}
+\caption{Three-phase inverter interface, shown as a single-phase equivalent: DC source, converter stage, LCL filter, and AC grid.}
+\label{fig:invsymbol}
+\end{figure}
+
+The Universal Interoperability for Grid-Forming Inverters (UNIFI) Consortium defines GFM behavior through an internal voltage phasor that remains approximately stiff on subtransient-to-transient timescales \cite{unifi2026}. This characteristic supports an immediate electrical response to changes at the connection point, subject to resource and control limits. It does not mean that voltage magnitude or phase remains fixed indefinitely, or that the inverter behaves as an unlimited voltage source during a severe fault. GFM control takes several forms, including droop and virtual-synchronous-machine implementations \cite{unifi2026,du2023a1,du2024b1}; all maintain that internal voltage phasor as the voltage and frequency reference, and the system-level behavior then depends on the remaining controls, hardware, and operating limits.
+
+ERCOT's Nodal Operating Guide Revision Request (NOGRR) 272 establishes advanced grid-support requirements for inverter-based energy storage resources connected to the ERCOT Transmission Grid \cite{nogrr272}. The applicability trigger is a Standard Generation Interconnection Agreement (SGIA) executed on or after April~1, 2026, rather than the date on which any new battery begins operating. The revision was approved on November~6, 2025, with an effective date of December~1, 2025; the SGIA cutoff is a distinct date \cite{nogrr272,agsupdate2026}. This distinction matters when describing the population of resources to which the requirements apply.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.708\textwidth]{bess_fleet_growth}
+\caption{ERCOT battery energy storage capacity by commercial-operation year, alongside 36.2~GW in the interconnection queue with executed agreements. Sources: July 2026 Monthly Outlook for Resource Adequacy and Generator Interconnection Status reports \cite{mora2026,gis2026}.}
+\label{fig:ercotbess}
+\end{figure}
+
+\label{sec:gflgfm}
+
+Conventional grid-following (GFL) control uses an externally established voltage waveform as its synchronization reference, commonly through a phase-locked loop. Within normal voltage limits, its output current phasor remains approximately unchanged immediately after a disturbance, before outer controls adjust the injected power \cite{unifi2026}. A solver's use of a current-source equivalent does not determine this classification: a GFM voltage source behind impedance can also be converted to a Norton current-source representation. The distinction concerns control behavior and synchronization, not simply the circuit element used in a numerical network solution.
+
+Three terms connect GFM controls to the machine-based interpretation developed in this report. Their meanings depend on the reduced model and its operating assumptions. In particular, an analogy between equations does not make the physical sources identical.
+\begin{enumerate}
+\item The \emph{inverter angle} is a controller-generated electrical phase. Like a machine's electrical rotor angle, its displacement relative to other sources influences power transfer. It is not the position of a physical shaft.
+\item The \emph{equivalent inertia} of filtered droop arises from the lag in its power measurement and depends on the filter time constant and droop gain \cite{chatterjee2026note}. Shortening the filter reduces this coefficient without changing a physical moment of inertia. The electrical energy still comes from the DC source and circuit storage.
+\item The \emph{equivalent damping} relates normalized frequency deviation to normalized power response. The droop gain sets this coefficient in the reduced GFM model. Section~\ref{sec:dampinertia} distinguishes it from a machine governor's frequency-dependent contribution and from damping inferred from a complete system response.
+\end{enumerate}
+Section~\ref{sec:testbed} describes the network, resource models, and simulation workflow. Section~\ref{sec:emt} presents the EMT replacement and fault-response studies. Section~\ref{sec:dynamics} develops the machine-to-GFM comparison and interprets the inertia estimation tests. Section~\ref{sec:outlook} presents the preliminary energy analysis and next-phase directions.
+
+\section{Simulation Testbed}
+\label{sec:testbed}
+The testbed provides a configurable network for the machine-to-inverter comparison. We converted the PSS/E case to PSCAD with E-TRAN and used the EMT representation for the first-year disturbance studies. This construction also preserves a common starting point for future corresponding-model comparisons.
+
+\subsection{Testbed Construction}
+The adapted IEEE 39-bus network contains ten generator buses \cite{pscad39bus,pscad39note}. Its EMT representation includes Bergeron transmission lines, generator step-up transformers, and constant-power loads (E-TRAN load model type~0: fixed real and reactive power) \cite{pscadbergeron}. E-TRAN translates the network parameters and initial load-flow operating point from PSS/E into PSCAD \cite{etran}. The load representation matters for the stability estimates of Section~\ref{sec:energymethod}: with these constant-power loads the ten-machine estimate is 0.248~s, inside the EMT bracket, whereas a constant-impedance representation of the same loads gives 0.479~s. The resulting benchmark uses a 230~kV transmission network with representative ERCOT-supplied machine dynamics, rather than representing actual Texas transmission facilities.
+
+The ten machines share GENROU, ESST4B, GGOV1, and PSS2B dynamic parameters, including inertia $H=5.46$~s. Sharing these parameters does not imply identical ratings or dispatch. Figure~\ref{fig:testbedflow} summarizes the construction and processing workflow. Figures~\ref{fig:faultlogic} and~\ref{fig:faultcontrol} show the controls used to select fault location, type, timing, and associated breaker action.
+
+The fault controls combine a central configuration panel with logic attached to individual transmission lines. We specify the fault start time, location, type, and duration centrally, while the line controls implement the corresponding fault and breaker commands. The protection settings distinguish removal of the fault from restoration of the connection. This arrangement allows the same network to support either a reclosed connection or a post-fault topology in which the selected connection remains open.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{pscad_fault_line_logic}
+\caption{Fault and protection configuration on one E-TRAN-converted
+line, as presented in the PSCAD user interface: the per-line timed
+fault logic and measurement channels (left), and the primary
+protection clearing times, reclosing logic, fault-location numbers,
+and breaker controller (right). }
+\label{fig:faultlogic}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.9\textwidth]{pscad_breaker_fault_control}
+\caption{Central fault-control settings for the bus-14 reference disturbance: start time 3.0~s, type code 7, and duration 0.0833~s, approximately five cycles at 60~Hz.}
+\label{fig:faultcontrol}
+\end{figure}
+
+\subsection{Iterative Generator Replacement}
+One design goal was to study mixtures of synchronous machines and GFM inverters in the same network. Each generator location can retain its machine or host an inverter, with the operating point specified in that resource's PSCAD model. We configured the replacements manually for the first study; the PSCAD Python interface (\texttt{mhi.pscad}) also provides a path to automated configuration.
+
+We developed eleven configurations by replacing zero through ten machines with GFM units. Because generator ratings and operating points are not identical, replacement count identifies the cases without assuming that each replacement corresponds to exactly 10\% of generation capacity. The progression spans the all-machine and all-GFM endpoints while retaining a common reference disturbance. The framework can also accommodate alternative GFM models, machine dynamics, and GFL resources for later mixed-system studies.
+
+\subsection{Measurement in Testbed Design}
+The instrumentation records per-bus instantaneous and root-mean-square (RMS) voltage and current, active and reactive powers, and frequency quantities. Frequency analysis includes the nadir, recovery, maximum deviation, and rate of change of frequency. We parse the PSCAD output files and normalize device quantities on their apparent-power bases for plotting. Physical-unit network plots and device-normalized plots retain their respective measurement locations and voltage levels.
+
+Voltage and current interpretation depends on the selected bases and on whether the signal is instantaneous or RMS. We distinguish line-to-line voltage from line-to-neutral voltage when interpreting the three-phase quantities. Device-base normalization makes the controller settings readable but does not, by itself, make unequal ratings or operating points identical. Appendix~\ref{app:plotting} describes the channel-processing conventions.
+
+\begin{figure}[tbp]\centering
+\begin{tikzpicture}[
+  font=\small,
+  box/.style={draw, rounded corners=2pt, align=center, inner sep=5pt,
+              line width=0.8pt},
+  stage/.style={box, draw=utcharcoal, fill=utcharcoal!6, text width=42mm},
+  side/.style={box, draw=utorange, fill=utorange!7, text width=52mm},
+  proc/.style={box, draw=utblue, fill=utblue!6, text width=42mm},
+  arr/.style={-{Stealth[length=2.6mm]}, line width=0.9pt,
+              color=utcharcoal}
+]
+\node[stage] (psse) {\textbf{PSS/E case}\\[1pt]
+  {\footnotesize IEEE 39-bus, 10 machines}};
+\node[stage, right=10mm of psse] (etran) {\textbf{E-TRAN}\\[1pt]
+  {\footnotesize $\to$ EMT network}};
+\node[stage, right=10mm of etran] (pscad) {\textbf{PSCAD EMT}\\[1pt]
+  {\footnotesize fault studies}};
+\node[side, below=7mm of psse] (dyr)
+  {ERCOT \texttt{.dyr} machine dynamics\\[1pt]
+  {\footnotesize (Table~\ref{tab:dyr_gov_params},
+   Appendix~\ref{app:params})}};
+\node[side, text width=42mm, below=7mm of pscad] (pnnl)
+  {PNNL REGFM\_A1 library\\[1pt]
+  {\footnotesize \cite{du2023a1,pnnlgithub}}};
+\node[proc, below=7mm of dyr] (figs)
+  {\textbf{Report figures}\\[1pt]
+  {\footnotesize (Appendix~\ref{app:plotting})}};
+\node[proc] (proc) at (etran |- figs)
+  {\textbf{Python pipeline}};
+\node[proc] (out) at (pscad |- figs)
+  {\textbf{EMTDC output}\\[1pt]
+  {\footnotesize \texttt{.out} + \texttt{.inf}}};
+\draw[arr] (psse) -- (etran);
+\draw[arr] (etran) -- (pscad);
+\draw[arr, color=utorange] (dyr) -- (psse);
+\draw[arr, color=utorange] (pnnl) -- (pscad);
+\draw[arr, color=utblue] (pscad.east) -- ++(2.5mm,0) |- (out.east);
+\draw[arr, color=utblue] (out) -- (proc);
+\draw[arr, color=utblue] (proc) -- (figs);
+\end{tikzpicture}
+\caption{Testbed construction and output processing. E-TRAN converts the IEEE 39-bus PSS/E case with representative machine dynamics to PSCAD; REGFM\_A1 units replace machines in selected configurations. The numerical-output workflow converts EMTDC channels into tables for analysis and plotting.}
+\label{fig:testbedflow}
+\end{figure}
+
+Table~\ref{tab:dyr_gov_params} lists the governor and turbine settings used by the machine model. Appendix~\ref{app:params} gives the machine, excitation, governor, and stabilizer record in PSS/E format. These dynamic settings act alongside the network operating point to determine the machine response. The parameter units follow the corresponding normalized control signals \cite{ggovmanual}.
+
+The machine model includes the rotor and field dynamics, an exciter, a turbine governor, and a power-system stabilizer. The GGOV1 settings specify permanent droop, the speed-error limits, valve motion, turbine response, and load and acceleration limits. The transducer time $T_{\mathrm{pelec}}=1.0$~s filters the electrical-power feedback selected by Rselect~$=1$; it is the supplied value, equal to the typical GGOV1 value tabulated in \cite{pestr1}, and is distinct from the inverter's 10~ms power-measurement filter and from any plotting filter. The proportional, integral, and derivative governor gains act on different time operations, so their units differ even though the input and output signals are normalized. Keeping these settings explicit connects the machine baseline to the damping comparison in Section~\ref{sec:dampinertia}.
+
+\begin{table}[tbp]\centering\small
+\caption{GGOV1 governor and turbine parameters for the synchronous-machine reference \cite{pestr1,ggovmanual}.}
+\label{tab:dyr_gov_params}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}}\toprule
+Parameter & Value & Units & Definition\\\midrule
+Rselect (ICON) & 1 & integer & Electrical-power droop feedback\\
+Flag (ICON) & 1 & switch & Fuel-flow characteristic\\
+$R$ & 0.05 & p.u./p.u. & Permanent droop\\
+$T_{\mathrm{pelec}}$ & 1.0 & s & Electrical-power transducer time\\
+maxerr / minerr & $\pm0.055$ & p.u. & Governor speed-error clip (PID input)\\
+$K_{\mathrm{pgov}}$ & 10 & p.u./p.u. & Proportional gain\\
+$K_{\mathrm{igov}}$ & 1 & s$^{-1}$ & Integral gain\\
+$K_{\mathrm{dgov}}$ & 0 & s & Derivative gain\\
+$T_{\mathrm{dgov}}$ & 1 & s & Derivative-filter time\\
+$v_{\mathrm{max}} / v_{\mathrm{min}}$ & 1 / 0.16 & p.u. & Valve-position limits\\
+$T_{\mathrm{act}}$ & 0.5 & s & Actuator time constant\\
+$K_{\mathrm{turb}}$ & 1.5 & p.u./p.u. & Turbine gain\\
+$W_{\mathrm{fnl}}$ & 0.2 & p.u. & No-load fuel flow\\
+$T_{\mathrm{b}}$ & 0.1 & s & Turbine lag time\\
+$T_{\mathrm{c}}$ & 0 & s & Turbine lead time\\
+$T_{\mathrm{eng}}$ & 0 & s & Engine transport lag\\
+$T_{\mathrm{fload}}$ & 3 & s & Load-limiter time constant\\
+$K_{\mathrm{pload}} / K_{\mathrm{iload}}$ & 2 / 0.7 & p.u./p.u. / s$^{-1}$ & Load-limiter PI gains\\
+$L_{\mathrm{dref}}$ & 1 & p.u. & Load-limiter reference\\
+$D_{\mathrm{m}}$ & 0 & p.u./p.u. & Turbine speed sensitivity\\
+$R_{\mathrm{open}} / R_{\mathrm{close}}$ & $0.1/-0.1$ & p.u./s & Valve motion limits\\
+$K_{\mathrm{imw}}$ & 0 & s$^{-1}$ & Power-controller reset gain; disabled\\
+$A_{\mathrm{set}}$ & 0.1 & p.u./s & Acceleration setpoint\\
+$K_{\mathrm{a}} / T_{\mathrm{a}}$ & 10 / 0.1 & p.u. / s & Acceleration gain/filter time\\
+$T_{\mathrm{rate}}$ & 0 & MW & Turbine-rating input\\
+db & 0.0002 & p.u. & Speed-governor deadband\\
+$T_{\mathrm{sa}} / T_{\mathrm{sb}}$ & 4 / 5 & s / s & Temperature lead/lag times\\
+$R_{\mathrm{up}} / R_{\mathrm{down}}$ & $99/-99$ & p.u./s & Load-limit ramp caps; inactive\\\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.93\textwidth]{pscad_39bus_overview}
+\caption{Single-line overview of the E-TRAN-converted IEEE
+39-bus network on the PSCAD canvas: 230~kV lines with per-line length
+labels, transformers, and the ten generator subsystems.}
+\label{fig:pscad39}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.66\textwidth]{pscad_machine_internals}
+\caption{Machine subsystem internals as generated by E-TRAN
+from the \texttt{.dyr} record: the GENROU machine with its PSS2B
+stabilizer, ESST4B exciter, and GGOV1 governor blocks, plus the
+per-signal recorder taps.}
+\label{fig:pscadmachine}
+\end{figure}
+
+\subsection{GFM Inverter Models Evaluated in Simulation Testbed}
+We use the Pacific Northwest National Laboratory (PNNL) REGFM\_A1 droop-controlled model in the system studies \cite{du2023a1}. REGFM\_B1, a virtual synchronous machine (VSM) variant, was also evaluated in model-quality and inertia tests \cite{du2024b1}. PNNL provides these models for PSCAD and PSS/E \cite{pnnlgithub}. The REGFM\_A1 single-device tests include low-voltage ride-through, voltage and phase-angle steps, and frequency disturbances; Figure~\ref{fig:smibgfm} shows its fault response.
+
+For each replacement, we use the sizing rule $S_{\mathrm{inv,base}}=P_{\mathrm{G}}/0.6$, where $P_{\mathrm{G}}$ is the replaced machine's MW dispatch and $S_{\mathrm{inv,base}}$ is expressed in MVA. The selected inverter active-power reference is 0.6 per unit on that base, the PSCAD component's default (Figure~\ref{fig:pscada1params}); matching the replaced MW at that reference fixes the base, whereas keeping the machine rating as the base would have required changing the reference, which was not done in the first-year runs. The rule preserves the intended MW injection but does not necessarily preserve the original machine's MVA rating or headroom. The inverter connects behind the step-up transformer at the replaced generator location.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.85\textwidth]{pscad_regfma1_closeup}
+\caption{The PNNL REGFM\_A1 component wired at a replaced
+machine bus, behind its 230/10~kV step-up transformer, with the
+external reference inputs and the internal-signal plot taps.}
+\label{fig:pscada1closeup}
+\end{figure}
+
+\subsection{Model Quality Testing}
+\label{sec:mqt}
+Model quality testing (MQT) applies the perturbations of the ERCOT Dynamics Working Group procedure manual \cite{dwg24} to prospective inverter and machine models before interpreting their network responses. We used PMView, versions 2.4 and 3.5, as the playback and measurement harness \cite{pmview}. PMView replaces the grid source with a programmable infinite-bus voltage source and applies the test profiles described by the Dynamics Working Group Procedure Manual, Revision~24 \cite{dwg24}. The tests characterize initialization, voltage regulation, ride-through, and response to angle changes.
+
+Tests 1--9 include flat start, legacy and IEEE 2800 low- and high-voltage ride-through, small voltage steps, and phase-angle jumps. PMView version 3.5 adds advanced grid-support tests, including the inertia estimation test discussed in Section~\ref{sec:inertiaest}. These device-level responses help distinguish controller behavior from interactions introduced by the network. The following models were included in the test program.
+\begin{enumerate}
+\item \textbf{PNNL REGFM\_A1}: droop control with voltage regulation, current control, and current limiting \cite{du2023a1}.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.68\textwidth]{pscad_regfma1_params}
+\caption{REGFM\_A1 outer-loop parameter dialog as configured
+for the study: droop gains $m_{\mathrm{p}}=0.01$ and $m_{\mathrm{q}}=0.05$, filter time
+constants $T_{\mathrm{Pf}}=T_{\mathrm{Qf}}=10$~ms, and voltage-loop ceiling
+$E_{\mathrm{max}}=1.15$~p.u.}
+\label{fig:pscada1params}
+\end{figure}
+
+\item \textbf{PNNL REGFM\_B1}: a VSM variant evaluated in the model-quality and inertia estimation tests \cite{du2024b1}.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\linewidth]{pscad_regfmb1_block_params}
+\caption{REGFM\_B1 in its PMView-driven test harness (left) and
+its control-parameter dialog (right); the virtual-synchronous-machine
+block carries a configured equivalent inertia constant $H=0.5$~s.}
+\label{fig:pscadb1rig}
+\end{figure}
+
+\item \textbf{National Laboratory of the Rockies (NLR) GFM model}: droop control with an integral voltage regulator \cite{pypscad}.
+
+\item \textbf{PSCAD library GFM model}: also included in the model-quality-testing program \cite{pscadgfm}.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.68\textwidth]{pscad_generic_gfm_params}
+\caption{PSCAD library GFM model:
+control-parameter dialog of the aggregated inverter (droop
+synchronization, current and voltage loops, and limiter settings).}
+\label{fig:pscadgeneric}
+\end{figure}
+
+\end{enumerate}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.85\textwidth]{pscad_pmview_setup}
+\caption{PMView test setup: the playback source and
+point-of-interconnection measurement wired around the device under
+test, with the per-test profile lookup tables that program the
+disturbance battery.}
+\label{fig:pscadpmview}
+\end{figure}
+
+Four models were evaluated: REGFM\_A1, REGFM\_B1, the NLR GFM model, and the PSCAD library GFM model. REGFM\_A1 was selected for the system studies as the configuration usable as shipped; the other models were not tuned further. Appendix~\ref{app:altmodels} records the alternative-model diagnostics.
+
+We applied the same nine-test battery to the synchronous machine used in the network studies. The machine completed these tests successfully and provides a conventional reference for the inverter comparisons. Figure~\ref{fig:mqtmachine} shows its response to the legacy low-voltage ride-through profile, corresponding to the REGFM\_A1 example in Figure~\ref{fig:mqt}. The machine voltage-step result in Figure~\ref{fig:mqtmachinestep} uses a different step magnitude from the inverter comparison.
+
+The machine example is the 650~MVA Gen-32 test case. Its small-step test raises voltage from 1.00 to 1.03 per unit at 3~s and produces a slower response than the selected REGFM\_A1 comparison. Figure~\ref{fig:smibgfm} additionally records the inverter-side LCL quantities during the REGFM\_A1 ride-through test. Voltage, current, active power, reactive power, and droop frequency together describe how the device supplies the grid through the disturbance.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{fig3_mqt_legacy_lvrt}
+\caption{REGFM\_A1 response to the legacy low-voltage ride-through profile in PMView.}
+\label{fig:mqt}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{fig3_mqt_machine_lvrt}
+\caption{Synchronous-machine response under the legacy low-voltage ride-through profile for the Gen-32 test case.}
+\label{fig:mqtmachine}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{fig3_mqt_machine_vstep}
+\caption{Gen-32 response to a source-voltage step from 1.00 to 1.03 per unit at 3~s.}
+\label{fig:mqtmachinestep}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.72\textwidth]{fig7_smib_gfm_panel}
+\caption{Single REGFM\_A1 fault response with a 2.0 per-unit transient-current limit: normalized voltage, current, active and reactive powers, and frequency in Hz.}
+\label{fig:smibgfm}
+\end{figure}
+
+\subsection{Study Design}
+\label{sec:studydesign}
+We first applied a three-phase-to-ground fault at bus~14 to the all-machine system. The fault resistance is 0.01~$\Omega$, a low-impedance approximation to a bolted fault. Initial machine studies considered both restoration of the faulted connection and clearing with the connection left open. The reference case used for the replacement progression has a five-cycle fault without reclosing.
+
+We selected a short reference disturbance to represent a practical protection timescale. The 0.0833~s duration corresponds to approximately five cycles at 60~Hz and is applied from 3.0~s. After establishing the machine baseline, we replaced machines one at a time and reapplied the same reference fault. Extended-duration tests discussed later explore transient stability limits rather than recommended protection operating times. Table~\ref{tab:cases} lists the simulated cases. Network faults were applied at bus~14 and bus~10 only; other fault locations were not tested. All faults in the replacement progression and the current-limit studies are three-phase-to-ground; single-line-to-ground and double-line-to-ground checks at bus~14 are reported in Section~\ref{sec:unbal}. No overcurrent trip is modeled in any case.
+
+\begin{table}[tbp]\centering\small
+\caption{Simulated fault cases. Fault resistance 0.01~$\Omega$; fault applied at 3.0~s.}
+\label{tab:cases}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.11\linewidth}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.11\linewidth}}\toprule
+Study & Configurations & Fault bus & Duration; clearing & GFM $I_{\max F}$\\\midrule
+Replacement progression (Section~\ref{sec:emt}) & 0--10 GFM units & 14 & 5 cycles; lines to bus~14 opened, no reclosing & 2.0\\
+Current-limit comparison & 0 and 10 GFM units & 10 & 5 cycles; lines to bus~10 opened, no reclosing & 1.5\\
+Current-limit sensitivity (Section~\ref{sec:emt}) & 10 GFM units & 14 & 5 cycles; lines to bus~14 opened, no reclosing & 2.0; 1.5; 1.2\\
+Unbalanced-fault check (Section~\ref{sec:unbal}) & 0 and 10 GFM units & 14 & 5 cycles, single-line-to-ground and double-line-to-ground; lines to bus~14 opened, no reclosing & 2.0\\
+Single-device comparison (Section~\ref{sec:dynamics}) & one machine; one inverter; infinite bus, SCR~10 & point of interconnection & 5 cycles; self-clearing & 2.0\\
+Clearing-time limits (Section~\ref{sec:energymethod}) & ten machines; ten GFM units; one machine; one inverter & 14; point of interconnection & duration swept; self-clearing, network intact & 2.0; 2.0--15 (single inverter)\\\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{PSCAD Automation}
+\label{sec:automation}
+We configured and ran the one-for-one replacement cases manually. For subsequent model-quality studies, we used PSCAD's \texttt{mhi.pscad} Python interface to launch PSCAD, load the case, modify parameters, and export results. Component identifiers locate the fault application time, duration, resistance, solution step, and run length. Each run writes a separate directory named for the varied parameter and stores the exported channels with its fault configuration and device parameters.
+
+The automation sets parameters before launching each simulation and collects the output channels after completion. A written configuration accompanies each run so that a parameter sweep can be interpreted as a sequence of distinct test cases. We used this workflow for repeated device tests while retaining the manually configured replacement cases as the network-study starting point.
+
+\subsection{Data Processing}
+\label{sec:pipeline}
+At the end of a run, PSCAD writes numbered \texttt{.out} files containing whitespace-delimited numerical channels. The first column is time, followed by up to ten recorded channels, so a large case produces multiple files with repeated time columns. A companion \texttt{.inf} file supplies the global channel indices, descriptions, groups, limits, and units.
+
+The processing pipeline reads the \texttt{.inf} file and reconstructs the mapping from channel indices to the numbered output files. It then combines the channels into a common time-indexed table. Descriptions are not necessarily unique: different phases or measurement locations can share the same name. The pipeline distinguishes these descriptions before exporting CSV files for analysis and plotting.
+
+The plotting scripts read the resulting tables to draw the simulation responses. Screenshots, circuit diagrams, and analytical illustrations complement those numerical plots. Appendix~\ref{app:plotting} describes the file formats and plotting conventions. The workflow allows the same processing approach to serve both individual-device and network studies.
+
+\section{Simulation Testbed Results}
+\label{sec:emt}
+The results compare fault recovery as machines are replaced by GFM inverters and examine the role of current limiting. We used PSCAD~5.0.2 with GFortran~4.6 and the E-TRAN library for the converted IEEE 39-bus network \cite{etranlib}. The REGFM\_A1 model uses the PNNL library \texttt{PNNL\_REGFM\_A1\_gf46.lib} \cite{regfma1lib}. The fault-sweep cases use a 50~$\mu$s solution time step.
+
+The reference fault begins at 3.0~s and lasts five cycles. Figure~\ref{fig:vrms12gfm} shows the first two steps of the replacement progression, with one and two machines replaced. Figure~\ref{fig:pscadallgfm} shows the all-GFM arrangement. The bus-14 reference study uses the 2.0 per-unit transient-current setting, while the separate bus-10 current-limit comparison uses 1.5 per unit. Clearing opens the breakers of the lines connected to bus~14 and isolates that bus: after clearing its active power, reactive power, and current are zero, and its plotted 30~kV is the residual voltage of the de-energized bus rather than a network-recovery quantity.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.85\textwidth]{vrms_1gfm}\\[4pt]
+\includegraphics[width=0.85\textwidth]{vrms_2gfm}
+\caption{Bus-voltage responses with one replaced machine (top) and two replaced machines (bottom) under the bus-14 reference fault. Bus~14 is isolated by clearing; its trace is the residual voltage of the de-energized bus.}
+\label{fig:vrms12gfm}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{pscad_allgfm_39bus}
+\caption{The fully inverter-based 39-bus network on the
+PSCAD canvas: all ten machine subsystems replaced by PNNL REGFM\_A1
+units (yellow blocks), each behind its step-up transformer, with the
+per-bus signal taps and system plot panels.}
+\label{fig:pscadallgfm}
+\end{figure}
+
+\subsection{Iterative Synchronous Machine Replacement}
+The eleven replacement configurations show recovery of the connected network under the reference disturbance. Figures~\ref{fig:allgfm}--\ref{fig:sweep} compare the all-GFM response with the machine baseline and selected intermediate configurations. Breaker opening removes the faulted connection, and reclosing is disabled in the reference progression. Reclosing can be added through the testbed's breaker logic for other study conditions.
+
+The selected GFM responses return promptly toward their post-fault operating points. The machine response contains longer oscillations, while the voltage and power trajectories also vary by location. Opening a line can change the post-fault operating point, so recovery need not return every quantity to its pre-fault value. The progression demonstrates mixed-resource studies under a common disturbance without assuming that every placement or dispatch behaves identically.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{allgfm_vrms}
+\caption{All-GFM bus-voltage responses to the bus-14 reference fault. RMS voltages are shown in kV for the monitored network locations.}
+\label{fig:allgfm}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{allgfm_irms}
+\caption{All-GFM RMS current responses to the bus-14 reference fault, in kA. The inverter transient-current setting is $I_{\mathrm{maxF}}=2.0$ per unit on each device base.}
+\label{fig:allgfmi}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{allgfm_p}
+\caption{All-GFM active-power responses to the bus-14 reference fault, in MW. Signed powers follow the measurement-channel direction.}
+\label{fig:allgfmp}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{allgfm_q}
+\caption{All-GFM reactive-power responses to the bus-14 reference fault, in MVAr.}
+\label{fig:allgfmq}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{fig2_allSYNC_3PG_2x2}
+\caption{All-machine response to the bus-14 reference fault: RMS voltage and current, active power, and reactive power. The generator-bus active powers oscillate at the 0.85--1.0~Hz inter-machine mode with decay rates of 0.06--0.10~s$^{-1}$. The legend lists the monitored buses; bus~14 is isolated by clearing.}
+\label{fig:allsync}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{sweep_0_5_10_GFM_vrms}
+\caption{Bus-voltage responses with zero, five, and ten GFM units under the reference fault. The GFM transient-current setting is 2.0 per unit; configurations are identified by replacement count.}
+\label{fig:sweep}
+\end{figure}
+
+\subsection{Defining GFM Current-Limiting Behavior}
+The bus-10 study uses a GFM transient-current setting of 1.5 per unit. Eight units remain at or below that setting, bus~31 reaches the limit, and bus~32 reaches approximately 1.70 per unit, 13\% above the setting, within one cycle of fault inception in the inverter's internal current-magnitude signal, the quantity the limiter compares with $I_{\max F}$. Its terminal RMS current peaks at 1.24 per unit, and its instantaneous phase currents exceed 2.0 per unit of rated peak for at most 3~ms. Figure~\ref{fig:peakits} follows these currents through the full 30~s record. After the transient, the connected units remain below 1.1 per unit and settle near 0.7--0.8 per unit.
+
+The bus-32 current falls to zero after clearing, while the other nine units continue carrying current. The case associates this loss of output with opening the bus-10 network connections without reclosing. Continued network recovery therefore does not mean that the zero-current resource continues exporting power. This distinction is important when interpreting the fleet response after a clearing action.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{narr_peakI_timeseries}
+\caption{Bus-10 current-limit study with a five-cycle fault and no reclosing. With a 1.5 per-unit setting, bus~32 reaches approximately 1.70 per unit before falling to zero; nine units continue carrying current.}
+\label{fig:peakits}
+\end{figure}
+
+Figure~\ref{fig:ilimarms} compares the bus-14 reference fault on the all-GFM fleet at $I_{\max F}=2.0$, 1.5, and 1.2 per unit with all other settings unchanged. The fault is electrically remote from the units: at 2.0 per unit no unit reaches its limit, with peaks of 1.53, 1.44, and 1.38 per unit at buses~32, 30, and~31 and the other seven below 0.92 per unit. At 1.5 per unit only the bus-32 unit touches the limit, for 1.4~ms. At 1.2 per unit the three nearest units exceed the limit in the internal current-magnitude signal for 7--13~ms, less than one cycle, with peaks of 1.44, 1.38, and 1.31 per unit. In all three cases every unit rides through: post-fault active power returns to within 0.5\% of its pre-fault value and the frequency settles at 60.01~Hz.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{narr_ilim_arms_bus14}
+\caption{Bus-14 reference fault on the all-GFM fleet at three transient current limits, 10~s records with identical dispatch, fault, and clearing. Left: peak of each unit's internal current magnitude on its own base, with the three limit lines. Right: the same signal for the bus-32 unit through the fault.}
+\label{fig:ilimarms}
+\end{figure}
+
+Figure~\ref{fig:peaki} compares the device-base peak currents, including a machine peak of 3.72 per unit at the corresponding bus. GFM current is shaped by the modeled current limit, whereas machine fault current depends strongly on electromagnetic reactances and the network. Figure~\ref{fig:exec} shows the bus-39 terminal quantities, where the GFM case recovers more quickly and the machine current is substantially larger. Different ratings, dispatch, and measurement locations remain relevant even when both traces are expressed per unit. In the GFM runs, the active and reactive power traces immediately after clearing contain a 2--4~Hz settling component and a 60~Hz component below 10\% of the deviation, the latter from the power calculation during the transient; the machine traces oscillate at the 0.85--1.0~Hz inter-machine mode.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{narr_peakI_pair}
+\caption{Peak currents for the bus-10 disturbance, normalized on individual device bases. The GFM transient-current setting is 1.5 per unit.}
+\label{fig:peaki}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{exec_gfm_vs_sync_bus39_pu}
+\caption{Bus-39 terminal responses in the bus-10 study: all-machine (blue) and all-GFM (red), each on its own device base. The GFM case shows smaller fault current and faster settling; the two cases have different pre-fault power injections.}
+\label{fig:exec}
+\end{figure}
+
+\subsection{All-Synchronous Machine Fault Ride Through}
+\label{sec:syncbaseline}
+The all-machine system rides through the same reference fault as the all-GFM system. Its generator-bus active powers oscillate at the 0.85--1.0~Hz inter-machine mode with decay rates of 0.06--0.10~s$^{-1}$ (damping ratio 1--2\%), so the oscillation persists for tens of seconds; the units nearest the fault, buses~31 and~32, also carry a faster, more strongly damped local component. The stronger damping associated with the selected GFM controls helps interpret the contrast, as developed in Section~\ref{sec:dynamics}. Network conditions, voltage controls, and limiting also affect the complete transient response.
+
+\subsection{Grid-Following Inverter Fault Ride Through}
+\label{sec:gfl}
+We also evaluated a PNNL-based GFL implementation in the testbed. The surrounding grid recovers within approximately one second, but the local voltage remains depressed over the plotted interval in Figures~\ref{fig:gflpocket} and~\ref{fig:gfldeadlock}. The filtered voltage remains below the dip threshold and the active and reactive current commands fall to zero. These signals point to a control-state response rather than demonstrating semiconductor breakdown.
+
+We obtained post-fault operation in a modified implementation that replaced the current-source interface with a voltage-source representation. That modification changes the model under test and does not establish a general remedy for GFL control. We did not pursue the GFL study further in the first-year work. The original and modified outcomes therefore remain distinct from the main GFM replacement results.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{fig8a_gfl_pocket_vs_grid}
+\caption{Original GFL implementation at bus~32: surrounding bus voltages recover while the local voltage remains depressed over the plotted interval.}
+\label{fig:gflpocket}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{fig8b_gfl_deadlock}
+\caption{Voltage-dip and current-command signals in the original GFL implementation. Filtered voltage remains below the dip threshold, followed by zero active and reactive current commands.}
+\label{fig:gfldeadlock}
+\end{figure}
+
+\subsection{Unbalanced Faults at Bus 14}
+\label{sec:unbal}
+Single-line-to-ground (phase A) and double-line-to-ground (phases A and B) faults were applied at bus~14 with the reference timing and clearing on the all-machine and all-GFM fleets, 10~s records (Table~\ref{tab:cases}). Figure~\ref{fig:unbal} shows the bus-16 RMS voltage through the fault and the peak RMS current of each unit on its own base. For the machines the peak unit currents are 1.51 and 2.22 per unit at bus~32 for the single-line and double-line faults, with instantaneous phase-current peaks of 2.14 and 4.12 per unit of rated peak, and the lowest monitored RMS voltage during the fault is 0.82 and 0.60 per unit at bus~15. For the GFM units the peak RMS currents are 0.85 and 1.08 per unit at bus~32, the internal current-magnitude signal stays below the 2.0 per-unit limit (peaks 0.95 and 1.40 per unit), and the lowest monitored RMS voltage is 0.81 and 0.57 per unit. In all four cases every unit rides through: post-fault active power returns to within 3.8\% (machines) and 0.6\% (GFM units) of its pre-fault value on every unit, and the frequency settles at 59.84--59.90~Hz for the machines and 60.00~Hz for the GFM fleet.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{narr_unbal_bus14}
+\caption{Unbalanced faults at bus~14, all-machine and all-GFM fleets, 10~s records with the reference timing and clearing. Left: bus-16 RMS voltage through the fault (SLG solid, LLG dashed). Right: peak RMS current of each unit on its own base.}
+\label{fig:unbal}
+\end{figure}
+
+\section{Deriving Dynamic Models of a Droop-Based GFM Inverter and a Synchronous Machine}
+\label{sec:dynamics}
+The simulations in Section~\ref{sec:emt} show fault ride through and contrasting post-fault responses. To interpret those differences, we compare the dynamic equations of the machine and the droop-controlled inverter. Equivalent inertia opposes frequency acceleration, while equivalent damping opposes frequency deviation. These reduced descriptions connect device controls to the responses observed in the network.
+
+A synchronous machine stores kinetic energy in its rotor, whereas an inverter generates its electrical phase through control. The two phase states can occupy analogous positions in reduced equations without representing the same physical mechanism. An inverter draws energy from its DC source and circuit storage; an equivalent inertia coefficient does not imply a rotating energy store. The analogy is useful within its assumptions, not a replacement for network, voltage-control, and limiter dynamics.
+
+Prior work develops droop-converter stability analysis with current limitation \cite{huang2019}, examines the applicability of equal-area reasoning \cite{chatterjee2025eac}, and describes equivalent-circuit models \cite{chatterjee2025compel}. Interaction-energy methods extend the analysis to multiple GFM inverters \cite{chatterjee2025ecce}. We use the swing-form development in \cite{chatterjee2026note} to compare the selected models. The following derivation establishes consistent frequency normalization before discussing the effects of limiting.
+
+\subsection{Synchronous Machine Dynamic Model}
+\label{sec:smmodel}
+The classical model relates electrical power imbalance to rotor acceleration \cite{sauer1998,kundur1994}. Let $\omega_0=2\pi f_{\mathrm{n}}$ denote nominal electrical angular frequency in rad/s, where $f_{\mathrm{n}}$ is nominal frequency in Hz. Define the normalized frequency deviation as $\nu=(\omega_{\mathrm{e}}-\omega_0)/\omega_0$ and electrical phase displacement $\delta$ relative to the synchronous reference by $\dot\delta=\omega_0\nu$. With powers normalized on the machine apparent-power base,
+\begin{equation}
+\frac{2H}{\omega_0}\,\ddot\delta+\frac{D}{\omega_0}\,\dot\delta=p_{\mathrm{m}}-p_{\mathrm{e}},
+\label{eq:swingangle}
+\end{equation}
+where $H$ is the inertia constant in seconds and $D$ is normalized power per normalized frequency deviation. Mechanical input and electrical output are $p_{\mathrm{m}}$ and $p_{\mathrm{e}}$, respectively. The physical kinetic-energy definition is $H=J\omega_{\mathrm{m0}}^2/(2S_{\mathrm{base}})$, where $J$ is moment of inertia in kg\,m$^2$, $\omega_{\mathrm{m0}}$ is nominal mechanical speed in rad/s, and $S_{\mathrm{base}}$ is in VA. Electrical angular frequency equals mechanical angular speed multiplied by the number of pole pairs.
+
+For constant voltage magnitudes connected through total reactance $X_{\mathrm{tot}}$, the electrical power is $p_{\mathrm{e}}=p_{\mathrm{max}}\sin\delta$. Here $p_{\mathrm{max}}=E'V/X_{\mathrm{tot}}$, with transient internal voltage $E'$, grid voltage $V$, and reactance expressed on compatible per-unit bases. Taking the stiff grid as the angle reference gives
+\begin{equation}
+M\ddot\delta=p_{\mathrm{m}}-p_{\mathrm{max}}\sin\delta-\frac{D}{\omega_0}\dot\delta,
+\qquad M=\frac{2H}{\omega_0}.
+\label{eq:swingeq}
+\end{equation}
+Figure~\ref{fig:smcircuit} shows this single-machine infinite-bus representation.
+
+\begin{figure}[tbp]\centering
+\input{figures/tikz_sm_basic_model.tex}
+\caption{Classical synchronous-machine model: transient internal voltage $E^\prime\angle\delta$ behind reactance $X^\prime_{\mathrm{d}}$, connected to the grid at $V\angle\delta_{\mathrm{V}}$. The internal magnitude is set by the field circuit. The electrical phase displacement is tied to rotor motion and satisfies $\dot\delta=\omega_0\nu$.}
+\label{fig:smcircuit}
+\end{figure}
+
+\subsection{GFM Inverter Dynamic Model}
+\label{sec:gfmmodel}
+The reduced GFM model is a controllable voltage source behind coupling reactance $X_{\mathrm{L}}$ \cite{du2023a1}. Its topology resembles the classical machine circuit, but the controller determines its internal voltage magnitude and phase. Figure~\ref{fig:gfmcircuit} shows the interface and Figure~\ref{fig:gfmequiv} shows the corresponding Norton equivalent used in a network solution. The equivalent circuit does not change the resource's GFM control classification.
+
+The controlled source has magnitude $E$ and phase $\delta_{\mathrm{E}}$, while the terminal grid voltage has magnitude $V$ and phase $\delta_{\mathrm{V}}$. In the machine representation, the field circuit sets the internal voltage magnitude and rotor motion determines its phase. In the GFM representation, the power and voltage controls perform the analogous functions. The controller acts on filtered power measurements rather than directly applying its droop gain to instantaneous unfiltered power.
+
+In the analyzed runs the REGFM\_A1 controls are the $P$--$f$ droop of Equation~\eqref{eq:drooplaw}, whose frequency is integrated to the internal angle $\delta_{\mathrm{E}}$; the $Q$--$V$ droop with the voltage regulator ($k_{\mathrm{pv}}=0$, $k_{\mathrm{iv}}=5.86$~pu/s, $E_{\max}=1.15$, VFlag~$=1$, regulating the point-of-interconnection voltage); the reactive limits $Q_{\max}=-Q_{\min}=0.44$; the overload controller ($k_{\mathrm{ppmax}}=0.01$, $k_{\mathrm{ipmax}}=0.1$~pu/s), which acts only while filtered power exceeds $P_{\max}$ ($P_{\max}=0.9$, $P_{\min}=0$ in the single-device and inertia-test cases; $P_{\max}=2.0$, $P_{\min}=-0.9$ in the 39-bus cases, where it never engages); and the transient current limit $I_{\max F}$. The plant-controller references $P_{\mathrm{ref}}$, $Q_{\mathrm{ref}}$, and $V_{\mathrm{ref}}$ are held at their initialized values. The model exposes no inertia constant (Figure~\ref{fig:pscada1params}); its equivalent inertia is the filtered-droop quantity $T_{\mathrm{Pf}}/2m_{\mathrm{p}}$ of Equation~\eqref{eq:heqdeq} only. No secondary control, that is, no slower loop that returns frequency and voltage to their reference values after the droop response (plant-level integral control or automatic generation control), acts in any run \cite{du2023a1}; the post-fault operating points are therefore the droop equilibria, and the effect of such a loop on stability is not assessed here. Figures~\ref{fig:controlblocks} and~\ref{fig:gfmblocks} show the machine governor path and the inverter controls as configured.
+
+Active-power droop sets frequency, while reactive-power droop adjusts voltage magnitude. For the unsaturated reduced model, the normalized laws are
+\begin{equation}
+\nu=m_{\mathrm{p}}(p^\star-\tilde p),\qquad
+E=E_0+m_{\mathrm{q}}(q^\star-\tilde q),
+\label{eq:drooplaw}
+\end{equation}
+where $p^\star,q^\star$ are power references and $\tilde p,\tilde q$ are filtered power measurements. The active-power filter satisfies
+\begin{equation}
+T_{\mathrm{Pf}}\dot{\tilde p}=p-\tilde p,
+\label{eq:pfilter}
+\end{equation}
+where $p$ is the unfiltered normalized active power. The controller-generated phase displacement satisfies $\dot\delta_{\mathrm{E}}=\omega_0\nu$ relative to the same synchronous reference. Table~\ref{tab:droopvars} defines the droop variables and their units.
+
+\begin{figure}[tbp]\centering
+\input{figures/tikz_gfm_basic_model.tex}
+\caption{Reduced GFM inverter model, after Figure~1 of the REGFM\_A1 specification \cite{du2023a1}. A controllable voltage source $E\angle\delta_{\mathrm{E}}$ behind coupling reactance $X_{\mathrm{L}}$ delivers active and reactive power to the grid. Under unsaturated filtered droop, $\dot\delta_{\mathrm{E}}=\omega_0\nu$.}
+\label{fig:gfmcircuit}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\input{figures/tikz_gfm_equiv_circuits.tex}
+\caption{Equivalent normalized circuits, after external Figure~2 of \cite{du2023a1}: internal voltage source behind reactance and its Norton representation. Here $I_{\mathrm{N}}\angle\varphi_{\mathrm{N}}$ is the equivalent injected current and $Y_{\mathrm{L}}=1/(jX_{\mathrm{L}})$ the parallel admittance; $\varphi$ denotes current phase. Solver representation does not determine GFM or GFL classification.}
+\label{fig:gfmequiv}
+\end{figure}
+
+\begin{table}[tbp]\centering
+\caption{Variables in Equations~\eqref{eq:drooplaw} and~\eqref{eq:pfilter}.}
+\label{tab:droopvars}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.21\linewidth}>{\raggedright\arraybackslash}p{0.52\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}}\toprule
+Symbol & Meaning & Units\\\midrule
+$\omega_0$ & Nominal electrical angular frequency & rad/s\\
+$\nu$ & Normalized electrical frequency deviation & p.u.\\
+$E_0$ & Nominal internal-voltage reference & p.u.\\
+$p^\star,q^\star$ & Active/reactive power references & p.u.\\
+$\tilde p,\tilde q$ & Low-pass-filtered power measurements & p.u.\\
+$\dot{\tilde p}$ & Filtered active-power time derivative & p.u./s\\
+$m_{\mathrm{p}},m_{\mathrm{q}}$ & Frequency/power and voltage/reactive-power droop gains & p.u./p.u.\\
+$T_{\mathrm{Pf}}$ & Active-power measurement-filter time constant & s\\\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[tbp]\centering
+\input{figures/tikz_control_blocks.tex}
+\caption{GGOV1 governor and turbine path of the machine model as configured, with the Table~\ref{tab:dyr_gov_params} settings. The speed error $\omega_{\mathrm{ref}}-\omega$ less the droop feedback $R\,P_{\mathrm{e}}$ (Rselect~$=1$, $P_{\mathrm{e}}$ filtered by $T_{\mathrm{pelec}}$) is clipped to [minerr, maxerr] and drives the proportional, integral, and derivative branches; the low-value gate passes the smallest of the governor, load-limiter, and acceleration-limiter demands to the actuator, whose stroke is rate- and position-limited; with Flag~$=1$ the fuel flow is the valve stroke scaled by speed, and the turbine power is $K_{\mathrm{turb}}(W_{\mathrm{f}}-W_{\mathrm{fnl}})$ through the lead-lag block. The power controller is disabled ($K_{\mathrm{imw}}=0$) and $T_{\mathrm{eng}}=0$. The integral term is $K_{\mathrm{igov}}$.}
+\label{fig:controlblocks}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\input{figures/tikz_gfm_controls.tex}
+\caption{REGFM\_A1 outer controls, redrawn from Figures~3(a), 3(b), and~4 of the model specification \cite{du2023a1}, with the inputs $P_{\mathrm{inv}}$, $Q_{\mathrm{inv}}$, and $V_{\mathrm{inv}}$ already passed through the $T_{\mathrm{Pf}}$, $T_{\mathrm{Qf}}$, and $T_{\mathrm{Vf}}$ measurement filters. (a)~$P$--$f$ droop: $\Delta\omega=\omega_0\,[m_{\mathrm{p}}(P_{\mathrm{ref}}-P_{\mathrm{inv}})+\Delta\omega_{\mathrm{OL}}]$ is integrated to $\delta_{\mathrm{droop}}$; the overload mitigation term $\Delta\omega_{\mathrm{OL}}$ is nonzero only above $P_{\max}$ or below $P_{\min}$ because its two branches are limited to non-positive and non-negative values. (b)~$Q$--$V$ droop: with VFlag~$=1$, as used, the switch selects the proportional-integral regulator ($k_{\mathrm{pv}}=0$, $k_{\mathrm{iv}}=5.86$~pu/s) that drives the point-of-interconnection voltage $V_{\mathrm{inv}}$ to $V_{\mathrm{cmd}}$, with the output limited to $[E_{\min},E_{\max}]=[0,1.15]$; the $Q_{\max}/Q_{\min}$ branches add to $V_{\mathrm{cmd}}$ only beyond $\pm0.44$ per unit. (c)~Fault current limiting: while $I<I_{\max F}$ the internal voltage is the droop output; once $I\ge I_{\max F}$ it is recomputed from the terminal voltage and the coupling reactance so that the current magnitude is held at $I_{\max F}$ with its phase $\varphi$ unchanged. Integral terms: $k_{\mathrm{iv}}$, $k_{\mathrm{ipmax}}$, $k_{\mathrm{iqmax}}$.}
+\label{fig:gfmblocks}
+\end{figure}
+
+\subsection{Modeling GFM Equivalent Inertia and Equivalent Damping Dynamics}
+\label{sec:swingred}
+For a fixed active-power reference, differentiating the first droop law relates frequency acceleration to the filtered-power derivative. Substituting Equation~\eqref{eq:pfilter} eliminates that derivative. Rearranging the power terms gives
+\begin{align*}
+\dot\nu&=-m_{\mathrm{p}}\dot{\tilde p}
+=-\frac{m_{\mathrm{p}}}{T_{\mathrm{Pf}}}(p-\tilde p)\\
+&=-\frac{m_{\mathrm{p}}}{T_{\mathrm{Pf}}}(p-p^\star)-\frac{\nu}{T_{\mathrm{Pf}}}.
+\end{align*}
+Multiplication by $T_{\mathrm{Pf}}/m_{\mathrm{p}}$ then gives
+\begin{equation}
+\underbrace{\frac{T_{\mathrm{Pf}}}{m_{\mathrm{p}}}}_{2H_{\mathrm{eq}}}\dot\nu
+=p^\star-p-\underbrace{\frac{1}{m_{\mathrm{p}}}}_{D_{\mathrm{eq}}}\nu,
+\qquad
+\boxed{H_{\mathrm{eq}}=\frac{T_{\mathrm{Pf}}}{2m_{\mathrm{p}}},\quad D_{\mathrm{eq}}=\frac{1}{m_{\mathrm{p}}}.}
+\label{eq:heqdeq}
+\end{equation}
+In terms of the relative inverter phase, this becomes
+\begin{equation}
+\frac{2H_{\mathrm{eq}}}{\omega_0}\ddot\delta_{\mathrm{E}}+
+\frac{D_{\mathrm{eq}}}{\omega_0}\dot\delta_{\mathrm{E}}=p^\star-p.
+\label{eq:gfmswing}
+\end{equation}
+Both coefficients therefore have the same normalization as in Equation~\eqref{eq:swingangle}.
+
+The active-power filter creates equivalent inertia: a longer filter time constant increases $H_{\mathrm{eq}}$, while $H_{\mathrm{eq}}$ vanishes as that time constant approaches zero. A smaller droop gain increases both equivalent inertia and equivalent damping when the filter time constant is fixed. These statements apply to the unsaturated filtered-droop path with a fixed reference, not all inner-loop or hardware dynamics. Energy-based inertia tests, including those discussed in IEEE~2800 Annex~K.2.2 and UNIFI Section~5.6 \cite{ieee2800,unifi2026}, require care because damping can also contribute to the measured power response.
+
+\subsection{Current Limiting Dynamic Model}
+\label{sec:limiter}
+Semiconductor current and thermal limits motivate fast current protection \cite{iannuzzo2014}. The REGFM\_A1 model constrains its current demand through the limiter described in \cite{du2023a1}; the reference setting is 2.0 per unit. A simple circuit illustrates why increasing angular separation can activate that constraint. For two equal voltage magnitudes $E$ separated by angle $\delta$ across positive reactance $X_{\mathrm{tot}}$,
+\begin{align}
+I&=\frac{E}{jX_{\mathrm{tot}}}(e^{j\delta}-1),\nonumber\\
+e^{j\delta}-1&=2j e^{j\delta/2}\sin(\delta/2),\nonumber\\
+|I|&=\frac{2E}{X_{\mathrm{tot}}}|\sin(\delta/2)|.
+\label{eq:idemand}
+\end{align}
+Here $j$ is the imaginary unit, and $I$ is the current phasor on the compatible circuit base. Current demand increases with angle on $0\leq\delta\leq\pi$ until it encounters the limit $I_{\mathrm{max}}$. Equal voltages and a purely reactive connection make this an illustration, not a general deep-fault model.
+
+\subsection{Single Machine Infinite Bus Modeled Fault Response}
+Figures~\ref{fig:smibvi} and~\ref{fig:smibpf} compare the selected machine and GFM models under the same single-device bolted fault. The machine delivers approximately 7--8 per-unit fault current, influenced by its subtransient reactance and the external network. Its post-fault active power oscillates at 1.5~Hz with a decay rate of 1.6~s$^{-1}$ (damping ratio 0.17, from the log decrement of successive peaks after 4.4~s), so the oscillation falls below 1\% of its first swing about 3~s after clearing, whereas the inverter's active power returns to its reference within approximately 0.5~s: the infinite bus holds frequency, so Equation~\eqref{eq:drooplaw} returns $\tilde p$ to $p^\star$ as $\nu\to0$. In the 39-bus fleets no restoration loop exists, and frequency and power settle at a droop-shared post-fault operating point. The GFM current setting is 2.0 per unit in this comparison, distinct from the 1.5 per-unit bus-10 study.
+
+The fault is applied at the point of interconnection on the grid side of each device. The machine, 2000~MVA, is modeled at 230~kV without a step-up transformer; the inverter case uses the release configuration, 0.1~MVA at 0.48~kV, with the source at the same voltage. Each grid is an infinite bus behind SCR~10 and $X/R=20$ on the device base. The inverter dispatch is 0.50 per unit, matching the machine's measured 0.50 per unit; pre-fault reactive power is 0.30 per unit for the machine at 1.03 per-unit terminal voltage, set by its exciter, and $-0.02$ per unit for the inverter at 1.00 per unit.
+
+\begin{figure}[b]\centering
+\includegraphics[width=0.85\textwidth]{fig6_smib_sync_vs_gfm_VI}
+\caption{Single-device fault response: terminal voltage and current for the synchronous machine and GFM inverter. The GFM transient-current setting is 2.0 per unit; both devices are dispatched at 0.50 per unit.}
+\label{fig:smibvi}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.85\textwidth]{narr_smib_sync_vs_gfm_Pf}
+\caption{Single-device active-power and frequency responses at matched 0.50 per-unit dispatch. The selected GFM model settles faster than the machine case.}
+\label{fig:smibpf}
+\end{figure}
+
+Figure~\ref{fig:smibipiq} separates active and reactive current contributions. The selected GFM model provides a rapid reactive-current response, while the machine response includes field-circuit dynamics. This comparison connects voltage support to device structure and controls. It does not imply identical current capabilities or response bandwidths across inverter designs.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{smib_IPIQ}
+\caption{Active and reactive current components for the single-device fault comparison, $I_{\mathrm{P}}=P/V$ and $I_{\mathrm{Q}}=Q/V$ on each device base, positive for injection into the grid, blanked while $V<0.2$ per unit. Both devices are dispatched at 0.50 per unit. The inverter's reactive current is 0.4--0.6 per unit through the first 50~ms after clearing. The machine's reactive current is negative for 0.16~s after clearing, reaching $-0.65$ per unit at 3.12~s while its terminal voltage recovers from 0.95 to 1.02 per unit; its exciter then raises reactive power to 0.59 per unit at 1.06 per-unit voltage by 5~s.}
+\label{fig:smibipiq}
+\end{figure}
+
+\subsection{Equivalent Damping, Inertia, and Settling Time}
+\label{sec:dampinertia}
+The common swing form allows comparison of the selected coefficients. For $m_{\mathrm{p}}=0.01$, Equation~\eqref{eq:heqdeq} gives $D_{\mathrm{eq}}=100$. This is constant within the reduced filtered-droop model, rather than a claim of frequency-independent physical response at every frequency. The machine's governor contribution depends on its dynamics and the perturbation frequency.
+
+For the GGOV1 calculation, the in-phase damping contribution is $D+\operatorname{Re}\{G(j\Omega)\}/R_{\mathrm{SG}}$, where $G$ is the normalized governor-path response, $R_{\mathrm{SG}}$ is permanent droop, and $\Omega$ is perturbation angular frequency. With the study parameters in Table~\ref{tab:dyr_gov_params}, the zero-frequency value is $1/R_{\mathrm{SG}}=20$. The five-to-one comparison is therefore $R_{\mathrm{SG}}/m_{\mathrm{p}}=0.05/0.01$ for these normalized coefficients in the zero-frequency limit. It is not a universal ratio of total system damping. The stabilizer contributes nothing to this steady-state comparison: PSS2B acts through washout stages ($T_{\mathrm{w1}}=T_{\mathrm{w2}}=T_{\mathrm{w3}}=2$~s in the Appendix~\ref{app:params} record), whose steady-state gain is zero \cite{kundur1994}, so $1/R_{\mathrm{SG}}$ is the machine's net steady-state droop. At the 0.85--1.0~Hz mode the relevant machine quantities are instead the governor-path value $-1.1$ and the ringdown net damping 1.8 in Table~\ref{tab:dh}.
+
+Figure~\ref{fig:damping} shows the machine governor's in-phase contribution crossing zero at 0.703~Hz and reaching $-1.1$ at 1~Hz. Its phase lag has then exceeded $90^\circ$, so that contribution no longer opposes speed deviation, in the damping-torque sense of \cite{kundur1994}. Damper windings, excitation, the stabilizer, and network interactions also affect total modal damping. The net machine damping in Table~\ref{tab:dh} is inferred from the all-machine bus-14 case: the generator-bus active powers ring down at 0.85--1.0~Hz with decay rates $\sigma=0.06$--$0.10$~s$^{-1}$, from the log decrement of successive peaks over 4--30~s, giving $D_{\mathrm{net}}=4H\sigma\approx1.8$ (1.4--2.2) on the machine base with $H=5.46$~s. The excess of this value over the governor path is not attributed to individual components. PSS2B and ESST4B are active in all machine cases; no case without the stabilizer was simulated. The positive GFM coefficient provides an important interpretation of the less oscillatory response, without attributing every transient difference to that coefficient alone.
+
+The inertia comparison runs in the opposite direction. The study values $T_{\mathrm{Pf}}=10$~ms and $m_{\mathrm{p}}=0.01$ give $H_{\mathrm{eq}}=0.5$~s, roughly one eleventh of the machine's 5.46~s. Table~\ref{tab:dh} summarizes the comparison, keeping the governor contribution separate from the machine ringdown estimate. Strong equivalent damping together with low equivalent inertia is consistent with the observed faster GFM settling.
+
+\begin{table}[tbp]\centering
+\caption{Selected inertia and damping quantities. Damping coefficients use normalized power per normalized frequency; the machine ringdown estimate represents the complete response rather than the governor alone.}
+\label{tab:dh}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.45\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}}\toprule
+Quantity & GFM (droop) & Synchronous machine\\\midrule
+Inertia constant & $H_{\mathrm{eq}}=0.5$~s & $H=5.46$~s\\
+Damping coefficient, zero frequency & 100 & 20 (governor)\\
+In-phase coefficient, 1~Hz & 100 & $-1.1$ (governor)\\
+Governor zero crossing & Not applicable & 0.703~Hz\\
+Damping inferred from ringdown & --- & 1.8 (1.4--2.2)\\
+Post-fault response & Less oscillatory & Oscillatory, 0.85--1.0~Hz\\\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.85\textwidth]{narr_damping_vs_freq}
+\caption{Equivalent damping versus perturbation frequency. The filtered-droop coefficient is $D_{\mathrm{eq}}=100$; the machine governor contribution starts at $1/R_{\mathrm{SG}}=20$ and its in-phase component changes sign at 0.703~Hz. Coefficients use normalized power per normalized frequency. The diamond is the net damping inferred from the all-machine ringdown, 1.8 (1.4--2.2), at the measured 0.85--1.0~Hz mode.}
+\label{fig:damping}
+\end{figure}
+
+\subsection{Measuring GFM Equivalent Inertia}
+\label{sec:inertiaest}
+The ERCOT PMView inertia estimation test applies a frequency ramp and calculates an estimated equivalent inertia $H_{\mathrm{est}}$ from the incremental power response. We used PMView~3.5 profile~17, associated with the Dynamics Working Group Procedure Manual Revision~24, Section~3.1.5.12 \cite{pmview,dwg24}. The test uses short-circuit ratio (SCR)~3, reactance-to-resistance ratio $X/R=6$, and a $-1$~Hz/s source-frequency ramp at nominal frequency 60~Hz. Over the 0.5~s integration window,
+\begin{equation}
+H_{\mathrm{est}}=60\Delta E,\qquad
+\Delta E=\int_0^T(p-p_0)\,\mathrm{d}t,\qquad T=0.5~\mathrm{s},
+\label{eq:agsesr}
+\end{equation}
+where $p_0$ is pre-disturbance power and positive incremental power denotes additional injection. Normalized power must use the same base as the inertia comparison; $\Delta E$ and $H_{\mathrm{est}}$ then have units of seconds. The imposed source frequency and the inverter's internal frequency need not coincide during the network transient.
+
+For the synchronous-machine case, the test gives $H_{\mathrm{est}}=5.20$~s against the configured inertia of 5.46~s, a difference of $-4.8\%$. For the GFM case, it gives 7.44~s against the filtered-droop equivalent inertia of 0.5~s, approximately fourteen times larger. Figures~\ref{fig:hsync} and~\ref{fig:hgfm} show these responses. Increasing SCR from 3 to 20 raises the GFM estimate to 10.06~s without changing the configured droop parameters.
+
+The damping contribution explains why the integrated estimate should not automatically be identified with equivalent inertia. Under the unsaturated swing-form model, assume that internal frequency follows the imposed constant ramp over the integration window. With $\Delta f(t)=\dot f\,t$, $\dot f=-1$~Hz/s, and $f_{\mathrm{n}}=60$~Hz, the incremental response is
+\begin{equation}
+\Delta p(t)=-\frac{2H}{f_{\mathrm{n}}}\dot f-\frac{D}{f_{\mathrm{n}}}\dot f\,t.
+\label{eq:dpsplit}
+\end{equation}
+Integration gives
+\begin{equation}
+\Delta E=-\frac{2H}{f_{\mathrm{n}}}\dot f\,T-\frac{D}{2f_{\mathrm{n}}}\dot f\,T^2.
+\label{eq:esplit}
+\end{equation}
+For a different window under the same ramp, the estimator multiplier scales from 60 to $30/T$, with $T$ in seconds. Consequently,
+\begin{equation}
+\boxed{H_{\mathrm{est}}=H+\frac{DT}{4}=H+\frac{T}{4m_{\mathrm{p}}}.}
+\label{eq:hest}
+\end{equation}
+The last equality uses the filtered-droop damping coefficient, with $H=H_{\mathrm{eq}}$.
+
+The inertia term depends on how quickly frequency changes, whereas the damping term depends on how far frequency has moved from nominal. A constant ramp therefore produces different time dependences even though both contributions appear in the same active-power trace. Integrating that trace without separating the contributions assigns both to the inertia estimate. The distinction is between interpreting the test result and changing the configured device inertia, not between a resource with energy and one without energy.
+
+The additional term shows that damping-related power contributes to the inertia estimate over a finite integration window. Figure~\ref{fig:esplit} illustrates the constant inertial contribution as a rectangle and the accumulating damping contribution as a triangle. A longer window therefore increases the estimate even when device parameters remain unchanged. This reduced expression contains no network-strength dependence and does not, by itself, explain the SCR variation.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.8\textwidth]{inertia_energy_split}
+\caption{Contributions to the integrated power response during a constant rate-of-change-of-frequency ramp, from Equations~\eqref{eq:dpsplit} and~\eqref{eq:esplit}. The inertial contribution is constant and forms a rectangle; the damping contribution accumulates and forms a triangle. The curves illustrate the analytical decomposition.}
+\label{fig:esplit}
+\end{figure}
+
+The machine and inverter also differ in response timescales. The inverter's 10~ms power filter allows droop response to develop within the half-second window, whereas turbine and governor dynamics delay the machine's contribution. Figure~\ref{fig:tscale} illustrates that distinction. The machine estimate is close to configured inertia in this test, but its finite-window response need not be purely inertial.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.8\textwidth]{inertia_timescale}
+\caption{Illustrative time-scale separation between the inertial response and the droop response. The curves isolate the effect of droop-path lag: a faster path contributes within the measurement window, while a slower path contributes less over that interval.}
+\label{fig:tscale}
+\end{figure}
+
+Weakening the droop to $m_{\mathrm{p}}=0.1$ reduces the analytical equivalent inertia to 0.05~s and gives an estimated inertia of 1.22~s. Both equivalent inertia and damping change with this gain, so the difference is not exclusively a damping effect. Figure~\ref{fig:mp01} shows the response, and Figure~\ref{fig:hestfit} compares the window sweep with Equation~\eqref{eq:hest}. The analytical estimates differ by approximately 14\% at $T=0.2$~s and 6\% at $T=0.5$~s; the line predicts the estimator output including damping, not an estimate with damping removed.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.8\textwidth]{hest_corrected}
+\caption{Inertia estimate from Equation~\eqref{eq:hest} compared with the PSCAD integration-window sweep at $m_{\mathrm{p}}=0.1$. The intercept is the equivalent inertia $T_{\mathrm{Pf}}/(2m_{\mathrm{p}})=0.05$~s and the slope is $1/(4m_{\mathrm{p}})=2.5$. The line predicts the inertia estimator output including damping, rather than an inertia estimate with damping removed. The dotted line is $H_{\mathrm{eq}}=0.05$~s.}
+\label{fig:hestfit}
+\end{figure}
+
+At $m_{\mathrm{p}}=0.01$, the unsaturated expression predicts 13.0~s rather than 7.44~s. The inertia-test run was dispatched at $P=0$ with $P_{\max}=0.9$ per unit (Figure~\ref{fig:pscada1params}), so 0.9 per unit of active-power headroom was available; the reduced model requests 0.85 per unit by 0.5~s, within that headroom, and the active-power limit therefore does not explain the difference. The measured power reached 0.69 per unit at the end of the window. The remaining candidate is the network between the imposed source frequency and the inverter's internal frequency, consistent with the SCR dependence; the mechanism is not isolated.
+
+Equation~\eqref{eq:hest} also suggests a damping correction. Since an underfrequency deviation is negative, removing the positive damping contribution requires
+\begin{equation}
+\Delta E_{\mathrm{in}}=\int_0^T\left[\Delta p(t)+D\frac{\Delta f(t)}{f_{\mathrm{n}}}\right]\,\mathrm{d}t.
+\label{eq:subtract}
+\end{equation}
+Applying the same test normalization to this corrected energy yields $H$ under the stated assumptions. The subtraction must use consistent power bases and the frequency associated with the reduced model. Saturation, finite bandwidth, and network dynamics can prevent that separation.
+
+Alternatively, the window dependence is
+\begin{equation}
+H_{\mathrm{est}}(T)=\underbrace{H}_{\text{intercept}}+
+\underbrace{\frac{1}{4m_{\mathrm{p}}}}_{\text{slope}}T.
+\label{eq:multiT}
+\end{equation}
+A window sweep could separate the intercept from the damping-related slope within this model. Figure~\ref{fig:hmech} illustrates the dependence on integration window and control configuration. A disabled virtual-inertia parameter does not necessarily eliminate the equivalent inertia created by filtered droop.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.8\textwidth]{fig9_inertia_sync}
+\caption{PMView inertia estimation test for the synchronous machine: $H_{\mathrm{est}}=5.20$~s against the configured inertia $H=5.46$~s.}
+\label{fig:hsync}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.8\textwidth]{fig10_inertia_gfm}
+\caption{PMView inertia estimation test for the droop-controlled GFM inverter: $H_{\mathrm{est}}=7.44$~s. This estimate includes the controller response and is distinct from the filtered-droop equivalent inertia.}
+\label{fig:hgfm}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.8\textwidth]{fig11_inertia_mechanism_pair}
+\caption{Estimated equivalent inertia versus integration-window length for the tested control configurations. The window dependence illustrates the contribution of damping-related power response. Configured virtual inertia and filtered-droop equivalent inertia are distinct quantities.}
+\label{fig:hmech}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.8\textwidth]{narr_inertia_gfm_mp0p1}
+\caption{GFM inertia estimation test at $m_{\mathrm{p}}=0.1$: $H_{\mathrm{est}}=1.22$~s. The weaker droop reduces both equivalent damping and filtered-droop equivalent inertia.}
+\label{fig:mp01}
+\end{figure}
+
+\section{Next Steps and Conclusion}
+\label{sec:outlook}
+The first-year studies establish a platform for examining how inverter controls affect system-level stability. They also motivate analytical models that relate control parameters to fault-duration limits. The next phase will pair corresponding PSS/E and PSCAD studies while extending the preliminary energy analysis described below.
+
+\subsection{Next Steps}
+We will align network topology, operating points, device ratings, bases, applicable control settings, and disturbance definitions across the positive-sequence and EMT models. The purpose is to understand which dynamics each domain retains and how those differences affect engineering conclusions. We will not force identical trajectories from models that represent different phenomena. The adapted PSS/E network and its E-TRAN translation provide the common starting point.
+
+The GFM studies show recovery across the tested replacement configurations, but they do not yet explain every control parameter's influence on stability. We therefore seek analytical estimates of the maximum tolerable fault duration for systems containing multiple GFM resources. Such estimates could help manufacturers and operators interpret the effects of droop, current limits, and voltage limits. The following preliminary exploration applies familiar machine-based methods before pursuing more detailed formulations.
+
+\subsubsection{Preliminary Application of Classical Energy Methods}
+\label{sec:energymethod}
+Classical energy-function methods offer a familiar bridge from synchronous-machine stability analysis to GFM research \cite{sauer1998,pai1989,athay1979,bergen1981,chiang1988}. These methods compare an energy-like measure of the post-fault state with an energy boundary associated with unstable equilibria. They can provide sufficient stability conditions for the assumed model without following every subsequent swing. Applying them to GFM systems requires attention to the assumptions behind the power-angle relationship and damping representation.
+
+For the post-fault system with center-of-inertia states $(\theta,\tilde\omega)$, the transient energy function is the first integral of the swing equations \cite{sauer1998},
+\begin{equation}
+V(\theta,\tilde\omega)=\frac12\sum_{i}M_i\tilde\omega_i^2-\sum_{i}\int_{\theta_i^{\mathrm{s}}}^{\theta_i}f_i(\theta)\,\mathrm{d}\theta_i=V_{\mathrm{KE}}+V_{\mathrm{PE}},
+\label{eq:tef}
+\end{equation}
+where $f_i$ is the accelerating power of device $i$ in the center-of-inertia frame and $\theta^{\mathrm{s}}$ is the post-fault stable equilibrium. Without damping, $\mathrm{d}V/\mathrm{d}t=0$ along post-fault trajectories, so a state with $V<V_{\mathrm{cr}}$, the potential energy at the unstable equilibrium that bounds the basin, cannot reach that boundary: $V$ is a Lyapunov function, that is, a function that is positive about the equilibrium and non-increasing along the system's trajectories \cite{khalil2002}, and $V<V_{\mathrm{cr}}$ is a sufficient stability condition. For the single-machine model, $V_{\mathrm{cr}}=V_{\mathrm{PE}}(\delta_{\mathrm{u}})$, and the condition $V\le V_{\mathrm{cr}}$ at clearing is the equal-area criterion. The critical clearing time follows in three steps: compute $\theta^{\mathrm{s}}$; obtain $V_{\mathrm{cr}}$ from the unstable equilibrium or, in the potential-energy-boundary-surface (PEBS) screen, from the maximum of $V_{\mathrm{PE}}$ along the sustained-fault trajectory; integrate the fault-on equations from the pre-fault equilibrium and record the time at which $V$ reaches $V_{\mathrm{cr}}$. In this report each device is a constant voltage behind reactance, $E'$ behind $X'_{\mathrm{d}}$ for the machines and the reduced droop model of Equation~\eqref{eq:gfmswing} for the inverters, with coefficients converted to the system base. The 39-bus network is retained with the model's constant-power loads, the fault is the bolted bus-14 fault with the network intact, and $V_{\mathrm{PE}}$ is evaluated as the path integral in Equation~\eqref{eq:tef} along the computed trajectory. The quoted estimates are the bisection limits of the integrated reduced model, with stability defined by bounded post-clearing angles; the PEBS screen gives 0.228~s for the ten-machine case.
+
+For the constant-voltage, lossless single-machine model in Equation~\eqref{eq:swingeq}, the stable and unstable equilibria satisfy
+\begin{equation}
+\delta_{\mathrm{s}}=\arcsin(p_{\mathrm{m}}/p_{\mathrm{max}}),\qquad
+\delta_{\mathrm{u}}=\pi-\delta_{\mathrm{s}},
+\label{eq:equilibria}
+\end{equation}
+for the positive-power operating branch with $0<p_{\mathrm{m}}<p_{\mathrm{max}}$. The unstable equilibrium helps define the energy boundary, but its angle alone is not a complete transient-stability criterion because speed also contributes. An energy estimate combines the fault-on trajectory and the post-fault boundary to estimate critical clearing time. That time is the maximum fault duration satisfying the selected post-fault stability criterion.
+
+We compare analytical estimates with brackets $(a,b]$ formed by a successful simulation at duration $a$ and an unsuccessful simulation at $b$. The angle-based comparisons distinguish return toward the original equilibrium from a phase slip into a neighboring angle region. A phase slip does not necessarily imply sustained loss of synchronism, and an unwrapped angle near $360^\circ$ alone does not show whether the system later resynchronizes. These distinctions matter when interpreting critical clearing time as a practical ride-through limit.
+
+Figure~\ref{fig:efcct} summarizes the preliminary comparisons. For the single-machine case, the 0.474~s estimate is below the demonstrated stable duration of 0.622~s. For the 39-bus machine case, the 0.248~s estimate lies inside the $(0.237,0.250]$~s simulation bracket. An estimate inside a bracket is consistent with its resolution but is not, by itself, demonstrably conservative.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.8\textwidth]{ef_cct_machines_vs_gfm}
+\caption{Energy-method critical clearing times compared with PSCAD EMT results. Machine estimates are 0.474~s versus $(0.622,0.625]$~s for the single-machine case and 0.248~s versus $(0.237,0.250]$~s for the 39-bus case. GFM estimates are 1.296~s versus $(0.925,0.931]$~s and 2.338~s versus $(1.600,1.700]$~s, respectively. Each bracket gives a successful lower endpoint and an unsuccessful upper endpoint.}
+\label{fig:efcct}
+\end{figure}
+
+Following the center-of-inertia (COI) formulation in Sauer and Pai, Chapter~9, Section~9.5, Equation~(9.19) \cite{sauer1998}, define
+\begin{equation}
+\delta_{\mathrm{COI}}=\frac{\sum_{i=1}^{n}M_i\delta_i}{\sum_{i=1}^{n}M_i},
+\qquad \theta_i=\delta_i-\delta_{\mathrm{COI}},
+\qquad \tilde\theta_i=\theta_i-\theta_i^{\mathrm{s}}.
+\label{eq:energycoi}
+\end{equation}
+Here $M_i$ is the inertia coefficient in the reduced angular-acceleration equation, expressed on a common system base, and $\theta_i^{\mathrm{s}}$ is the reference stable-equilibrium angle. For a synchronous machine, $\delta_i$ is the electrical rotor angle. For a GFM inverter, it is the controller-generated electrical angle; the analogous COI uses the reduced model's equivalent inertia coefficients, not physical rotor inertia. The plotted coordinates $\tilde\theta_{31}$ and $\tilde\theta_{32}$ are therefore equilibrium-shifted angles of the resources at buses~31 and~32 relative to the fleet's COI, not pairwise inter-machine angles. The reference equilibrium appears at the origin.
+
+Figure~\ref{fig:esbelow} shows the machine and GFM trajectories at their last stable clearing durations, 0.237~s and 1.6~s, respectively. The two-dimensional (2D) contours display analytical potential energy over these COI coordinates. Both responses remain near the reference equilibrium after clearing, although the marked model and EMT endpoints need not coincide. The white boundary is the reduced model's critical-energy boundary estimate; a two-angle view does not certify a basin boundary for the complete EMT system, whose state also includes speeds and other control variables.
+
+\begin{figure}[tbp]\centering
+\input{figures/energy_surface_below_cct_coi.tex}
+\caption{Potential-energy contours in equilibrium-shifted COI coordinates for the 39-bus system: (a)~ten synchronous machines and (b)~ten GFM inverters. Clearing durations are the last stable cases, 0.237~s and 1.600~s, respectively. White dotted and thin solid curves show the model's fault-on and post-clearing paths; cyan dashed curves show PSCAD EMT trajectories. The thick white curve is the model boundary estimate. Circles mark clearing, squares mark model endpoints, and cyan crosses mark EMT endpoints. The colour scale is shared by both panels.}
+\label{fig:esbelow}
+\end{figure}
+
+\subsubsection{Limits of the Present Energy Construction}
+\label{sec:gfmgap}
+The same classical construction overestimates the clearing margin for the tested GFM cases. In the 39-bus comparison, it predicts approximately 2.34~s against an EMT bracket of $(1.6,1.7]$~s. In the single-inverter infinite-bus comparison, it predicts 1.296~s against $(0.925,0.931]$~s. These differences are larger than in the corresponding machine comparisons and motivate a more detailed treatment of inverter controls.
+
+Figure~\ref{fig:esat} compares clearing near each analytical critical clearing time using complementary 2D and three-dimensional (3D) views of the same cases. The contours make the trajectories and endpoints easier to compare, while the 3D surfaces expose the potential-energy ridge and neighboring well. At 0.2455~s, the machine EMT trajectory returns near the reference equilibrium. At 2.315~s, the GFM EMT trajectory crosses the ridge and ends near $(\tilde\theta_{31},\tilde\theta_{32})=(290^\circ,290^\circ)$ in the supplied COI-coordinate view, while the analytical trajectory returns toward the origin. The trajectories disagree on return to the original equilibrium, which is a more specific observation than a claim that the inverter never resynchronizes.
+
+The larger amplitude and curvature of the GFM surface follow from the coupling reactances, not from the inertia or damping coefficients, which do not enter the potential energy of Equation~\eqref{eq:tef}. Each inverter is represented as $E$ behind $X_{\mathrm{L}}=0.15$ per unit on its base $S_{\mathrm{inv,base}}=P_{\mathrm{G}}/0.6$, the example value of the model specification \cite{du2023a1}, whereas each machine is $E'$ behind $X'_{\mathrm{d}}=0.26$ per unit on its rating; on the system base the inverter internal nodes are coupled through 2.8--2.9 times less reactance at nine of the ten buses, and the curvature of the surface at the equilibrium is 1.9 times the machine value. Recomputing the inverter surface with the machines' system-base reactances brings that curvature to within 25\% of the machine value.
+
+\begin{figure}[p]\centering
+\input{figures/energy_surface_at_cct_coi.tex}
+\par\vspace{4pt}
+\input{figures/energy_surface_at_cct_3d.tex}
+\caption{Complementary views near the analytical critical clearing times: (a,b)~2D potential-energy contours and (c,d)~3D surfaces, with synchronous machines on the left and GFM inverters on the right. Clearing durations are 0.2455~s and 2.315~s; model estimates are 0.248~s and 2.338~s. All panels use the equilibrium-shifted COI angles in Equation~\eqref{eq:energycoi} and the shared legend above the 3D views. The GFM EMT endpoint lies in a neighboring well, unlike the model endpoint near the origin. EMT clearing-time brackets remain $(0.237,0.250]$~s and $(1.600,1.700]$~s.}
+\label{fig:esat}
+\end{figure}
+
+Current limiting and the ceiling on commanded voltage are plausible contributors to this discrepancy. When these constraints become active, the realized electrical power need not follow the sinusoidal relationship used by the classical construction. Figure~\ref{fig:satblock} illustrates how saturation changes the power-angle characteristic and the associated unstable equilibrium. Future controlled studies will isolate these effects rather than assume that omitted limiters explain every difference. The issue is the applicability of the chosen model assumptions, not a violation of classical stability theory. Figure~\ref{fig:ilimitsweep} shows the measured single-inverter clearing-time bracket as the transient current limit is raised from 2.0 to 15 per unit with all other settings fixed: the bracket rises from $(0.925,0.931]$~s at 2.0 per unit to $(1.163,1.169]$~s at 12 per unit and is unchanged at 15 per unit, where the limit exceeds the unlimited fault-current demand.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.9\textwidth]{ilimit_sweep_emt}
+\caption{Measured critical clearing time of the single inverter on the infinite bus as a function of the transient current limit $I_{\max F}$, all other settings fixed. Each bar is the bracket between the longest stable and the shortest unstable fault duration.}
+\label{fig:ilimitsweep}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.9\textwidth]{saturation_block}
+\caption{Conceptual effect of current saturation on the power-angle characteristic. The limited characteristic departs from the sinusoid, changing the location of the unstable equilibrium and the region of attraction represented by the classical construction.}
+\label{fig:satblock}
+\end{figure}
+
+\subsubsection{Modeling Goals}
+\label{sec:nextsteps}
+The next analytical steps build on this preliminary comparison. We will connect the model extensions to the same disturbances used in the testbed. Hardware studies remain a future direction after the simulation comparisons establish appropriate test cases.
+\begin{itemize}
+\item \textbf{Limiter-aware stability estimates.} Extend critical-clearing-time analysis to include saturation and determine conditions under which the estimate is conservative.
+\item \textbf{Guidance for manufacturers and operators.} Identify control parameters with the greatest influence on system-level stability for the configurations studied.
+\item \textbf{Mixed-generation systems.} Extend the analysis to combinations of synchronous machines, GFM inverters, and GFL inverters.
+\item \textbf{Additional disturbances.} Evaluate the models under unbalanced faults at other locations, faults with nonzero impedance, phase-angle jumps, and load steps.
+\item \textbf{Protection and damping decomposition.} Add an instantaneous hardware overcurrent trip to the inverter model, with the threshold taken from device data, and separate the machine's net damping into governor, stabilizer, and field contributions through ringdowns with the governor frozen and with the stabilizer disabled.
+\item \textbf{Hardware validation.} Investigate single-inverter infinite-bus and hardware-in-the-loop tests, followed by multi-inverter disturbances in the UT Austin laboratory microgrid.
+\end{itemize}
+
+\subsection{Conclusion}
+\label{sec:conclusion}
+We developed a reusable PSCAD EMT testbed for studying networks with increasing numbers of GFM resources. Starting from an IEEE 39-bus PSS/E case, we used E-TRAN to construct the network and equipped it with representative machine dynamics and selected inverter models. The first-year studies show fault ride through across the tested replacement configurations and useful differences between machine and GFM responses. The selected droop controls provide strong equivalent damping and low equivalent inertia, which help interpret the faster settling observed in the simulations.
+
+The inertia-estimation and preliminary energy-method investigations connect those observations to familiar power-system concepts. They also show why damping contributions and active constraints matter when interpreting reduced models. The next phase will establish corresponding positive-sequence and EMT comparisons and examine how control, network, and load dynamics affect stability conclusions. The testbed provides a strong foundation for that work and for developing practical guidance on inverter-dominated power systems.
+
+\section*{Acknowledgments}
+\addcontentsline{toc}{section}{Acknowledgments}
+This work was performed as part of the research collaboration between The University of Texas at Austin and the Electric Reliability Council of Texas (ERCOT). The authors gratefully acknowledge the technical discussions and support provided by members of the ERCOT and UNIFI communities.
+
+\appendix
+\section{Synchronous Machine Model Parameters}
+\label{app:params}
+The synchronous baseline combines GENROU, ESST4B, GGOV1, and PSS2B with an inertia constant of 5.46~s. The ten machines use the same ERCOT-supplied dynamic parameter set, while their ratings and operating points can differ. The bus-30 PSS/E record lists the parameters in standard model order:
+
+\begin{lstlisting}[language={}]
+30, 'GENROU', 1,
+ 7.61, 0.04, 0.98, 0.06, 5.46, 0, 1.99, 1.81,
+ 0.26, 0.45, 0.2, 0.15, 0.06, 0.32, //
+30, 'ESST4B', 1,
+ 0, 4.0, 4.0, 1, -0.90, 0.01, 1, 0, 1, -0.90,
+ 0, 5.5, 0, 6.0, 0.1, 0, 0, //
+30, 'GGOV1', 1,
+ 1, 1, 0.05, 1., 0.055, -0.055, 10, 1, 0, 1, 1,
+ 0.16, 0.5, 1.5, 0.2, 0.1, 0, 0, 3, 2, 0.7, 1,
+ 0, 0.1, -0.1, 0, 0.1, 10, 0.1, 0, 0.0002, 4, 5, 99, -99, //
+30, 'PSS2B', 1,
+ 1, 0, 3, 0, 5, 1, 2, 2, 0, 2, 0, 2, 0.25, 1,
+ 0.5, 0.1, 15, 0.2, 0.031, 0.1, 0.02, 0, 0, 99, -99,
+ 99, -99, 0.1, -0.1, //
+\end{lstlisting}
+
+GENROU field~5 specifies the inertia constant $H=5.46$~s. For the REGFM\_A1 reference configuration, $m_{\mathrm{p}}=0.01$ and $T_{\mathrm{Pf}}=10$~ms give $H_{\mathrm{eq}}=0.5$~s and $D_{\mathrm{eq}}=100$ through Equation~\eqref{eq:heqdeq}. The replacement sizing uses $S_{\mathrm{inv,base}}=P_{\mathrm{G}}/0.6$, where $P_{\mathrm{G}}$ is generator dispatch in MW and the resulting base is in MVA. The bus-14 reference fault is bolted three-phase-to-ground for five cycles without reclosing; its 2.0 per-unit current limit is distinct from the 1.5 per-unit bus-10 study.
+
+\section{PSCAD Output Files}
+\label{app:plotting}
+PSCAD writes numerical channels and channel descriptions to separate files. The processing workflow reconstructs them into a common table for analysis and plotting. This appendix describes that workflow, while the report also uses circuit diagrams, screenshots, and analytical illustrations.
+
+\subsection{What PSCAD Writes}
+For a project named \texttt{name}, EMTDC writes channel descriptions to \texttt{name.inf}. Numerical files follow the sequence \texttt{name\_01.out}, \texttt{name\_02.out}, and so on. Each output file contains simulation time followed by up to ten channels. The \texttt{PGB(...)} records in the \texttt{.inf} file provide channel indices and \texttt{Desc="..."} descriptions. The numerical files themselves do not name their columns.
+
+\subsection{Channel Naming}
+The harness parses the channel descriptions and converts them into column names. Repeated descriptions receive a suffix to keep the names unique. The following function illustrates this naming step:
+
+\begin{lstlisting}
+def inf_channel_names():
+    names = []
+    for line in open(project + ".inf"):
+        if line.startswith("PGB("):
+            names.append(line.split('Desc="')[1].split('"')[0]
+                         .replace(":", "_"))
+    seen, out = {}, []
+    for n in names:                      # disambiguate duplicates
+        seen[n] = seen.get(n, 0) + 1
+        out.append(n if seen[n] == 1 else "%s_dup%d" % (n, seen[n]))
+    return out
+\end{lstlisting}
+
+\subsection{Stitching and Export}
+The exporter combines the output-file family using \texttt{OutFile} from the PSCAD file utilities. It checks modification times against the run start to avoid reading a previous run's output and compares the column count with the channel descriptions. It then downsamples the table and selects the declared channels for export:
+
+\begin{lstlisting}
+fout = OutFile(project_stem)             # name_01.out, name_02.out, ...
+fout.toCSV(csv="_res_full.csv")          # stitched: TIME + all channels
+df = pd.read_csv("_res_full.csv")
+names = inf_channel_names()
+if len(df.columns) != len(names) + 1:    # TIME + channels, exactly
+    raise RuntimeError("column mismatch vs .inf")
+df.columns = ["TIME"] + names
+df = df.loc[::DOWNSAMPLE, ["TIME"] + KEEP]
+df.to_csv(run_dir + "/rung_%s.csv" % tag, index=False)
+\end{lstlisting}
+
+Each run produces a CSV identified by its fault duration. This organization supports comparison of successful and unsuccessful runs when constructing clearing-time brackets. The channel names accompany the numerical values so that subsequent analysis can identify each recorded signal.
+
+\subsection{Plotting Conventions}
+Time-domain plots mark the fault interval and use a pre-fault window to establish the baseline. Network plots show RMS bus voltages in kV, currents in kA, and powers in MW and MVAr; device comparisons use per unit on each device base, stated in the caption. Axes identify units, and multi-device panels share limits where appropriate. Ratings, dispatch, and terminal measurement locations remain important when comparing devices; per-unit presentation alone does not make the cases identical.
+
+\section{Alternative GFM Model Diagnostics}
+\label{app:altmodels}
+This appendix records the model-quality-test diagnostics of the alternative GFM implementations evaluated in Section~\ref{sec:mqt}. In selected stiff-grid tests of the NLR GFM model, both high-voltage ride-through and both phase-angle-jump tests exhibited an approximately 5~Hz oscillation; repeated limiter transitions suggest an interaction with the voltage regulator in this implementation and configuration. Figure~\ref{fig:pscadkenyon} shows its control parameters.
+
+Figure~\ref{fig:mqtpair} compares REGFM\_A1 and the NLR GFM model under the same 1.02 per-unit source-voltage step. Figure~\ref{fig:mqtvstepdown} shows the downward step, for which REGFM\_A1 settles more quickly while the NLR GFM model develops an oscillatory response. Figure~\ref{fig:mqtlimiter} shows the associated limiting behavior in a high-voltage test. These results characterize the selected implementations and settings rather than all GFM designs.
+
+The downward-step test changes the source voltage from 1.00 to 0.97 per unit at 5~s. REGFM\_A1 settles within approximately a quarter second, while the NLR GFM model develops a growing oscillation. In the high-voltage test, the plotted current components repeatedly encounter their limiting ceiling as the voltage-loop error changes sign. The limiter-status trace records 203 transitions before the response diverges near 23~s, suggesting an interaction between the integral voltage regulator and the limiting action.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.6\textwidth]{pscad_nlr_params}
+\caption{NLR GFM model control parameters, including the voltage-regulator gains.}
+\label{fig:pscadkenyon}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{fig3_mqt_pnnl_vs_nlr}
+\caption{REGFM\_A1 and NLR GFM model responses to a 1.02 per-unit source-voltage step in PMView.}
+\label{fig:mqtpair}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{fig3_mqt_vstep_down}
+\caption{Point-of-interconnection voltage after an identical 1.00 to
+0.97~p.u. step at $t=5$~s in the PMView harness: PNNL REGFM\_A1 (left)
+settles within a quarter second, while the NLR GFM model (right)
+enters a growing voltage oscillation.}
+\label{fig:mqtvstepdown}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=\textwidth]{fig3_mqt_nlr_limiter_chatter}
+\caption{NLR GFM model high-voltage test: voltage error (top), current magnitude and limit (middle), and limiter state (bottom). Repeated limiter transitions accompany the oscillatory response before its change near 23~s.}
+\label{fig:mqtlimiter}
+\end{figure}
+
+\begin{thebibliography}{99}
+\setlength{\itemsep}{2pt}
+\raggedright
+\bibitem{chatterjee2026note} D.~Chatterjee, \emph{Inertia Estimation
+for GFM Inverters}, internal technical note, June~24, 2026
+(unpublished).
+\bibitem{esrint2026} ERCOT Grid Operations, \emph{ESR Integration
+Report}, August 2, 2026.
+\bibitem{gis2026} ERCOT, \emph{Generator Interconnection Status
+Report}, July 2026 (published August 3, 2026).
+\bibitem{mohammadi2026} S.~Mohammadi, W.~Wang, M.~C.~I. Wada,
+R.~Haghighi, A.~Hassan, H.~Liu, A.~Bhatnagar, A.~Chen, and W.~Su,
+``Grid integration of AI data centers: a critical review of energy
+storage solutions,'' \emph{Advances in Applied Energy}, 2026.
+\url{https://www.sciencedirect.com/science/article/pii/S2666792426000302}
+(preprint: \url{https://arxiv.org/abs/2603.00415})
+\bibitem{unifi2026} UNIFI Consortium, \emph{UNIFI Specifications for
+GFM Inverter-Based Resources, Version~3},
+Rep.~UNIFI-2026-2-1 (also NLR/TP-5D00-98381), January 2026.
+\url{https://docs.nlr.gov/docs/fy26osti/98381.pdf}
+\bibitem{nogrr272} ERCOT, \emph{NOGRR272: Advanced Grid Support Requirements for Inverter-Based ESRs}, approved November~6, 2025; effective December~1, 2025. Official issue record and approval documents. \url{https://www.ercot.com/mktrules/issues/NOGRR272}
+\bibitem{mora2026} ERCOT, \emph{Monthly Outlook for Resource Adequacy
+(MORA)}, July 2026.
+\url{https://www.ercot.com/files/docs/2026/05/01/MORA_July2026.pdf}
+\bibitem{pscad39bus} Manitoba Hydro International, ``IEEE 39 bus
+system,'' PSCAD Knowledge Base, Article~28.
+\url{https://www.pscad.com/knowledge-base/article/28}
+\bibitem{pscad39note} Manitoba Hydro International, \emph{IEEE 39 Bus
+System Technical Note}.
+\url{https://www.pscad.com/knowledge-base/download/ieee_39_bus_technical_note.pdf}
+\bibitem{du2023a1} W.~Du et al., \emph{Model Specification of
+Droop-Controlled, GFM Inverters (REGFM\_A1)}, Pacific
+Northwest National Laboratory, Richland, WA, Rep.~PNNL-35110,
+September 2023. \url{https://www.pnnl.gov/main/publications/external/technical_reports/PNNL-35110.pdf}
+\bibitem{pnnlgithub} W.~Du, \emph{PSCAD and PSSE Version of WECC
+GFM Inverter Models} (software release~V1, includes
+REGFM\_A1, REGFM\_B1, REGFM\_C1), Pacific Northwest National
+Laboratory, May 20, 2026.
+\url{https://github.com/pnnl/PSCAD-and-PSSE-Version-of-WECC-GFM-Inverter-Models}
+\bibitem{du2024b1} W.~Du et al., \emph{Virtual Synchronous Machine
+GFM Inverter Model Specification (REGFM\_B1)}, UNIFI
+Consortium, Rep.~UNIFI-2024-6-1, 2024.
+\url{https://www.osti.gov/biblio/2376832}
+\bibitem{pmview} ERCOT, ``PMView: model-quality test harness for
+PSCAD.'' \url{https://sites.google.com/view/pmview/home}
+\bibitem{dwg24} ERCOT Dynamics Working Group, \emph{Procedure Manual},
+Revision~24, June~2025. \url{https://www.ercot.com/committees/ros/dwg}
+\bibitem{pypscad} National Laboratory of the Rockies (NLR),
+``PyPSCAD: Kenyon GFM inverter library.''
+\url{https://github.com/NatLabRockies/PyPSCAD}
+\bibitem{pscadgfm} Manitoba Hydro International, ``GFM
+inverter model,'' PSCAD Knowledge Base, Article~894.
+\url{https://www.pscad.com/knowledge-base/article/894}
+\bibitem{huang2019} L.~Huang, H.~Xin, Z.~Wang, L.~Zhang, K.~Wu, and
+J.~Hu, ``Transient stability analysis and control design of
+droop-controlled voltage source converters considering current
+limitation,'' \emph{IEEE Trans. Smart Grid}, vol.~10, no.~1,
+pp.~578--591, 2019.
+\bibitem{chatterjee2025eac} D.~Chatterjee, B.~Johnson, and G.-S. Seo,
+``Is equal area criterion applicable for transient stability assessment
+of GFM inverters?,'' in \emph{Proc. IEEE PES General Meeting},
+2025, doi:10.1109/PESGM52009.2025.11225302.
+\bibitem{chatterjee2025compel} D.~Chatterjee, N.~Baeckeland,
+B.~Johnson, G.-S. Seo, and S.~Dhople, ``Demystifying GFM
+inverter large-signal stability assessment with equivalent-circuit
+models,'' in \emph{Proc. IEEE COMPEL}, 2025,
+doi:10.1109/COMPEL57166.2025.11121209.
+\bibitem{chatterjee2025ecce} D.~Chatterjee, B.~Yang, B.~Johnson, and
+G.-S. Seo, ``Interaction energy-based transient stability framework for
+multi-GFM inverter systems,'' in \emph{Proc. IEEE ECCE}, 2025,
+doi:10.1109/ECCE58356.2025.11260189.
+\bibitem{sauer1998} P.~W. Sauer and M.~A. Pai, \emph{Power System
+Dynamics and Stability}. Upper Saddle River, NJ: Prentice Hall, 1998
+(Ch.~9: energy-function methods).
+\bibitem{kundur1994} P.~Kundur, \emph{Power System Stability and
+Control}. New York: McGraw-Hill, 1994.
+\bibitem{ieee2800} IEEE Standards Association, \emph{IEEE Standard for
+Interconnection and Interoperability of Inverter-Based Resources (IBRs)
+Interconnecting with Associated Transmission Electric Power Systems},
+IEEE Std 2800-2022, 2022 (Annex~K.2.2).
+\bibitem{pai1989} M.~A. Pai, \emph{Energy Function Analysis for Power
+System Stability}. Boston, MA: Kluwer Academic Publishers, 1989.
+\bibitem{athay1979} T.~Athay, R.~Podmore, and S.~Virmani, ``A practical
+method for the direct analysis of transient stability,'' \emph{IEEE
+Trans. Power Apparatus and Systems}, vol.~PAS-98, no.~2, pp.~573--584,
+1979.
+\bibitem{bergen1981} A.~R. Bergen and D.~J. Hill, ``A structure
+preserving model for power system stability analysis,'' \emph{IEEE
+Trans. Power Apparatus and Systems}, vol.~PAS-100, no.~1, pp.~25--35,
+1981.
+\bibitem{chiang1988} H.-D. Chiang, F.~F. Wu, and P.~P. Varaiya,
+``Foundations of the potential energy boundary surface method for power
+system transient stability analysis,'' \emph{IEEE Trans. Circuits and
+Systems}, vol.~35, no.~6, pp.~712--728, 1988.
+\bibitem{popov1961} V.~M. Popov, ``Absolute stability of nonlinear
+systems of automatic control,'' \emph{Automation and Remote Control},
+vol.~22, no.~8, pp.~857--875, 1961.
+\bibitem{zames1966} G.~Zames, ``On the input--output stability of
+time-varying nonlinear feedback systems, Parts I and II,''
+\emph{IEEE Trans. Automatic Control}, vol.~11, no.~2--3, 1966.
+\bibitem{khalil2002} H.~K. Khalil, \emph{Nonlinear Systems}, 3rd~ed.
+Upper Saddle River, NJ: Prentice Hall, 2002.
+\bibitem{ags2026} S.-H. Huang (ERCOT), \emph{NPRRxxx Advanced Grid
+Support Incentive Program Concept Overview}, ERCOT Inverter-Based
+Resource Working Group, March 27, 2026.
+\url{https://www.ercot.com/files/docs/2026/03/27/AGS-Incentive-Program-Concept-Overview-IBRWG-03272026.pdf}
+
+\bibitem{etran} Electranix Corporation, \emph{E-TRAN: PSS/E to PSCAD Translation Software}. \url{https://www.electranix.com/software/}
+\bibitem{pscadbergeron} Manitoba Hydro International, ``The Bergeron Model,'' in \emph{EMTDC User's Guide: Transmission Lines}, PSCAD online help. \url{https://www.pscad.com/webhelp/EMTDC/Transmission_Lines/The_Bergeron_Model.htm}
+\bibitem{etranlib} Electranix Corporation, \emph{E-TRAN Runtime Library for PSCAD}. \url{https://www.electranix.com/software/e-tran-runtime-library-for-pscad/}
+\bibitem{regfma1lib} Pacific Northwest National Laboratory, \emph{REGFM\_A1 PSCAD model release (REGFM\_A1.zip, containing PNNL\_REGFM\_A1\_gf46.lib)}, GitHub release V1 of \emph{PSCAD and PSS/E Version of WECC GFM Inverter Models}. \url{https://github.com/pnnl/PSCAD-and-PSSE-Version-of-WECC-GFM-Inverter-Models/releases/download/V1/REGFM_A1.zip}
+\bibitem{iannuzzo2014} F.~Iannuzzo, C.~Abbate, and G.~Busatto, ``Instabilities in silicon power devices: A review of failure mechanisms in modern power devices,'' \emph{IEEE Industrial Electronics Magazine}, vol.~8, no.~3, pp.~28--39, Sept. 2014, doi: 10.1109/MIE.2014.2305758.
+\bibitem{agsupdate2026} ERCOT, \emph{Interconnection and Grid Analysis Update}, Item~9, April~2026, advanced grid-support implementation update. \url{https://www.ercot.com/files/docs/2026/04/13/9-Interconnection-and-Grid-Analysis-Update.pdf}
+\bibitem{pestr1} IEEE Power \& Energy Society, Task Force on Turbine-Governor Modeling, \emph{Dynamic Models for Turbine-Governors in Power System Studies}, Technical Report PES-TR1, January 2013, Appendix~C (GGOV1 typical parameters). \url{https://site.ieee.org/fw-pes/files/2013/01/PES_TR1.pdf}
+\bibitem{ggovmanual} PowerWorld Corporation, \emph{Governor Model: GGOV1 and GGOV1D}, parameter descriptions and block diagram. \url{https://www.powerworld.com/WebHelp/Content/TransientModels_HTML/Governor\%20GGOV1\%20and\%20GGOV1D.htm}
+\end{thebibliography}
+
+\end{document}
+

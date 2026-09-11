@@ -16,15 +16,16 @@ main.tex still resolves.  Nothing about the left panel's data changed.
 import sys
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import repo_paths as rp  # noqa: E402
 
 import matplotlib
 matplotlib.use("Agg")
 
-EXPD = Path(r"C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees"
-            r"\sharp-jackson-1e89b8\experiments")
-OUT = Path(r"C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees"
-           r"\upbeat-jones-67c8d3\report_26X\overleaf\figures")
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+EXPD = rp.experiment(r"experiments")
+OUT = rp.OUT
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import figstyle_26x as st                               # noqa: E402
 
@@ -44,8 +45,8 @@ DX = 0.017                  # horizontal spread for coincident true-H values
 # (experiment dir, color, marker, short label) - order and colors from the
 # original compare_window_sweep.py
 MODELS = [
-    ("agsesr_inertia_response_GFM",     "#d62728", "o", r"A1 droop, $m_P{=}0.01$"),
-    ("agsesr_inertia_mp0p1",            "#ff9896", "D", r"A1 droop, $m_P{=}0.1$"),
+    ("agsesr_inertia_response_GFM",     "#d62728", "o", r"A1 droop, $m_p{=}0.01$"),
+    ("agsesr_inertia_mp0p1",            "#ff9896", "D", r"A1 droop, $m_p{=}0.1$"),
     ("regfm_b1_vsm_inertia_validation", "#e08214", "s", r"B1 VSM"),
     ("typicalgt_inertia_validation",    "#1f77b4", "^", r"sync (TypicalGT)"),
 ]
@@ -110,8 +111,8 @@ def main():
     ax.set_xticks([0.1, 0.2, 0.3, 0.4, 0.5])
     ax.set_yticks([0, 2, 4, 6, 8])
     ax.set_xlabel("averaging window $T$ (s)")
-    ax.set_ylabel("measured $H$ (s)")
-    ax.set_title("Measured inertia vs window")
+    ax.set_ylabel(r"estimated equivalent inertia $H_{\mathrm{est}}$ (s)")
+    ax.set_title("Estimated equivalent inertia versus averaging window")
     ax.legend(loc="upper left", fontsize=8.5, handlelength=1.7,
               labelspacing=0.35, borderaxespad=0.4, borderpad=0.4,
               framealpha=1.0, edgecolor="#bbbbbb")

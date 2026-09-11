@@ -8315,9 +8315,9 @@ from wye-delta transformers)]]></segment>
     </Definition>
   </definitions>
   <List classid="Resource">
-    <Resource classid="LinkedResource" id="404295076" url="..\..\..\..\..\Program Files (x86)\E-Tran_V6\EMTDCLib\ETRAN_GF46.lib">
+    <Resource classid="LinkedResource" id="404295076" url="..\..\..\systems\lib\ETRAN_GF46.lib">
       <paramlist>
-        <param name="filepath" value="C:\Program Files (x86)\E-Tran_V6\EMTDCLib\ETRAN_GF46.lib" />
+        <param name="filepath" value="..\..\..\systems\lib\ETRAN_GF46.lib" />
         <param name="copy_file" value="false" />
         <param name="include" value="true" />
       </paramlist>

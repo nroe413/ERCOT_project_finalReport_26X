@@ -30,14 +30,26 @@ from matplotlib import font_manager as _fm
 TEXTWIDTH_IN = 6.5          # \textwidth: letter paper, 1 in margins
 BODY_PT = 11                # document body font size (11pt article)
 
-_TG = Path(r"C:\Users\roena\AppData\Local\Programs\MiKTeX\fonts"
-           r"\opentype\public\tex-gyre")
-for _f in ("texgyrepagella-regular.otf", "texgyrepagella-bold.otf",
-           "texgyrepagella-italic.otf",
-           "texgyrepagella-bolditalic.otf"):
-    _p = _TG / _f
-    if _p.exists():
-        _fm.fontManager.addfont(str(_p))
+# TeX Gyre Pagella OpenType files: registered from whichever TeX tree is
+# present (MiKTeX per-user or system, TeX Live on Windows or Unix); the
+# serif fallback stack below applies when none is found.
+import glob as _glob
+import os as _os
+_CANDIDATES = [
+    _os.path.join(_os.environ.get("LOCALAPPDATA", ""), "Programs", "MiKTeX", "fonts", "opentype", "public", "tex-gyre"),
+    r"C:\Program Files\MiKTeX\fonts\opentype\public\tex-gyre",
+    r"C:\texlive\*\texmf-dist\fonts\opentype\public\tex-gyre",
+    "/usr/share/texlive/texmf-dist/fonts/opentype/public/tex-gyre",
+    "/usr/share/texmf/fonts/opentype/public/tex-gyre",
+    "/usr/local/texlive/*/texmf-dist/fonts/opentype/public/tex-gyre",
+]
+for _pat in _CANDIDATES:
+    for _dir in _glob.glob(_pat):
+        for _f in ("texgyrepagella-regular.otf", "texgyrepagella-bold.otf",
+                   "texgyrepagella-italic.otf", "texgyrepagella-bolditalic.otf"):
+            _p = Path(_dir) / _f
+            if _p.exists():
+                _fm.fontManager.addfont(str(_p))
 
 SERIF_STACK = ["TeX Gyre Pagella", "Palatino Linotype",
                "STIXGeneral", "DejaVu Serif"]

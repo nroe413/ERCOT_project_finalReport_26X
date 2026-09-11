@@ -1,0 +1,93 @@
+% GGOV1 governor and turbine path of the machine model, drawn in the same
+% block-diagram grammar as tikz_gfm_controls.tex (summing junctions with
+% signs, limiter glyphs with their limits, transfer-function blocks).
+% Structure after the GGOV1 block diagram (PowerWorld GGOV1 description;
+% IEEE PES-TR1) with the Table 1 settings: Rselect = 1 (electrical-power
+% droop feedback through T_pelec), Flag = 1 (fuel flow scaled by speed),
+% Kimw = 0 (power controller off), Teng = 0 (no engine delay drawn).
+\providecommand{\satlim}[4]{%
+  \node[draw, line width=0.7pt, minimum size=0.5cm, inner sep=0pt] (#1) at (#2,#3) {};
+  \draw[line width=0.6pt] (#2,#3) ++(-0.16cm,-0.10cm) -- ++(0.10cm,0) -- ++(0.12cm,0.20cm) -- ++(0.10cm,0);
+  \node[font=\small, anchor=south, yshift=1pt] at (#1.north) {#4};}
+\begin{tikzpicture}[x=0.92cm, y=0.72cm, line cap=round, line join=round,
+    wire/.style={line width=0.7pt},
+    blk/.style={draw, line width=0.7pt, inner sep=3pt, minimum height=0.66cm,
+                font=\normalsize, align=center},
+    sum/.style={draw, circle, line width=0.7pt, inner sep=0pt, minimum size=0.34cm},
+    lbl/.style={font=\normalsize}, note/.style={font=\small, align=center},
+    >={Stealth[length=2.2mm]}]
+  % ---- row A (y = 4.0): speed error, clip, PID, low-value gate, actuator
+  \node[lbl, anchor=east] at (0.0,4.0) {$\omega_{\mathrm{ref}}$};
+  \node[sum] (s1) at (1.4,4.0) {};
+  \draw[->,wire] (0.05,4.0) -- (s1);
+  \node[lbl] at (0.95,4.35) {$+$};
+  \draw[->,wire] (1.4,3.1) -- (s1);
+  \node[lbl, anchor=north] at (1.4,3.05) {$\omega$};
+  \node[lbl] at (1.75,3.45) {$-$};
+  \node[sum] (s2) at (2.6,4.0) {};
+  \draw[->,wire] (s1) -- (s2);
+  \node[lbl] at (2.15,4.35) {$+$};
+  \node[lbl] at (2.95,3.45) {$-$};
+  \satlim{lerr}{3.7}{4.0}{maxerr}
+  \node[font=\small, anchor=north, yshift=-1pt] at (lerr.south) {minerr};
+  \draw[->,wire] (s2) -- (lerr);
+  \draw[wire] (lerr) -- (4.6,4.0);
+  \fill (4.6,4.0) circle (1.3pt);
+  \node[blk] (kp) at (5.9,4.9) {$K_{\mathrm{pgov}}$};
+  \node[blk] (ki) at (5.9,4.0) {$\frac{K_{\mathrm{igov}}}{s}$};
+  \node[blk] (kd) at (5.9,3.0) {$\frac{K_{\mathrm{dgov}}\,s}{1+sT_{\mathrm{dgov}}}$};
+  \draw[->,wire] (4.6,4.0) |- (kp);
+  \draw[->,wire] (4.6,4.0) -- (ki);
+  \draw[->,wire] (4.6,4.0) |- (kd);
+  \node[sum] (s3) at (7.6,4.0) {};
+  \draw[->,wire] (kp.east) -| (s3);
+  \draw[->,wire] (ki) -- (s3);
+  \draw[->,wire] (kd.east) -| (s3);
+  \node[lbl] at (7.95,4.6) {$+$};
+  \node[lbl] at (7.15,4.35) {$+$};
+  \node[lbl] at (7.95,3.4) {$+$};
+  \node[blk] (lv) at (9.3,4.0) {low-value\\gate};
+  \draw[->,wire] (s3) -- (lv);
+  \node[note, anchor=south] (ll) at (9.3,5.3)
+    {load limiter: $L_{\mathrm{dref}}$, $K_{\mathrm{pload}}+\frac{K_{\mathrm{iload}}}{s}$, $T_{\mathrm{fload}}$};
+  \draw[->,wire] (ll) -- (lv);
+  \node[note, anchor=north] (al) at (9.3,2.7)
+    {acceleration limiter: $A_{\mathrm{set}}$, $K_{\mathrm{a}}$, $T_{\mathrm{a}}$};
+  \draw[->,wire] (al) -- (lv);
+  \node[blk] (act) at (11.6,4.0) {$\frac{1}{1+sT_{\mathrm{act}}}$};
+  \draw[->,wire] (lv) -- (act);
+  \node[note, anchor=north, yshift=-1pt] at (act.south) {rate $R_{\mathrm{open}}$, $R_{\mathrm{close}}$};
+  \satlim{lv2}{13.3}{4.0}{$v_{\max}$}
+  \node[font=\small, anchor=north, yshift=-1pt] at (lv2.south) {$v_{\min}$};
+  \draw[->,wire] (act) -- (lv2);
+  \draw[wire] (lv2) -- (14.3,4.0);
+  \node[lbl, anchor=west] at (14.35,4.0) {valve};
+  % ---- row B (y = 1.4): electrical-power droop feedback (Rselect = 1)
+  \node[lbl, anchor=west] at (14.35,1.4) {$P_{\mathrm{e}}$};
+  \draw[->,wire] (14.3,1.4) -- (12.55,1.4);
+  \node[blk] (tp) at (11.4,1.4) {$\frac{1}{1+sT_{\mathrm{pelec}}}$};
+  \node[blk] (rr) at (8.6,1.4) {$R$};
+  \draw[->,wire] (tp) -- (rr);
+  \draw[->,wire] (rr.west) -| (s2);
+  \node[note, anchor=north] at (10.0,1.25) {Rselect $=1$};
+  % ---- row C (y = -1.0): turbine ------------------------------------------
+  \node[lbl, anchor=east] at (0.0,-1.0) {valve};
+  \draw[->,wire] (0.05,-1.0) -- (1.2,-1.0);
+  \node[blk] (mul) at (1.9,-1.0) {$\times\,\omega$};
+  \node[note, anchor=north, yshift=-1pt] at (mul.south) {Flag $=1$};
+  \node[sum] (s4) at (3.6,-1.0) {};
+  \draw[->,wire] (mul) -- (s4);
+  \node[lbl] at (3.3,-0.62) {$+$};
+  \node[lbl, anchor=south] at (2.75,-0.85) {$W_{\mathrm{f}}$};
+  \draw[->,wire] (3.6,-1.9) -- (s4);
+  \node[lbl, anchor=north] at (3.6,-1.95) {$W_{\mathrm{fnl}}$};
+  \node[lbl] at (3.95,-1.55) {$-$};
+  \node[blk] (kt) at (5.0,-1.0) {$K_{\mathrm{turb}}$};
+  \draw[->,wire] (s4) -- (kt);
+  \node[blk] (ll2) at (7.0,-1.0) {$\frac{1+sT_{\mathrm{c}}}{1+sT_{\mathrm{b}}}$};
+  \draw[->,wire] (kt) -- (ll2);
+  \draw[->,wire] (ll2) -- (8.7,-1.0);
+  \node[lbl, anchor=west] at (8.75,-1.0) {$P_{\mathrm{m}}$};
+  \node[note, anchor=west] at (5.2,-2.35)
+    {power controller off ($K_{\mathrm{imw}}=0$); $T_{\mathrm{eng}}=0$};
+\end{tikzpicture}

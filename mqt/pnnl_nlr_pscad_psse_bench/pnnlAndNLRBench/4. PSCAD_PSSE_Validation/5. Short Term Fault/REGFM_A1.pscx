@@ -8011,9 +8011,9 @@ BRN22 = $NBBF  $NBBS(5)  SOURCE  1.0  0.1  1.0
   </definitions>
   <bookmarks />
   <List classid="Resource">
-    <Resource classid="LinkedResource" id="1943838236" url="C:\Users\sade305\OneDrive - PNNL\FSadeque Drive\4. UNIFI\Unifi_PSCAD_PSSE_Comparison\Final Version for Release\REGFM_A1\2. PSCAD Model\REGFM_A1_GFortran\REGFM_A1\\gf46\PNNL_REGFM_A1_gf46.lib">
+    <Resource classid="LinkedResource" id="1943838236" url="..\..\..\..\..\systems\lib\PNNL_REGFM_A1\REGFM_A1\gf46\PNNL_REGFM_A1_gf46.lib">
       <paramlist>
-        <param name="filepath" value="C:\Users\sade305\OneDrive - PNNL\FSadeque Drive\4. UNIFI\Unifi_PSCAD_PSSE_Comparison\Final Version for Release\REGFM_A1\2. PSCAD Model\REGFM_A1_GFortran\REGFM_A1\\gf46\PNNL_REGFM_A1_gf46.lib" />
+        <param name="filepath" value="..\..\..\..\..\systems\lib\PNNL_REGFM_A1\REGFM_A1\gf46\PNNL_REGFM_A1_gf46.lib" />
         <param name="copy_file" value="false" />
         <param name="include" value="true" />
       </paramlist>

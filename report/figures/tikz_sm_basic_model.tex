@@ -1,0 +1,40 @@
+% Companion to tikz_gfm_basic_model: the classical synchronous-machine
+% model in the same drawing convention (Sauer & Pai / Kundur): the
+% transient EMF E'<delta behind the transient reactance X'_{\mathrm{d}}, feeding
+% the grid at V<delta_V. E' and delta are set by the field circuit and
+% the rotor's swing dynamics rather than by a controller.
+\begin{tikzpicture}[x=1cm, y=1cm, line cap=round, line join=round,
+    wire/.style={line width=0.7pt},
+    lbl/.style={font=\normalsize},
+    >={Stealth[length=2.2mm]}]
+  \coordinate (src) at (0,0);
+  \draw[wire] (src) circle (0.42);
+  \draw[wire] plot[domain=-0.28:0.28, samples=40, smooth]
+      ({\x}, {0.16*sin(deg(\x*3.1416/0.28))});
+  \draw[wire] (src) ++(0,-0.42) -- ++(0,-0.35) coordinate (gnd);
+  \draw[wire] (gnd) ++(-0.28,0) -- ++(0.56,0);
+  \draw[wire] (gnd) ++(-0.18,-0.09) -- ++(0.36,0);
+  \draw[wire] (gnd) ++(-0.08,-0.18) -- ++(0.16,0);
+  % what sets the source: field (E') and rotor swing (delta)
+  \draw[->, wire] (-1.35,0.16) -- (-0.5,0.16);
+  \draw[->, wire] (-1.35,-0.16) -- (-0.5,-0.16);
+  \node[lbl, left] at (-1.35,0.16) {$E'$};
+  \node[lbl, left] at (-1.35,-0.16) {$\dot\delta=\omega_0\nu$};
+  \draw[wire] (src) ++(0.42,0) -- (1.2,0);
+  \draw[wire] (1.2,-0.55) -- (1.2,0.55);
+  \node[lbl, above] at (1.2,0.6) {$E'\angle\delta$};
+  \draw[wire] (1.2,0) -- (1.9,0);
+  \draw[wire] (1.9,0)
+     arc[start angle=180, end angle=0, radius=0.19]
+     arc[start angle=180, end angle=0, radius=0.19]
+     arc[start angle=180, end angle=0, radius=0.19]
+     arc[start angle=180, end angle=0, radius=0.19];
+  \node[lbl, above] at (2.66,0.22) {$X'_{\mathrm{d}}$};
+  \draw[wire] (3.42,0) -- (4.2,0);
+  \draw[wire] (4.2,-0.55) -- (4.2,0.55);
+  \node[lbl, above] at (4.2,0.6) {$V\angle\delta_{\mathrm{V}}$};
+  \draw[wire] (4.2,0) -- (4.85,0);
+  \node[lbl, right, align=center] at (4.85,0) {AC\\grid};
+  \draw[->, wire] (3.55,-0.62) -- (4.55,-0.62);
+  \node[lbl, below] at (4.05,-0.68) {$p,\;q,\;I\angle\varphi$};
+\end{tikzpicture}

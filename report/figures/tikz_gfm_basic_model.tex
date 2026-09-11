@@ -1,0 +1,45 @@
+% Basic model of a grid-forming inverter, redrawn from Fig. 1 of the
+% PNNL REGFM_A1 model specification (Du et al., PNNL-35110, 2023):
+% a controllable voltage source E<delta_E behind the coupling
+% reactance X_{\mathrm{L}}, feeding the AC grid at V<delta_V. Plain TikZ (no
+% circuitikz) so it typesets in the document font.
+\begin{tikzpicture}[x=1cm, y=1cm, line cap=round, line join=round,
+    wire/.style={line width=0.7pt},
+    lbl/.style={font=\normalsize},
+    >={Stealth[length=2.2mm]}]
+  % --- controllable voltage source (circle with sine) -----------------
+  \coordinate (src) at (0,0);
+  \draw[wire] (src) circle (0.42);
+  \draw[wire] plot[domain=-0.28:0.28, samples=40, smooth]
+      ({\x}, {0.16*sin(deg(\x*3.1416/0.28))});
+  \draw[wire] (src) ++(0,-0.42) -- ++(0,-0.35) coordinate (gnd);
+  \draw[wire] (gnd) ++(-0.28,0) -- ++(0.56,0);
+  \draw[wire] (gnd) ++(-0.18,-0.09) -- ++(0.36,0);
+  \draw[wire] (gnd) ++(-0.08,-0.18) -- ++(0.16,0);
+  % droop-controlled inputs E, omega
+  \draw[->, wire] (-1.35,0.16) -- (-0.5,0.16);
+  \draw[->, wire] (-1.35,-0.16) -- (-0.5,-0.16);
+  \node[lbl, left] at (-1.35,0.16) {$E$};
+  \node[lbl, left] at (-1.35,-0.16) {$\omega_{\mathrm{e}}$};
+  % --- internal bus and coupling reactance ---------------------------
+  \draw[wire] (src) ++(0.42,0) -- (1.2,0);
+  \draw[wire] (1.2,-0.55) -- (1.2,0.55);              % internal bus bar
+  \node[lbl, above] at (1.2,0.6) {$E\angle\delta_{\mathrm{E}}$};
+  \draw[wire] (1.2,0) -- (1.9,0);
+  % inductor coil: four bumps
+  \draw[wire] (1.9,0)
+     arc[start angle=180, end angle=0, radius=0.19]
+     arc[start angle=180, end angle=0, radius=0.19]
+     arc[start angle=180, end angle=0, radius=0.19]
+     arc[start angle=180, end angle=0, radius=0.19];
+  \node[lbl, above] at (2.66,0.22) {$X_{\mathrm{L}}$};
+  \draw[wire] (3.42,0) -- (4.2,0);
+  % --- terminal bus and grid ----------------------------------------
+  \draw[wire] (4.2,-0.55) -- (4.2,0.55);
+  \node[lbl, above] at (4.2,0.6) {$V\angle\delta_{\mathrm{V}}$};
+  \draw[wire] (4.2,0) -- (4.85,0);
+  \node[lbl, right, align=center] at (4.85,0) {AC\\grid};
+  % power / current flow arrow toward the grid
+  \draw[->, wire] (3.55,-0.62) -- (4.55,-0.62);
+  \node[lbl, below] at (4.05,-0.68) {$p,\;q,\;I\angle\varphi$};
+\end{tikzpicture}

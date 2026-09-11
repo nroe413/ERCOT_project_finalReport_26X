@@ -1,0 +1,16 @@
+# LaTeX build products (main.pdf is committed on purpose)
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.fls
+report/*.fdb_latexmk
+report/*.synctex.gz
+report/build.log
+
+# Python
+__pycache__/
+*.pyc
+
+# PSCAD build directories (regenerated on first compile)
+*.gf46/

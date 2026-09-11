@@ -10,17 +10,18 @@ run agsesr_freq_inertia_1Hzps_7s.  No synthesized data.
 """
 import sys
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import repo_paths as rp  # noqa: E402
 
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 
-EXP = Path(r"C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees"
-           r"\sharp-jackson-1e89b8\experiments\agsesr_inertia_response_GFM")
-OUT = Path(r"C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees"
-           r"\upbeat-jones-67c8d3\report_26X\overleaf\figures")
+EXP = rp.experiment(r"agsesr_inertia_response_GFM")
+OUT = rp.OUT
 sys.path.insert(0, str(EXP))
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from _pscad_io import read_run_to_dataframe, find_inf   # noqa: E402
 import figstyle_26x as st                               # noqa: E402
@@ -84,8 +85,8 @@ def main():
     ax.set_xlabel("Time (s)")
     ax.set_ylabel("Active power (pu)")
     box = "\n".join([
-        r"$H = 60\,\Delta E = %.2f$ s" % H,
-        r"programmed inertia: none (VSM off)",
+        r"$H_{\mathrm{est}} = 60\,\Delta E = %.2f$ s" % H,
+        r"filtered-droop $H_{\mathrm{eq}} = T_{\mathrm{Pf}}/2m_{\mathrm{p}} = 0.5$ s",
     ])
     ax.text(0.975, 0.06, box, transform=ax.transAxes, ha="right", va="bottom",
             fontsize=9, color="#222222",

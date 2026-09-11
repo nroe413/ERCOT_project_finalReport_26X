@@ -33495,6 +33495,6 @@ Zone #    Name
     </Definition>
   </definitions>
   <paramlist name="Libs">
-    <param name="0" value="C:\Program Files (x86)\E-Tran_V5\EMTDCLib\ETRAN_IF12.lib" />
+    <param name="0" value="..\..\lib\ETRAN_IF12.lib" />
   </paramlist>
 </project>

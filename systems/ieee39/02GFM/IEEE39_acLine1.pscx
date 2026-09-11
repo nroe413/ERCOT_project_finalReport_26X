@@ -94662,16 +94662,16 @@ BRN22 = $NBBF  $NBBS(5)  SOURCE  1.0  0.1  1.0
   </List>
   <bookmarks />
   <List classid="Resource">
-    <Resource classid="LinkedResource" id="404295076" url="..\..\..\..\..\Program Files (x86)\E-Tran_V6\EMTDCLib\ETRAN_GF46.lib">
+    <Resource classid="LinkedResource" id="404295076" url="..\..\lib\ETRAN_GF46.lib">
       <paramlist>
-        <param name="filepath" value="..\..\..\..\..\Program Files (x86)\E-Tran_V6\EMTDCLib\ETRAN_GF46.lib" />
+        <param name="filepath" value="..\..\lib\ETRAN_GF46.lib" />
         <param name="copy_file" value="false" />
         <param name="include" value="true" />
       </paramlist>
     </Resource>
-    <Resource classid="LinkedResource" id="2070872000" url="..\PNNL_REGFM\REGFM_A1\REGFM_A1\2. PSCAD Model\REGFM_A1_GFortran\REGFM_A1\gf46\PNNL_REGFM_A1_gf46.lib">
+    <Resource classid="LinkedResource" id="2070872000" url="..\..\lib\PNNL_REGFM_A1\REGFM_A1\gf46\PNNL_REGFM_A1_gf46.lib">
       <paramlist>
-        <param name="filepath" value="..\PNNL_REGFM\REGFM_A1\REGFM_A1\2. PSCAD Model\REGFM_A1_GFortran\REGFM_A1\gf46\PNNL_REGFM_A1_gf46.lib" />
+        <param name="filepath" value="..\..\lib\PNNL_REGFM_A1\REGFM_A1\gf46\PNNL_REGFM_A1_gf46.lib" />
         <param name="copy_file" value="false" />
         <param name="include" value="true" />
       </paramlist>

@@ -1,0 +1,60 @@
+\definecolor{energycyan}{RGB}{0,255,255}
+\definecolor{energygray}{HTML}{A4AEB1}
+\newcommand{\energylegend}{%
+  \fill[energygray,rounded corners=1pt] (0.065,0.008) rectangle (0.955,0.101);
+  \begin{scope}[every node/.style={anchor=west,inner sep=0pt,font=\fontsize{7}{8}\selectfont\rmfamily}]
+    \draw[white,line width=1.6pt] (0.08,0.076) -- (0.13,0.076);
+    \node at (0.145,0.076) {Model boundary ($V_{\mathrm{cr}}$)};
+    \draw[white,line width=1pt,dotted] (0.08,0.034) -- (0.13,0.034);
+    \node at (0.145,0.034) {Model: fault-on};
+    \draw[white,line width=0.6pt] (0.31,0.076) -- (0.36,0.076);
+    \node at (0.375,0.076) {Model: after clearing};
+    \draw[black,fill=white] (0.335,0.034) circle[radius=2.5pt];
+    \node at (0.375,0.034) {Position at $t_{\mathrm{cl}}$};
+    \draw[black,fill=white] (0.55,0.063) rectangle (0.564,0.089);
+    \node at (0.585,0.076) {Model: final};
+    \draw[energycyan,line width=1pt,dashed] (0.535,0.034) -- (0.579,0.034);
+    \node at (0.585,0.034) {PSCAD (EMT)};
+    \draw[black,line width=3pt] (0.746,0.064) -- (0.758,0.088) (0.746,0.088) -- (0.758,0.064);
+    \draw[energycyan,line width=1.6pt] (0.746,0.064) -- (0.758,0.088) (0.746,0.088) -- (0.758,0.064);
+    \node at (0.775,0.076) {PSCAD: final};
+    \draw[white,line width=1.2pt] (0.752,0.034) circle[radius=2.5pt];
+    \node at (0.775,0.034) {$\theta^{\mathrm{s}}$: stable equilibrium};
+  \end{scope}
+}
+
+\newcommand{\energycontour}[3]{%
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0pt] (energyimage) at (0,0) {#1};
+    \begin{scope}[x={(energyimage.south east)},y={(energyimage.north west)},
+      every node/.style={inner sep=0pt,font=\fontsize{8}{9}\selectfont\rmfamily}]
+      \fill[white] (0,0.954) rectangle (0.483,1);
+      \fill[white] (0.526,0.954) rectangle (1,1);
+      \fill[white] (0,0.22) rectangle (0.032,0.80);
+      \fill[white] (0.458,0.22) rectangle (0.483,0.80);
+      \fill[white] (0,0.100) rectangle (0.90,0.140);
+      \fill[white] (0,0) rectangle (1,0.099);
+      \fill[white] (0.967,0.22) rectangle (1,0.80);
+      \node at (0.256,0.981) {(a) Synchronous machines: $t_{\mathrm{cl}}=#2$ s ($t_{\mathrm{cr}}^{\mathrm{model}}=0.248$ s)};
+      \node at (0.710,0.981) {(b) GFM inverters: $t_{\mathrm{cl}}=#3$ s ($t_{\mathrm{cr}}^{\mathrm{model}}=2.338$ s)};
+      \node at (0.256,0.132) {Rotor angle relative to COI $\tilde\theta_{31}$ (deg)};
+      \node[rotate=90] at (0.020,0.570) {Rotor angle relative to COI $\tilde\theta_{32}$ (deg)};
+      \node at (0.710,0.132) {Inverter angle relative to COI $\tilde\theta_{31}$ (deg)};
+      \node[rotate=90] at (0.472,0.570) {Inverter angle relative to COI $\tilde\theta_{32}$ (deg)};
+      \node[rotate=90] at (0.984,0.570) {Potential energy $U$ (p.u.)};
+      \energylegend
+    \end{scope}
+  \end{tikzpicture}%
+}
+
+\newcommand{\energysurface}[1]{%
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0pt] (energyimage) at (0,0) {#1};
+    \begin{scope}[x={(energyimage.south east)},y={(energyimage.north west)},
+      every node/.style={inner sep=0pt,font=\fontsize{8}{9}\selectfont\rmfamily}]
+      \fill[white] (0,0.9538) rectangle (1,1);
+      \node at (0.235,0.981) {(c) Synchronous machines: $t_{\mathrm{cl}}=0.2455$ s ($t_{\mathrm{cr}}^{\mathrm{model}}=0.248$ s)};
+      \node at (0.770,0.981) {(d) GFM inverters: $t_{\mathrm{cl}}=2.315$ s ($t_{\mathrm{cr}}^{\mathrm{model}}=2.338$ s)};
+    \end{scope}
+  \end{tikzpicture}%
+}

@@ -17,6 +17,9 @@ Usage:  python exec_gfm_vs_sync_bus39_pu.py     (no args; 30 s window)
 """
 import sys
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import repo_paths as rp  # noqa: E402
 
 import numpy as np
 import pandas as pd
@@ -24,12 +27,10 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-ORIG = Path(r"C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees"
-            r"\sharp-jackson-1e89b8\experiments\fault_3PG_bus39_GFMvsSync")
-OUT = Path(r"C:\UT_research\NateRoe_ERCOT_Project\.claude\worktrees"
-           r"\upbeat-jones-67c8d3\report_26X\overleaf\figures")
+ORIG = rp.experiment(r"fault_3PG_bus39_GFMvsSync")
+OUT = rp.OUT
 sys.path.insert(0, str(ORIG))
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 # Importing the original module must see no CLI args so its window
 # defaults to "30s" (it reads sys.argv at import time).
@@ -146,7 +147,7 @@ def main():
     # ---- voltage: steady curves sit near 1.0 pu; space is below ----
     a = ax[0, 0]
     panel(a, sv, gv, "Voltage (pu of 230 kV)",
-          "Bus-39 voltage  $V_{pu}$", [0.35, 0.10, 0.62, 0.52],
+          "Bus-39 voltage (pu)", [0.35, 0.10, 0.62, 0.52],
           hide_conn=(0, 2))
     a.axhline(1.0, color="#999999", ls="--", lw=0.7)
     a.set_ylim(0, 1.35)
@@ -154,26 +155,26 @@ def main():
     # ---- current: fault peaks are early-left; space is upper-right ----
     a = ax[0, 1]
     axi = panel(a, si, gi, "Current (pu of own rating)",
-                "Bus-39 RMS current  $I_{pu}$", [0.35, 0.40, 0.62, 0.55],
+                "Bus-39 RMS current (pu)", [0.35, 0.40, 0.62, 0.55],
                 hide_conn=(2,))
     a.axhline(1.5, color="#888888", ls="--", lw=0.8)
     a.set_ylim(0, max(6.4, float(np.nanmax(si)) * 1.05))
     axi.axhline(1.5, color="#888888", ls="--", lw=0.6)
-    a.text(29.3, 1.36, "GFM $I_{maxF}=1.5$", ha="right", va="top",
+    a.text(29.3, 1.36, r"GFM $I_{\max F}=1.5$", ha="right", va="top",
            fontsize=8, color="#555555",
            bbox=dict(facecolor="white", edgecolor="none", pad=1.0))
 
     # ---- P: settles mid-scale; free space at the bottom ----
     a = ax[1, 0]
     panel(a, sp, gp, "P (pu of own rating)",
-          "Bus-39 active power  $P_{pu}$", [0.35, 0.10, 0.62, 0.45],
+          "Bus-39 active power (pu)", [0.35, 0.10, 0.62, 0.45],
           hide_conn=(0, 2))
     a.axhline(0, color="#999999", lw=0.6)
 
     # ---- Q: settles near 0; free space at the top ----
     a = ax[1, 1]
     panel(a, sq, gq, "Q (pu of own rating)",
-          "Bus-39 reactive power  $Q_{pu}$", [0.35, 0.52, 0.62, 0.43],
+          "Bus-39 reactive power (pu)", [0.35, 0.52, 0.62, 0.43],
           hide_conn=(2,))
     a.axhline(0, color="#999999", lw=0.6)
 
