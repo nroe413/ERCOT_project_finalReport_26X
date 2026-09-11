@@ -1,0 +1,21 @@
+# Text sources are stored with LF in the repository; Git converts line endings on
+# checkout per platform (core.autocrlf), which PSCAD, Python, and LaTeX all accept.
+*.py    text eol=lf
+*.md    text eol=lf
+*.tex   text eol=lf
+*.sty   text eol=lf
+*.json  text eol=lf
+*.txt   text
+*.csv   text
+*.dyr   text
+*.RAW   text
+*.inf   text
+*.pscx  text
+*.pswx  text
+*.pslx  text
+*.lib   binary
+*.png   binary
+*.pdf   binary
+*.psmx  binary
+*.bakx  binary
+*.out   binary

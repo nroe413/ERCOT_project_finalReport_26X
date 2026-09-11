@@ -1,0 +1,26 @@
+<Meta name="PSCADView">
+  <messagelist>
+    <message status="warning" label="build" groupid="206502" id="446956358" classid="CmpNavigator">
+      <User scope="PSCADView" name="Fault_block" status="warning" link="1652256453" /><![CDATA[Signal 'fault_enable' type conversion may lose accuracy at connection 'enab']]></message>
+    <message status="warning" label="build" groupid="206502" id="1452361569" classid="CmpNavigator">
+      <User scope="PSCADView" name="Transient_Volt2" status="warning" link="114988517" /><![CDATA[Signal 'transient_enable' type conversion may lose accuracy at connection 'enabl']]></message>
+    <message status="warning" label="build" groupid="302003" id="1711270964" classid="CmpNavigator">
+      <User scope="PSCADView" name="SCR" status="warning" link="1879050042" /><![CDATA[Parameter 'Nsteps' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.]]></message>
+    <message status="warning" label="build" groupid="302003" id="815366503" classid="CmpNavigator">
+      <User scope="PSCADView" name="SCR" status="warning" link="1879050042" /><![CDATA[Parameter 'Tfi' in 'SCR' is disabled. All module parameters must be enabled in order to successfully link the module.]]></message>
+  </messagelist>
+  <ViewContext>
+    <Window defn="PSCADView:Main" call="0" />
+  </ViewContext>
+  <List classid="View">
+    <View name="PMView" zoomscale="1.5" scrollx="56" scrolly="0" />
+    <View name="Frequency_Test" zoomscale="1.875" scrollx="0" scrolly="481" />
+    <View name="SCR" zoomscale="1.875" scrollx="1101" scrolly="883" />
+    <View name="Fault_block" zoomscale="1.5" scrollx="0" scrolly="270" />
+    <View name="PMU_Playback3" zoomscale="1.2" scrollx="203" scrolly="239" />
+    <View name="V_Test" zoomscale="0.96" scrollx="0" scrolly="499" />
+    <View name="Transient_Volt2" zoomscale="1.2" scrollx="209" scrolly="329" />
+    <View name="Main" zoomscale="1.5" scrollx="0" scrolly="0" />
+    <View name="VoltStep_Impedance" zoomscale="1.5" scrollx="0" scrolly="0" />
+  </List>
+</Meta>

@@ -62,6 +62,19 @@ clone opens and builds without re-pointing paths.
 - Three PMView 2.4 rigs reference an E-TRAN placeholder `..\inputfile.dyr`
   that is not part of the release.
 
+## Folder names and the study's working tree
+
+Directory names here are not the names used on the authors' machines: the
+NLR PMView rig lives under `mqt/pmview24_nlr_gfm/rig` (its original
+100-character folder name exceeded Windows path limits), the E-TRAN and PNNL
+libraries are consolidated in `systems/lib` instead of sitting inside each
+model folder, and the figure scripts lost their `_prism` suffix. When
+comparing against or revising from the study's repository, use the
+`origin_branch` / `origin_path` fields in `manifest.json`, which name each
+directory's source branch and path in the UT project repository. On
+Windows, run `git config --global core.longpaths true` before cloning;
+some paths still exceed 200 characters.
+
 ## Requirements
 
 - PSCAD 5.0.2 with GFortran 4.6 (systems were built and run on this pair).

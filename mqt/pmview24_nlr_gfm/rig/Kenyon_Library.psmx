@@ -1,0 +1,10 @@
+<Meta name="Kenyon_Library">
+  <messagelist />
+  <ViewContext>
+    <Window defn="Kenyon_Library:Main" call="0" />
+  </ViewContext>
+  <List classid="View">
+    <View name="GFM_Inverter_Dev4" zoomscale="0.768" scrollx="292" scrolly="0" />
+    <View name="GFL_Inverter_Dev1" zoomscale="0.768" scrollx="70" scrolly="0" />
+  </List>
+</Meta>
