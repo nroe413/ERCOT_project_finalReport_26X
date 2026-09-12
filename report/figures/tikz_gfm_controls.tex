@@ -69,8 +69,8 @@
   \node[sum] (s5) at (6.4,1.6) {};
   \draw[->,wire] (kp1.east) -| (s5);
   \draw[->,wire] (l1.east) -| (s5);
-  \node[lbl] at (6.05,2.05) {$+$};
-  \node[lbl] at (6.05,1.15) {$+$};
+  \node[lbl] at (6.72,1.98) {$+$};
+  \node[lbl] at (6.72,1.22) {$+$};
   \satlim{l2}{7.3}{1.6}{$\le 0$}
   \draw[->,wire] (s5) -- (l2);
   % ---- P_min branch (y = -1.6 / -1.0 / -2.1) ---------------------------
@@ -91,8 +91,8 @@
   \node[sum] (s7) at (6.4,-1.6) {};
   \draw[->,wire] (l3.east) -| (s7);
   \draw[->,wire] (kp2.east) -| (s7);
-  \node[lbl] at (6.05,-1.15) {$+$};
-  \node[lbl] at (6.05,-2.05) {$+$};
+  \node[lbl] at (6.72,-1.22) {$+$};
+  \node[lbl] at (6.72,-1.98) {$+$};
   \satlim{l4}{7.3}{-1.6}{$\ge 0$}
   \draw[->,wire] (s7) -- (l4);
   % ---- common sum and feed into the droop row --------------------------
@@ -136,18 +136,19 @@
   \node[lbl, anchor=south west] at (9.55,3.7) {$V_{\mathrm{cmd}}$};
   % VFlag switch: pole at (10.4,3.6); contact 0 above, contact 1 below (blade on 1)
   \fill (10.4,3.6) circle (1.3pt);
-  \fill (11.5,4.3) circle (1.3pt);
+  \fill (11.5,4.6) circle (1.3pt);
   \fill (11.5,2.9) circle (1.3pt);
   \draw[wire] (10.4,3.6) -- (11.5,2.9);
-  \node[lbl, anchor=south] at (10.7,4.8) {VFlag};
-  \node[note, anchor=south west] at (11.55,4.4) {0};
+  \draw[wire] (11.5,4.6) -- (11.5,4.45);
+  \node[lbl, anchor=south] at (10.7,5.0) {VFlag};
+  \node[note, anchor=south west] at (11.55,4.7) {0};
   \node[note, anchor=east] at (11.3,2.9) {1};
   % VFlag = 0 path: direct droop through the E limits
-  \draw[->,wire] (11.5,4.3) -- (12.55,4.3);
-  \satlim{e0}{12.8}{4.3}{$E_{\max}$}
+  \draw[->,wire] (11.5,4.6) -- (12.55,4.6);
+  \satlim{e0}{12.8}{4.6}{$E_{\max}$}
   \node[font=\small, anchor=north, yshift=-1pt] at (e0.south) {$E_{\min}$};
-  \draw[->,wire] (e0) -- (13.9,4.3);
-  \node[lbl, anchor=west] at (13.95,4.3) {$E_{\mathrm{droop}}$};
+  \draw[->,wire] (e0) -- (13.9,4.6);
+  \node[lbl, anchor=west] at (13.95,4.6) {$E_{\mathrm{droop}}$};
   % VFlag = 1 path: PI regulator on the POI voltage (used)
   \node[sum] (q3) at (11.5,2.1) {};
   \draw[->,wire] (11.5,2.9) -- (q3);
@@ -167,8 +168,8 @@
   \node[sum] (q4) at (14.9,2.1) {};
   \draw[->,wire] (kpv.east) -| (q4);
   \draw[->,wire] (e1.east) -| (q4);
-  \node[lbl] at (14.55,2.55) {$+$};
-  \node[lbl] at (14.55,1.65) {$+$};
+  \node[lbl] at (15.22,2.48) {$+$};
+  \node[lbl] at (15.22,1.72) {$+$};
   \satlim{e2}{15.8}{2.1}{$E_{\max}$}
   \node[font=\small, anchor=north, yshift=-1pt] at (e2.south) {$E_{\min}$};
   \draw[->,wire] (q4) -- (e2);
@@ -195,8 +196,8 @@
   \node[sum] (q6) at (6.4,1.6) {};
   \draw[->,wire] (kq1.east) -| (q6);
   \draw[->,wire] (m1.east) -| (q6);
-  \node[lbl] at (6.05,2.05) {$+$};
-  \node[lbl] at (6.05,1.15) {$+$};
+  \node[lbl] at (6.72,1.98) {$+$};
+  \node[lbl] at (6.72,1.22) {$+$};
   \satlim{m2}{7.3}{1.6}{$\le 0$}
   \draw[->,wire] (q6) -- (m2);
   % ---- Q_min branch -----------------------------------------------------
@@ -217,8 +218,8 @@
   \node[sum] (q8) at (6.4,-1.6) {};
   \draw[->,wire] (m3.east) -| (q8);
   \draw[->,wire] (kq2.east) -| (q8);
-  \node[lbl] at (6.05,-1.15) {$+$};
-  \node[lbl] at (6.05,-2.05) {$+$};
+  \node[lbl] at (6.72,-1.22) {$+$};
+  \node[lbl] at (6.72,-1.98) {$+$};
   \satlim{m4}{7.3}{-1.6}{$\ge 0$}
   \draw[->,wire] (q8) -- (m4);
   % ---- common sum into V_cmd --------------------------------------------
