@@ -38,7 +38,7 @@
 \title{Simulation Testbed for a Power System with a High Penetration of Grid-Forming Inverters}
 \utshorttitle{Year-One EMT Testbed and Analysis}
 \utauthors{Nate Roe \,\textperiodcentered\, Brian Johnson \,\textperiodcentered\, Jakob Triemstra \,\textperiodcentered\, Debjyoti Chatterjee \,\textperiodcentered\, Surya Santoso \,\textperiodcentered\, Prashant Kansal \,\textperiodcentered\, Eliot Jimenez Ortega \,\textperiodcentered\, Scott Zuloaga \,\textperiodcentered\, Fred Huang \,\textperiodcentered\, Jimmy Zhang \,\textperiodcentered\, Amro Quedan \,\textperiodcentered\, Mario de la Garza \,\textperiodcentered\, Yunzhi Cheng \,\textperiodcentered\, Ali Yazdanpanah \,\textperiodcentered\, Prabhu Gnanam \,\textperiodcentered\, Shri Abhyankar \,\textperiodcentered\, Bishnu Prasad Bhattarai \,\textperiodcentered\, Jose Conto \,\textperiodcentered\, Jonathan Rose \,\textperiodcentered\, Jeffrey Billo \,\textperiodcentered\, Sun Wook Kang}
-\utdateline{August 2026}
+\utdateline{September 2026}
 
 % Let pages end short rather than stretch to fill: with this many
 % floats, forcing a flush bottom produces overfull \vbox warnings.
@@ -55,19 +55,19 @@
 \section*{Executive Summary}
 \addcontentsline{toc}{section}{Executive Summary}
 
-We developed a reusable simulation testbed to study power systems with a high share of grid-forming (GFM) inverters. The University of Texas at Austin collaboration with the Electric Reliability Council of Texas (ERCOT) began with an IEEE 39-bus PSS/E network and translated it through E-TRAN into PSCAD. We equipped the adapted benchmark with representative machine dynamics supplied by ERCOT and with inverter models for replacement studies. The first-year work primarily concerns electromagnetic transient (EMT) simulations in PSCAD; the PSS/E starting case provides the network foundation for corresponding positive-sequence studies in the next phase.
+We developed a reusable simulation testbed to study power systems with a high share of generation provided by grid-forming (GFM) inverters. The University of Texas at Austin collaboration with the Electric Reliability Council of Texas (ERCOT) began with an IEEE 39-bus PSS/E network and translated the 39-bus network to PSCAD through the E-TRAN software package. We equipped the IEEE-39-bus network with representative machine dynamics supplied by ERCOT and with inverter models developed by Pacific Northwest National Lab (PNNL) for machine replacement studies. The first-year work primarily concerns electromagnetic transient (EMT) simulations in PSCAD; the PSS/E starting case provides the network foundation for corresponding positive-sequence studies in the next phase.
 
-Battery storage motivates this work because it can absorb energy when supply is abundant and inject energy when needed. Variable renewable generation and rapidly changing loads increase the importance of this flexibility. ERCOT's advanced grid-support requirements for new inverter-based storage resources also make GFM behavior increasingly relevant to system studies. Understanding how these controls behave in steady state, during faults, and in the post-fault period is therefore important.
+Battery storage motivates this work. Batteries can absorb energy when supply is abundant and inject energy on short notice when needed. Variable renewable generation and rapidly changing loads increase the importance of batteries' flexibile generation profile. ERCOT's advanced grid-support requirements for new inverter-based storage resources also make GFM behavior increasingly relevant to system studies. Understanding how these controls behave in steady state, during faults, and in the post-fault period is therefore important.
 
-The testbed combines configurable network disturbances, resource models, and scripts that process the simulation outputs. We developed eleven configurations by replacing zero through ten synchronous machines with the selected droop-controlled GFM model. Because generator ratings and operating points differ, we identify intermediate configurations by replacement count rather than assigning each unit an equal percentage of generation. The same network framework supports later studies of other GFM controls, grid-following (GFL) resources, mixed generation, and load disturbances.
+The testbed combines configurable network disturbances, resource models, and scripts that process the simulation outputs. We developed eleven configurations by replacing zero through ten synchronous machines with the selected droop-controlled GFM model.  The simulation testbed we developed  supports later studies of other GFM controls, grid-following (GFL) resources, mixed generation, user-defined load profiles, and load disturbances.
 
-The reference simulations show recovery of the connected network in configurations spanning the all-machine and all-GFM endpoints. The selected GFM responses settle faster than the corresponding machine responses after the three-phase fault. Inverter fault currents also remain much closer to the configured current limit than the larger machine currents. These observations concern the disturbances and resource configurations studied, and continued network recovery is distinct from continued output by a resource disconnected during clearing.
+The reference simulations show fault-ride-through recovery of the connected network in generation configuration from all-machine systems to all-GFM systems. The selected GFM responses settle faster than the corresponding machine responses after the three-phase to ground, "bolted" fault. Inverter fault currents also remain much closer to the configured current limit than the larger machine currents. These observations concern the disturbances and resource configurations studied, and continued network recovery is distinct from continued output by a resource disconnected during clearing.
 
-The analytical comparison connects these observations to familiar machine dynamics. A synchronous machine has a physical rotor whose motion determines its electrical phase, whereas a GFM controller generates an electrical phase without a rotating shaft. Under unsaturated filtered droop, the two models can be written in the same reduced swing-equation form. The GFM droop gain sets an equivalent damping coefficient $D_{\mathrm{eq}}=1/m_{\mathrm{p}}$, while the power-measurement filter and droop gain set equivalent inertia. For the selected parameters, the low-frequency damping coefficient is five times the machine governor droop coefficient on the corresponding normalized bases.
+The analytical comparison connects these observations to familiar machine dynamics. A synchronous machine has a physical rotor whose motion determines its electrical phase. A GFM controller generates an electrical phase without a rotating shaft. Under unsaturated filtered droop, the two models can be written in the same reduced swing-equation form. The GFM droop gain sets an equivalent damping coefficient $D_{\mathrm{eq}}=1/m_{\mathrm{p}}$, while the power-measurement filter and droop gain set equivalent inertia. For the selected parameters, the low-frequency damping coefficient is five times the machine governor droop coefficient on the corresponding normalized bases.
 
-This equivalent damping provides an important interpretation of the strongly damped GFM responses, but it is not the only control property that affects fault recovery. Current and voltage limits change the power that an inverter can deliver during severe disturbances. The inertia estimation tests further show that damping-related power contributes to the estimated inertia over the test window. The preliminary energy-method investigation examines how those reduced dynamics compare with EMT fault-duration limits.
+This equivalent damping provides an important interpretation of the strongly damped GFM responses, but it is not the only control property that affects fault recovery. Current and voltage limits change the power that an inverter can deliver during severe disturbances. The inertia estimation tests further show that damping-related power contributes to the estimated inertia over the test window. The preliminary transient stability energy-method investigation examines how grid-reduced dynamics compare with EMT fault-duration limits.
 
-The next phase will align topology, operating points, ratings, bases, applicable controls, and disturbances in corresponding PSS/E and PSCAD studies. The objective is to understand differences between modeling domains, not to force identical trajectories. We will also extend the preliminary analytical work to investigate how current limits, voltage limits, and droop settings influence transient stability. Together, the testbed and analytical interpretation provide a foundation for guidance to manufacturers and power-system engineers.
+The next phase will align topology, operating points, ratings, bases, applicable controls, and disturbances in corresponding PSS/E and PSCAD studies. The objective is to understand differences between modeling domains. We will also extend the preliminary analytical work to investigate how current limits, voltage limits, and droop settings influence transient stability. Together, the testbed and analytical interpretation provide a foundation for guidance to manufacturers and power system engineers.
 
 \clearpage
 \section{Introduction}
@@ -75,11 +75,11 @@ The next phase will align topology, operating points, ratings, bases, applicable
 This report presents the first-year PSCAD electromagnetic transient (EMT) testbed and its initial application to machine and inverter disturbance studies. It follows the development of the network, the simulated responses, and the reduced dynamic models used to interpret them. The adapted IEEE 39-bus system provides a common setting for this comparison, while its PSS/E origin supports the next phase of corresponding positive-sequence studies.
 The Electric Reliability Council of Texas (ERCOT) hosts 21.7~GW of battery energy storage in the reporting-period integration report \cite{esrint2026}. Approximately 36~GW of additional storage projects hold signed interconnection agreements \cite{gis2026}. These projects indicate substantial development activity, although an agreement does not guarantee commercial operation. Batteries provide energy to ERCOT customers and can also support frequency regulation and load smoothing.
 
-Artificial intelligence (AI) data centers introduce rapid demand changes during model training and serving. Batteries can reduce the power ramps presented to the grid, depending on facility design and control \cite{mohammadi2026}. They may connect directly to the grid or provide on-site power alongside uninterruptible power supplies. These applications motivate understanding the dynamic behavior of the inverter interface through which a battery exchanges power.
+Artificial intelligence (AI) data centers introduce rapid demand changes during model training and model service. Batteries can reduce the data center power ramps presented to the grid, depending on facility design and control \cite{mohammadi2026}. They may connect directly to the grid or provide on-site power alongside uninterruptible power supplies. These applications motivate understanding the dynamic behavior of the inverter interface through which a battery delivers or absorbs power.
 
-A battery connects to a three-phase AC network through a DC--AC inverter, as Figure~\ref{fig:invsymbol} illustrates. Semiconductor switches and passive capacitors and inductors shape the AC output from the DC source. A microcontroller changes each switch's duty cycle, the fraction of a switching period spent on, using measured voltage and current. The resulting commands regulate the electrical variables needed to deliver the selected power output.
+A battery connects to a three-phase AC network through a DC--AC inverter, as Figure~\ref{fig:invsymbol} illustrates. Semiconductor switches and passive capacitors and inductors shape the AC output from the DC source. A micro-controller changes each switch's duty cycle, the fraction of a switching period spent on, using measured voltage and current. The resulting commands regulate the electrical variables needed to deliver the selected power output.
 
-An LCL filter places two inductors and a shunt capacitor between the converter and the grid. The controller regulates current through the converter-side inductor and voltage across the filter capacitor, while outer controls govern power and voltage behavior. Different control approaches use this same physical interface differently. This report focuses on grid-forming (GFM) control and compares its response with conventional synchronous machines.
+An L-C-L (LCL) filter places two inductors and a shunt capacitor between the converter and the grid. The controller regulates current through the converter-side inductor and voltage across the filter capacitor, while outer controls govern power and voltage behavior. Different control approaches use this same physical interface differently. This report focuses on grid-forming (GFM) control and compares its response characteristics to those of conventional synchronous machines.
 
 \begin{figure}[b]\centering
 \input{figures/tikz_inverter_overview.tex}
@@ -99,7 +99,7 @@ ERCOT's Nodal Operating Guide Revision Request (NOGRR) 272 establishes advanced 
 
 \label{sec:gflgfm}
 
-Conventional grid-following (GFL) control uses an externally established voltage waveform as its synchronization reference, commonly through a phase-locked loop. Within normal voltage limits, its output current phasor remains approximately unchanged immediately after a disturbance, before outer controls adjust the injected power \cite{unifi2026}. A solver's use of a current-source equivalent does not determine this classification: a GFM voltage source behind impedance can also be converted to a Norton current-source representation. The distinction concerns control behavior and synchronization, not simply the circuit element used in a numerical network solution.
+Conventional grid-following (GFL) control uses an externally established voltage waveform as its synchronization reference, commonly through a phase-locked loop. Within normal voltage limits, its output current phasor remains approximately unchanged immediately after a disturbance, before outer controls adjust the injected power \cite{unifi2026}. A solver's use of a current-source equivalent does not determine this classification: a GFM voltage source behind impedance can also be converted to a Norton equivalent current-source representation. The distinction concerns control behavior and synchronization, not simply the circuit element used in a numerical network solution.
 
 Three terms connect GFM controls to the machine-based interpretation developed in this report. Their meanings depend on the reduced model and its operating assumptions. In particular, an analogy between equations does not make the physical sources identical.
 \begin{enumerate}
@@ -149,44 +149,37 @@ Voltage and current interpretation depends on the selected bases and on whether 
 \begin{figure}[tbp]\centering
 \begin{tikzpicture}[
   font=\small,
-  box/.style={draw, rounded corners=2pt, align=center, inner sep=5pt,
-              line width=0.8pt},
-  stage/.style={box, draw=utcharcoal, fill=utcharcoal!6, text width=42mm},
-  side/.style={box, draw=utorange, fill=utorange!7, text width=52mm},
-  proc/.style={box, draw=utblue, fill=utblue!6, text width=42mm},
-  arr/.style={-{Stealth[length=2.6mm]}, line width=0.9pt,
-              color=utcharcoal}
+  box/.style={draw=black, line width=0.8pt, rounded corners=2pt, align=center,
+              inner sep=5pt, fill=white},
+  stage/.style={box, text width=23mm, minimum height=24mm},
+  input/.style={box, text width=41mm, fill=black!8},
+  arr/.style={-{Stealth[length=2.6mm]}, line width=0.9pt, color=black}
 ]
 \node[stage] (psse) {\textbf{PSS/E case}\\[1pt]
-  {\footnotesize IEEE 39-bus, 10 machines}};
-\node[stage, right=10mm of psse] (etran) {\textbf{E-TRAN}\\[1pt]
-  {\footnotesize $\to$ EMT network}};
-\node[stage, right=10mm of etran] (pscad) {\textbf{PSCAD EMT}\\[1pt]
-  {\footnotesize fault studies}};
-\node[side, below=7mm of psse] (dyr)
-  {ERCOT \texttt{.dyr} machine dynamics\\[1pt]
-  {\footnotesize (Table~\ref{tab:dyr_gov_params},
-   Appendix~\ref{app:params})}};
-\node[side, text width=42mm, below=7mm of pscad] (pnnl)
-  {PNNL REGFM\_A1 library\\[1pt]
-  {\footnotesize \cite{du2023a1,pnnlgithub}}};
-\node[proc, below=7mm of dyr] (figs)
-  {\textbf{Report figures}\\[1pt]
+  {\footnotesize IEEE 39-bus\\ten machines}};
+\node[stage, right=15mm of psse] (pscad) {\textbf{PSCAD EMT\\network}\\[1pt]
+  {\footnotesize 230~kV,\\Bergeron lines}};
+\node[stage, right=5mm of pscad] (run) {\textbf{Automated\\simulations}\\[1pt]
+  {\footnotesize Python test scripts\\set faults, dispatch,\\run length}};
+\node[stage, right=5mm of run] (ana) {\textbf{Automated\\analysis}\\[1pt]
+  {\footnotesize Python scripts\\stitch \texttt{.out} to CSV,\\compute metrics}};
+\node[stage, text width=20mm, right=5mm of ana] (figs) {\textbf{Figures and\\analyses}\\[1pt]
   {\footnotesize (Appendix~\ref{app:plotting})}};
-\node[proc] (proc) at (etran |- figs)
-  {\textbf{Python pipeline}};
-\node[proc] (out) at (pscad |- figs)
-  {\textbf{EMTDC output}\\[1pt]
-  {\footnotesize \texttt{.out} + \texttt{.inf}}};
-\draw[arr] (psse) -- (etran);
-\draw[arr] (etran) -- (pscad);
-\draw[arr, color=utorange] (dyr) -- (psse);
-\draw[arr, color=utorange] (pnnl) -- (pscad);
-\draw[arr, color=utblue] (pscad.east) -- ++(2.5mm,0) |- (out.east);
-\draw[arr, color=utblue] (out) -- (proc);
-\draw[arr, color=utblue] (proc) -- (figs);
+\node[input, below=10mm of pscad, xshift=-23mm] (sm)
+  {\textbf{Synchronous machine\\dynamics}\\[1pt]
+  {\footnotesize ERCOT \texttt{.dyr} record\\(Table~\ref{tab:dyr_gov_params}, Appendix~\ref{app:params})}};
+\node[input, below=10mm of pscad, xshift=23mm] (gfm)
+  {\textbf{Grid-forming inverter\\dynamics}\\[1pt]
+  {\footnotesize PNNL REGFM\_A1 \cite{du2023a1,pnnlgithub}}};
+\draw[arr] (psse) -- node[above=1pt, align=center, font=\footnotesize] {E-TRAN\\conversion} (pscad);
+\draw[arr] (pscad) -- (run);
+\draw[arr] (run) -- (ana);
+\draw[arr] (ana) -- (figs);
+\draw[arr] (sm.north) -- (pscad.south);
+\draw[arr] (gfm.north) -- (pscad.south);
+\node[font=\footnotesize, fill=white, inner sep=1.5pt, below=3.5mm of pscad.south] {dropped in};
 \end{tikzpicture}
-\caption{Testbed construction and output processing. E-TRAN converts the IEEE 39-bus PSS/E case with representative machine dynamics to PSCAD; REGFM\_A1 units replace machines in selected configurations. The numerical-output workflow converts EMTDC channels into tables for analysis and plotting.}
+\caption{Testbed workflow. E-TRAN converts the IEEE 39-bus PSS/E case into a PSCAD EMT network; synchronous-machine dynamics from the ERCOT-supplied record and grid-forming inverter dynamics from the PNNL REGFM\_A1 model are dropped into that network; Python test scripts set up and run the simulations, and analysis scripts convert the EMTDC output into tables, metrics, and the report's figures.}
 \label{fig:testbedflow}
 \end{figure}
 
