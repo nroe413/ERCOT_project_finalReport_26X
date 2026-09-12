@@ -75,6 +75,25 @@ directory's source branch and path in the UT project repository. On
 Windows, run `git config --global core.longpaths true` before cloning;
 some paths still exceed 200 characters.
 
+## Python dependencies by script
+
+Every script was run with CPython 3.13.9 from an Anaconda environment; the pinned
+versions are in `requirements.txt` (`pip install -r requirements.txt`). Two
+packages are not on PyPI: `mhi.pscad` (version 3.1.2) comes with PSCAD 5.0.2's
+Automation Library installer, and `psspy` / `dyntools` come with PSS/E 36.
+
+| Scripts | Third-party packages | Also needs |
+|---|---|---|
+| `scripts/report_figures/*.py` (the report's figures) | `numpy`, `pandas`, `matplotlib` | `figstyle_26x.py` and `repo_paths.py` in the same folder; TeX Gyre Pagella from a MiKTeX or TeX Live install (falls back to a serif face) |
+| `scripts/report_figures/{fig_mqt_042826, fig3_mqt_split, inertia_timescale, saturation_block, damping_vs_freq}.py` | `numpy`, `matplotlib` (`pandas` for the two MQT scripts) | nothing else: they run from the shipped CSVs or from constants |
+| `scripts/report_figures/{ilimit_sweep_emt, exec_gfm_vs_sync_bus39_pu, peakI_pair}.py` | `numpy`, `pandas`, `matplotlib` | import `analytic_ilimit`, `gfm_vs_sync_bus39_pu`, `make_bus10_sync_deck` from the study's `experiments/` tree (`ERCOT_EXPERIMENTS`), not included here |
+| `scripts/report_figures/_pscad_io.py`, `aggregate.py`, `scripts/tools/out_chunks_to_csv_example.py` | `numpy`, `pandas` | the raw PSCAD `.inf` + `.out` chunk files (see `DATA.md`) |
+| `scripts/tools/instrument_buses.py` | none (standard library only) | a `.pscx` to patch |
+| `scripts/tools/verify_pscad_build.py`, `systems/ieee39/01GFL/{run_3PG_fault, diag_build, diag_1gfm_control}.py`, `mqt/typicalgt_dwg_battery/run_battery.py`, the `PSCAD_*.py` drivers and `_pscad_pipeline.py` under `mqt/pnnl_nlr_pscad_psse_bench` and `mqt/pmview35_regfmb1_inertia` (PSCAD automation) | `mhi.pscad` 3.1.2; `pandas` and `numpy` where results are exported | PSCAD 5.0.2 with GFortran 4.6 and a licence on the machine; close interactive PSCAD before running |
+| `mqt/typicalgt_dwg_battery/{export_runs, plot_battery}.py`, `mqt/*/plot_gfm_tests.py`, `analyze_gfl_results.py`, `_plot_*.py` | `numpy`, `pandas`, `matplotlib` | the run CSVs in the same folder |
+| `mqt/**/create_pptx.py`, `_make_pptx*.py`, `_make_standalone.py`, `systems/smib_siib/make_smib_deck.py` (meeting decks) | `python-pptx`, `Pillow`, `lxml` | the PNGs produced by the plotting scripts |
+| `mqt/**/PSSE_*.py` (PSS/E side of the PSCAD/PSS-E benchmark) | `psspy`, `dyntools` (PSS/E 36), `pandas` | PSS/E 36 |
+
 ## Requirements
 
 - PSCAD 5.0.2 with GFortran 4.6 (systems were built and run on this pair).
@@ -84,9 +103,10 @@ some paths still exceed 200 characters.
   PNNL at https://github.com/pnnl/PSCAD-and-PSSE-Version-of-WECC-Grid-Forming-Inverter-Models).
 - LaTeX: TeX Live 2023+ or MiKTeX with `tikz`, `tgpagella`, `booktabs`,
   `geometry`, `fancyhdr`, `placeins`, `listings`, `hyperref`.
-- Python 3.10+ with `numpy`, `pandas`, `matplotlib` for the scripts. The
-  style module registers TeX Gyre Pagella from the MiKTeX or TeX Live
-  font tree when present and falls back to a serif face otherwise.
+- Python 3.10+ with the packages in `requirements.txt` (per-script list in
+  the section above). The figure style module registers TeX Gyre Pagella
+  from the MiKTeX or TeX Live font tree when present and falls back to a
+  serif face otherwise.
 
 ## License
 
