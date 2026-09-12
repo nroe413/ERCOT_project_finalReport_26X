@@ -434,6 +434,7 @@ The selected GFM responses return promptly toward their post-fault operating poi
 \end{figure}
 
 \subsection{Defining GFM Current-Limiting Behavior}
+\label{sec:ilim}
 The bus-10 study uses a GFM transient-current setting of 1.5 per unit. Eight units remain at or below that setting, bus~31 reaches the limit, and bus~32 reaches approximately 1.70 per unit, 13\% above the setting, within one cycle of fault inception in the inverter's internal current-magnitude signal, the quantity the limiter compares with $I_{\max F}$. Its terminal RMS current peaks at 1.24 per unit, and its instantaneous phase currents exceed 2.0 per unit of rated peak for at most 3~ms. Figure~\ref{fig:peakits} follows these currents through the full 30~s record. After the transient, the connected units remain below 1.1 per unit and settle near 0.7--0.8 per unit.
 
 The bus-32 current falls to zero after clearing, while the other nine units continue carrying current. The case associates this loss of output with opening the bus-10 network connections without reclosing. Continued network recovery therefore does not mean that the zero-current resource continues exporting power. This distinction is important when interpreting the fleet response after a clearing action.
@@ -692,7 +693,7 @@ Post-fault response & Less oscillatory & Oscillatory, 0.85--1.0~Hz\\\bottomrule
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.85\textwidth]{narr_damping_vs_freq}
-\caption{Equivalent damping versus perturbation frequency. The filtered-droop coefficient is $D_{\mathrm{eq}}=100$; the machine governor-and-turbine path of Equation~\eqref{eq:govpath} starts at $1/R_{\mathrm{SG}}=20$ and its in-phase component changes sign at 0.38--0.41~Hz; the band spans the fleet dispatch of 0.50 to 1.00 per unit and the line is the median dispatch. Open circles and filled squares are the PSCAD frequency-modulation measurements on the single-machine case at 0.50 and 0.95 per unit with the governor deadband removed. Coefficients use normalized power per normalized frequency. The diamond is the net damping of the whole machine measured from the decay of the post-fault oscillation in the all-machine bus-14 case, 1.8 (1.4--2.2), at its 0.85--1.0~Hz mode.}
+\caption{Equivalent damping versus perturbation frequency, normalized power per normalized frequency. Analytic curves: the GFM filtered-droop coefficient $D_{\mathrm{eq}}=1/m_{\mathrm{p}}=100$ and the machine governor-and-turbine path of Equation~\eqref{eq:govpath}, which starts at $1/R_{\mathrm{SG}}=20$ and changes sign at 0.38--0.41~Hz (band: fleet dispatch 0.50 to 1.00 per unit; line: median dispatch; shading: where the path is negative, inside the 0.1--3~Hz swing band). Measured points: PSCAD frequency-modulation test on the single-machine case at 0.50 (open circles) and 0.95 per unit (filled squares) with the governor deadband removed; the diamond is the net damping of the whole machine from the post-fault oscillation of the all-machine bus-14 case, 1.8 (1.4--2.2) at 0.85--1.0~Hz.}
 \label{fig:damping}
 \end{figure}
 
@@ -885,7 +886,7 @@ The next analytical steps build on this preliminary comparison. We will connect 
 \item \textbf{Guidance for manufacturers and operators.} Identify control parameters with the greatest influence on system-level stability for the configurations studied.
 \item \textbf{Mixed-generation systems.} Extend the analysis to combinations of synchronous machines, GFM inverters, and GFL inverters.
 \item \textbf{Additional disturbances.} Evaluate the models under unbalanced faults at other locations, faults with nonzero impedance, phase-angle jumps, and load steps.
-\item \textbf{Protection and damping decomposition.} Add an instantaneous hardware overcurrent trip to the inverter model, with the threshold taken from device data, and separate the machine's net damping into governor, stabilizer, and field contributions through post-fault oscillation records with the governor frozen and with the stabilizer disabled.
+\item \textbf{Protection and damping decomposition.} The bus-10 study already shows the fleet riding through the loss of the unit nearest the fault, which is disconnected at clearing and carries no current afterward (Section~\ref{sec:ilim}); what remains untested is a hardware overcurrent trip that acts during the fault, within a cycle of the phase current exceeding a device threshold, at the units that reach their limits (bus~32 at 2.0 per unit of rated peak in the bus-10 case, buses 30--32 at the 1.2 per-unit setting). Add that trip to the inverter model with the threshold taken from device data, rerun the bus-10 and bus-14 faults, and separate the machine's net damping into governor, stabilizer, and field contributions through post-fault oscillation records with the governor frozen and with the stabilizer disabled.
 \item \textbf{Hardware validation.} Investigate single-inverter infinite-bus and hardware-in-the-loop tests, followed by multi-inverter disturbances in the UT Austin laboratory microgrid.
 \end{itemize}
 

@@ -113,16 +113,16 @@ def main():
         ax.grid(True, which="both", alpha=0.28)
 
     axT.semilogx(f, np.full_like(f, D_GFM), color=RED, lw=2.0, zorder=4,
-                 label=r"grid-forming, filtered-droop coefficient $1/m_p=100$ pu")
+                 label=r"grid-forming, analytic: filtered-droop coefficient $1/m_p=100$ pu")
     axT.plot([], [], color=BLUE, lw=1.9,
-             label="synchronous, governor and turbine path (GGOV1),\n"
-                   "band = fleet dispatch 0.50 to 1.00 pu")
+             label="synchronous, analytic: GGOV1 governor and turbine path\n"
+                   "(band: fleet dispatch 0.50 to 1.00 pu)")
     axT.errorbar([F_NET], [D_NET], yerr=[[D_NET - D_LO], [D_HI - D_NET]],
                  xerr=[[F_NET - F_LO], [F_HI - F_NET]], fmt="D", ms=6,
                  color=NETC, mec="k", mew=0.7, ecolor=NETC,
                  elinewidth=1.0, capsize=2.5, zorder=6,
-                 label="synchronous, net damping of the post-fault\n"
-                       "oscillation (all-machine bus-14 case): %.1f pu" % D_NET)
+                 label="synchronous, measured: net damping of the post-fault\n"
+                       "oscillation, all-machine bus-14 case (%.1f pu)" % D_NET)
     axT.set_ylim(-8, 118)
     axT.set_yticks([0, 25, 50, 75, 100])
     axT.legend(loc="center left", fontsize=7.6, framealpha=0.95)
@@ -133,30 +133,11 @@ def main():
                  color=NETC, mec="k", mew=0.7, ecolor=NETC,
                  elinewidth=1.0, capsize=2.5, zorder=6)
     axB.plot(list(MEAS_050), list(MEAS_050.values()), "o", ms=5.5, color=MEAS, mfc="white", mew=1.1, zorder=7,
-             label="PSCAD, frequency-modulation test, 0.50 pu")
+             label="synchronous, measured: PSCAD frequency-modulation test, 0.50 pu")
     axB.plot(list(MEAS_095), list(MEAS_095.values()), "s", ms=5.2, color=MEAS, mfc=MEAS, mew=0.8, zorder=7,
-             label="PSCAD, frequency-modulation test, 0.95 pu")
-    axB.annotate("net damping of the 0.85 to 1.0 Hz post-fault\n"
-                 "oscillation, %.1f pu (all-machine bus-14 case);\n"
-                 "the excess over the governor path is not\n"
-                 "separately measured" % D_NET,
-                 xy=(F_NET, D_NET), xytext=(0.0035, 15.0),
-                 fontsize=7.6, color=INK, zorder=5,
-                 bbox=dict(boxstyle="square,pad=0.25", facecolor="white",
-                           edgecolor="#9AA3A8", linewidth=0.6),
-                 arrowprops=dict(arrowstyle="-|>", lw=0.8, color="0.4"))
-    axB.annotate(r"governor path $%.1f$ to $%.1f$ pu at 1.0 Hz"
-                 % (d_gov(1.0, PM0_LO), d_gov(1.0, PM0_HI)),
-                 xy=(1.0, d_gov(1.0, PM0_MED)), xytext=(0.0035, -5.4),
-                 fontsize=8, color=INK,
-                 arrowprops=dict(arrowstyle="-|>", lw=0.8, color="0.4"))
-    axB.text(f0_min * 1.12, 22.0,
-             "governor path negative\n"
-             "above %.2f to %.2f Hz,\n"
-             "inside the 0.1 to 3 Hz\nswing band" % (round(f0_min + 0.005, 2), round(f0_max + 0.005, 2)),
-             fontsize=8, color="#8a3324", va="top")
-    axB.legend(loc="center right", fontsize=7.4, framealpha=0.95)
-    axB.set_ylim(-7.0, 24)
+             label="synchronous, measured: PSCAD frequency-modulation test, 0.95 pu")
+    axB.legend(loc="upper right", fontsize=7.4, framealpha=0.95)
+    axB.set_ylim(-6.0, 23)
     axB.set_yticks([-5, 0, 5, 10, 15, 20])
     axB.set_ylabel(r"$D_{\mathrm{eq}}$ (pu), machine range")
     axB.set_xlabel("perturbation frequency (Hz)")
