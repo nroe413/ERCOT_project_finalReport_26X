@@ -150,36 +150,39 @@ Voltage and current interpretation depends on the selected bases and on whether 
 \begin{tikzpicture}[
   font=\small,
   box/.style={draw=black, line width=0.8pt, rounded corners=2pt, align=center,
-              inner sep=5pt, fill=white},
-  stage/.style={box, text width=23mm, minimum height=24mm},
-  input/.style={box, text width=41mm, fill=black!8},
-  arr/.style={-{Stealth[length=2.6mm]}, line width=0.9pt, color=black}
+              inner sep=3pt, text width=27mm, minimum height=18.5mm, fill=white},
+  input/.style={box, fill=black!8},
+  wire/.style={line width=0.9pt, color=black, rounded corners=1.5pt},
+  arr/.style={wire, -{Stealth[length=2.6mm]}}
 ]
-\node[stage] (psse) {\textbf{PSS/E case}\\[1pt]
-  {\footnotesize IEEE 39-bus\\ten machines}};
-\node[stage, right=15mm of psse] (pscad) {\textbf{PSCAD EMT\\network}\\[1pt]
-  {\footnotesize 230~kV,\\Bergeron lines}};
-\node[stage, right=5mm of pscad] (run) {\textbf{Automated\\simulations}\\[1pt]
-  {\footnotesize Python test scripts\\set faults, dispatch,\\run length}};
-\node[stage, right=5mm of run] (ana) {\textbf{Automated\\analysis}\\[1pt]
-  {\footnotesize Python scripts\\stitch \texttt{.out} to CSV,\\compute metrics}};
-\node[stage, text width=20mm, right=5mm of ana] (figs) {\textbf{Figures and\\analyses}\\[1pt]
-  {\footnotesize (Appendix~\ref{app:plotting})}};
-\node[input, below=10mm of pscad, xshift=-23mm] (sm)
-  {\textbf{Synchronous machine\\dynamics}\\[1pt]
-  {\footnotesize ERCOT \texttt{.dyr} record\\(Table~\ref{tab:dyr_gov_params}, Appendix~\ref{app:params})}};
-\node[input, below=10mm of pscad, xshift=23mm] (gfm)
-  {\textbf{Grid-forming inverter\\dynamics}\\[1pt]
-  {\footnotesize PNNL REGFM\_A1 \cite{du2023a1,pnnlgithub}}};
-\draw[arr] (psse) -- node[above=1pt, align=center, font=\footnotesize] {E-TRAN\\conversion} (pscad);
+\node[box] (psse) {\textbf{PSS/E case}\\[1pt]
+  {\footnotesize IEEE 39-bus,\\ten machines}};
+\node[box, right=4mm of psse] (pscad) {\textbf{PSCAD network}\\[1pt]
+  {\footnotesize E-TRAN\\conversion}};
+\node[box, right=4mm of pscad] (run) {\textbf{Automated\\simulations}\\[1pt]
+  {\footnotesize Python test scripts}};
+\node[box, right=4mm of run] (proc) {\textbf{Automated data\\processing}\\[1pt]
+  {\footnotesize \texttt{.out} to CSV}};
+\node[box, right=4mm of proc] (figs) {\textbf{Report figures}\\[1pt]
+  {\footnotesize tables, metrics\\(Appendix~\ref{app:plotting})}};
+\node[input, below=10mm of pscad, xshift=-16.7mm] (sm)
+  {\textbf{Machine\\dynamics}\\[1pt]
+  {\footnotesize ERCOT \texttt{.dyr}\\(Table~\ref{tab:dyr_gov_params})}};
+\node[input, below=10mm of pscad, xshift=16.7mm] (gfm)
+  {\textbf{GFM inverter\\dynamics}\\[1pt]
+  {\footnotesize PNNL REGFM\_A1\\\cite{du2023a1,pnnlgithub}}};
+\draw[arr] (psse) -- (pscad);
 \draw[arr] (pscad) -- (run);
-\draw[arr] (run) -- (ana);
-\draw[arr] (ana) -- (figs);
-\draw[arr] (sm.north) -- (pscad.south);
-\draw[arr] (gfm.north) -- (pscad.south);
-\node[font=\footnotesize, fill=white, inner sep=1.5pt, below=3.5mm of pscad.south] {dropped in};
+\draw[arr] (run) -- (proc);
+\draw[arr] (proc) -- (figs);
+\coordinate (j) at ([yshift=-5mm]pscad.south);
+\draw[wire] (sm.north) |- (j);
+\draw[wire] (gfm.north) |- (j);
+\draw[arr] (j) -- (pscad.south);
+\node[font=\footnotesize, anchor=west, inner sep=1pt]
+  at ([xshift=1.5mm, yshift=-2.5mm]pscad.south) {dropped in};
 \end{tikzpicture}
-\caption{Testbed workflow. E-TRAN converts the IEEE 39-bus PSS/E case into a PSCAD EMT network; synchronous-machine dynamics from the ERCOT-supplied record and grid-forming inverter dynamics from the PNNL REGFM\_A1 model are dropped into that network; Python test scripts set up and run the simulations, and analysis scripts convert the EMTDC output into tables, metrics, and the report's figures.}
+\caption{Testbed workflow. E-TRAN converts the IEEE 39-bus PSS/E case into a PSCAD EMT network; synchronous-machine dynamics from the ERCOT-supplied record and grid-forming inverter dynamics from the PNNL REGFM\_A1 model are dropped into that network; Python test scripts set up and run the simulations, and processing scripts convert the EMTDC output into tables, metrics, and the report's figures. The interpretation of those results is not automated.}
 \label{fig:testbedflow}
 \end{figure}
 
