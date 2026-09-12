@@ -88,6 +88,31 @@ some paths still exceed 200 characters.
   style module registers TeX Gyre Pagella from the MiKTeX or TeX Live
   font tree when present and falls back to a serif face otherwise.
 
+## License
+
+The material authored by this study is released under the MIT License
+(`LICENSE`): the report source and PDF under `report/`, the PSCAD projects
+and workspaces the study authored, the run data under `data/`, and every
+script under `scripts/` and in the `mqt/` drivers.
+
+Third-party components are bundled for convenience only and keep their
+originators' terms; the MIT License does not cover them:
+
+- PNNL REGFM_A1 grid-forming inverter model and its compiled library
+  (`systems/lib/PNNL_REGFM_A1/`, and wherever the model is referenced under
+  `systems/` and `mqt/`): BSD 3-Clause License, Copyright (c) 2026 Battelle
+  Memorial Institute. The license and disclaimer texts are kept beside the
+  model in `systems/lib/PNNL_REGFM_A1/`.
+- E-TRAN runtime libraries (`systems/lib/ETRAN_GF46.lib`, `ETRAN_IF12.lib`)
+  and the E-TRAN-generated `ETRAN.pslx` files: Electranix Corporation's terms
+  for the freely downloadable runtime library.
+- ERCOT PMView 2.4 / 3.5 harness components and the ERCOT-supplied machine
+  dynamics record (`.dyr`): ERCOT Dynamics Working Group terms.
+- NREL (NLR) GFM model under `mqt/pmview24_nlr_gfm/`: NREL release terms.
+- IEEE 39-bus benchmark data: public benchmark.
+
+`PROVENANCE.md` lists the origin and review status of each item.
+
 See `PROVENANCE.md` for the origin and redistribution status of every
 third-party artifact, and `DATA.md` for what run data is included versus
 regenerable.
