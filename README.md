@@ -27,7 +27,7 @@ clone opens and builds without re-pointing paths.
 | `mqt/pnnl_nlr_pscad_psse_bench` | PNNL vs NLR PSCAD/PSS-E benchmark cases and per-case CSVs |
 | `mqt/pmview35_*` | PMView 3.5 advanced-grid-support (inertia) test rigs: REGFM_A1, REGFM_B1, and the Gen-32 synchronous machine |
 | `mqt/typicalgt_dwg_battery` | DWG Procedure Manual Rev. 24 tests 1-9 run as one PSCAD multiple-run battery on the Gen-32 machine (driver, exports, figures) |
-| `data/report_figure_data` | The CSV extracts behind the model-quality-testing figures |
+| `data/report_figure_data` | The CSV extracts behind the model-quality-testing figures and the hardware-trip comparison (Figure 27) |
 | `scripts/report_figures` | The report's figure scripts (matplotlib, report style) with repository-relative paths |
 | `scripts/tools` | Bus instrumentation and .out-to-CSV stitching utilities |
 | `manifest.json` | Machine-readable map of every copied directory to its source and exclusions |
@@ -85,7 +85,7 @@ Automation Library installer, and `psspy` / `dyntools` come with PSS/E 36.
 | Scripts | Third-party packages | Also needs |
 |---|---|---|
 | `scripts/report_figures/*.py` (the report's figures) | `numpy`, `pandas`, `matplotlib` | `figstyle_26x.py` and `repo_paths.py` in the same folder; TeX Gyre Pagella from a MiKTeX or TeX Live install (falls back to a serif face) |
-| `scripts/report_figures/{fig_mqt_042826, fig3_mqt_split, inertia_timescale, saturation_block, damping_vs_freq}.py` | `numpy`, `matplotlib` (`pandas` for the two MQT scripts) | nothing else: they run from the shipped CSVs or from constants |
+| `scripts/report_figures/{fig_mqt_042826, fig3_mqt_split, inertia_timescale, saturation_block, damping_vs_freq, bus14_trip}.py` | `numpy`, `matplotlib` (`pandas` for the two MQT scripts and `bus14_trip`) | nothing else: they run from the shipped CSVs or from constants |
 | `scripts/report_figures/{ilimit_sweep_emt, exec_gfm_vs_sync_bus39_pu, peakI_pair}.py` | `numpy`, `pandas`, `matplotlib` | import `analytic_ilimit`, `gfm_vs_sync_bus39_pu`, `make_bus10_sync_deck` from the study's `experiments/` tree (`ERCOT_EXPERIMENTS`), not included here |
 | `scripts/report_figures/_pscad_io.py`, `aggregate.py`, `scripts/tools/out_chunks_to_csv_example.py` | `numpy`, `pandas` | the raw PSCAD `.inf` + `.out` chunk files (see `DATA.md`) |
 | `scripts/tools/instrument_buses.py` | none (standard library only) | a `.pscx` to patch |
