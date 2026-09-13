@@ -405,25 +405,25 @@ The selected GFM responses return promptly toward their post-fault operating poi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{allgfm_irms}
-\caption{All-GFM RMS current responses to the bus-14 reference fault, in kA. The inverter transient-current setting is $I_{\mathrm{maxF}}=2.0$ per unit on each device base.}
+\caption{All-GFM RMS current responses to the bus-14 reference fault, in kA, measured on the 230~kV side of each unit's step-up transformer. The inverter transient-current setting is $I_{\mathrm{maxF}}=2.0$ per unit on each device base.}
 \label{fig:allgfmi}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{allgfm_p}
-\caption{All-GFM active-power responses to the bus-14 reference fault, in MW. Signed powers follow the measurement-channel direction.}
+\caption{All-GFM active-power responses to the bus-14 reference fault, in MW, measured on the 230~kV side of each unit's step-up transformer. Signed powers follow the measurement-channel direction.}
 \label{fig:allgfmp}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{allgfm_q}
-\caption{All-GFM reactive-power responses to the bus-14 reference fault, in MVAr.}
+\caption{All-GFM reactive-power responses to the bus-14 reference fault, in MVAr, measured on the 230~kV side of each unit's step-up transformer.}
 \label{fig:allgfmq}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{fig2_allSYNC_3PG_2x2}
-\caption{All-machine response to the bus-14 reference fault: RMS voltage and current, active power, and reactive power. The generator-bus active powers oscillate at the 0.85--1.0~Hz inter-machine mode with decay rates of 0.06--0.10~s$^{-1}$. The legend lists the monitored buses; bus~14 is isolated by clearing.}
+\caption{All-machine response to the bus-14 reference fault: RMS voltage and current, active power, and reactive power at the 230~kV generator buses, on the transmission side of the step-up transformers. The generator-bus active powers oscillate at the 0.85--1.0~Hz inter-machine mode with decay rates of 0.06--0.10~s$^{-1}$. The legend lists the monitored buses; bus~14 is isolated by clearing.}
 \label{fig:allsync}
 \end{figure}
 
@@ -441,7 +441,7 @@ The bus-32 current falls to zero after clearing, while the other nine units cont
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_peakI_timeseries}
-\caption{Bus-10 current-limit study with a five-cycle fault and no reclosing. With a 1.5 per-unit setting, bus~32 reaches approximately 1.70 per unit before falling to zero; nine units continue carrying current.}
+\caption{Bus-10 current-limit study with a five-cycle fault and no reclosing. Each trace is the inverter's own current magnitude at its terminals, on the 10~kV side of its step-up transformer, in per unit of the unit rating. With a 1.5 per-unit setting, bus~32 reaches approximately 1.70 per unit before falling to zero; nine units continue carrying current.}
 \label{fig:peakits}
 \end{figure}
 
@@ -449,7 +449,7 @@ Figure~\ref{fig:ilimarms} compares the bus-14 reference fault on the all-GFM fle
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_ilim_arms_bus14}
-\caption{Bus-14 reference fault on the all-GFM fleet at three transient current limits, 10~s records with identical dispatch, fault, and clearing. Left: peak of each unit's internal current magnitude on its own base, with the three limit lines. Right: the same signal for the bus-32 unit through the fault.}
+\caption{Bus-14 reference fault on the all-GFM fleet at three transient current limits, 10~s records with identical dispatch, fault, and clearing. Left: peak of each unit's internal current magnitude (the inverter's own measurement at its terminals, 10~kV side of the step-up transformer) on its own base, with the three limit lines. Right: the same signal for the bus-32 unit through the fault.}
 \label{fig:ilimarms}
 \end{figure}
 
@@ -457,13 +457,13 @@ Figure~\ref{fig:peaki} compares the device-base peak currents, including a machi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_peakI_pair}
-\caption{Peak currents for the bus-10 disturbance, normalized on individual device bases. The GFM transient-current setting is 1.5 per unit.}
+\caption{Peak currents for the bus-10 disturbance, normalized on individual device bases. For the GFM units the quantity is the inverter's own current magnitude at its terminals, on the 10~kV side of the step-up transformer; for the machines it is the RMS current on the 230~kV side of the step-up transformer. The GFM transient-current setting is 1.5 per unit.}
 \label{fig:peaki}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{exec_gfm_vs_sync_bus39_pu}
-\caption{Bus-39 terminal responses in the bus-10 study: all-machine (blue) and all-GFM (red), each on its own device base. The GFM case shows smaller fault current and faster settling; the two cases have different pre-fault power injections.}
+\caption{Bus-39 responses in the bus-10 study, measured on the 230~kV side of the unit's step-up transformer: all-machine (blue) and all-GFM (red), each on its own device base. The GFM case shows smaller fault current and faster settling; the two cases have different pre-fault power injections.}
 \label{fig:exec}
 \end{figure}
 
@@ -495,7 +495,7 @@ Single-line-to-ground (phase A) and double-line-to-ground (phases A and B) fault
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_unbal_bus14}
-\caption{Unbalanced faults at bus~14, all-machine and all-GFM fleets, 10~s records with the reference timing and clearing. Left: bus-16 RMS voltage through the fault (SLG solid, LLG dashed). Right: peak RMS current of each unit on its own base.}
+\caption{Unbalanced faults at bus~14, all-machine and all-GFM fleets, 10~s records with the reference timing and clearing. Left: bus-16 RMS voltage through the fault (SLG solid, LLG dashed). Right: peak RMS current of each unit on its own base, measured on the 230~kV side of its step-up transformer.}
 \label{fig:unbal}
 \end{figure}
 
@@ -637,7 +637,7 @@ The fault is applied at the point of interconnection on the grid side of each de
 
 \begin{figure}[b]\centering
 \includegraphics[width=0.85\textwidth]{fig6_smib_sync_vs_gfm_VI}
-\caption{Single-device fault response: terminal voltage and current for the synchronous machine and GFM inverter. The GFM transient-current setting is 2.0 per unit; both devices are dispatched at 0.50 per unit.}
+\caption{Single-device fault response: voltage and current at the device terminals for the synchronous machine and GFM inverter; neither single-device case has a step-up transformer. The GFM transient-current setting is 2.0 per unit; both devices are dispatched at 0.50 per unit.}
 \label{fig:smibvi}
 \end{figure}
 
@@ -966,7 +966,7 @@ df.to_csv(run_dir + "/rung_%s.csv" % tag, index=False)
 Each run produces a CSV identified by its fault duration. This organization supports comparison of successful and unsuccessful runs when constructing clearing-time brackets. The channel names accompany the numerical values so that subsequent analysis can identify each recorded signal.
 
 \subsection{Plotting Conventions}
-Time-domain plots mark the fault interval and use a pre-fault window to establish the baseline. Network plots show RMS bus voltages in kV, currents in kA, and powers in MW and MVAr; device comparisons use per unit on each device base, stated in the caption. Axes identify units, and multi-device panels share limits where appropriate. Ratings, dispatch, and terminal measurement locations remain important when comparing devices; per-unit presentation alone does not make the cases identical.
+Time-domain plots mark the fault interval and use a pre-fault window to establish the baseline. Network plots show RMS bus voltages in kV, currents in kA, and powers in MW and MVAr; device comparisons use per unit on each device base, stated in the caption. Two current measurements appear: the generator-bus channels are taken on the 230~kV side of each unit's step-up transformer, and a GFM unit's internal current magnitude is the inverter's own measurement at its terminals on the 10~kV side, in per unit of the unit rating; each caption states which is shown. Axes identify units, and multi-device panels share limits where appropriate. Ratings, dispatch, and terminal measurement locations remain important when comparing devices; per-unit presentation alone does not make the cases identical.
 
 \section{Alternative GFM Model Diagnostics}
 \label{app:altmodels}
