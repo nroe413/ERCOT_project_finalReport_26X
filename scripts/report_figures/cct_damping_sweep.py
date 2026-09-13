@@ -2,8 +2,7 @@
 clearing time of the reduced droop-inverter models as the droop damping is scaled
 from zero to its full value (author's question, 2026-09-12).
 
-Inputs (shipped in data/report_figure_data/cct_damping_sweep, produced on SOW_task_4 by
-cct_smib_sync/gfm_damping_sweep.py and cct_energy_function_multiGFM/cct_pebs_constP.py --dscale):
+Inputs (SOW_task_4 worktree):
   experiments/cct_smib_sync/results_gfm_damping_sweep.json      (single inverter, infinite bus)
   experiments/cct_energy_function_multiGFM/results_constP.json  (ten inverters, scale 1)
   experiments/cct_energy_function_multiGFM/results_constP_D{0,0.1,0.3}.json
@@ -37,9 +36,9 @@ EMT_SINGLE, EMT_FLEET = (0.925, 0.931), (1.600, 1.700)
 
 
 def load():
-    s = json.load(open(rp.DATA / "cct_damping_sweep" / "results_gfm_damping_sweep.json"))
+    s = json.load(open(SJ / "experiments" / "cct_smib_sync" / "results_gfm_damping_sweep.json"))
     single = [(r["alpha"], r["t_cr_s"]) for r in s["sweep"]]
-    mg = rp.DATA / "cct_damping_sweep"      # shipped result files of the two sweeps
+    mg = SJ / "experiments" / "cct_energy_function_multiGFM"
     fleet = []
     for a, f in ((0.0, "results_constP_D0.json"), (0.1, "results_constP_D0.1.json"),
                  (0.3, "results_constP_D0.3.json"), (1.0, "results_constP.json")):
