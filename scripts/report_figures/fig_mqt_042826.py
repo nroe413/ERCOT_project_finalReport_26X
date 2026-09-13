@@ -90,9 +90,9 @@ def limiter_chatter():
     ax.set_ylabel(r"$V_{\mathrm{err}}$ (pu)")
     ax.yaxis.set_major_locator(MaxNLocator(nbins=4))
     ax = axes[1]
-    ax.plot(d.TIME, d.Idq / 1e3, color=BLUE, lw=0.7, label=r"$I_{dq}$")
+    ax.plot(d.TIME, d.Idq / 1e3, color=BLUE, lw=0.7, label=r"$I_{\mathrm{dq}}$")
     ax.plot(d.TIME, d.Idq_limit / 1e3, color=GREEN, lw=1.2, ls="--",
-            label=r"$I_{dq}$ limit")
+            label=r"$I_{\mathrm{dq}}$ limit")
     ax.set_ylabel("Current (kA)")
     ax.legend(loc="upper left", frameon=True)
     ax.yaxis.set_major_locator(MaxNLocator(nbins=4))

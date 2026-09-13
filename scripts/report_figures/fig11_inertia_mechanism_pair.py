@@ -45,8 +45,8 @@ DX = 0.017                  # horizontal spread for coincident true-H values
 # (experiment dir, color, marker, short label) - order and colors from the
 # original compare_window_sweep.py
 MODELS = [
-    ("agsesr_inertia_response_GFM",     "#d62728", "o", r"A1 droop, $m_p{=}0.01$"),
-    ("agsesr_inertia_mp0p1",            "#ff9896", "D", r"A1 droop, $m_p{=}0.1$"),
+    ("agsesr_inertia_response_GFM",     "#d62728", "o", r"A1 droop, $m_{\mathrm{p}}{=}0.01$"),
+    ("agsesr_inertia_mp0p1",            "#ff9896", "D", r"A1 droop, $m_{\mathrm{p}}{=}0.1$"),
     ("regfm_b1_vsm_inertia_validation", "#e08214", "s", r"B1 VSM"),
     ("typicalgt_inertia_validation",    "#1f77b4", "^", r"sync (TypicalGT)"),
 ]

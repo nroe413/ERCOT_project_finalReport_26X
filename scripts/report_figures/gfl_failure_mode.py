@@ -102,7 +102,7 @@ def fig8b():
                            sharex=True)
 
     ax[0].plot(t, w.Vt_filt[::s], color=RED, lw=1.4,
-               label=r"$V_t$ (REEC filtered)")
+               label=r"$V_{\mathrm{t}}$ (REEC filtered)")
     ax[0].plot(t, w.V32[::s], color=BLUE, lw=0.9, ls="--",
                label=r"$V_{32}$ POI (pu of 10 kV)")
     ax[0].axhline(0.5, color="k", ls=":", lw=1.2)
@@ -110,7 +110,7 @@ def fig8b():
                ha="left", va="bottom", fontsize=9, zorder=6,
                bbox=dict(boxstyle="square,pad=0.2", facecolor="white",
                          edgecolor="none", alpha=1.0))
-    ax[0].annotate("latched: $V_t$ never re-crosses 0.5",
+    ax[0].annotate(r"latched: $V_{\mathrm{t}}$ never re-crosses 0.5",
                    xy=(6.5, 0.22), xytext=(5.1, 0.72), **ANN)
     ax[0].set_ylabel("voltage (pu)")
     ax[0].set_ylim(0, 1.28)
@@ -120,7 +120,7 @@ def fig8b():
                label=r"$I_{p,\mathrm{cmd}}$ (active)")
     ax[1].plot(t, w.Iqcmd[::s], color=RED, lw=1.4,
                label=r"$I_{q,\mathrm{cmd}}$ (reactive)")
-    ax[1].annotate("correct WECC LVRT:\n$I_p\\!\\to\\!0$, $I_q\\!\\to\\!1$",
+    ax[1].annotate("correct WECC LVRT:\n$I_{\\mathrm{p}}\\!\\to\\!0$, $I_{\\mathrm{q}}\\!\\to\\!1$",
                    xy=(3.25, 0.97), xytext=(4.5, 0.70), **ANN)
     ax[1].annotate("dip logic times out;\ncommands stay zero",
                    xy=(4.55, 0.03), xytext=(6.3, 0.42), **ANN)

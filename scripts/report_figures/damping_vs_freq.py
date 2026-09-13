@@ -1,4 +1,4 @@
-"""Report figure fig:damping (narr_damping_vs_freq.png), revision of 2026-09-12 (v3). Repository copy: writes to report/figures via repo_paths; needs no run data.
+"""Report figure fig:damping (narr_damping_vs_freq.png), revision of 2026-09-12 (v3).
 
 Synchronous machine: in-phase (damping) coefficient of the GGOV1 governor-and-
 turbine path as configured in 'IEEE 39 bus TypicalGT.dyr' (Table 1),
@@ -27,17 +27,18 @@ machines, D_net = 4 H sigma with H = 5.46 s: median 1.8 pu, range 1.4-2.2 pu.
 """
 import sys
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import repo_paths as rp  # noqa: E402
 
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import repo_paths as rp  # noqa: E402
-import figstyle_26x as st                              # noqa: E402
-
 OUT = rp.OUT
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import figstyle_26x as st                              # noqa: E402
 
 st.apply()
 
@@ -59,6 +60,10 @@ PM0_LO, PM0_HI, PM0_MED = min(PM0.values()), max(PM0.values()), float(np.median(
 # PSCAD measurements (deadband = 0), power-form in-phase coefficient
 MEAS_050 = {0.3: 2.29, 0.5: -0.86, 0.7: -1.43, 1.0: -1.42, 1.5: -1.10, 2.0: -0.82}
 MEAS_095 = {0.3: 1.78, 0.5: -1.33, 0.7: -1.80, 1.0: -1.68, 1.5: -1.34, 2.0: -0.98}
+# GFM (REGFM_A1, m_p = 0.01, T_Pf = 0.01 s) on the single-inverter case, same test, dispatch 0.50 and
+# 0.60 pu (identical to 0.01): in-phase coefficient of the terminal power on the internal droop
+# frequency; the filtered droop power gives exactly 100 at every frequency.
+MEAS_GFM = {0.3: 99.9, 0.5: 99.8, 0.7: 99.6, 1.0: 99.2, 1.5: 98.3, 2.0: 97.0}
 
 H_SG = 5.46
 SIGMAS = [0.087, 0.074, 0.074, 0.063, 0.065, 0.101, 0.091, 0.097]
@@ -113,7 +118,9 @@ def main():
         ax.grid(True, which="both", alpha=0.28)
 
     axT.semilogx(f, np.full_like(f, D_GFM), color=RED, lw=2.0, zorder=4,
-                 label=r"grid-forming, analytic: filtered-droop coefficient $1/m_p=100$ pu")
+                 label=r"grid-forming, analytic: filtered-droop coefficient $1/m_{\mathrm{p}}=100$ pu")
+    axT.plot(list(MEAS_GFM), list(MEAS_GFM.values()), "o", ms=5.5, color=RED, mfc="white", mew=1.1, zorder=7,
+             label="grid-forming, measured: PSCAD frequency-modulation test,\nterminal power, 0.50 and 0.60 pu")
     axT.plot([], [], color=BLUE, lw=1.9,
              label="synchronous, analytic: GGOV1 governor and turbine path\n"
                    "(band: fleet dispatch 0.50 to 1.00 pu)")

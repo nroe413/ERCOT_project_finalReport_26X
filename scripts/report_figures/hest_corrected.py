@@ -64,7 +64,7 @@ def main():
 
     tt = np.linspace(0, 0.55, 100)
     ax.plot(tt, h_analytic(tt), color=ANA, lw=1.6,
-            label=r"analytical estimator prediction, $H+T/(4m_p)$")
+            label=r"analytical estimator prediction, $H+T/(4m_{\mathrm{p}})$")
     ax.plot(T_exp, h_analytic(T_exp), "s", color=ANA, ms=5,
             mec=INK, mew=0.4, label="analytical prediction at the swept windows")
     ax.plot(T_exp, H_exp, "o", color=MEAS, ms=5.5, mec=INK, mew=0.4,
@@ -75,7 +75,7 @@ def main():
     # Label sits low-right where the axes are empty; at 0.30 it crossed
     # the fitted line.
     ax.axhline(H_TRUE, color=INK, ls=":", lw=0.9)
-    ax.annotate(r"dotted line: equivalent inertia $H_{\mathrm{eq}}=T_{\mathrm{Pf}}/2m_p=0.05$ s",
+    ax.annotate(r"dotted line: equivalent inertia $H_{\mathrm{eq}}=T_{\mathrm{Pf}}/2m_{\mathrm{p}}=0.05$ s",
                 xy=(0.075, H_TRUE), xytext=(0.155, 0.155), fontsize=8.5,
                 color=INK, ha="left", va="bottom",
                 arrowprops=dict(arrowstyle="-", lw=0.7, color=INK))

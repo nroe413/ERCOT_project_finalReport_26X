@@ -114,7 +114,7 @@ def main():
     # Label sits in the gap between the two curves around 60 deg (limited
     # 1.04, unlimited 1.73); at upper right it ran under the legend.
     axP.plot([d_I], [p_limited(d_I)], "o", ms=3.6, color=LIM, zorder=5)
-    axP.annotate(r"$\delta_I$: limiter binds", xy=(d_I, p_limited(d_I)),
+    axP.annotate(r"$\delta_{\mathrm{I}}$: limiter binds", xy=(d_I, p_limited(d_I)),
                  xytext=(62, 1.30), fontsize=9.5, color=INK, ha="left",
                  va="center",
                  arrowprops=dict(arrowstyle="-", lw=0.7, color=INK))

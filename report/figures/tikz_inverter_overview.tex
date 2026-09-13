@@ -1,46 +1,56 @@
+% Figure 1: three-phase inverter interface as a single-phase equivalent.
+% Symmetric layout: DC source and AC grid are circles of the same size centred
+% on the axis y = 0; both sides use the same two-rail spacing (y = +/-0.65);
+% the converter box, the LCL filter (L_inv, C_f, L_grid) and the grid sit on
+% the same axis with equal gaps; body-size labels.
 \begin{tikzpicture}[x=1cm,y=1cm,line cap=round,line join=round,
   every node/.style={font=\normalsize},
   wire/.style={line width=0.7pt},
   >={Stealth[length=2mm]}]
+  % ---- DC source ---------------------------------------------------------
   \draw[wire] (0,0) circle (0.38);
   \node at (0,0.16) {$+$};
   \node at (0,-0.16) {$-$};
   \node[left] at (-0.48,0) {$V_{\mathrm{dc}}$};
-  \draw[wire] (0,0.38) -- (0,0.65) -- (1.3,0.65);
-  \draw[wire] (0,-0.38) -- (0,-0.65) -- (1.3,-0.65);
+  \draw[wire] (0,0.38) -- (0,0.65) -- (1.4,0.65);
+  \draw[wire] (0,-0.38) -- (0,-0.65) -- (1.4,-0.65);
   \node[below] at (0,-0.9) {DC source};
-  \draw[wire] (1.3,-0.9) rectangle (3.3,0.9);
-  \node[align=center] at (2.3,0) {DC--AC\\converter};
-  \draw[wire] (3.3,0.4) -- (4.0,0.4);
-  \draw[wire] (4.0,0.4)
+  % ---- converter ---------------------------------------------------------
+  \draw[wire] (1.4,-0.9) rectangle (3.4,0.9);
+  \node[align=center] at (2.4,0) {DC--AC\\converter};
+  % ---- LCL filter on the top rail, return on the bottom rail --------------
+  \draw[wire] (3.4,0.65) -- (4.1,0.65);
+  \draw[wire] (4.1,0.65)
     arc[start angle=180,end angle=0,radius=0.15]
     arc[start angle=180,end angle=0,radius=0.15]
     arc[start angle=180,end angle=0,radius=0.15]
     arc[start angle=180,end angle=0,radius=0.15];
-  \node[above] at (4.6,0.65) {$L_{\mathrm{inv}}$};
-  \draw[wire] (5.2,0.4) -- (6.4,0.4);
-  \fill (5.8,0.4) circle (0.045);
-  \draw[wire] (5.8,0.4) -- (5.8,-0.28);
-  \draw[wire] (5.51,-0.28) -- (6.09,-0.28);
-  \draw[wire] (5.51,-0.43) -- (6.09,-0.43);
-  \draw[wire] (5.8,-0.43) -- (5.8,-1.3);
-  \node[left] at (5.38,-0.35) {$C_{\mathrm{f}}$};
-  \draw[wire] (6.4,0.4)
+  \node[above] at (4.7,0.9) {$L_{\mathrm{inv}}$};
+  \draw[wire] (5.3,0.65) -- (6.5,0.65);
+  \fill (5.9,0.65) circle (0.045);
+  \fill (5.9,-0.65) circle (0.045);
+  \draw[wire] (5.9,0.65) -- (5.9,0.09);
+  \draw[wire] (5.61,0.09) -- (6.19,0.09);
+  \draw[wire] (5.61,-0.09) -- (6.19,-0.09);
+  \draw[wire] (5.9,-0.09) -- (5.9,-0.65);
+  \node[left] at (5.5,0) {$C_{\mathrm{f}}$};
+  \draw[wire] (6.5,0.65)
     arc[start angle=180,end angle=0,radius=0.15]
     arc[start angle=180,end angle=0,radius=0.15]
     arc[start angle=180,end angle=0,radius=0.15]
     arc[start angle=180,end angle=0,radius=0.15];
-  \node[above] at (7.0,0.65) {$L_{\mathrm{grid}}$};
-  \draw[wire] (7.6,0.4) -- (8.8,0.4) -- (8.8,-0.02);
-  \draw[wire] (8.8,-0.4) circle (0.38);
+  \node[above] at (7.1,0.9) {$L_{\mathrm{grid}}$};
+  \draw[wire] (7.7,0.65) -- (9.1,0.65) -- (9.1,0.38);
+  \draw[wire] (3.4,-0.65) -- (9.1,-0.65) -- (9.1,-0.38);
+  % ---- AC grid -----------------------------------------------------------
+  \draw[wire] (9.1,0) circle (0.38);
   \draw[wire] plot[domain=-0.25:0.25,samples=40,smooth]
-    ({8.8+\x},{-0.4+0.12*sin(deg(\x*3.1416/0.25))});
-  \draw[wire] (8.8,-0.78) -- (8.8,-1.3) -- (3.7,-1.3) -- (3.7,-0.4) -- (3.3,-0.4);
-  \fill (5.8,-1.3) circle (0.045);
-  \node[right] at (9.28,-0.4) {$V_{\mathrm{grid}}$};
-  \node[below] at (8.8,-1.5) {AC grid};
-  \draw[wire,->] (7.8,0.85) -- (8.6,0.85);
-  \node[above] at (8.2,0.85) {$I_{\mathrm{grid}}$};
-  \draw[wire] (4.0,1.3) -- (4.0,1.5) -- (7.6,1.5) -- (7.6,1.3);
-  \node[above] at (5.8,1.5) {LCL filter};
+    ({9.1+\x},{0.12*sin(deg(\x*3.1416/0.25))});
+  \node[right] at (9.58,0) {$V_{\mathrm{grid}}$};
+  \node[below] at (9.1,-0.9) {AC grid};
+  \draw[wire,->] (7.9,1.05) -- (8.7,1.05);
+  \node[above] at (8.3,1.05) {$I_{\mathrm{grid}}$};
+  % ---- LCL bracket ---------------------------------------------------------
+  \draw[wire] (4.1,1.5) -- (4.1,1.7) -- (7.7,1.7) -- (7.7,1.5);
+  \node[above] at (5.9,1.7) {LCL filter};
 \end{tikzpicture}
