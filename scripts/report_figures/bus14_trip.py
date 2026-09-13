@@ -2,8 +2,8 @@
 all-GFM fleet at ImaxF = 1.2 pu with and without a hardware overcurrent trip
 (experiment fault_trip_gfm on SOW_task_4, 2026-09-12).
 
-Inputs: compact extracts of the three PSCAD records, shipped in
-data/report_figure_data/fault_trip_gfm/extract_{notrip,k1p5,k1p2}.csv: TIME,
+Inputs: compact extracts written by the experiment
+(experiments/fault_trip_gfm/plots/extract_{notrip,k1p5,k1p2}.csv): TIME,
 bus-16 RMS voltage (kV, 230 kV side), fleet active power (sum of the ten
 generator-bus channels B<N>P, 230 kV side of the step-up transformers), and
 for the trip records the unit-32 breaker phase currents IB32A/B/C (kA, 10 kV
@@ -36,7 +36,7 @@ import figstyle_26x as st  # noqa: E402
 st.apply()
 plt.rcParams["figure.constrained_layout.use"] = False   # manual spacing below
 
-EXTRACT = rp.DATA / "fault_trip_gfm"      # shipped CSV extracts of the three records
+EXTRACT = SJ / "experiments" / "fault_trip_gfm" / "plots"
 FAULT_T, CLEAR_T = 3.0, 3.0833
 PEAK_KA_PER_PU_32 = np.sqrt(2.0) * 1083.0 / (np.sqrt(3.0) * 10.0)   # 88.43 kA per pu of rated peak
 BLUE, RED, DARK = "#1f77b4", "#c0392b", "#7f1d1d"

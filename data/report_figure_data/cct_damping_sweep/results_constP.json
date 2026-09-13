@@ -1,0 +1,22 @@
+{
+ "bus14_noloss": {
+  "tcr_constP_s": 2.3380126953125,
+  "tcr_constZ_s": null,
+  "unconverged_solves": 328
+ },
+ "bus14_norecl": {
+  "tcr_constP_s": 2.3380126953125,
+  "tcr_constZ_s": null,
+  "unconverged_solves": 197
+ },
+ "bus16_noloss": {
+  "tcr_constP_s": 1.6600830078124997,
+  "tcr_constZ_s": 2.908,
+  "unconverged_solves": 102
+ },
+ "bus26_noloss": {
+  "tcr_constP_s": 2.3814697265625,
+  "tcr_constZ_s": 2.24,
+  "unconverged_solves": 22
+ }
+}
