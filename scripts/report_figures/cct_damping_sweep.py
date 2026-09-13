@@ -2,7 +2,8 @@
 clearing time of the reduced droop-inverter models as the droop damping is scaled
 from zero to its full value (author's question, 2026-09-12).
 
-Inputs (SOW_task_4 worktree):
+Inputs (shipped in data/report_figure_data/cct_damping_sweep, produced on SOW_task_4 by
+cct_smib_sync/gfm_damping_sweep.py and cct_energy_function_multiGFM/cct_pebs_constP.py --dscale):
   experiments/cct_smib_sync/results_gfm_damping_sweep.json      (single inverter, infinite bus)
   experiments/cct_energy_function_multiGFM/results_constP.json  (ten inverters, scale 1)
   experiments/cct_energy_function_multiGFM/results_constP_D{0,0.1,0.3}.json
@@ -36,12 +37,14 @@ EMT_SINGLE, EMT_FLEET = (0.925, 0.931), (1.600, 1.700)
 
 
 def load():
-    s = json.load(open(SJ / "experiments" / "cct_smib_sync" / "results_gfm_damping_sweep.json"))
+    s = json.load(open(rp.DATA / "cct_damping_sweep" / "results_gfm_damping_sweep.json"))
     single = [(r["alpha"], r["t_cr_s"]) for r in s["sweep"]]
-    mg = SJ / "experiments" / "cct_energy_function_multiGFM"
+    mg = rp.DATA / "cct_damping_sweep"      # shipped result files of the two sweeps
     fleet = []
-    for a, f in ((0.0, "results_constP_D0.json"), (0.1, "results_constP_D0.1.json"),
-                 (0.3, "results_constP_D0.3.json"), (1.0, "results_constP.json")):
+    for a, f in ((0.0, "results_constP_D0.json"), (0.01, "results_constP_D0.01.json"), (0.03, "results_constP_D0.03.json"),
+                 (0.1, "results_constP_D0.1.json"), (0.3, "results_constP_D0.3.json"), (1.0, "results_constP.json")):
+        if not (mg / f).exists():
+            continue
         fleet.append((a, json.load(open(mg / f))["bus14_noloss"]["tcr_constP_s"]))
     return single, fleet
 
@@ -53,8 +56,7 @@ def main():
                               (fleet, DARK, "s", "ten inverters, 39-bus, bus-14 fault")):
         x = np.array([max(a, X0) for a, _ in pts]); y = np.array([t for _, t in pts])
         ax.plot(x[1:], y[1:], marker=mk, color=col, lw=1.6, ms=5, label=lab)
-        ax.plot(x[:2], y[:2], color=col, lw=1.2, ls=":")
-        ax.plot(x[0], y[0], marker=mk, color=col, ms=5)
+        ax.plot(x[0], y[0], marker=mk, color=col, ms=5, ls="none")   # undamped point, drawn at the "0" tick, no line
     ax.axhspan(*EMT_SINGLE, color=RED, alpha=0.25, lw=0)
     ax.axhline(0.5 * sum(EMT_SINGLE), color=RED, alpha=0.45, lw=2.2)   # 6 ms bracket: thinner than a line
     ax.axhspan(*EMT_FLEET, color=DARK, alpha=0.25, lw=0)

@@ -1,0 +1,7 @@
+{
+ "bus14_noloss": {
+  "tcr_constP_s": 0.17839111328124996,
+  "tcr_constZ_s": null,
+  "unconverged_solves": 10857
+ }
+}

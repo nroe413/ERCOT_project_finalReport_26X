@@ -106,8 +106,8 @@ def main():
     print("at %.3f Hz: %+.2f .. %+.2f" % (F_NET, d_gov(F_NET, PM0_LO), d_gov(F_NET, PM0_HI)))
 
     fig, (axT, axB) = plt.subplots(
-        2, 1, figsize=(0.85 * st.TEXTWIDTH_IN, 4.3), sharex=True,
-        gridspec_kw=dict(height_ratios=[1.0, 1.2], hspace=0.16))
+        2, 1, figsize=(0.85 * st.TEXTWIDTH_IN, 4.6), sharex=True,
+        gridspec_kw=dict(height_ratios=[1.0, 1.2], hspace=0.30))
 
     for ax in (axT, axB):
         ax.axvspan(f0_min, EM_HI, color=BAND, alpha=0.5, zorder=0)
@@ -132,7 +132,9 @@ def main():
                        "oscillation, all-machine bus-14 case (%.1f pu)" % D_NET)
     axT.set_ylim(-8, 118)
     axT.set_yticks([0, 25, 50, 75, 100])
-    axT.legend(loc="center left", fontsize=7.6, framealpha=0.95)
+    axT.legend(loc="upper left", bbox_to_anchor=(0.005, 0.87), fontsize=6.4, framealpha=0.92,
+               handlelength=1.6, labelspacing=0.35, borderpad=0.4)
+    axT.set_title("(a) both technologies, full scale", fontsize=8.5, loc="left")
     axT.set_ylabel(r"$D_{\mathrm{eq}}$ (pu)")
 
     axB.errorbar([F_NET], [D_NET], yerr=[[D_NET - D_LO], [D_HI - D_NET]],
@@ -143,10 +145,11 @@ def main():
              label="synchronous, measured: PSCAD frequency-modulation test, 0.50 pu")
     axB.plot(list(MEAS_095), list(MEAS_095.values()), "s", ms=5.2, color=MEAS, mfc=MEAS, mew=0.8, zorder=7,
              label="synchronous, measured: PSCAD frequency-modulation test, 0.95 pu")
-    axB.legend(loc="upper right", fontsize=7.4, framealpha=0.95)
+    axB.legend(loc="upper right", fontsize=6.8, framealpha=0.92, handlelength=1.6, labelspacing=0.35, borderpad=0.4)
+    axB.set_title("(b) synchronous machine only, expanded scale (same curve and points as in (a))", fontsize=8.5, loc="left")
     axB.set_ylim(-6.0, 23)
     axB.set_yticks([-5, 0, 5, 10, 15, 20])
-    axB.set_ylabel(r"$D_{\mathrm{eq}}$ (pu), machine range")
+    axB.set_ylabel(r"$D_{\mathrm{eq}}$ (pu)")
     axB.set_xlabel("perturbation frequency (Hz)")
     axB.set_xlim(f[0], f[-1])
 

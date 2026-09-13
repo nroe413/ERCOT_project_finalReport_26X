@@ -3,7 +3,7 @@ droop-controlled inverter versus short-circuit ratio, referred to the imposed ra
 (report Eq. 9) and to the inverter's internal droop frequency (experiment
 agsesr_inertia_SCR_fdrp on SOW_task_4, 2026-09-12; comment 56).
 
-Input: data/report_figure_data/hest_scr/hest_internal_metrics.json (from experiments/agsesr_inertia_SCR_fdrp on SOW_task_4)
+Input: experiments/agsesr_inertia_SCR_fdrp/plots/hest_internal_metrics.json
 (per SCR: H_imp(T), H_int(T), rocof_int(T), track_err_Hz(T) for T = 0.1..0.5 s).
 Size 0.8 textwidth x 3.0 in, figstyle contract.
 """
@@ -29,7 +29,7 @@ H_THEORY = 0.010 / (2 * 0.01) + 0.5 / (4 * 0.01)     # H + T/(4 m_p) at T = 0.5 
 
 
 def main():
-    m = json.load(open(rp.DATA / "hest_scr" / "hest_internal_metrics.json"))   # shipped metrics of the SCR sweep
+    m = json.load(open(SJ / "experiments" / "agsesr_inertia_SCR_fdrp" / "plots" / "hest_internal_metrics.json"))
     scr = np.array(sorted(float(k) for k in m))
     key = lambda s: "%g" % s
     h_imp = np.array([m[key(s)]["H_imp"][-1] for s in scr])
