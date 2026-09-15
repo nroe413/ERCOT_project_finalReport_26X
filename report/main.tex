@@ -691,7 +691,11 @@ The damping coefficient was measured in PSCAD on the single-machine case of Sect
 \[
 x(t)\approx c_0+c_1t+c_2t^2+c_3t^3+a_x\cos(2\pi f_{\mathrm{m}}t)+b_x\sin(2\pi f_{\mathrm{m}}t),\qquad \hat X=a_x-jb_x,
 \]
-where the cubic absorbs the slow drift and $\hat X$ is the complex amplitude of the response at $f_{\mathrm{m}}$. The plotted coefficient is the ratio of the in-phase part of the mechanical-power swing to the speed swing,
+where the cubic absorbs the slow drift and $\hat X$ is the complex amplitude of the response at $f_{\mathrm{m}}$. The coefficient follows from the swing equation, Equation~\eqref{eq:swingeq}, written for small deviations in terms of the per-unit speed deviation,
+\[
+2H\,\frac{\mathrm{d}\Delta\bar{\omega}}{\mathrm{d}t}=\Delta P_{\mathrm{mech}}-\Delta P_{\mathrm{e}}-D\,\Delta\bar{\omega}.
+\]
+The damping term is the power proportional to the speed deviation and opposing it, so a device whose power responds to speed contributes $D=-\Delta P/\Delta\bar{\omega}$, positive when its power falls as the speed rises; for the governor that power is the mechanical power. When the speed swings sinusoidally, only the part of the power response in step with the speed acts as this term (the part a quarter cycle out of step is in step with the acceleration and acts as inertia), so the coefficient at $f_{\mathrm{m}}$ is the real part of the ratio of the complex amplitudes,
 \begin{equation}
 D(f_{\mathrm{m}})=-\operatorname{Re}\left\{\frac{\hat P_{\mathrm{mech}}}{\hat\omega}\right\}
 =-\frac{|\hat P_{\mathrm{mech}}|}{|\hat\omega|}\cos(\varphi_P-\varphi_\omega),
