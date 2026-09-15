@@ -946,11 +946,11 @@ The other quantity the inverter estimate depends on is the droop damping itself.
 \label{sec:nextsteps}
 The next analytical steps build on this preliminary comparison. We will connect the model extensions to the same disturbances used in the testbed. Hardware studies remain a future direction after the simulation comparisons establish appropriate test cases.
 \begin{itemize}
-\item \textbf{Limiter-aware stability estimates.} Extend critical-clearing-time analysis to include saturation and determine conditions under which the estimate is conservative.
+\item \textbf{Limiter-aware stability estimates.} Extend critical-clearing-time analytical model for single and multi-inverter systems to include saturation and determine conditions under which the estimate is conservative.
 \item \textbf{Guidance for manufacturers and operators.} Identify control parameters with the greatest influence on system-level stability for the configurations studied.
-\item \textbf{Mixed-generation systems.} Extend the analysis to combinations of synchronous machines, GFM inverters, and GFL inverters.
+\item \textbf{Mixed-generation systems.} Extend the analysis to combinations of synchronous machines, GFM inverters of various control approaches, and GFL inverters.
 \item \textbf{Additional disturbances.} Evaluate the models under unbalanced faults at other locations, faults with nonzero impedance, phase-angle jumps, and load steps.
-\item \textbf{Protection coordination and damping decomposition.} The hardware overcurrent trip test of Section~\ref{sec:ilim} showed that the limiter setting alone does not decide ride-through: at the bus-10 fault the trip removes only the unit that clearing isolates, but at the bus-14 fault with the 1.2 per-unit limiter it removes three units 3 to 4~ms into the fault and leaves the network at a depressed voltage. The remaining work is to coordinate the limiter setting, the trip threshold, and the dwell time with device data, and to examine the load model's behavior at the resulting voltages. A separate item is to decompose the machine's net damping of Table~\ref{tab:dh}, which was measured with the governor, exciter, and stabilizer all active, into governor, stabilizer, and field contributions from post-fault oscillation records with the governor frozen and with the stabilizer disabled.
+\item \textbf{Large Electronic Loads} Integrate large electronic load profiles and evaluate the impacts to fault-ride through capability of a power system with a high penetration of grid-forming inverters
 \item \textbf{Hardware validation.} Investigate single-inverter infinite-bus and hardware-in-the-loop tests, followed by multi-inverter disturbances in the UT Austin laboratory microgrid.
 \end{itemize}
 
