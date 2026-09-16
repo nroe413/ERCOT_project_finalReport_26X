@@ -104,7 +104,7 @@ Conventional grid-following (GFL) control uses an externally established voltage
 Three terms connect GFM controls to the machine-based interpretation developed in this report. Their meanings depend on the reduced model and its operating assumptions. In particular, an analogy between equations does not make the physical sources identical.
 \begin{enumerate}
 \item The \emph{inverter angle} is a controller-generated electrical phase. Like a machine's electrical rotor angle, its displacement relative to other sources influences power transfer. It is not the position of a physical shaft.
-\item The \emph{equivalent inertia} of filtered droop arises from the lag in its power measurement and depends on the filter time constant and droop gain \cite{chatterjee2026note}. Shortening the filter reduces this coefficient without changing a physical moment of inertia. The electrical energy still comes from the DC source and circuit storage.
+\item The \emph{equivalent inertia} of filtered droop arises from the lag in its power measurement and depends on the filter time constant and droop gain \cite{chatterjee2026note}. A longer filter time constant or a smaller droop gain raises this coefficient, and with it the inverter angle's resistance to acceleration, without any physical moment of inertia changing. The electrical energy still comes from the DC source and circuit storage.
 \item The \emph{equivalent damping} relates normalized frequency deviation to normalized power response. The droop gain sets this coefficient in the reduced GFM model. Section~\ref{sec:dampinertia} distinguishes it from a machine governor's frequency-dependent contribution and from damping inferred from a complete system response.
 \end{enumerate}
 Section~\ref{sec:testbed} describes the network, resource models, and simulation workflow. Section~\ref{sec:emt} presents the EMT replacement and fault-response studies. Section~\ref{sec:dynamics} develops the machine-to-GFM comparison and interprets the inertia estimation tests. Section~\ref{sec:outlook} presents the preliminary energy analysis and next-phase directions.
@@ -946,7 +946,7 @@ The other quantity the inverter estimate depends on is the droop damping itself.
 \label{sec:nextsteps}
 The next analytical steps build on this preliminary comparison. We will connect the model extensions to the same disturbances used in the testbed. Hardware studies remain a future direction after the simulation comparisons establish appropriate test cases.
 \begin{itemize}
-\item \textbf{Limiter-aware stability estimates.} Extend critical-clearing-time analytical model for single and multi-inverter systems to include saturation and determine conditions under which the estimate is conservative.
+\item \textbf{Limiter-aware stability estimates.} Develop a critical-clearing-time analytical model for single and multi-inverter systems to include saturation and determine conditions under which the estimate is conservative.
 \item \textbf{Guidance for manufacturers and operators.} Identify control parameters with the greatest influence on system-level stability for the configurations studied.
 \item \textbf{Mixed-generation systems.} Extend the analysis to combinations of synchronous machines, GFM inverters of various control approaches, and GFL inverters.
 \item \textbf{Additional disturbances.} Evaluate the models under unbalanced faults at other locations, faults with nonzero impedance, phase-angle jumps, and load steps.
