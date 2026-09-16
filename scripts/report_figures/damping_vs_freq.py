@@ -20,10 +20,6 @@ Measured points: PSCAD frequency-modulation test on the single-machine case
 60 + 0.05 sin(2 pi fm t) Hz, lock-in of mechanical torque on speed, governor
 deadband removed from a copy of the record (db = 0); power-form coefficient
 D_P = -Re(dTm/dw) - Pm0.
-
-Net machine damping (diamond): all-machine bus-14 case (fault_3PG_bus14_0GFM,
-30 s): inter-machine modes at 0.85 and 1.02 Hz fitted by matrix pencil (ringdown_prism.py), decay
-0.075-0.104 1/s on the six units away from the fault, D_net = 4 H sigma with H = 5.46 s: median 1.8 pu, range 1.6-2.3 pu.
 """
 import sys
 from pathlib import Path
@@ -66,11 +62,6 @@ MEAS_095 = {0.3: 1.78, 0.5: -1.33, 0.7: -1.80, 1.0: -1.68, 1.5: -1.34, 2.0: -0.9
 MEAS_GFM = {0.3: 99.9, 0.5: 99.8, 0.7: 99.6, 1.0: 99.2, 1.5: 98.3, 2.0: 97.0}
 
 H_SG = 5.46
-SIGMAS = [0.0871, 0.0745, 0.0859, 0.0836, 0.0867, 0.0772, 0.0859, 0.0805, 0.0811, 0.1039, 0.0790]   # matrix-pencil inter-machine modes, ringdown_prism.py
-F_LO, F_HI = 0.85, 1.02
-D_NET = 4.0 * H_SG * float(np.median(SIGMAS))
-D_LO, D_HI = 4.0 * H_SG * min(SIGMAS), 4.0 * H_SG * max(SIGMAS)
-F_NET = 0.5 * (F_LO + F_HI)
 EM_LO, EM_HI = 0.1, 3.0
 
 
@@ -103,7 +94,6 @@ def main():
     print("zero crossing: %.3f Hz (Pm0 %.2f) to %.3f Hz (Pm0 %.2f)" % (f0_hi_disp, PM0_HI, f0_lo_disp, PM0_LO))
     print("in-phase at 1.0 Hz: %+.2f (Pm0 %.2f) .. %+.2f (Pm0 %.2f); median %+.2f"
           % (d_gov(1.0, PM0_LO), PM0_LO, d_gov(1.0, PM0_HI), PM0_HI, d_gov(1.0, PM0_MED)))
-    print("at %.3f Hz: %+.2f .. %+.2f" % (F_NET, d_gov(F_NET, PM0_LO), d_gov(F_NET, PM0_HI)))
 
     fig, (axT, axB) = plt.subplots(
         2, 1, figsize=(0.85 * st.TEXTWIDTH_IN, 4.6), sharex=True,
@@ -124,12 +114,6 @@ def main():
     axT.plot([], [], color=BLUE, lw=1.9,
              label="synchronous, analytic: GGOV1 governor and turbine path\n"
                    "(band: fleet dispatch 0.50 to 1.00 pu)")
-    axT.errorbar([F_NET], [D_NET], yerr=[[D_NET - D_LO], [D_HI - D_NET]],
-                 xerr=[[F_NET - F_LO], [F_HI - F_NET]], fmt="D", ms=6,
-                 color=NETC, mec="k", mew=0.7, ecolor=NETC,
-                 elinewidth=1.0, capsize=2.5, zorder=6,
-                 label="synchronous, measured: net damping of the post-fault\n"
-                       "oscillation, all-machine bus-14 case (%.1f pu)" % D_NET)
     axT.set_ylim(-8, 118)
     axT.set_yticks([0, 25, 50, 75, 100])
     axT.legend(loc="upper left", bbox_to_anchor=(0.005, 0.87), fontsize=6.4, framealpha=0.92,
@@ -137,10 +121,6 @@ def main():
     axT.set_title("(a) both technologies, full scale", fontsize=8.5, loc="left")
     axT.set_ylabel(r"$D_{\mathrm{eq}}$ (pu)")
 
-    axB.errorbar([F_NET], [D_NET], yerr=[[D_NET - D_LO], [D_HI - D_NET]],
-                 xerr=[[F_NET - F_LO], [F_HI - F_NET]], fmt="D", ms=6,
-                 color=NETC, mec="k", mew=0.7, ecolor=NETC,
-                 elinewidth=1.0, capsize=2.5, zorder=6)
     axB.plot(list(MEAS_050), list(MEAS_050.values()), "o", ms=5.5, color=MEAS, mfc="white", mew=1.1, zorder=7,
              label="synchronous, measured: PSCAD frequency-modulation test, 0.50 pu")
     axB.plot(list(MEAS_095), list(MEAS_095.values()), "s", ms=5.2, color=MEAS, mfc=MEAS, mew=0.8, zorder=7,
