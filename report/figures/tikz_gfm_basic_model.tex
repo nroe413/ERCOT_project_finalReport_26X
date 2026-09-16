@@ -24,7 +24,7 @@
   % --- internal bus and coupling reactance ---------------------------
   \draw[wire] (src) ++(0.42,0) -- (1.2,0);
   \draw[wire] (1.2,-0.55) -- (1.2,0.55);              % internal bus bar
-  \node[lbl, above] at (1.2,0.6) {$E\angle\delta_{\mathrm{E}}$};
+  \node[lbl, above] at (1.2,0.6) {$E\angle\theta_{\mathrm{E}}$};
   \draw[wire] (1.2,0) -- (1.9,0);
   % inductor coil: four bumps
   \draw[wire] (1.9,0)
@@ -36,7 +36,7 @@
   \draw[wire] (3.42,0) -- (4.2,0);
   % --- terminal bus and grid ----------------------------------------
   \draw[wire] (4.2,-0.55) -- (4.2,0.55);
-  \node[lbl, above] at (4.2,0.6) {$V\angle\delta_{\mathrm{V}}$};
+  \node[lbl, above] at (4.2,0.6) {$V\angle\theta_{\mathrm{V}}$};
   \draw[wire] (4.2,0) -- (4.85,0);
   \node[lbl, right, align=center] at (4.85,0) {AC\\grid};
   % power / current flow arrow toward the grid

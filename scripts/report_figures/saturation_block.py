@@ -81,25 +81,25 @@ def main():
     axB.set_xlim(-2.05, 2.05)
     axB.set_ylim(-1.5, 1.5)
     axB.axis("off")
-    axB.add_patch(plt.Rectangle((-0.62, -0.72), 1.24, 1.44, fill=False,
+    axB.add_patch(plt.Rectangle((-0.95, -0.72), 1.90, 1.44, fill=False,
                                 ec=INK, lw=1.0))
-    u = np.linspace(-0.5, 0.5, 200)
-    axB.plot(u, np.clip(u * 2.2, -0.45, 0.45), color=LIM, lw=1.6)
-    axB.plot([-0.5, 0.5], [0, 0], color="#b9c0c4", lw=0.5, zorder=0)
+    u = np.linspace(-0.8, 0.8, 200)
+    axB.plot(u, np.clip(u * 1.4, -0.45, 0.45), color=LIM, lw=1.6)
+    axB.plot([-0.8, 0.8], [0, 0], color="#b9c0c4", lw=0.5, zorder=0)
     axB.plot([0, 0], [-0.55, 0.55], color="#b9c0c4", lw=0.5, zorder=0)
-    axB.annotate("", xy=(-0.64, 0), xytext=(-1.25, 0),
+    axB.annotate("", xy=(-0.97, 0), xytext=(-1.45, 0),
                  arrowprops=dict(arrowstyle="-|>", lw=0.9, color=INK))
-    axB.annotate("", xy=(1.25, 0), xytext=(0.64, 0),
+    axB.annotate("", xy=(1.45, 0), xytext=(0.97, 0),
                  arrowprops=dict(arrowstyle="-|>", lw=0.9, color=INK))
-    axB.text(-1.45, 0.14, "current\ndemand", fontsize=8.5, color=INK,
+    axB.text(-1.62, 0.14, "current\ndemand", fontsize=8.5, color=INK,
              ha="center", va="bottom")
-    axB.text(1.45, 0.14, "delivered\ncurrent", fontsize=8.5, color=INK,
+    axB.text(1.62, 0.14, "delivered\ncurrent", fontsize=8.5, color=INK,
              ha="center", va="bottom")
-    axB.text(0.52, 0.5, r"$+I_{\max F}$", fontsize=9.5, color=LIM,
+    axB.text(0.86, 0.5, r"$+I_{\max F}$", fontsize=9.5, color=LIM,
              ha="right", va="bottom")
-    axB.text(0.52, -0.5, r"$-I_{\max F}$", fontsize=9.5, color=LIM,
+    axB.text(0.86, -0.5, r"$-I_{\max F}$", fontsize=9.5, color=LIM,
              ha="right", va="top")
-    axB.text(0, -1.12, "linear until it is not", fontsize=9.5,
+    axB.text(0, -1.12, "saturation limiter", fontsize=9.5,
              color=INK, ha="center", va="center")
 
     # ---------------- right: the transfer characteristic ------------

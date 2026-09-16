@@ -13,7 +13,7 @@
     \draw[wire] (0,0) circle (0.38);
     \draw[wire] plot[domain=-0.25:0.25, samples=40, smooth]
         ({\x}, {0.14*sin(deg(\x*3.1416/0.25))});
-    \node[lbl, left] at (-0.45,0) {$E\angle\delta_{\mathrm{E}}$};
+    \node[lbl, left] at (-0.45,0) {$E\angle\theta_{\mathrm{E}}$};
     % ground below source
     \draw[wire] (0,-0.38) -- (0,-0.72);
     \draw[wire] (-0.26,-0.72) -- (0.26,-0.72);
@@ -30,7 +30,7 @@
     \draw[wire] (2.03,1.2) -- (2.55,1.2);
     % terminal node
     \filldraw[fill=white, draw=black, line width=0.7pt] (2.55,1.2) circle (0.05);
-    \node[lbl, above right] at (2.5,1.28) {$V\angle\delta_{\mathrm{V}}$};
+    \node[lbl, above right] at (2.5,1.28) {$V\angle\theta_{\mathrm{V}}$};
     \draw[->, wire] (2.05,0.85) -- (2.55,0.85);
     \node[lbl, below] at (2.35,0.8) {$p,\;q,\;I\angle\varphi$};
     \node[lbl] at (1.25,-1.15) {(a)};
@@ -58,7 +58,7 @@
     \draw[wire] (0.67,-1.04) -- (0.83,-1.04);
     % terminal
     \filldraw[fill=white, draw=black, line width=0.7pt] (2.9,1.2) circle (0.05);
-    \node[lbl, above right] at (2.85,1.28) {$V\angle\delta_{\mathrm{V}}$};
+    \node[lbl, above right] at (2.85,1.28) {$V\angle\theta_{\mathrm{V}}$};
     \draw[->, wire] (2.4,0.85) -- (2.9,0.85);
     \node[lbl, below] at (2.7,0.8) {$p,\;q,\;I\angle\varphi$};
     \node[lbl] at (1.0,-1.35) {(b)};
