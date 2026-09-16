@@ -426,7 +426,7 @@ The selected GFM responses return promptly toward their post-fault operating poi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{fig2_allSYNC_3PG_2x2}
-\caption{All-machine response to the bus-14 reference fault: RMS voltage and current, active power, and reactive power at the 230~kV generator buses, on the transmission side of the step-up transformers. The generator-bus active powers oscillate at the 0.85--1.0~Hz inter-machine mode with decay rates of 0.06--0.10~s$^{-1}$. The legend lists the monitored buses; bus~14 is isolated by clearing.}
+\caption{All-machine response to the bus-14 reference fault: RMS voltage and current, active power, and reactive power at the 230~kV generator buses, on the transmission side of the step-up transformers. The generator-bus active powers oscillate in two inter-machine modes at 0.85 and 1.02~Hz with decay rates of 0.08--0.10~s$^{-1}$ (Figure~\ref{fig:ringdown}). The legend lists the monitored buses; bus~14 is isolated by clearing.}
 \label{fig:allsync}
 \end{figure}
 
@@ -480,7 +480,7 @@ Figure~\ref{fig:peaki} compares the device-base peak currents, including a machi
 
 \subsection{All-Synchronous Machine Fault Ride Through}
 \label{sec:syncbaseline}
-The all-machine system rides through the same reference fault as the all-GFM system. Its generator-bus active powers oscillate at the 0.85--1.0~Hz inter-machine mode with decay rates of 0.06--0.10~s$^{-1}$ (damping ratio 1--2\%), so the oscillation persists for tens of seconds; the units nearest the fault, buses~31 and~32, also carry a faster, more strongly damped local component. The stronger damping associated with the selected GFM controls helps interpret the contrast, as developed in Section~\ref{sec:dynamics}. Network conditions, voltage controls, and limiting also affect the complete transient response.
+The all-machine system rides through the same reference fault as the all-GFM system. Its generator-bus active powers oscillate in two inter-machine modes at 0.85 and 1.02~Hz with decay rates of 0.08--0.10~s$^{-1}$ (damping ratio about 1.5\%; Section~\ref{sec:dampinertia}, Figure~\ref{fig:ringdown}), so the oscillation persists for tens of seconds; the units nearest the fault, buses~31 and~32, are dominated by a faster local component that decays at about 0.35~s$^{-1}$. The stronger damping associated with the selected GFM controls helps interpret the contrast, as developed in Section~\ref{sec:dynamics}. Network conditions, voltage controls, and limiting also affect the complete transient response.
 
 \subsection{Grid-Following Inverter Fault Ride Through}
 \label{sec:gfl}
@@ -705,13 +705,19 @@ where the cubic absorbs the drift, and the two signals share a time axis so that
 
 With the governor deadband removed from a copy of the record, the measured coefficient follows Equation~\eqref{eq:govpath} within 0.01 at 0.50 per unit ($+2.29$, $-0.86$, $-1.43$, $-1.42$, $-1.10$, and $-0.82$ at 0.3, 0.5, 0.7, 1.0, 1.5, and 2.0~Hz) and within 0.1 at 0.95 per unit, with the zero crossing between 0.3 and 0.5~Hz; these are the measured points in Figure~\ref{fig:damping}. With the supplied deadband of 0.0002 per unit the magnitude is 0.2 to 0.3 smaller at the test's 0.0015 per-unit speed swing, because the governor ignores the part of the error inside the deadband; at disturbance amplitudes the deadband is not a factor. The same test on the single-inverter case (dispatch 0.50 and 0.60 per unit) gives 99.9 at 0.3~Hz falling to 97.0 at 2~Hz; the decrease is the 0.02~s smoothing of the power meter against the 0.01~s power-filter lead, $\mathrm{Re}[(1+j\omega T_{\mathrm{Pf}})/(1+0.02j\omega)]$, which predicts 99.2 at 1~Hz and 97.0 at 2~Hz, while the filtered droop power reproduces $1/m_{\mathrm{p}}=100$ at every frequency. The inverter's coefficient is flat where the machine's changes sign.
 
-The net machine damping in Table~\ref{tab:dh} comes from the all-machine bus-14 case (30~s record, Figure~\ref{fig:allsync}). After clearing, the ten generator-bus active powers oscillate together at the 0.85--1.0~Hz inter-machine mode and decay; a Fourier transform of the 4--30~s record gives the frequency, and the logarithm of the ratio of successive peaks gives the decay rate $\sigma=0.06$--$0.10$~s$^{-1}$ for the eight machines away from the fault (buses 31 and 32 carry a faster local component and are excluded). With the electrical power responding to the angle through the synchronizing coefficient, $\Delta P_{\mathrm{e}}=K_{\mathrm{S}}\Delta\delta$ and $\Delta\dot\delta=\omega_0\Delta\bar{\omega}$, the swing equation above becomes
+The net machine damping in Table~\ref{tab:dh} comes from the all-machine bus-14 case (30~s record, Figure~\ref{fig:allsync}). After clearing, the generator-bus active powers oscillate and decay (Figure~\ref{fig:ringdown}). Each record, band-passed to 0.5--2~Hz, was fitted over 6--30~s with a sum of damped sinusoids by the matrix-pencil method. Two inter-machine modes, at 0.85 and 1.02~Hz, dominate the six units away from the fault (buses 33--36, 38, and 39) and decay at $\sigma=0.075$--$0.104$~s$^{-1}$; the units at buses 31 and 32, next to the fault, and the small-amplitude units at buses 30 and 37 are dominated by faster local components (1.1--1.3~Hz, $\sigma\approx0.3$--$0.4$~s$^{-1}$), which are excluded. With the electrical power responding to the angle through the synchronizing coefficient, $\Delta P_{\mathrm{e}}=K_{\mathrm{S}}\Delta\delta$ and $\Delta\dot\delta=\omega_0\Delta\bar{\omega}$, the swing equation above becomes
 \[
 2H\,\frac{\mathrm{d}\Delta\bar{\omega}}{\mathrm{d}t}=-K_{\mathrm{S}}\Delta\delta-D\,\Delta\bar{\omega}
 \quad\Longrightarrow\quad
 \Delta\ddot\delta+\frac{D}{2H}\,\Delta\dot\delta+\frac{K_{\mathrm{S}}\omega_0}{2H}\,\Delta\delta=0,
 \]
-the damped oscillator $\ddot x+2\sigma\dot x+\omega_{\mathrm{n}}^2x=0$ with $\sigma=D/4H$ \cite[Sec.~12.3]{kundur1994}. The measured decay gives $D_{\mathrm{net}}=4H\sigma\approx1.8$ (1.4--2.2) on the machine base with $H=5.46$~s. The value is net: the governor path, the damper windings, the exciter and stabilizer, and the network interactions all contribute to the decay, and their shares are not separated. The relation is exact for one machine against a stiff system with constant $D$; for the inter-machine mode it gives a per-machine equivalent. PSS2B and ESST4B are active in all machine cases; no case without the stabilizer was simulated.
+the damped oscillator $\ddot x+2\sigma\dot x+\omega_{\mathrm{n}}^2x=0$ with $\sigma=D/4H$ \cite[Sec.~12.3]{kundur1994}. The measured decay gives $D_{\mathrm{net}}=4H\sigma\approx1.8$ (1.6--2.3) on the machine base with $H=5.46$~s. The value is net: the governor path, the damper windings, the exciter and stabilizer, and the network interactions all contribute to the decay, and their shares are not separated. The relation is exact for one machine against a stiff system with constant $D$; for the inter-machine mode it gives a per-machine equivalent. PSS2B and ESST4B are active in all machine cases; no case without the stabilizer was simulated.
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.95\textwidth]{narr_allsync_ringdown}
+\caption{Post-fault oscillation of the ten machines in the all-machine bus-14 case (30~s record). (a)~Active power of each machine, band-passed to 0.5--2~Hz and scaled to its own maximum. (b)~Modes fitted to each record over 6--30~s by the matrix-pencil method: decay rate by machine, marker size proportional to the mode's amplitude; circles are the two inter-machine modes at 0.85 and 1.02~Hz and squares the faster local components; the band marks the 0.075--0.104~s$^{-1}$ range that gives the net damping of Table~\ref{tab:dh}.}
+\label{fig:ringdown}
+\end{figure}
 
 The inertia comparison runs the other way: $T_{\mathrm{Pf}}=10$~ms and $m_{\mathrm{p}}=0.01$ give $H_{\mathrm{eq}}=0.5$~s, roughly one eleventh of the machine's 5.46~s. Table~\ref{tab:dh} collects the values, keeping the governor contribution separate from the net damping. Strong equivalent damping with low equivalent inertia is consistent with the faster GFM settling.
 
@@ -726,7 +732,7 @@ Damping coefficient, zero frequency & 100 & 20 (governor)\\
 In-phase coefficient, 1~Hz & 100 & $-1.4$ to $-1.8$ (governor)\\
 In-phase coefficient, 1~Hz, measured in PSCAD & 99.2 (0.50 and 0.60 pu) & $-1.42$ (0.50 pu), $-1.68$ (0.95 pu)\\
 Governor zero crossing & Not applicable & 0.38--0.41~Hz\\
-Net damping, post-fault oscillation & --- & 1.8 (1.4--2.2)\\
+Net damping, post-fault oscillation & --- & 1.8 (1.6--2.3)\\
 Post-fault response & Less oscillatory & Oscillatory, 0.85--1.0~Hz\\\bottomrule
 \end{tabular}
 \end{table}

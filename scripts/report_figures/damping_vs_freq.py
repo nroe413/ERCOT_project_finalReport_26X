@@ -22,8 +22,8 @@ deadband removed from a copy of the record (db = 0); power-form coefficient
 D_P = -Re(dTm/dw) - Pm0.
 
 Net machine damping (diamond): all-machine bus-14 case (fault_3PG_bus14_0GFM,
-30 s): 0.85-1.0 Hz inter-machine mode, decay 0.063-0.101 1/s on eight
-machines, D_net = 4 H sigma with H = 5.46 s: median 1.8 pu, range 1.4-2.2 pu.
+30 s): inter-machine modes at 0.85 and 1.02 Hz fitted by matrix pencil (ringdown_prism.py), decay
+0.075-0.104 1/s on the six units away from the fault, D_net = 4 H sigma with H = 5.46 s: median 1.8 pu, range 1.6-2.3 pu.
 """
 import sys
 from pathlib import Path
@@ -66,8 +66,8 @@ MEAS_095 = {0.3: 1.78, 0.5: -1.33, 0.7: -1.80, 1.0: -1.68, 1.5: -1.34, 2.0: -0.9
 MEAS_GFM = {0.3: 99.9, 0.5: 99.8, 0.7: 99.6, 1.0: 99.2, 1.5: 98.3, 2.0: 97.0}
 
 H_SG = 5.46
-SIGMAS = [0.087, 0.074, 0.074, 0.063, 0.065, 0.101, 0.091, 0.097]
-F_LO, F_HI = 0.85, 1.0
+SIGMAS = [0.0871, 0.0745, 0.0859, 0.0836, 0.0867, 0.0772, 0.0859, 0.0805, 0.0811, 0.1039, 0.0790]   # matrix-pencil inter-machine modes, ringdown_prism.py
+F_LO, F_HI = 0.85, 1.02
 D_NET = 4.0 * H_SG * float(np.median(SIGMAS))
 D_LO, D_HI = 4.0 * H_SG * min(SIGMAS), 4.0 * H_SG * max(SIGMAS)
 F_NET = 0.5 * (F_LO + F_HI)
