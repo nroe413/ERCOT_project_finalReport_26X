@@ -371,6 +371,8 @@ The processing pipeline reads the \texttt{.inf} file and reconstructs the mappin
 
 The plotting scripts read the resulting tables to draw the simulation responses. Screenshots, circuit diagrams, and analytical illustrations complement those numerical plots. Appendix~\ref{app:plotting} describes the file formats and plotting conventions. The workflow allows the same processing approach to serve both individual-device and network studies.
 
+The simulation records behind the figures, the processing and plotting scripts, the figure data, and the PSCAD test systems are in the project's public repository \cite{ut26xrepo}. The PNNL REGFM\_A1 model used throughout, together with the REGFM\_B1, REGFM\_C1, and REPCGFM\_C1 models of the same family, is publicly available in PNNL's release of the WECC grid-forming inverter models \cite{pnnlgithub}.
+
 \section{Simulation Testbed Results}
 \label{sec:emt}
 The results compare fault recovery as machines are replaced by GFM inverters and examine the role of current limiting. We used PSCAD~5.0.2 with GFortran~4.6 and the E-TRAN library for the converted IEEE 39-bus network \cite{etranlib}. The REGFM\_A1 model uses the PNNL library \texttt{PNNL\_REGFM\_A1\_gf46.lib} \cite{regfma1lib}. The fault-sweep cases use a 50~$\mu$s solution time step.
@@ -1069,10 +1071,12 @@ Droop-Controlled, GFM Inverters (REGFM\_A1)}, Pacific
 Northwest National Laboratory, Richland, WA, Rep.~PNNL-35110,
 September 2023. \url{https://www.pnnl.gov/main/publications/external/technical_reports/PNNL-35110.pdf}
 \bibitem{pnnlgithub} W.~Du, \emph{PSCAD and PSSE Version of WECC
-GFM Inverter Models} (software release~V1, includes
-REGFM\_A1, REGFM\_B1, REGFM\_C1), Pacific Northwest National
+Grid-Forming Inverter Models} (software release~V1, includes
+REGFM\_A1, REGFM\_B1, REGFM\_C1, and REPCGFM\_C1), Pacific Northwest National
 Laboratory, May 20, 2026.
-\url{https://github.com/pnnl/PSCAD-and-PSSE-Version-of-WECC-GFM-Inverter-Models}
+\url{https://github.com/pnnl/PSCAD-and-PSSE-Version-of-WECC-Grid-Forming-Inverter-Models/releases/tag/V1}
+\bibitem{ut26xrepo} N.~Roe, \emph{ERCOT--UT Austin Grid-Forming Inverter Testbed: report source, PSCAD test systems, run data, and processing scripts}, GitHub repository, The University of Texas at Austin, 2026.
+\url{https://github.com/nroe413/ERCOT_project_finalReport_26X}
 \bibitem{du2024b1} W.~Du et al., \emph{Virtual Synchronous Machine
 GFM Inverter Model Specification (REGFM\_B1)}, UNIFI
 Consortium, Rep.~UNIFI-2024-6-1, 2024.
@@ -1146,7 +1150,7 @@ Resource Working Group, March 27, 2026.
 \bibitem{etran} Electranix Corporation, \emph{E-TRAN: PSS/E to PSCAD Translation Software}. \url{https://www.electranix.com/software/}
 \bibitem{pscadbergeron} Manitoba Hydro International, ``The Bergeron Model,'' in \emph{EMTDC User's Guide: Transmission Lines}, PSCAD online help. \url{https://www.pscad.com/webhelp/EMTDC/Transmission_Lines/The_Bergeron_Model.htm}
 \bibitem{etranlib} Electranix Corporation, \emph{E-TRAN Runtime Library for PSCAD}. \url{https://www.electranix.com/software/e-tran-runtime-library-for-pscad/}
-\bibitem{regfma1lib} Pacific Northwest National Laboratory, \emph{REGFM\_A1 PSCAD model release (REGFM\_A1.zip, containing PNNL\_REGFM\_A1\_gf46.lib)}, GitHub release V1 of \emph{PSCAD and PSS/E Version of WECC GFM Inverter Models}. \url{https://github.com/pnnl/PSCAD-and-PSSE-Version-of-WECC-GFM-Inverter-Models/releases/download/V1/REGFM_A1.zip}
+\bibitem{regfma1lib} Pacific Northwest National Laboratory, \emph{REGFM\_A1 PSCAD model release (REGFM\_A1.zip, containing PNNL\_REGFM\_A1\_gf46.lib)}, GitHub release V1 of \emph{PSCAD and PSSE Version of WECC Grid-Forming Inverter Models}. \url{https://github.com/pnnl/PSCAD-and-PSSE-Version-of-WECC-Grid-Forming-Inverter-Models/releases/download/V1/REGFM_A1.zip}
 \bibitem{iannuzzo2014} F.~Iannuzzo, C.~Abbate, and G.~Busatto, ``Instabilities in silicon power devices: A review of failure mechanisms in modern power devices,'' \emph{IEEE Industrial Electronics Magazine}, vol.~8, no.~3, pp.~28--39, Sept. 2014, doi: 10.1109/MIE.2014.2305758.
 \bibitem{agsupdate2026} ERCOT, \emph{Interconnection and Grid Analysis Update}, Item~9, April~2026, advanced grid-support implementation update. \url{https://www.ercot.com/files/docs/2026/04/13/9-Interconnection-and-Grid-Analysis-Update.pdf}
 \bibitem{pestr1} IEEE Power \& Energy Society, Task Force on Turbine-Governor Modeling, \emph{Dynamic Models for Turbine-Governors in Power System Studies}, Technical Report PES-TR1, January 2013, Appendix~C (GGOV1 typical parameters). \url{https://site.ieee.org/fw-pes/files/2013/01/PES_TR1.pdf}
