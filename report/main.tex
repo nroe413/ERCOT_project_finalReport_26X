@@ -543,7 +543,7 @@ Figure~\ref{fig:smcircuit} shows this single-machine infinite-bus representation
 
 \subsection{GFM Inverter Dynamic Model}
 \label{sec:gfmmodel}
-The reduced GFM model is a controllable voltage source behind coupling reactance $X_{\mathrm{L}}$ \cite{du2023a1}. Its topology resembles the classical machine circuit, but the controller determines its internal voltage magnitude and phase. Figure~\ref{fig:gfmcircuit} shows the interface and Figure~\ref{fig:gfmequiv} shows the corresponding Norton equivalent used in a network solution. The equivalent circuit does not change the resource's GFM control classification.
+The simplified GFM model used in the analysis is a controllable voltage source behind coupling reactance $X_{\mathrm{L}}$ \cite{du2023a1}. Its topology resembles the classical machine circuit, but the controller determines its internal voltage magnitude and phase. Figure~\ref{fig:gfmcircuit} shows the interface and Figure~\ref{fig:gfmequiv} shows the corresponding Norton equivalent used in a network solution. The equivalent circuit does not change the resource's GFM control classification.
 
 The controlled source has magnitude $E$ and phase $\theta_{\mathrm{E}}$, while the terminal grid voltage has magnitude $V$ and phase $\theta_{\mathrm{V}}$; as for the machine, the displacement $\delta=\theta_{\mathrm{E}}-\theta_{\mathrm{V}}$ across the coupling reactance sets the power transfer. In the machine representation, the field circuit sets the internal voltage magnitude and rotor motion determines its phase. In the GFM representation, the power and voltage controls perform the analogous functions. The controller acts on filtered power measurements rather than directly applying its droop gain to instantaneous unfiltered power.
 
@@ -569,7 +569,7 @@ where $p$ is the unfiltered normalized active power. The controller-generated ph
 
 \begin{figure}[tbp]\centering
 \input{figures/tikz_gfm_basic_model.tex}
-\caption{Reduced GFM inverter model, after Figure~1 of the REGFM\_A1 specification \cite{du2023a1}. A controllable voltage source $E\angle\theta_{\mathrm{E}}$ behind coupling reactance $X_{\mathrm{L}}$ delivers active and reactive power to the grid at $V\angle\theta_{\mathrm{V}}$. Under unsaturated filtered droop, $\dot\theta_{\mathrm{E}}=\omega_0\Delta\bar{\omega}$.}
+\caption{Simplified inverter model used in the analysis, after Figure~1 of the REGFM\_A1 specification \cite{du2023a1}. A controllable voltage source $E\angle\theta_{\mathrm{E}}$ behind coupling reactance $X_{\mathrm{L}}$ delivers active and reactive power to the grid at $V\angle\theta_{\mathrm{V}}$. Under unsaturated filtered droop, $\dot\theta_{\mathrm{E}}=\omega_0\Delta\bar{\omega}$.}
 \label{fig:gfmcircuit}
 \end{figure}
 
