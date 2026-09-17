@@ -17,9 +17,9 @@ The factor (1 - 2H R s F) is 1 at zero frequency (1/R = 20 either way) and
 
 Measured points: PSCAD frequency-modulation test on the single-machine case
 (experiment smib_gov_damping_freqmod, 2026-09-12): infinite-bus frequency
-60 + 0.05 sin(2 pi fm t) Hz, lock-in of mechanical torque on speed, governor
-deadband removed from a copy of the record (db = 0); power-form coefficient
-D_P = -Re(dTm/dw) - Pm0.
+60 + 0.05 sin(2 pi fm t) Hz, lock-in (constant plus sinusoid at fm, no trend term)
+of mechanical torque on speed, governor deadband as supplied (0.0002 pu);
+power-form coefficient D_P = -Re(dTm/dw) - Pm0.  Values of 2026-09-17.
 """
 import sys
 from pathlib import Path
@@ -53,9 +53,9 @@ PM0 = {30: 1.00, 31: 0.95, 32: 1.00, 33: 0.97, 34: 0.97,
        35: 1.00, 36: 0.93, 37: 0.90, 38: 0.98, 39: 0.50}
 PM0_LO, PM0_HI, PM0_MED = min(PM0.values()), max(PM0.values()), float(np.median(list(PM0.values())))
 
-# PSCAD measurements (deadband = 0), power-form in-phase coefficient
-MEAS_050 = {0.3: 2.29, 0.5: -0.86, 0.7: -1.43, 1.0: -1.42, 1.5: -1.10, 2.0: -0.82}
-MEAS_095 = {0.3: 1.78, 0.5: -1.33, 0.7: -1.80, 1.0: -1.68, 1.5: -1.34, 2.0: -0.98}
+# PSCAD measurements (deadband as supplied, no-trend lock-in), power-form in-phase coefficient
+MEAS_050 = {0.3: 0.50, 0.5: -0.87, 0.7: -1.09, 1.0: -1.11, 1.5: -0.97, 2.0: -0.56}
+MEAS_095 = {0.3: 0.02, 0.5: -1.33, 0.7: -1.39, 1.0: -1.80, 1.5: -1.31, 2.0: -0.89}
 # GFM (REGFM_A1, m_p = 0.01, T_Pf = 0.01 s) on the single-inverter case, same test, dispatch 0.50 and
 # 0.60 pu (identical to 0.01): in-phase coefficient of the terminal power on the internal droop
 # frequency; the filtered droop power gives exactly 100 at every frequency.
