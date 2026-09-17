@@ -876,7 +876,7 @@ Figure~\ref{fig:efcct} summarizes the preliminary comparisons. The machine estim
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.8\textwidth]{ef_cct_machines_vs_gfm}
-\caption{Energy-method critical clearing times (navy) compared with PSCAD EMT brackets (orange). Each bracket runs from a successful to an unsuccessful clearing duration; the estimates are single values from the reduced models of Section~\ref{sec:energymethod}, and the inverter estimates exceed their brackets because those models carry no current limiter (Section~\ref{sec:gfmgap}).}
+\caption{Energy-method critical clearing times (navy) compared with PSCAD EMT brackets (orange). Each bracket runs from a successful to an unsuccessful clearing duration; the estimates are single values from the reduced models of Section~\ref{sec:energymethod}: the machine model is the undamped classical one, and the inverter model includes the droop damping $D=1/m_{\mathrm{p}}$. The inverter estimates exceed their brackets because those models carry no current limiter (Section~\ref{sec:gfmgap}).}
 \label{fig:efcct}
 \end{figure}
 
@@ -914,14 +914,6 @@ The larger amplitude and curvature of the GFM surface follow from the coupling r
 \end{figure}
 
 Current limiting and the ceiling on commanded voltage are plausible contributors to this discrepancy. When these constraints become active, the realized electrical power need not follow the sinusoidal relationship used by the classical construction. Figure~\ref{fig:satblock} illustrates how saturation changes the power-angle characteristic and the associated unstable equilibrium. Future controlled studies will isolate these effects rather than assume that omitted limiters explain every difference. The issue is the applicability of the chosen model assumptions, not a violation of classical stability theory. Figure~\ref{fig:ilimitsweep} shows the measured single-inverter clearing-time bracket as the transient current limit is raised from 2.0 to 15 per unit with all other settings fixed: the bracket rises from $(0.925,0.931]$~s at 2.0 per unit to $(1.163,1.169]$~s at 12 per unit and is unchanged at 15 per unit, where the limit exceeds the unlimited fault-current demand.
-
-The other quantity the inverter estimate depends on is the droop damping itself. Figure~\ref{fig:dampsweep} repeats the two inverter estimates with the damping $D=1/m_{\mathrm{p}}$ scaled from zero to its full value, everything else unchanged. With the damping removed the reduced single inverter is a 0.5~s inertia and clears in 0.140~s (the undamped equal-area value); with the full droop damping the same models give 1.297~s (single inverter) and 2.338~s (ten inverters), and the ten-inverter estimate falls to 0.279~s at one tenth of the droop damping. The published inverter estimates are therefore damping-set drift times, in which the angle reaches the unstable equilibrium slowly and with almost no kinetic energy, not inertial first swings. The EMT brackets lie between the undamped and the damped values because neither reduced model carries the current limiter that sets the measured clearing time. The damped values remain the ones compared in Figure~\ref{fig:efcct}: setting $D=0$ is the classical-machine convention, whose model has no damping to keep, and not a description of a droop inverter.
-
-\begin{figure}[tbp]\centering
-\includegraphics[width=0.85\textwidth]{narr_cct_damping_sweep}
-\caption{Energy-method critical clearing time of the reduced droop-inverter models as the droop damping is scaled from zero ($\alpha=0$, drawn at the left edge) to its full value ($\alpha=1$, the device of Figure~\ref{fig:efcct}), with the equivalent inertia $T_{\mathrm{Pf}}/(2m_{\mathrm{p}})=0.5$~s, the constant internal voltage, the constant-power loads, and the absence of a current limiter unchanged. Circles: single inverter on the infinite bus. Squares: ten inverters in the 39-bus network with the bus-14 fault, at damping scales of 0.1 and above, below which the constant-power network solution fails to converge along the wide swings. Shaded bands: the PSCAD EMT brackets of the same two cases.}
-\label{fig:dampsweep}
-\end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.9\textwidth]{ilimit_sweep_emt}
