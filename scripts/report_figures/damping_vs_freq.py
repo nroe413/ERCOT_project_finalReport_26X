@@ -105,10 +105,10 @@ def main():
     axT.set_yticks([0, 25, 50, 75, 100])
     axT.legend(loc="upper left", bbox_to_anchor=(0.005, 0.87), fontsize=6.4, framealpha=0.92,
                handlelength=1.6, labelspacing=0.35, borderpad=0.4)
-    axT.set_title("(a) both technologies, full scale", fontsize=8.5, loc="left")
+    axT.set_title("(a) equivalent damping: GFM and synchronous machine", fontsize=8.5, loc="left")
     axT.set_ylabel(r"$D_{\mathrm{eq}}$ (pu)")
 
-    axB.set_title("(b) synchronous machine only, expanded scale (same curve as in (a))", fontsize=8.5, loc="left")
+    axB.set_title("(b) equivalent damping, synchronous machine only", fontsize=8.5, loc="left")
     axB.set_ylim(-6.0, 23)
     axB.set_yticks([-5, 0, 5, 10, 15, 20])
     axB.set_ylabel(r"$D_{\mathrm{eq}}$ (pu)")
