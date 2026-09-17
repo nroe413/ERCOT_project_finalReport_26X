@@ -85,7 +85,7 @@ Automation Library installer, and `psspy` / `dyntools` come with PSS/E 36.
 | Scripts | Third-party packages | Also needs |
 |---|---|---|
 | `scripts/report_figures/*.py` (the report's figures) | `numpy`, `pandas`, `matplotlib` | `figstyle_26x.py` and `repo_paths.py` in the same folder; TeX Gyre Pagella from a MiKTeX or TeX Live install (falls back to a serif face) |
-| `scripts/report_figures/{fig_mqt_042826, fig3_mqt_split, inertia_timescale, saturation_block, damping_vs_freq, bus14_trip, hest_scr}.py` | `numpy`, `matplotlib` (`pandas` for the two MQT scripts and `bus14_trip`) | nothing else: they run from the shipped CSVs or from constants |
+| `scripts/report_figures/{fig_mqt_042826, fig3_mqt_split, inertia_timescale, saturation_block, damping_vs_freq, hest_scr}.py` | `numpy`, `matplotlib` (`pandas` for the two MQT scripts) | nothing else: they run from the shipped CSVs or from constants |
 | `scripts/report_figures/{ilimit_sweep_emt, exec_gfm_vs_sync_bus39_pu, peakI_pair}.py` | `numpy`, `pandas`, `matplotlib` | import `analytic_ilimit`, `gfm_vs_sync_bus39_pu`, `make_bus10_sync_deck` from the study's `experiments/` tree (`ERCOT_EXPERIMENTS`), not included here |
 | `scripts/report_figures/_pscad_io.py`, `aggregate.py`, `scripts/tools/out_chunks_to_csv_example.py` | `numpy`, `pandas` | the raw PSCAD `.inf` + `.out` chunk files (see `DATA.md`) |
 | `scripts/tools/instrument_buses.py` | none (standard library only) | a `.pscx` to patch |
