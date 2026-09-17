@@ -27,15 +27,16 @@ clone opens and builds without re-pointing paths.
 | `mqt/pnnl_nlr_pscad_psse_bench` | PNNL vs NLR PSCAD/PSS-E benchmark cases and per-case CSVs |
 | `mqt/pmview35_*` | PMView 3.5 advanced-grid-support (inertia) test rigs: REGFM_A1, REGFM_B1, and the Gen-32 synchronous machine |
 | `mqt/typicalgt_dwg_battery` | DWG Procedure Manual Rev. 24 tests 1-9 run as one PSCAD multiple-run battery on the Gen-32 machine (driver, exports, figures) |
-| `data/report_figure_data` | The CSV extracts behind the model-quality-testing figures and the hardware-trip comparison (Figure 27) |
+| `data/report_figure_data` | The CSV extracts behind the model-quality-testing figures and the result files of the CCT solver |
 | `scripts/report_figures` | The report's figure scripts (matplotlib, report style) with repository-relative paths |
+| `scripts/cct_solver` | The energy-method critical-clearing-time solver behind Figure 50 (constant-power network, swing-form devices, bisection); see its `README.md` |
 | `scripts/tools` | Bus instrumentation and .out-to-CSV stitching utilities |
 | `manifest.json` | Machine-readable map of every copied directory to its source and exclusions |
 
 ## What runs directly from a clone
 
 - **Report.** `cd report && pdflatex main.tex && pdflatex main.tex` (or
-  `latexmk -pdf main.tex`) rebuilds the 54-page PDF with standard TeX Live
+  `latexmk -pdf main.tex`) rebuilds the 55-page PDF with standard TeX Live
   or MiKTeX packages; every path in `main.tex` is relative.
 - **PSCAD systems.** Open any `.pswx` under `systems/` in PSCAD 5.0.2 with
   GFortran 4.6 and build; the E-TRAN and PNNL libraries are linked from
@@ -44,6 +45,9 @@ clone opens and builds without re-pointing paths.
   run from a fresh copy of this repository on 2026-09-11 to confirm this;
   `python scripts/tools/verify_pscad_build.py` repeats that check headlessly
   (PSCAD's own automation package, `mhi.pscad`, is required).
+- **CCT solver.** `cd scripts/cct_solver && python cct_pebs_constP.py --scenario bus14_noloss`
+  reruns the ten-inverter energy-method clearing time from the shipped PSCAD model's loads
+  (`numpy` only; hours per scenario). `smib_cct.py` and `gfm_damping_sweep.py` are the single-device cases.
 - **Figure scripts.** `python scripts/report_figures/fig_mqt_042826.py`
   and `python scripts/report_figures/fig3_mqt_split.py` regenerate the
   model-quality-testing figures from the shipped CSVs into
@@ -88,6 +92,7 @@ Automation Library installer, and `psspy` / `dyntools` come with PSS/E 36.
 | `scripts/report_figures/{fig_mqt_042826, fig3_mqt_split, inertia_timescale, saturation_block, damping_vs_freq, hest_scr}.py` | `numpy`, `matplotlib` (`pandas` for the two MQT scripts) | nothing else: they run from the shipped CSVs or from constants |
 | `scripts/report_figures/{ilimit_sweep_emt, exec_gfm_vs_sync_bus39_pu, peakI_pair}.py` | `numpy`, `pandas`, `matplotlib` | import `analytic_ilimit`, `gfm_vs_sync_bus39_pu`, `make_bus10_sync_deck` from the study's `experiments/` tree (`ERCOT_EXPERIMENTS`), not included here |
 | `scripts/report_figures/_pscad_io.py`, `aggregate.py`, `scripts/tools/out_chunks_to_csv_example.py` | `numpy`, `pandas` | the raw PSCAD `.inf` + `.out` chunk files (see `DATA.md`) |
+| `scripts/cct_solver/*.py` (the CCT solver) | `numpy` (`pandas`, `matplotlib` for the two single-device scripts) | the shipped `.pscx` and SMIB record under `systems/` |
 | `scripts/tools/instrument_buses.py` | none (standard library only) | a `.pscx` to patch |
 | `scripts/tools/verify_pscad_build.py`, `systems/ieee39/01GFL/{run_3PG_fault, diag_build, diag_1gfm_control}.py`, `mqt/typicalgt_dwg_battery/run_battery.py`, the `PSCAD_*.py` drivers and `_pscad_pipeline.py` under `mqt/pnnl_nlr_pscad_psse_bench` and `mqt/pmview35_regfmb1_inertia` (PSCAD automation) | `mhi.pscad` 3.1.2; `pandas` and `numpy` where results are exported | PSCAD 5.0.2 with GFortran 4.6 and a licence on the machine; close interactive PSCAD before running |
 | `mqt/typicalgt_dwg_battery/{export_runs, plot_battery}.py`, `mqt/*/plot_gfm_tests.py`, `analyze_gfl_results.py`, `_plot_*.py` | `numpy`, `pandas`, `matplotlib` | the run CSVs in the same folder |
