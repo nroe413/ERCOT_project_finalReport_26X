@@ -919,7 +919,7 @@ The other quantity the inverter estimate depends on is the droop damping itself.
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.85\textwidth]{narr_cct_damping_sweep}
-\caption{Energy-method critical clearing time of the reduced droop-inverter models as the droop damping is scaled from zero ($\alpha=0$, drawn at the left edge) to its full value ($\alpha=1$, the device of Figure~\ref{fig:efcct}), with the equivalent inertia $T_{\mathrm{Pf}}/(2m_{\mathrm{p}})=0.5$~s, the constant internal voltage, the constant-power loads, and the absence of a current limiter unchanged. Circles: single inverter on the infinite bus. Squares: ten inverters in the 39-bus network with the bus-14 fault, at damping scales of 0.1 and above (see text). Shaded bands: the PSCAD EMT brackets of the same two cases.}
+\caption{Energy-method critical clearing time of the reduced droop-inverter models as the droop damping is scaled from zero ($\alpha=0$, drawn at the left edge) to its full value ($\alpha=1$, the device of Figure~\ref{fig:efcct}), with the equivalent inertia $T_{\mathrm{Pf}}/(2m_{\mathrm{p}})=0.5$~s, the constant internal voltage, the constant-power loads, and the absence of a current limiter unchanged. Circles: single inverter on the infinite bus. Squares: ten inverters in the 39-bus network with the bus-14 fault, at damping scales of 0.1 and above, below which the constant-power network solution fails to converge along the wide swings. Shaded bands: the PSCAD EMT brackets of the same two cases.}
 \label{fig:dampsweep}
 \end{figure}
 
