@@ -15,11 +15,7 @@ feedback closed by the machine's own swing equation
 The factor (1 - 2H R s F) is 1 at zero frequency (1/R = 20 either way) and
 0.47 - 0.09j at 1 Hz.  Band = fleet dispatch Pm0 0.50-1.00 pu, line = median.
 
-Measured points: PSCAD frequency-modulation test on the single-machine case
-(experiment smib_gov_damping_freqmod, 2026-09-12): infinite-bus frequency
-60 + 0.05 sin(2 pi fm t) Hz, lock-in (constant plus sinusoid at fm, no trend term)
-of mechanical torque on speed, governor deadband as supplied (0.0002 pu);
-power-form coefficient D_P = -Re(dTm/dw) - Pm0.  Values of 2026-09-17.
+No measured points: the figure shows the two analytic curves only (author, 2026-09-17).
 """
 import sys
 from pathlib import Path
@@ -53,13 +49,6 @@ PM0 = {30: 1.00, 31: 0.95, 32: 1.00, 33: 0.97, 34: 0.97,
        35: 1.00, 36: 0.93, 37: 0.90, 38: 0.98, 39: 0.50}
 PM0_LO, PM0_HI, PM0_MED = min(PM0.values()), max(PM0.values()), float(np.median(list(PM0.values())))
 
-# PSCAD measurements (deadband as supplied, no-trend lock-in), power-form in-phase coefficient
-MEAS_050 = {0.3: 0.50, 0.5: -0.87, 0.7: -1.09, 1.0: -1.11, 1.5: -0.97, 2.0: -0.56}
-MEAS_095 = {0.3: 0.02, 0.5: -1.33, 0.7: -1.39, 1.0: -1.80, 1.5: -1.31, 2.0: -0.89}
-# GFM (REGFM_A1, m_p = 0.01, T_Pf = 0.01 s) on the single-inverter case, same test, dispatch 0.50 and
-# 0.60 pu (identical to 0.01): in-phase coefficient of the terminal power on the internal droop
-# frequency; the filtered droop power gives exactly 100 at every frequency.
-MEAS_GFM = {0.3: 99.9, 0.5: 99.8, 0.7: 99.6, 1.0: 99.2, 1.5: 98.3, 2.0: 97.0}
 
 H_SG = 5.46
 EM_LO, EM_HI = 0.1, 3.0
@@ -109,8 +98,6 @@ def main():
 
     axT.semilogx(f, np.full_like(f, D_GFM), color=RED, lw=2.0, zorder=4,
                  label=r"grid-forming, analytic: filtered-droop coefficient $1/m_{\mathrm{p}}=100$ pu")
-    axT.plot(list(MEAS_GFM), list(MEAS_GFM.values()), "o", ms=5.5, color=RED, mfc="white", mew=1.1, zorder=7,
-             label="grid-forming, measured: PSCAD frequency-modulation test,\nterminal power, 0.50 and 0.60 pu")
     axT.plot([], [], color=BLUE, lw=1.9,
              label="synchronous, analytic: GGOV1 governor and turbine path\n"
                    "(band: fleet dispatch 0.50 to 1.00 pu)")
@@ -121,12 +108,7 @@ def main():
     axT.set_title("(a) both technologies, full scale", fontsize=8.5, loc="left")
     axT.set_ylabel(r"$D_{\mathrm{eq}}$ (pu)")
 
-    axB.plot(list(MEAS_050), list(MEAS_050.values()), "o", ms=5.5, color=MEAS, mfc="white", mew=1.1, zorder=7,
-             label="synchronous, measured: PSCAD frequency-modulation test, 0.50 pu")
-    axB.plot(list(MEAS_095), list(MEAS_095.values()), "s", ms=5.2, color=MEAS, mfc=MEAS, mew=0.8, zorder=7,
-             label="synchronous, measured: PSCAD frequency-modulation test, 0.95 pu")
-    axB.legend(loc="upper right", fontsize=6.8, framealpha=0.92, handlelength=1.6, labelspacing=0.35, borderpad=0.4)
-    axB.set_title("(b) synchronous machine only, expanded scale (same curve and points as in (a))", fontsize=8.5, loc="left")
+    axB.set_title("(b) synchronous machine only, expanded scale (same curve as in (a))", fontsize=8.5, loc="left")
     axB.set_ylim(-6.0, 23)
     axB.set_yticks([-5, 0, 5, 10, 15, 20])
     axB.set_ylabel(r"$D_{\mathrm{eq}}$ (pu)")
