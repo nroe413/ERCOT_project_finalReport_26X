@@ -790,7 +790,7 @@ Equation~\eqref{eq:hest} also suggests a damping correction. Since an underfrequ
 \Delta E_{\mathrm{in}}=\int_0^T\left[\Delta p(t)+D\frac{\Delta f(t)}{f_{\mathrm{n}}}\right]\,\mathrm{d}t.
 \label{eq:subtract}
 \end{equation}
-Applying the same test normalization to this corrected energy yields $H$ under the stated assumptions. The subtraction must use consistent power bases and the frequency associated with the reduced model. Saturation, finite bandwidth, and network dynamics can prevent that separation.
+Applying the same test normalization to this corrected energy yields $H$. The correction requires $\Delta p$ and $D$ on the same per-unit base and $\Delta f$ taken as the inverter's internal frequency, the one the droop responds to (Figure~\ref{fig:hestscr}). It recovers $H$ only where the reduced model holds: an active power limiter, the controller's own lag within the window, or the network's lag between the internal and imposed frequencies each leave a part of $\Delta p$ that is neither inertial nor $D\,\Delta f$.
 
 Alternatively, the window dependence is
 \begin{equation}
