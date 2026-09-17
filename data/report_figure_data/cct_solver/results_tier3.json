@@ -1,0 +1,25 @@
+{
+ "loads_total_pu": 61.765,
+ "vth_default": 0.5,
+ "tier1P_constE_constP_s": 0.25839843749999997,
+ "tier3_decay_constP_s": 0.052148437500000006,
+ "tier3_energy_screen_s": 0.3688724543848889,
+ "vth_sensitivity": {
+  "0.3": 0.052148437500000006,
+  "0.7": 0.0607421875
+ },
+ "measured_bracket_s": [
+  0.237,
+  0.25
+ ],
+ "tier0_constZ_s": 0.479,
+ "tier2_decay_constZ_s": 0.43,
+ "tier1P_fine_dt2e4_s": 0.248,
+ "tier1P_fine_bracket_s": [
+  0.246,
+  0.25
+ ],
+ "tier3_flag": "ARTIFACT: algebraic solvability/branch-jump in the const-P fixed point as E' moves; needs Newton + convergence diagnostics (stage-4)",
+ "tier1P_pebs_screen_constP_s": 0.228,
+ "tier1P_pebs_screen_note": "conservative certificate: V_cr from the PEBS crossing at 0.373 s of sustained fault; below the EMT bracket low edge"
+}

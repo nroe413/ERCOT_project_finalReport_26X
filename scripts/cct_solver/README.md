@@ -2,8 +2,9 @@
 
 The energy-method critical clearing times quoted in the report (Section 5.1, Figure 50) are computed
 by the scripts in this folder. They are copied from the study's experiment folders with only the
-input paths changed to repository-relative ones; the study's result files sit beside the scripts in
-`data/report_figure_data/`.
+input paths changed to repository-relative ones; the study's result files are in `data/report_figure_data/cct_solver/`
+(`results_constP.json`: ten-inverter scenarios; `results_firstslip.json`; `results_gfm_damping_sweep.json`;
+`results_sp39/tier2/tier3.json`: all-machine classical, flux-decay and constant-power tiers; `smib_cct_metrics.json`).
 
 | File | Role |
 |---|---|

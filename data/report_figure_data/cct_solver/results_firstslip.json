@@ -1,0 +1,118 @@
+{
+ "note": "THEORY numbers. EMT-measured anchor (1.6, 1.7] s. Rule mirrors selfclear_ladder_10gfm.classify_rung: terminal displacement vs prefault > 180 deg = SLIP, fault phase included via concatenated trajectory.",
+ "scenario": "bus14_noloss, unlimited const-P fleet",
+ "tcr_firstslip_s": 2.338,
+ "bracket_s": [
+  2.3357,
+  2.3403
+ ],
+ "tcr_postclear_settling_s": 2.338,
+ "faulton_first_180_s": null,
+ "emt_measured_bracket_s": [
+  1.6,
+  1.7
+ ],
+ "unconverged_solves": 310,
+ "history": [
+  {
+   "t_cl": 2.4,
+   "stable": false,
+   "max_end_displacement_deg": 288.0,
+   "worst_unit_bus": 32,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": 3.12,
+   "slipped": true,
+   "unsettled": false
+  },
+  {
+   "t_cl": 1.225,
+   "stable": true,
+   "max_end_displacement_deg": 0.0,
+   "worst_unit_bus": 38,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": null,
+   "slipped": false,
+   "unsettled": false
+  },
+  {
+   "t_cl": 1.8125,
+   "stable": true,
+   "max_end_displacement_deg": 0.0,
+   "worst_unit_bus": 38,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": null,
+   "slipped": false,
+   "unsettled": false
+  },
+  {
+   "t_cl": 2.1063,
+   "stable": true,
+   "max_end_displacement_deg": 0.0,
+   "worst_unit_bus": 38,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": null,
+   "slipped": false,
+   "unsettled": false
+  },
+  {
+   "t_cl": 2.2531,
+   "stable": true,
+   "max_end_displacement_deg": 0.0,
+   "worst_unit_bus": 38,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": null,
+   "slipped": false,
+   "unsettled": false
+  },
+  {
+   "t_cl": 2.3266,
+   "stable": true,
+   "max_end_displacement_deg": 0.0,
+   "worst_unit_bus": 38,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": null,
+   "slipped": false,
+   "unsettled": false
+  },
+  {
+   "t_cl": 2.3633,
+   "stable": false,
+   "max_end_displacement_deg": 288.0,
+   "worst_unit_bus": 32,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": 3.32,
+   "slipped": true,
+   "unsettled": false
+  },
+  {
+   "t_cl": 2.3449,
+   "stable": false,
+   "max_end_displacement_deg": 288.0,
+   "worst_unit_bus": 32,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": 3.68,
+   "slipped": true,
+   "unsettled": false
+  },
+  {
+   "t_cl": 2.3357,
+   "stable": true,
+   "max_end_displacement_deg": 0.0,
+   "worst_unit_bus": 38,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": null,
+   "slipped": false,
+   "unsettled": false
+  },
+  {
+   "t_cl": 2.3403,
+   "stable": false,
+   "max_end_displacement_deg": 288.0,
+   "worst_unit_bus": 32,
+   "tail_freq_std_hz": 0.0,
+   "first_t_beyond_180_s": 3.68,
+   "slipped": true,
+   "unsettled": false
+  }
+ ]
+}

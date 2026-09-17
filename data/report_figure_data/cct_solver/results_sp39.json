@@ -1,0 +1,18 @@
+{
+  "case": "all-sync ieee39_sz (Vsched RAW dispatch), 3PG bus 14 self-clearing, classical E' behind x'd, D=0",
+  "H_mach_s": 5.46,
+  "xdp_mach_pu": 0.26,
+  "pf_residual": 9.870787520682711e-11,
+  "pebs_reduced": {
+    "t_pebs_s": 0.672809809929588,
+    "Vcr_pu": 21.440172609044016,
+    "tcr_s": 0.5215088001664288
+  },
+  "equivalence_maxPeErr_pu": 8.881784197001252e-15,
+  "equivalence_maxVpeErr_pu": 0.003934078335475988,
+  "structure_preserving": {
+    "Vcr_pu": 21.43923044022701,
+    "tcr_s": 0.5214957133277852
+  },
+  "true_classical_tcr_s": 0.47900390625
+}

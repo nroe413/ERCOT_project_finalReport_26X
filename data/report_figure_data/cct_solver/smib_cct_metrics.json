@@ -1,0 +1,86 @@
+{
+ "machine": {
+  "H_s": 5.46,
+  "Xdp_pu": 0.26,
+  "S_MVA": 2000.0,
+  "D": 0
+ },
+ "operating_point_measured": {
+  "VT": 1.0301,
+  "P_pu": 0.50279,
+  "Q_pu": 0.29386
+ },
+ "identified_source": {
+  "Vs_pu": 1.0008,
+  "X_ext_pu": 0.1075
+ },
+ "cases": [
+  {
+   "case": "fit from June run (Vs=1.000)",
+   "x_ext": 0.1075,
+   "Ep": 1.1115,
+   "Vs": 1.0008,
+   "Pmax": 3.027,
+   "delta_s_deg": 9.561,
+   "delta_cr_deg": 121.314,
+   "delta_u_deg": 170.439,
+   "V_cr_pu": 4.5582,
+   "t_cr_s": 0.4741,
+   "f_swing_Hz": 1.616
+  },
+  {
+   "case": "SCR-10 grid Zg 0.100 + residual",
+   "x_ext": 0.105,
+   "Ep": 1.1115,
+   "Vs": 1.0015,
+   "Pmax": 3.0498,
+   "delta_s_deg": 9.489,
+   "delta_cr_deg": 121.533,
+   "delta_u_deg": 170.511,
+   "V_cr_pu": 4.603,
+   "t_cr_s": 0.4747,
+   "f_swing_Hz": 1.622
+  },
+  {
+   "case": "grid-only, no residual",
+   "x_ext": 0.1,
+   "Ep": 1.1115,
+   "Vs": 1.0028,
+   "Pmax": 3.0961,
+   "delta_s_deg": 9.346,
+   "delta_cr_deg": 121.974,
+   "delta_u_deg": 170.654,
+   "V_cr_pu": 4.6945,
+   "t_cr_s": 0.4759,
+   "f_swing_Hz": 1.634
+  }
+ ],
+ "headline": {
+  "t_cr_s": 0.4741,
+  "band_s": [
+   0.4741,
+   0.4759
+  ],
+  "t_cr_dispatch_matched_s_SUPERSEDED": 0.4716,
+  "t_cr_Eboost10pct_s": 0.4817,
+  "expected_EMT_bias": "EMT CCT >= theory (AVR boosts E' during the fault; T'do = 7.61 s keeps flux up; PSS adds damping) - the CONSERVATIVE direction, opposite to the all-GFM bus-16 finding"
+ },
+ "classical_ladder_verdicts": {
+  "0.400": "STABLE",
+  "0.450": "STABLE",
+  "0.460": "STABLE",
+  "0.470": "STABLE",
+  "0.474": "STABLE",
+  "0.480": "UNSTABLE",
+  "0.500": "UNSTABLE",
+  "0.525": "UNSTABLE",
+  "0.550": "UNSTABLE",
+  "0.600": "UNSTABLE"
+ },
+ "overlay_5cyc": {
+  "peak_swing_model_deg": 8.92,
+  "peak_fwd_measured_deg": 0.53,
+  "peak_back_measured_deg": -7.76,
+  "note": "forward swing all but cancelled by subtransient DC-offset braking (TE +4.9/-3.1 pu at 60 Hz, absent from the classical model, decayed by the CCT timescale); the negative excursion is the post-clear recovery-torque pulse + GGOV1 pulling TM down"
+ }
+}
