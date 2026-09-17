@@ -14,7 +14,7 @@ Panels (textwidth x 5.2 in, three rows):
   (b) fleet active power in GW;
   (c) unit-32 phase currents in pu of rated peak current
       (rated peak = sqrt(2) x 1083 MVA / (sqrt(3) x 10 kV) = 88.43 kA) over
-      the first 6 ms of the fault, k = 1.5 record, with the two thresholds
+      the first 6 ms of the fault, k = 1.5 record, with the 1.5 pu threshold
       and the trip instant.
 """
 import sys
@@ -75,7 +75,7 @@ def main():
     tms = (d.TIME[z] - FAULT_T) * 1e3
     for ph, c in zip("ABC", ("#1f77b4", "#2ca02c", "#9467bd")):
         ax[2].plot(tms, np.abs(d["IB32" + ph][z]) / PEAK_KA_PER_PU_32, color=c, lw=1.0, label="phase " + ph.lower())
-    for thr, lab, col in ((1.5, "1.5 pu threshold", RED), (1.2, "1.2 pu threshold", DARK)):
+    for thr, lab, col in ((1.5, "1.5 pu threshold", RED),):
         ax[2].axhline(thr, color=col, lw=0.9, ls=":")
         ax[2].text(5.9, thr + 0.04, lab, ha="right", va="bottom", fontsize=7.5, color=col)
     trip = d.TIME[z][d.BRK32[z] > 0.5]
