@@ -1,7 +1,8 @@
 """Report figure narr_ilim_arms_bus13.png: the bus-13 3PG fault on the all-GFM fleet at four
 transient current limits, ImaxF = 15 (no practical limit), 2.0, 1.5 and 1.2 pu.
-Left: per-unit peak of the inverter's internal current magnitude (I_pu, pu on each unit's base)
-with the three limit lines.  Right: I_pu of unit 32 through the fault for the four arms.
+(a) per-unit peak of the inverter's internal current magnitude (I_pu, pu on each unit's base) with
+the three limit lines; (b) I_pu of unit 32 through the fault; (c) the first two and a half cycles after
+fault inception, where the limits take hold.
 
 Runs from the shipped extracts data/report_figure_data/ilim_arms_bus13/<arm>.csv (TIME and the
 ten I_pu channels over 2.9-4.0 s of each 10 s record).  With ERCOT_EXPERIMENTS set, missing
@@ -26,14 +27,18 @@ RUNS = {"Iunl": "fault_3PG_bus13_10GFM_ilim_arms/runs/3PG_at_bus13_w_10GFM_Vsche
         "I2p0": "fault_3PG_bus13_10GFM_ilim_arms/runs/3PG_at_bus13_w_10GFM_Vsched_I2p0_t3p0s_5cyc_norecl_10s",
         "I1p5": "fault_loc_sweep_gfm32_Ilim1p5/runs/3PG_at_bus13_w_10GFM_Vsched_Ilim1p5_t3p0s_5cyc_norecl_10s",
         "I1p2": "fault_3PG_bus13_10GFM_ilim_arms/runs/3PG_at_bus13_w_10GFM_Vsched_I1p2_t3p0s_5cyc_norecl_10s"}
+# (arm, limit, legend label, colour); the three limited arms keep the colours of the bus-14 figure
 ARMS = [("Iunl", None, r"no practical limit ($I_{\max F}=15$ pu)", "#1f2f5c"),
         ("I2p0", 2.0, r"$I_{\max F}=2.0$ pu", "#7f7f7f"),
         ("I1p5", 1.5, r"$I_{\max F}=1.5$ pu", "#e08a1e"),
         ("I1p2", 1.2, r"$I_{\max F}=1.2$ pu", "#c0392b")]
 GEN = list(range(30, 40))
 BMAX = 32
+T0 = 3.0
 PEAK = (2.95, 4.0)
 TRACE = (2.9, 3.6)
+ZOOM_MS = (-2.0, 42.0)          # panel (c): time after fault inception
+CYCLE_MS = 1000.0 / 60.0
 EXTRACT = (2.9, 4.0)
 
 
@@ -65,8 +70,15 @@ def main():
         peaks[arm] = [float(np.abs(df[ipu(b)].values[m]).max()) for b in GEN]
     top = max(max(v) for v in peaks.values())
 
-    fig, (ax, at) = plt.subplots(1, 2, figsize=(st.TEXTWIDTH_IN, 3.0),
-                                 gridspec_kw=dict(width_ratios=[1.35, 1.0]))
+    plt.rcParams["figure.constrained_layout.use"] = False   # manual grid below
+    fig = plt.figure(figsize=(st.TEXTWIDTH_IN, 5.3))
+    gs = fig.add_gridspec(2, 2, width_ratios=[1.35, 1.0], height_ratios=[1.0, 0.9],
+                          left=0.09, right=0.99, top=0.95, bottom=0.085, hspace=0.5, wspace=0.28)
+    ax = fig.add_subplot(gs[0, 0])
+    at = fig.add_subplot(gs[0, 1])
+    az = fig.add_subplot(gs[1, :])
+
+    # (a) per-unit peaks
     x = np.arange(len(GEN))
     w = 0.2
     for k, (arm, lim, lab, col, _) in enumerate(data):
@@ -79,9 +91,9 @@ def main():
     ax.set_ylabel(r"peak $|I|$ (pu on unit base)")
     ax.set_ylim(0, np.ceil((top + 0.45) * 2) / 2)
     ax.grid(True, axis="y", alpha=0.3, zorder=0)
-    ax.legend(loc="upper right", fontsize=7.2, ncol=2, framealpha=0.9,
-              handlelength=1.2, columnspacing=0.8)
+    ax.set_title("(a) peak current of each unit", fontsize=8.5, loc="left")
 
+    # (b) unit 32 through the fault
     for arm, lim, lab, col, df in data:
         t = df["TIME"].values
         m = (t >= TRACE[0]) & (t <= TRACE[1])
@@ -91,11 +103,36 @@ def main():
     at.set_xlabel("time (s)")
     at.set_ylabel(r"$|I|$, unit %d (pu)" % BMAX)
     at.grid(True, alpha=0.3)
-    at.legend(loc="upper right", fontsize=7.2, framealpha=0.9)
+    at.set_title("(b) unit 32 through the fault", fontsize=8.5, loc="left")
+    at.legend(loc="upper right", fontsize=7.0, framealpha=0.92, handlelength=1.4)
+
+    # (c) the first cycles after inception, where the limits take hold
+    for arm, lim, lab, col, df in data:
+        tm = (df["TIME"].values - T0) * 1e3
+        m = (tm >= ZOOM_MS[0]) & (tm <= ZOOM_MS[1])
+        az.plot(tm[m], np.abs(df[ipu(BMAX)].values[m]), color=col, lw=1.2, label=lab)
+        if lim is not None:
+            az.axhline(lim, color=col, ls="--", lw=0.9, zorder=2)
+    for k in (1, 2):
+        az.axvline(k * CYCLE_MS, color="0.55", lw=0.8, ls=":")
+        az.text(k * CYCLE_MS + 0.4, 0.62, "%d cycle%s" % (k, "" if k == 1 else "s"), fontsize=7.5,
+                color="0.35", ha="left", va="bottom")
+    az.axvline(0.0, color="k", lw=0.8)
+    az.set_xlim(*ZOOM_MS)
+    az.set_ylim(0.55, 1.95)
+    az.set_xlabel("time after fault inception (ms)")
+    az.set_ylabel(r"$|I|$, unit %d (pu)" % BMAX)
+    az.grid(True, alpha=0.3)
+    az.set_title("(c) unit 32, first cycles after inception: the limits take hold", fontsize=8.5, loc="left")
 
     out = OUT / "narr_ilim_arms_bus13.png"
     fig.savefig(out, dpi=600)
     print("wrote", out)
+    for arm, lim, lab, col, _ in data:
+        pk = peaks[arm]
+        print("  %-5s limit %s: unit-32 peak %.3f, max peak %.3f (bus %d), units within 0.02 of limit: %s"
+              % (arm, lim, pk[GEN.index(32)], max(pk), GEN[int(np.argmax(pk))],
+                 sum(p > lim - 0.02 for p in pk) if lim else "-"))
 
 
 if __name__ == "__main__":

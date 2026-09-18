@@ -36,7 +36,7 @@ clone opens and builds without re-pointing paths.
 ## What runs directly from a clone
 
 - **Report.** `cd report && pdflatex main.tex && pdflatex main.tex` (or
-  `latexmk -pdf main.tex`) rebuilds the 55-page PDF with standard TeX Live
+  `latexmk -pdf main.tex`) rebuilds the 57-page PDF with standard TeX Live
   or MiKTeX packages; every path in `main.tex` is relative.
 - **PSCAD systems.** Open any `.pswx` under `systems/` in PSCAD 5.0.2 with
   GFortran 4.6 and build; the E-TRAN and PNNL libraries are linked from
