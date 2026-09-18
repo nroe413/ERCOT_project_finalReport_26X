@@ -27,7 +27,7 @@ clone opens and builds without re-pointing paths.
 | `mqt/pnnl_nlr_pscad_psse_bench` | PNNL vs NLR PSCAD/PSS-E benchmark cases and per-case CSVs |
 | `mqt/pmview35_*` | PMView 3.5 advanced-grid-support (inertia) test rigs: REGFM_A1, REGFM_B1, and the Gen-32 synchronous machine |
 | `mqt/typicalgt_dwg_battery` | DWG Procedure Manual Rev. 24 tests 1-9 run as one PSCAD multiple-run battery on the Gen-32 machine (driver, exports, figures) |
-| `data/report_figure_data` | The CSV extracts behind the model-quality-testing figures and the bus-13 current-limit figure (Figure 27), and the result files of the CCT solver |
+| `data/report_figure_data` | The CSV extracts behind the model-quality-testing figures (including the REGFM_A1 legacy LVRT record of Figure 13, re-run 2026-09-18 with `mqt/pmview24_regfm_a1/PMVIEW24_pnnl_GFM/run_lvrt_headless.py`) and the bus-13 current-limit figure (Figure 27), and the result files of the CCT solver |
 | `scripts/report_figures` | The report's figure scripts (matplotlib, report style) with repository-relative paths |
 | `scripts/cct_solver` | The energy-method critical-clearing-time solver behind Figure 50 (constant-power network, swing-form devices, bisection); see its `README.md` |
 | `scripts/tools` | Bus instrumentation and .out-to-CSV stitching utilities |
@@ -50,8 +50,9 @@ clone opens and builds without re-pointing paths.
 - **CCT solver.** `cd scripts/cct_solver && python cct_pebs_constP.py --scenario bus14_noloss`
   reruns the ten-inverter energy-method clearing time from the shipped PSCAD model's loads
   (`numpy` only; hours per scenario). `smib_cct.py` and `gfm_damping_sweep.py` are the single-device cases.
-- **Figure scripts.** `python scripts/report_figures/fig_mqt_042826.py`
-  and `python scripts/report_figures/fig3_mqt_split.py` regenerate the
+- **Figure scripts.** `python scripts/report_figures/fig_mqt_042826.py`,
+  `python scripts/report_figures/fig3_mqt_split.py` and
+  `python scripts/report_figures/fig_mqt_regfma1_lvrt.py` regenerate the
   model-quality-testing figures from the shipped CSVs into
   `report/figures/`. The other scripts read the full PSCAD records, which
   are too large for GitHub (see `DATA.md`); each stops with a message
@@ -91,7 +92,7 @@ Automation Library installer, and `psspy` / `dyntools` come with PSS/E 36.
 | Scripts | Third-party packages | Also needs |
 |---|---|---|
 | `scripts/report_figures/*.py` (the report's figures) | `numpy`, `pandas`, `matplotlib` | `figstyle_26x.py` and `repo_paths.py` in the same folder; TeX Gyre Pagella from a MiKTeX or TeX Live install (falls back to a serif face) |
-| `scripts/report_figures/{fig_mqt_042826, fig3_mqt_split, inertia_timescale, saturation_block, damping_vs_freq, hest_scr, ilim_arms_bus13}.py` | `numpy`, `matplotlib` (`pandas` for the two MQT scripts) | nothing else: they run from the shipped CSVs or from constants |
+| `scripts/report_figures/{fig_mqt_042826, fig3_mqt_split, fig_mqt_regfma1_lvrt, inertia_timescale, saturation_block, damping_vs_freq, hest_scr, ilim_arms_bus13}.py` | `numpy`, `matplotlib` (`pandas` for the three MQT scripts) | nothing else: they run from the shipped CSVs or from constants |
 | `scripts/report_figures/{ilimit_sweep_emt, exec_gfm_vs_sync_bus39_pu, peakI_pair}.py` | `numpy`, `pandas`, `matplotlib` | import `analytic_ilimit`, `gfm_vs_sync_bus39_pu`, `make_bus10_sync_deck` from the study's `experiments/` tree (`ERCOT_EXPERIMENTS`), not included here |
 | `scripts/report_figures/_pscad_io.py`, `aggregate.py`, `scripts/tools/out_chunks_to_csv_example.py` | `numpy`, `pandas` | the raw PSCAD `.inf` + `.out` chunk files (see `DATA.md`) |
 | `scripts/cct_solver/*.py` (the CCT solver) | `numpy` (`pandas`, `matplotlib` for the two single-device scripts) | the shipped `.pscx` and SMIB record under `systems/` |

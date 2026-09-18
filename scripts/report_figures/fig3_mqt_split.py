@@ -81,8 +81,8 @@ def png_size(path):
 
 
 def make_legacy():
-    """fig3_mqt_legacy_lvrt.png is an archival PMView raster with no source
-    data; it ships in report/figures and is not regenerated here."""
+    """fig3_mqt_legacy_lvrt.png is typeset from the 2026-09-18 re-run of the test by
+    fig_mqt_regfma1_lvrt.py and is not written here."""
     return rp.OUT / "fig3_mqt_legacy_lvrt.png"
 
 
