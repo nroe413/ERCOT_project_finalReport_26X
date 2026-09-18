@@ -1,0 +1,13 @@
+signal,peaks,n_peaks,delta,f_d_Hz,zeta,sigma_per_s,D_pu,note
+P2grid,maxima,4,0.9948,1.5379,0.1564,1.5299,33.41,
+P2grid,minima,4,1.0522,1.5273,0.1652,1.6071,35.1,
+Wpu,maxima,4,1.1076,1.5256,0.1736,1.6898,36.91,
+Wpu,minima,4,0.9679,1.5321,0.1522,1.483,32.39,
+Q2grid,maxima,2,,,,,,fewer than three decaying peaks
+Q2grid,minima,3,,,,,,fewer than three decaying peaks
+VRMS2grid,maxima,2,,,,,,fewer than three decaying peaks
+VRMS2grid,minima,3,,,,,,fewer than three decaying peaks
+IRMS2grid,maxima,6,,,,,,fewer than three decaying peaks
+IRMS2grid,minima,3,,,,,,fewer than three decaying peaks
+TE,maxima,9,,,,,,fewer than three decaying peaks
+TE,minima,6,,,,,,fewer than three decaying peaks

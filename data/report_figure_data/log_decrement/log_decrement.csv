@@ -1,0 +1,12 @@
+case,H_s,signal,final_value,swings_used,delta,delta_pair_min,delta_pair_max,f_d_Hz,zeta,sigma_per_s,D_pu,note
+machine (extrema after 4.4 s),5.46,P2grid,0.47364,3,1.2650298075723951,0.528496803637369,2.0015628115074215,1.539361472861058,0.19737507950186262,1.9473381477977831,42.52986514790358,
+machine,5.46,P2grid,0.47364,5,1.2418464590776424,0.528496803637369,2.0015628115074215,1.53478984889994,0.19389512853043048,1.9059733392847003,41.62645772997786,
+machine,5.46,Wpu,1.00004,0,,,,,,,,no decaying ring of at least three swings after clearing (aperiodic recovery: the log decrement does not apply)
+machine,5.46,Q2grid,0.30092,0,,,,,,,,no decaying ring of at least three swings after clearing (aperiodic recovery: the log decrement does not apply)
+machine,5.46,VRMS2grid,1.03045,0,,,,,,,,no decaying ring of at least three swings after clearing (aperiodic recovery: the log decrement does not apply)
+machine,5.46,IRMS2grid,0.54462,0,,,,,,,,no decaying ring of at least three swings after clearing (aperiodic recovery: the log decrement does not apply)
+inverter,0.5,P_pu,0.49997,0,,,,,,,,no decaying ring of at least three swings after clearing (aperiodic recovery: the log decrement does not apply)
+inverter,0.5,f_drp,60.0,0,,,,,,,,no decaying ring of at least three swings after clearing (aperiodic recovery: the log decrement does not apply)
+inverter,0.5,Q_pu,-0.02065,0,,,,,,,,no decaying ring of at least three swings after clearing (aperiodic recovery: the log decrement does not apply)
+inverter,0.5,V_pu,1.00003,0,,,,,,,,no decaying ring of at least three swings after clearing (aperiodic recovery: the log decrement does not apply)
+inverter,0.5,I_pu,0.50038,0,,,,,,,,no decaying ring of at least three swings after clearing (aperiodic recovery: the log decrement does not apply)
