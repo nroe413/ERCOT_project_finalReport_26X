@@ -76,12 +76,6 @@ def fig8a():
             label="B32 (GFL bus)")
     ax.axhline(1.0, color="k", ls=":", lw=1.0)
     fault_band(ax)
-    ax.annotate("grid recovers to ~1.0 pu in < 1 s", xy=(4.2, 0.965),
-                xytext=(5.2, 0.62), **ANN)
-    ax.annotate("bus-32 pocket held at 0.2-0.3 pu\nby the latched unit itself",
-                xy=(7.5, 0.27), xytext=(3.3, 0.035), zorder=6,
-                bbox=dict(boxstyle="square,pad=0.25", facecolor="white",
-                          edgecolor="none", alpha=1.0), **ANN)
     ax.grid(alpha=0.3)
     ax.set_xlim(2.5, 10.0)
     ax.set_ylim(0, 1.15)
@@ -105,12 +99,7 @@ def fig8b():
                label=r"$V_{\mathrm{t}}$ (REEC filtered)")
     ax[0].plot(t, w.V32[::s], color=BLUE, lw=0.9, ls="--",
                label=r"$V_{32}$ POI (pu of 10 kV)")
-    ax[0].axhline(0.5, color="k", ls=":", lw=1.2)
-    ax[0].text(3.30, 0.53, r"$V_{\mathrm{dip}}=0.5$ (dip-state threshold)",
-               ha="left", va="bottom", fontsize=9, zorder=6,
-               bbox=dict(boxstyle="square,pad=0.2", facecolor="white",
-                         edgecolor="none", alpha=1.0))
-    ax[0].text(5.1, 0.27, r"latched: $V_{\mathrm{t}}$ never re-crosses 0.5", ha="left", va="bottom", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
+    ax[0].axhline(0.5, color="k", ls=":", lw=1.2, label="dip-state threshold, 0.5 pu")
     ax[0].set_ylabel("voltage (pu)")
     ax[0].set_ylim(0, 1.28)
     ax[0].legend(loc="upper right", fontsize=9, framealpha=0.95)
@@ -119,8 +108,6 @@ def fig8b():
                label=r"$I_{p,\mathrm{cmd}}$ (active)")
     ax[1].plot(t, w.Iqcmd[::s], color=RED, lw=1.4,
                label=r"$I_{q,\mathrm{cmd}}$ (reactive)")
-    ax[1].text(4.12, 0.80, "correct WECC LVRT:\n$I_{\\mathrm{p}}\\!\\to\\!0$, $I_{\\mathrm{q}}\\!\\to\\!1$", ha="left", va="center", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
-    ax[1].text(4.6, 0.07, "dip logic times out; commands stay zero", ha="left", va="bottom", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
     ax[1].set_ylabel("current command (pu)")
     ax[1].set_ylim(-0.1, 1.15)
     ax[1].legend(loc="center right", fontsize=9, framealpha=0.9)
@@ -128,8 +115,6 @@ def fig8b():
     ax[2].plot(t, w.P32[::s], color=BLUE, lw=1.2, label=r"$P_{32}$ (MW)")
     ax[2].plot(t, w.Q32[::s], color=RED, lw=1.2, label=r"$Q_{32}$ (MVAr)")
     ax[2].axhline(0, color="k", lw=0.8)
-    ax[2].text(3.2, 640, "650 MW export", ha="left", va="center", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
-    ax[2].text(5.2, 60, "dead unit absorbs 50-170 MW (filter/damping stays connected)", ha="left", va="bottom", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
     ax[2].set_ylabel("POI power")
     ax[2].set_xlabel("time (s)")
     ax[2].set_ylim(-300, 730)
