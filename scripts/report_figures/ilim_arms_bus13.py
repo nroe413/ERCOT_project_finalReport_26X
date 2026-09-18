@@ -28,7 +28,7 @@ RUNS = {"Iunl": "fault_3PG_bus13_10GFM_ilim_arms/runs/3PG_at_bus13_w_10GFM_Vsche
         "I1p5": "fault_loc_sweep_gfm32_Ilim1p5/runs/3PG_at_bus13_w_10GFM_Vsched_Ilim1p5_t3p0s_5cyc_norecl_10s",
         "I1p2": "fault_3PG_bus13_10GFM_ilim_arms/runs/3PG_at_bus13_w_10GFM_Vsched_I1p2_t3p0s_5cyc_norecl_10s"}
 # (arm, limit, legend label, colour); the three limited arms keep the colours of the bus-14 figure
-ARMS = [("Iunl", None, r"no practical limit ($I_{\max F}=15$ pu)", "#1f2f5c"),
+ARMS = [("Iunl", None, r"$I_{\max F}=15$ pu", "#1f2f5c"),
         ("I2p0", 2.0, r"$I_{\max F}=2.0$ pu", "#7f7f7f"),
         ("I1p5", 1.5, r"$I_{\max F}=1.5$ pu", "#e08a1e"),
         ("I1p2", 1.2, r"$I_{\max F}=1.2$ pu", "#c0392b")]
@@ -73,7 +73,7 @@ def main():
     plt.rcParams["figure.constrained_layout.use"] = False   # manual grid below
     fig = plt.figure(figsize=(st.TEXTWIDTH_IN, 5.3))
     gs = fig.add_gridspec(2, 2, width_ratios=[1.35, 1.0], height_ratios=[1.0, 0.9],
-                          left=0.09, right=0.99, top=0.95, bottom=0.085, hspace=0.5, wspace=0.28)
+                          left=0.09, right=0.972, top=0.95, bottom=0.085, hspace=0.5, wspace=0.28)
     ax = fig.add_subplot(gs[0, 0])
     at = fig.add_subplot(gs[0, 1])
     az = fig.add_subplot(gs[1, :])
@@ -106,24 +106,50 @@ def main():
     at.set_title("(b) unit 32 through the fault", fontsize=8.5, loc="left")
     at.legend(loc="upper right", fontsize=7.0, framealpha=0.92, handlelength=1.4)
 
-    # (c) the first cycles after inception, where the limits take hold
+    # (c) the first cycles after inception: reaction time of the limiter for each setpoint
+    w_cyc = None
     for arm, lim, lab, col, df in data:
-        tm = (df["TIME"].values - T0) * 1e3
-        m = (tm >= ZOOM_MS[0]) & (tm <= ZOOM_MS[1])
-        az.plot(tm[m], np.abs(df[ipu(BMAX)].values[m]), color=col, lw=1.2, label=lab)
+        tm_all = (df["TIME"].values - T0) * 1e3
+        x_all = np.abs(df[ipu(BMAX)].values)
+        if w_cyc is None:
+            w_cyc = int(round(CYCLE_MS / (tm_all[1] - tm_all[0])))
+        m = (tm_all >= ZOOM_MS[0]) & (tm_all <= ZOOM_MS[1])
+        text = lab
         if lim is not None:
             az.axhline(lim, color=col, ls="--", lw=0.9, zorder=2)
+            win = (tm_all >= 0) & (tm_all <= 100.0)
+            above = np.where(win & (x_all > lim))[0]
+            if len(above) == 0:
+                text = lab + ": limit not reached"
+            else:
+                first = tm_all[above[0]]
+                ipk = np.where(win)[0][int(np.argmax(x_all[win]))]
+                back = None
+                for i in range(ipk, len(x_all) - w_cyc):
+                    if np.all(x_all[i:i + w_cyc] <= 1.02 * lim):
+                        back = tm_all[i]
+                        break
+                cyc = back / CYCLE_MS
+                text = lab + ": above limit from %.1f ms, back at limit at %.1f ms (%.2f cycle%s)" % (
+                    first, back, cyc, "" if cyc <= 1 else "s")
+                az.plot([first], [lim], "o", ms=4.5, mfc="white", mec=col, mew=1.2, zorder=6)
+                az.plot([back], [x_all[np.argmin(np.abs(tm_all - back))]], "o", ms=4.5, color=col, zorder=6)
+                print("  reaction %s: first above %.1f ms, back at limit %.1f ms (%.2f cycles)" % (arm, first, back, cyc))
+        az.plot(tm_all[m], x_all[m], color=col, lw=1.2, label=text)
     for k in (1, 2):
         az.axvline(k * CYCLE_MS, color="0.55", lw=0.8, ls=":")
-        az.text(k * CYCLE_MS + 0.4, 0.62, "%d cycle%s" % (k, "" if k == 1 else "s"), fontsize=7.5,
+        az.text(k * CYCLE_MS + 0.4, 1.76, "%d cycle%s" % (k, "" if k == 1 else "s"), fontsize=7.5,
                 color="0.35", ha="left", va="bottom")
     az.axvline(0.0, color="k", lw=0.8)
     az.set_xlim(*ZOOM_MS)
-    az.set_ylim(0.55, 1.95)
+    az.set_ylim(0.0, 1.95)
     az.set_xlabel("time after fault inception (ms)")
     az.set_ylabel(r"$|I|$, unit %d (pu)" % BMAX)
     az.grid(True, alpha=0.3)
-    az.set_title("(c) unit 32, first cycles after inception: the limits take hold", fontsize=8.5, loc="left")
+    az.set_title("(c) current limiter reaction time for various setpoints", fontsize=8.5, loc="left")
+    az.legend(loc="lower right", fontsize=7.0, framealpha=0.92, handlelength=1.4,
+              title="open circle: current first exceeds the limit; filled circle: back within 2 % of the limit, held for a cycle",
+              title_fontsize=6.6)
 
     out = OUT / "narr_ilim_arms_bus13.png"
     fig.savefig(out, dpi=600)

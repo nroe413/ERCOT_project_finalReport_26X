@@ -458,7 +458,7 @@ Because the bus-14 fault is remote, Figure~\ref{fig:ilimarms13} repeats the comp
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_ilim_arms_bus13}
-\caption{Bus-13 fault on the all-GFM fleet at four transient current limits, 10~s records with identical dispatch, fault, and clearing; clearing opens lines 10--13 and 13--14. (a)~Peak of each unit's internal current magnitude (the inverter's own measurement at its terminals, 10~kV side of the step-up transformer) on its own base, with the three limit lines; the 15 per-unit arm has no practical limit. (b)~The same signal for the bus-32 unit through the fault. (c)~The first two and a half cycles after fault inception, where the limits take hold. Instantaneous failures of the semiconductor switches are not modeled.}
+\caption{Bus-13 fault on the all-GFM fleet at four transient current limits, 10~s records with identical dispatch, fault, and clearing; clearing opens lines 10--13 and 13--14. (a)~Peak of each unit's internal current magnitude (the inverter's own measurement at its terminals, 10~kV side of the step-up transformer) on its own base, with the three limit lines; the 15 per-unit arm has no practical limit. (b)~The same signal for the bus-32 unit through the fault. (c)~Reaction time of the current limiter over the first two and a half cycles after fault inception; for each setpoint the legend gives when the current first exceeds the limit (open circle) and when it is back within 2\% of the limit and held there for a cycle (filled circle). Instantaneous failures of the semiconductor switches are not modeled.}
 \label{fig:ilimarms13}
 \end{figure}
 
@@ -554,16 +554,16 @@ Figure~\ref{fig:gfmblocks} redraws the outer controls from Figures~3(a), 3(b), a
 
 Active-power droop sets frequency, while reactive-power droop adjusts voltage magnitude. For the unsaturated reduced model, the normalized laws are
 \begin{equation}
-\Delta\bar{\omega}=m_{\mathrm{p}}(p^\star-\tilde p),\qquad
-E=E_0+m_{\mathrm{q}}(q^\star-\tilde q),
+\Delta\bar{\omega}=m_{\mathrm{p}}\,\frac{1}{1+sT_{\mathrm{Pf}}}\,(p^{*}-p),\qquad
+E=E_0+m_{\mathrm{q}}\,\frac{1}{1+sT_{\mathrm{Qf}}}\,(q^{*}-q),
 \label{eq:drooplaw}
 \end{equation}
-where $p^\star,q^\star$ are power references and $\tilde p,\tilde q$ are filtered power measurements. The active-power filter satisfies
+where $p^{*},q^{*}$ are the power references, $p,q$ the normalized active and reactive power at the terminals, $s$ the Laplace variable, and $1/(1+sT_{\mathrm{Pf}})$ and $1/(1+sT_{\mathrm{Qf}})$ the first-order measurement filters. The frequency deviation is the rate of change of the controller-generated phase,
 \begin{equation}
-T_{\mathrm{Pf}}\dot{\tilde p}=p-\tilde p,
-\label{eq:pfilter}
+\Delta\bar{\omega}\triangleq\frac{\omega_{\mathrm{e}}-\omega_0}{\omega_0}=\frac{1}{\omega_0}\frac{\mathrm{d}\theta_{\mathrm{E}}}{\mathrm{d}t},
+\label{eq:phasedef}
 \end{equation}
-where $p$ is the unfiltered normalized active power. The controller-generated phase satisfies $\dot\theta_{\mathrm{E}}=\omega_0\Delta\bar{\omega}$ relative to the same synchronous reference, so against the stiff grid $\dot\delta=\omega_0\Delta\bar{\omega}$ as for the machine. Table~\ref{tab:droopvars} defines the droop variables and their units.
+with $\theta_{\mathrm{E}}$ measured from the synchronous reference, so against the stiff grid $\dot\delta=\omega_0\Delta\bar{\omega}$ as for the machine. Table~\ref{tab:droopvars} defines the droop variables and their units.
 
 \begin{figure}[tbp]\centering
 \input{figures/tikz_gfm_basic_model.tex}
@@ -578,7 +578,7 @@ where $p$ is the unfiltered normalized active power. The controller-generated ph
 \end{figure}
 
 \begin{table}[tbp]\centering
-\caption{Variables in Equations~\eqref{eq:drooplaw} and~\eqref{eq:pfilter}.}
+\caption{Variables in Equations~\eqref{eq:drooplaw} and~\eqref{eq:phasedef}.}
 \label{tab:droopvars}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{0.21\linewidth}>{\raggedright\arraybackslash}p{0.52\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}}\toprule
@@ -586,11 +586,13 @@ Symbol & Meaning & Units\\\midrule
 $\omega_0$ & Nominal electrical angular frequency & rad/s\\
 $\Delta\bar{\omega}$ & Normalized (per-unit) electrical frequency deviation & p.u.\\
 $E_0$ & Nominal internal-voltage reference & p.u.\\
-$p^\star,q^\star$ & Active/reactive power references & p.u.\\
-$\tilde p,\tilde q$ & Low-pass-filtered power measurements & p.u.\\
-$\dot{\tilde p}$ & Filtered active-power time derivative & p.u./s\\
+$\omega_{\mathrm{e}}$ & Electrical angular frequency of the internal voltage & rad/s\\
+$\theta_{\mathrm{E}}$ & Phase of the internal voltage, from the synchronous reference & rad\\
+$p^{*},q^{*}$ & Active/reactive power references & p.u.\\
+$p,q$ & Normalized active/reactive power at the terminals & p.u.\\
 $m_{\mathrm{p}},m_{\mathrm{q}}$ & Frequency/power and voltage/reactive-power droop gains & p.u./p.u.\\
-$T_{\mathrm{Pf}}$ & Active-power measurement-filter time constant & s\\\bottomrule
+$T_{\mathrm{Pf}},T_{\mathrm{Qf}}$ & Active- and reactive-power measurement-filter time constants & s\\
+$s$ & Laplace variable & 1/s\\\bottomrule
 \end{tabular}
 \end{table}
 
@@ -608,16 +610,15 @@ $T_{\mathrm{Pf}}$ & Active-power measurement-filter time constant & s\\\bottomru
 
 \subsection{Modeling GFM Equivalent Inertia and Equivalent Damping Dynamics}
 \label{sec:swingred}
-For a fixed active-power reference, differentiating the first droop law relates frequency acceleration to the filtered-power derivative. Substituting Equation~\eqref{eq:pfilter} eliminates that derivative. Rearranging the power terms gives
+For a fixed active-power reference, multiplying the first droop law of Equation~\eqref{eq:drooplaw} by $(1+sT_{\mathrm{Pf}})$, and noting that $s$ corresponds to differentiation in time, gives
 \begin{align*}
-\frac{\mathrm{d}\Delta\bar{\omega}}{\mathrm{d}t}&=-m_{\mathrm{p}}\dot{\tilde p}
-=-\frac{m_{\mathrm{p}}}{T_{\mathrm{Pf}}}(p-\tilde p)\\
-&=-\frac{m_{\mathrm{p}}}{T_{\mathrm{Pf}}}(p-p^\star)-\frac{\Delta\bar{\omega}}{T_{\mathrm{Pf}}}.
+(1+sT_{\mathrm{Pf}})\,\Delta\bar{\omega}&=m_{\mathrm{p}}(p^{*}-p),\\
+T_{\mathrm{Pf}}\frac{\mathrm{d}\Delta\bar{\omega}}{\mathrm{d}t}+\Delta\bar{\omega}&=m_{\mathrm{p}}(p^{*}-p).
 \end{align*}
-Multiplication by $T_{\mathrm{Pf}}/m_{\mathrm{p}}$ then gives
+Division by $m_{\mathrm{p}}$ then gives
 \begin{equation}
 \underbrace{\frac{T_{\mathrm{Pf}}}{m_{\mathrm{p}}}}_{2H_{\mathrm{eq}}}\frac{\mathrm{d}\Delta\bar{\omega}}{\mathrm{d}t}
-=p^\star-p-\underbrace{\frac{1}{m_{\mathrm{p}}}}_{D_{\mathrm{eq}}}\Delta\bar{\omega},
+=p^{*}-p-\underbrace{\frac{1}{m_{\mathrm{p}}}}_{D_{\mathrm{eq}}}\Delta\bar{\omega},
 \qquad
 \boxed{H_{\mathrm{eq}}=\frac{T_{\mathrm{Pf}}}{2m_{\mathrm{p}}},\quad D_{\mathrm{eq}}=\frac{1}{m_{\mathrm{p}}}.}
 \label{eq:heqdeq}
@@ -625,7 +626,7 @@ Multiplication by $T_{\mathrm{Pf}}/m_{\mathrm{p}}$ then gives
 In terms of the displacement $\delta=\theta_{\mathrm{E}}-\theta_{\mathrm{V}}$, this becomes
 \begin{equation}
 \frac{2H_{\mathrm{eq}}}{\omega_0}\ddot\delta+
-\frac{D_{\mathrm{eq}}}{\omega_0}\dot\delta=p^\star-p.
+\frac{D_{\mathrm{eq}}}{\omega_0}\dot\delta=p^{*}-p.
 \label{eq:gfmswing}
 \end{equation}
 Both coefficients therefore have the same normalization as in Equation~\eqref{eq:swingangle}.
@@ -645,7 +646,7 @@ Here $j$ is the imaginary unit, and $I$ is the current phasor on the compatible 
 
 \subsection{Single Machine Infinite Bus Modeled Fault Response}
 \label{sec:smib}
-Figures~\ref{fig:smibvi} and~\ref{fig:smibpf} compare the selected machine and GFM models under the same single-device bolted fault. The machine delivers approximately 7--8 per-unit fault current, influenced by its subtransient reactance and the external network. Its post-fault active power oscillates at 1.5~Hz with a decay rate of 1.6~s$^{-1}$ (damping ratio 0.17, from the log decrement of successive peaks after 4.4~s), so the oscillation falls below 1\% of its first swing about 3~s after clearing, whereas the inverter's active power returns to its reference within approximately 0.5~s: the infinite bus holds frequency, so Equation~\eqref{eq:drooplaw} returns $\tilde p$ to $p^\star$ as $\Delta\bar{\omega}\to0$. In the 39-bus fleets no restoration loop exists, and frequency and power settle at a droop-shared post-fault operating point. The GFM current setting is 2.0 per unit in this comparison, distinct from the 1.5 per-unit bus-10 study.
+Figures~\ref{fig:smibvi} and~\ref{fig:smibpf} compare the selected machine and GFM models under the same single-device bolted fault. The machine delivers approximately 7--8 per-unit fault current, influenced by its subtransient reactance and the external network. Its post-fault active power oscillates at 1.5~Hz with a decay rate of 1.6~s$^{-1}$ (damping ratio 0.17, from the log decrement of successive peaks after 4.4~s), so the oscillation falls below 1\% of its first swing about 3~s after clearing, whereas the inverter's active power returns to its reference within approximately 0.5~s: the infinite bus holds frequency, so Equation~\eqref{eq:drooplaw} returns $p$ to $p^{*}$ as $\Delta\bar{\omega}\to0$. In the 39-bus fleets no restoration loop exists, and frequency and power settle at a droop-shared post-fault operating point. The GFM current setting is 2.0 per unit in this comparison, distinct from the 1.5 per-unit bus-10 study.
 
 The fault is applied at the point of interconnection on the grid side of each device. The machine, 2000~MVA, is modeled at 230~kV without a step-up transformer; the inverter case uses the release configuration, 0.1~MVA at 0.48~kV, with the source at the same voltage. Each grid is an infinite bus behind SCR~10 and $X/R=20$ on the device base. The inverter dispatch is 0.50 per unit, matching the machine's measured 0.50 per unit; pre-fault reactive power is 0.30 per unit for the machine at 1.03 per-unit terminal voltage, set by its exciter, and $-0.02$ per unit for the inverter at 1.00 per unit.
 
@@ -837,7 +838,7 @@ f_i(\theta)=P_{\mathrm{m},i}-P_{\mathrm{e},i}(\theta)-\frac{M_i}{M_{\mathrm{T}}}
 P_{\mathrm{e},i}(\theta)=E_i\sum_{j=1}^{n}E_j\left[G_{ij}\cos(\theta_i-\theta_j)+B_{ij}\sin(\theta_i-\theta_j)\right],
 \label{eq:fi}
 \end{equation}
-with $P_{\mathrm{COI}}=\sum_i(P_{\mathrm{m},i}-P_{\mathrm{e},i})$ and $M_{\mathrm{T}}=\sum_i M_i$. Here $P_{\mathrm{m},i}$ is the mechanical power of a machine or the power reference $p^\star$ of an inverter, and $G_{ij}$ and $B_{ij}$ are the conductance and susceptance of the reduced network between internal nodes $i$ and $j$; in the 39-bus cases the electrical power is taken from the constant-power network solution instead of a reduced admittance matrix, with the same dependence on the internal voltages and the coupling reactances. So $f_i$, and with it the potential energy $V_{\mathrm{PE}}$ and the shape of the surfaces in Figures~\ref{fig:esbelow} and~\ref{fig:esat}, contain the dispatch, the internal voltages, and the network admittances only. 
+with $P_{\mathrm{COI}}=\sum_i(P_{\mathrm{m},i}-P_{\mathrm{e},i})$ and $M_{\mathrm{T}}=\sum_i M_i$. Here $P_{\mathrm{m},i}$ is the mechanical power of a machine or the power reference $p^{*}$ of an inverter, and $G_{ij}$ and $B_{ij}$ are the conductance and susceptance of the reduced network between internal nodes $i$ and $j$; in the 39-bus cases the electrical power is taken from the constant-power network solution instead of a reduced admittance matrix, with the same dependence on the internal voltages and the coupling reactances. So $f_i$, and with it the potential energy $V_{\mathrm{PE}}$ and the shape of the surfaces in Figures~\ref{fig:esbelow} and~\ref{fig:esat}, contain the dispatch, the internal voltages, and the network admittances only. 
 
 The inertia coefficients enter the kinetic term and the center-of-inertia weighting $M_i/M_{\mathrm{T}}$, and the damping coefficients $D_i$ do not appear in $V$ at all. Damping acts only on how $V$ changes along a trajectory. Without damping, $\mathrm{d}V/\mathrm{d}t=0$ along post-fault trajectories, so a state with $V<V_{\mathrm{cr}}$, the potential energy at the unstable equilibrium that bounds the basin, cannot reach that boundary: $V$ is a Lyapunov function, that is, a function that is positive about the equilibrium and non-increasing along the system's trajectories \cite{khalil2002}, and $V<V_{\mathrm{cr}}$ is a sufficient stability condition. 
 
