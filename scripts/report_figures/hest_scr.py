@@ -29,7 +29,7 @@ H_THEORY = 0.010 / (2 * 0.01) + 0.5 / (4 * 0.01)     # H + T/(4 m_p) at T = 0.5 
 
 
 def main():
-    m = json.load(open(SJ / "experiments" / "agsesr_inertia_SCR_fdrp" / "plots" / "hest_internal_metrics.json"))
+    m = json.load(open(rp.DATA / "hest_scr" / "hest_internal_metrics.json"))
     scr = np.array(sorted(float(k) for k in m))
     key = lambda s: "%g" % s
     h_imp = np.array([m[key(s)]["H_imp"][-1] for s in scr])
