@@ -33,10 +33,12 @@ clone opens and builds without re-pointing paths.
 | `scripts/tools` | Bus instrumentation and .out-to-CSV stitching utilities |
 | `manifest.json` | Machine-readable map of every copied directory to its source and exclusions |
 
+**Setting a fault in the 39-bus cases.** The fault is set by four constants on the main page (`BrkFaultLocation`, `BrkFaultType`, `BrkFaultTime`, `BrkFaultDuration`) and, per line, `InstantTrip` and `RecloseEnabled`; the shipped files carry the bus-14 reference fault. The E-TRAN fault elements (`master:tpflt`) ship with `OpCur = 0`, so each phase of a fault clears at its first current zero after the set duration. For a fault at a synchronous machine's own transmission bus (the bus-39 case of report Figure 29, `BrkFaultLocation = 39` with `InstantTrip = 0` on lines 1-39 and 9-39) the machine's offset fault current has no zero crossing on two phases for about 2.9 s and the fault lingers; the report's all-machine bus-39 record was run with `OpCur = 1` (clearing possible at any current) on the fault elements of `00GFM_all_sync`. The all-GFM records and every other fault location in the report clear within 10 ms of the set time with the stock setting.
+
 ## What runs directly from a clone
 
 - **Report.** `cd report && pdflatex main.tex && pdflatex main.tex` (or
-  `latexmk -pdf main.tex`) rebuilds the 57-page PDF with standard TeX Live
+  `latexmk -pdf main.tex`) rebuilds the 58-page PDF with standard TeX Live
   or MiKTeX packages; every path in `main.tex` is relative.
 - **PSCAD systems.** Open any `.pswx` under `systems/` in PSCAD 5.0.2 with
   GFortran 4.6 and build; the E-TRAN and PNNL libraries are linked from

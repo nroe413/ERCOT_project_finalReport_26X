@@ -9,6 +9,14 @@ figstyle_26x. Each panel carries a transient zoom inset over
 t in [2.8, 5.5] s, positioned over flat steady-state space, since the
 main axes span the full 30 s window.
 
+Records (both a three-phase fault AT BUS 39, 5 cycles from 3.0 s; clearing opens lines 1-39 and
+9-39, so the bus-39 unit is left islanded with the bus-39 load):
+  all-GFM      fault_loc_sweep_gfm32_Ilim1p5/runs/3PG_at_bus39_w_10GFM_Vsched_Ilim1p5_..._30s
+  all-machine  fault_3PG_bus39_GFMvsSync/runs/3PG_at_bus39_sync_machines_clearAnyCurrent_..._30s
+               (re-run 2026-09-18 with fault elements that clear at the set time, OpCur = 1 on the
+               master:tpflt elements; with the stock OpCur = 0 the fault stayed on two phases until
+               about 5.95 s because the machine's offset fault current had no zero crossing)
+
 Per-unit base (documented in the report caption, not on the figure):
 V_pu = V_LL/230 kV; I, P, Q on each device's own rating
 (sync G1 2000 MVA, GFM 1667 MVA) referred to 230 kV.
@@ -129,9 +137,9 @@ def main():
         ks = stride(len(ts_), 60000)
         kg = stride(len(tg), 60000)
         a.plot(ts_[::ks], ys[::ks], color=BLUE, lw=0.8,
-               label="100% synchronous (G1)")
+               label="all-machine fleet")
         a.plot(tg[::kg], yg[::kg], color=RED, lw=0.8,
-               label="grid-forming (GFM)")
+               label="all-GFM fleet")
         a.axvline(FAULT_T, color="#888888", ls=":", lw=0.8)
         a.set_xlim(2.0, XMAX)
         a.set_ylabel(ylab, fontsize=9)

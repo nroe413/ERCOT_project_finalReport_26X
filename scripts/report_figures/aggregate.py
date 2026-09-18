@@ -8,6 +8,16 @@ Reads the same per-run data_*.csv archives the original
 plot_fault_traces.py figures were built from (B<N>{Vrms|Irms|P|Q}
 channels); no smoothing beyond point-striding for raster economy.
 
+Report invocations (confirmed 2026-09-18 by regenerating and comparing pixels with the report PNGs;
+E = the experiments folder of the study, each CSV the newest data_*.csv of the run):
+  Figures 19-22  single  E/fault_3PG_bus14_10GFM/runs/3PG_at_bus14_w_10GFM_at_bus30_..._bus39_t3p0s_5cyc_norecl_30s
+                 Vrms allgfm_vrms | Irms allgfm_irms low | P allgfm_p low | Q allgfm_q low
+  Figure 24      sweep   E/fault_3PG_bus14_0GFM/runs/3PG_at_bus14_t3p0s_5cyc_norecl_30s
+                         E/fault_3PG_bus14_5GFM/runs/3PG_at_bus14_w_5GFM_at_bus30_bus32_bus33_bus35_bus37_t3p0s_5cyc_norecl_30s
+                         E/fault_3PG_bus14_10GFM/runs/(the Figures 19-22 run)      sweep_0_5_10_GFM_vrms
+The B<N> channels are the 230 kV meters at network buses 14-18 and 21 and on the 230 kV side of each
+unit's step-up transformer (buses 30-39).
+
 Modes:
   single  <csv> <signal> <out_stem>          one signal, one run
   grid    <csv> <out_stem>                   2x2 Vrms/Irms/P/Q

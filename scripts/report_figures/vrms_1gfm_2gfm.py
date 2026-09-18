@@ -12,7 +12,7 @@ inset ticks.
 Both panels share identical x and y limits, and identical inset limits,
 so the two penetration levels can be compared directly.
 
-Source data (PSCAD EMT, 5 us step, channels at 5 kHz, 3PG at bus 14 at
+Source data (PSCAD EMT, 50 us step, channels at 5 kHz, 3PG at bus 14 at
 t = 3.0 s for 5 cycles, reclose disabled, 30 s window):
 
   1 GFM   experiments/fault_baseline_sync_machines/runs/

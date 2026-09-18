@@ -308,7 +308,7 @@ Four models were evaluated: REGFM\_A1, REGFM\_B1, the NLR GFM model, and the PSC
 
 We applied the same nine-test battery to the synchronous machine used in the network studies. The machine completed these tests successfully and provides a conventional reference for the inverter comparisons. Figure~\ref{fig:mqtmachine} shows its response to the legacy low-voltage ride-through profile, corresponding to the REGFM\_A1 example in Figure~\ref{fig:mqt}. The machine voltage-step result in Figure~\ref{fig:mqtmachinestep} uses a different step magnitude from the inverter comparison.
 
-The machine example is the 650~MVA Gen-32 test case. Its small-step test raises voltage from 1.00 to 1.03 per unit at 3~s and produces a slower response than the selected REGFM\_A1 comparison. Figure~\ref{fig:smibgfm} additionally records the inverter-side LCL quantities during the REGFM\_A1 ride-through test. Voltage, current, active power, reactive power, and droop frequency together describe how the device supplies the grid through the disturbance.
+The machine example is the 650~MVA Gen-32 test case. Its small-step test raises voltage from 1.00 to 1.03 per unit at 3~s and produces a slower response than the selected REGFM\_A1 comparison. Figure~\ref{fig:smibgfm} shows a separate check outside the PMView profiles: one REGFM\_A1 unit, dispatched at 0.60 per unit against an infinite bus with a short-circuit ratio of 10, rides through a five-cycle bolted three-phase fault at its point of interconnection. Voltage, current, active power, reactive power, and droop frequency together describe how the device supplies the grid through the disturbance.
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{fig3_mqt_legacy_lvrt}
@@ -330,7 +330,7 @@ The machine example is the 650~MVA Gen-32 test case. Its small-step test raises 
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.72\textwidth]{fig7_smib_gfm_panel}
-\caption{Single REGFM\_A1 fault response with a 2.0 per-unit transient-current limit: normalized voltage, current, active and reactive powers, and frequency in Hz.}
+\caption{Single REGFM\_A1 response to a five-cycle bolted three-phase fault at its point of interconnection, with a 2.0 per-unit transient-current limit: the model's per-unit voltage, current, active and reactive powers, and its droop frequency in Hz.}
 \label{fig:smibgfm}
 \end{figure}
 
@@ -338,7 +338,7 @@ The machine example is the 650~MVA Gen-32 test case. Its small-step test raises 
 \label{sec:studydesign}
 We first applied a three-phase-to-ground fault at bus~14 to the all-machine system. The fault resistance is 0.01~$\Omega$, a low-impedance approximation to a bolted fault. Initial machine studies considered both restoration of the faulted connection and clearing with the connection left open. The reference case used for the replacement progression has a five-cycle fault without reclosing.
 
-We selected a short reference disturbance to represent a practical protection timescale. The 0.0833~s duration corresponds to approximately five cycles at 60~Hz and is applied from 3.0~s. After establishing the machine baseline, we replaced machines one at a time and reapplied the same reference fault. Extended-duration tests discussed later explore transient stability limits rather than recommended protection operating times. Table~\ref{tab:cases} lists the simulated cases. Network faults were applied at buses~14, 13, and~10 only; other fault locations were not tested. All faults in the replacement progression and the current-limit studies are three-phase-to-ground; single-line-to-ground and double-line-to-ground checks at bus~14 are reported in Section~\ref{sec:unbal}. Instantaneous failures of the semiconductor switches, which occur on a much faster timescale than the control limiter, are not represented in any case.
+We selected a short reference disturbance to represent a practical protection timescale. The 0.0833~s duration corresponds to approximately five cycles at 60~Hz and is applied from 3.0~s. After establishing the machine baseline, we replaced machines one at a time and reapplied the same reference fault. Extended-duration tests discussed later explore transient stability limits rather than recommended protection operating times. Table~\ref{tab:cases} lists the simulated cases. Network faults were applied at buses~14, 13, 10, and~39 only; other fault locations were not tested. Each phase of a fault clears at its first current zero after the set duration, except in the all-machine bus-39 case, where the fault is removed at the set time (Section~\ref{sec:emt}). All faults in the replacement progression and the current-limit studies are three-phase-to-ground; single-line-to-ground and double-line-to-ground checks at bus~14 are reported in Section~\ref{sec:unbal}. Instantaneous failures of the semiconductor switches, which occur on a much faster timescale than the control limiter, are not represented in any case.
 
 \begin{table}[tbp]\centering\small
 \caption{Simulated fault cases. Fault resistance 0.01~$\Omega$; fault applied at 3.0~s.}
@@ -347,6 +347,7 @@ We selected a short reference disturbance to represent a practical protection ti
 Study & Configurations & Fault bus & Duration; clearing & GFM $I_{\max F}$\\\midrule
 Replacement progression (Section~\ref{sec:emt}) & 0--10 GFM units & 14 & 5 cycles; lines to bus~14 opened, no reclosing & 2.0\\
 Current-limit comparison & 0 and 10 GFM units & 10 & 5 cycles; lines to bus~10 opened, no reclosing & 1.5\\
+Fault at a unit's transmission bus (Section~\ref{sec:emt}) & 0 and 10 GFM units & 39 & 5 cycles; lines 1--39 and 9--39 opened, no reclosing, so the bus-39 unit islands with the bus-39 load & 1.5\\
 Current-limit sensitivity (Section~\ref{sec:emt}) & 10 GFM units & 14 & 5 cycles; lines to bus~14 opened, no reclosing & 2.0; 1.5; 1.2\\
 Current-limit sensitivity, near fault (Section~\ref{sec:emt}) & 10 GFM units & 13 & 5 cycles; lines 10--13 and 13--14 opened, no reclosing & 15; 2.0; 1.5; 1.2\\
 Unbalanced-fault check (Section~\ref{sec:unbal}) & 0 and 10 GFM units & 14 & 5 cycles, single-line-to-ground and double-line-to-ground; lines to bus~14 opened, no reclosing & 2.0\\
@@ -406,25 +407,25 @@ The selected GFM responses return promptly toward their post-fault operating poi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{allgfm_irms}
-\caption{All-GFM RMS currents under the bus-14 reference fault, in kA on the 230~kV side of each unit's step-up transformer, with the transient-current setting $I_{\mathrm{maxF}}=2.0$ per unit on each device base.}
+\caption{All-GFM RMS currents under the bus-14 reference fault, in kA, at the 230~kV meters of network buses 14--18 and~21 and on the 230~kV side of each unit's step-up transformer (buses 30--39), with the transient-current setting $I_{\mathrm{maxF}}=2.0$ per unit on each device base.}
 \label{fig:allgfmi}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{allgfm_p}
-\caption{All-GFM active powers under the bus-14 reference fault, in MW on the 230~kV side of each unit's step-up transformer, signed by the measurement-channel direction.}
+\caption{All-GFM active powers under the bus-14 reference fault, in MW at the meters of Figure~\ref{fig:allgfmi}, signed by the measurement-channel direction.}
 \label{fig:allgfmp}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{allgfm_q}
-\caption{All-GFM reactive-power responses to the bus-14 reference fault, in MVAr, measured on the 230~kV side of each unit's step-up transformer.}
+\caption{All-GFM reactive-power responses to the bus-14 reference fault, in MVAr at the meters of Figure~\ref{fig:allgfmi}.}
 \label{fig:allgfmq}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{fig2_allSYNC_3PG_2x2}
-\caption{All-machine response to the bus-14 reference fault: RMS voltage and current, active power, and reactive power at the 230~kV generator buses, on the transmission side of the step-up transformers. The active powers oscillate together at about 1~Hz, the inter-machine swing mode, and decay over tens of seconds; bus~14 is isolated by clearing.}
+\caption{All-machine response to the bus-14 reference fault: RMS voltage and current, active power, and reactive power at network buses 14--18 and~21 and at the 230~kV generator buses 30--39, on the transmission side of the step-up transformers. The active powers oscillate together at about 1~Hz, the inter-machine swing mode, and decay over tens of seconds; bus~14 is isolated by clearing.}
 \label{fig:allsync}
 \end{figure}
 
@@ -462,7 +463,7 @@ Because the bus-14 fault is remote, Figure~\ref{fig:ilimarms13} repeats the comp
 \label{fig:ilimarms13}
 \end{figure}
 
-Figure~\ref{fig:peaki} compares the device-base peak currents, including a machine peak of 3.72 per unit at the corresponding bus. GFM current is shaped by the modeled current limit, whereas machine fault current depends strongly on electromagnetic reactances and the network. Figure~\ref{fig:exec} shows the bus-39 terminal quantities, where the GFM case recovers more quickly and the machine current is substantially larger. Different ratings, dispatch, and measurement locations remain relevant even when both traces are expressed per unit. In the GFM runs, the active and reactive power traces immediately after clearing contain a 2--4~Hz settling component and a 60~Hz component below 10\% of the deviation, the latter from the power calculation during the transient; the machine traces oscillate at the 0.85--1.0~Hz inter-machine mode.
+Figure~\ref{fig:peaki} compares the device-base peak currents, including a machine peak of 3.72 per unit at the corresponding bus. GFM current is shaped by the modeled current limit, whereas machine fault current depends strongly on electromagnetic reactances and the network. Figure~\ref{fig:exec} makes the same comparison for a separate fault at bus~39, on the 230~kV side of the largest unit's step-up transformer. Clearing opens lines 1--39 and 9--39 and leaves that unit islanded with the bus-39 load in both fleets. The machine's RMS current reaches 5.95 per unit of its 2000~MVA rating, against 1.25 per unit of 1667~MVA for the GFM unit at the 1.5 per-unit setting. Both units carry the islanded load after clearing, with active power within 0.02 per unit of its final value 0.6~s after fault inception; the machine's exciter returns the bus voltage to its pre-fault 1.03 per unit, whereas the GFM unit settles at 0.96 per unit. The machine's offset fault current has no zero crossing on two phases for about 2.9~s, so the fault elements of the all-machine case were set to clear at the set time rather than at a current zero; the GFM fault cleared at current zeros within 7~ms of the set time. Different ratings, dispatch, and measurement locations remain relevant even when both traces are expressed per unit. In the GFM runs, the active and reactive power traces immediately after clearing contain a 2--4~Hz settling component and a 60~Hz component below 10\% of the deviation, the latter from the power calculation during the transient; the machines that remain connected in the bus-10 study oscillate at the 0.85--1.0~Hz inter-machine mode, which is absent from the islanded machine of Figure~\ref{fig:exec}.
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_peakI_pair}
@@ -472,7 +473,7 @@ Figure~\ref{fig:peaki} compares the device-base peak currents, including a machi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{exec_gfm_vs_sync_bus39_pu}
-\caption{Bus-39 responses in the bus-10 study, measured on the 230~kV side of the unit's step-up transformer: all-machine (blue) and all-GFM (red), each on its own device base; the two cases have different pre-fault power injections.}
+\caption{Bus-39 responses to a five-cycle three-phase fault at bus~39, measured on the 230~kV side of the unit's step-up transformer: all-machine (blue) and all-GFM (red, $I_{\max F}=1.5$ per unit), each on its own device base (2000 and 1667~MVA). Clearing opens lines 1--39 and 9--39, which leaves the unit islanded with the bus-39 load.}
 \label{fig:exec}
 \end{figure}
 
