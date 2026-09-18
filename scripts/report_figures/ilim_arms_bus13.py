@@ -5,7 +5,7 @@ the three limit lines; (b) I_pu of unit 32 through the fault; (c) the first two 
 fault inception, where the limits take hold.
 
 Runs from the shipped extracts data/report_figure_data/ilim_arms_bus13/<arm>.csv (TIME and the
-ten I_pu channels over 2.9-4.0 s of each 10 s record).  With ERCOT_EXPERIMENTS set, missing
+ten I_pu channels and B32Irms over 2.9-4.0 s of each 10 s record).  With ERCOT_EXPERIMENTS set, missing
 extracts are rebuilt from the full records (see DATA.md).
 """
 import sys
@@ -34,6 +34,8 @@ ARMS = [("Iunl", None, r"$I_{\max F}=15$ pu", "#1f2f5c"),
         ("I1p2", 1.2, r"$I_{\max F}=1.2$ pu", "#c0392b")]
 GEN = list(range(30, 40))
 BMAX = 32
+MBASE32_MVA = 1083.0                                  # REGFM_A1 Mbase_PNNL of the bus-32 unit
+IBASE32_KA = MBASE32_MVA / (3 ** 0.5 * 230.0)          # 2.72 kA at 230 kV
 T0 = 3.0
 PEAK = (2.95, 4.0)
 TRACE = (2.9, 3.6)
@@ -52,7 +54,7 @@ def load(arm):
         return pd.read_csv(ext)
     d = rp.experiment(RUNS[arm])
     csv = sorted(d.glob("data_*.csv"), key=lambda p: p.stat().st_mtime)[-1]
-    need = ["TIME"] + [ipu(b) for b in GEN]
+    need = ["TIME", "B32Irms"] + [ipu(b) for b in GEN]
     df = pd.read_csv(csv, usecols=lambda c: c in need)
     t = df["TIME"].values
     df = df[(t >= EXTRACT[0]) & (t <= EXTRACT[1])].reset_index(drop=True)
@@ -71,12 +73,13 @@ def main():
     top = max(max(v) for v in peaks.values())
 
     plt.rcParams["figure.constrained_layout.use"] = False   # manual grid below
-    fig = plt.figure(figsize=(st.TEXTWIDTH_IN, 5.3))
-    gs = fig.add_gridspec(2, 2, width_ratios=[1.35, 1.0], height_ratios=[1.0, 0.9],
-                          left=0.09, right=0.972, top=0.95, bottom=0.085, hspace=0.5, wspace=0.28)
+    fig = plt.figure(figsize=(st.TEXTWIDTH_IN, 7.4))
+    gs = fig.add_gridspec(3, 2, width_ratios=[1.35, 1.0], height_ratios=[1.0, 0.9, 0.75],
+                          left=0.09, right=0.972, top=0.965, bottom=0.06, hspace=0.55, wspace=0.28)
     ax = fig.add_subplot(gs[0, 0])
     at = fig.add_subplot(gs[0, 1])
     az = fig.add_subplot(gs[1, :])
+    ad = fig.add_subplot(gs[2, :])
 
     # (a) per-unit peaks
     x = np.arange(len(GEN))
@@ -150,6 +153,20 @@ def main():
     az.legend(loc="lower right", fontsize=7.0, framealpha=0.92, handlelength=1.4,
               title="open circle: current first exceeds the limit; filled circle: back within 2 % of the limit, held for a cycle",
               title_fontsize=6.6)
+
+    # (d) RMS current of unit 32 on the 230 kV side of its step-up transformer, per unit of the unit rating
+    for arm, lim, lab, col, df in data:
+        t = df["TIME"].values
+        m = (t >= TRACE[0]) & (t <= TRACE[1])
+        ad.plot(t[m], df["B32Irms"].values[m] / IBASE32_KA, color=col, lw=1.1, label=lab)
+    ad.axvspan(3.0, 3.0833, color="#fbd0c4", alpha=0.6, zorder=0)
+    ad.set_xlim(*TRACE)
+    ad.set_xlabel("time (s)")
+    ad.set_ylabel("RMS current, unit %d (pu)" % BMAX)
+    ad.grid(True, alpha=0.3)
+    ad.set_title("(d) unit 32 RMS current on the 230 kV side, pu of 1083 MVA (base %.2f kA)" % IBASE32_KA,
+                 fontsize=8.5, loc="left")
+    ad.legend(loc="upper right", fontsize=7.0, framealpha=0.92, handlelength=1.4, ncol=2)
 
     out = OUT / "narr_ilim_arms_bus13.png"
     fig.savefig(out, dpi=600)

@@ -36,16 +36,18 @@ def main():
     h_int = np.array([m[key(s)]["H_int"][-1] for s in scr])
     roc = np.array([m[key(s)]["rocof_int"][-1] for s in scr])      # signed: the test is an under-frequency ramp
     fig, (ax, ax2) = plt.subplots(1, 2, figsize=(0.95 * st.TEXTWIDTH_IN, 3.0), gridspec_kw=dict(width_ratios=[1.35, 1.0]))
-    ax.plot(scr, h_imp, "o-", color=BLUE, lw=1.6, ms=5, label="referred to the imposed $-1$ Hz/s ramp")
-    ax.plot(scr, h_int, "s-", color=RED, lw=1.6, ms=5, label="referred to the internal droop frequency")
-    ax.axhline(H_THEORY, color=INK, ls=":", lw=1.0, label="analytic $H_{\\mathrm{eq}}+T/(4m_{\\mathrm{p}})=13.0$ s")
+    ax.plot(scr, h_imp, "o-", color=BLUE, lw=1.6, ms=5, label=r"$H_{\mathrm{est}}$ computed with the imposed ramp, $\mathrm{d}f/\mathrm{d}t=-1$ Hz/s")
+    ax.plot(scr, h_int, "s-", color=RED, lw=1.6, ms=5, label=r"$H_{\mathrm{est}}$ computed with the measured internal-frequency slope")
+    ax.axhline(H_THEORY, color=INK, ls=":", lw=1.0,
+               label="analytic $H_{\\mathrm{eq}}+T/(4m_{\\mathrm{p}})=13.0$ s,\n"
+                     "with $H_{\\mathrm{eq}}=T_{\\mathrm{Pf}}/(2m_{\\mathrm{p}})=0.5$ s and $T=0.5$ s")
     ax.set_xscale("log")
     ax.set_xticks(scr); ax.set_xticklabels(["%g" % s for s in scr])
     ax.set_xlabel("short-circuit ratio")
     ax.set_ylabel(r"$H_{\mathrm{est}}$ (s)")
-    ax.set_ylim(5, 14)
+    ax.set_ylim(1.5, 14)
     ax.grid(True, which="both", alpha=0.3)
-    ax.legend(loc="lower right", fontsize=7.4, framealpha=0.95)
+    ax.legend(loc="lower right", fontsize=7.0, framealpha=0.95, handlelength=1.6)
     ax.set_title("(a) inertia estimate, 0.5 s window", fontsize=9, loc="left")
     ax2.plot(scr, roc, "d-", color=RED, lw=1.6, ms=5)
     ax2.axhline(-1.0, color=BLUE, ls="--", lw=1.0)

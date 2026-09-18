@@ -93,7 +93,7 @@ ERCOT's Nodal Operating Guide Revision Request (NOGRR) 272 establishes advanced 
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.708\textwidth]{bess_fleet_growth}
-\caption{ERCOT battery energy storage capacity by commercial-operation year, alongside 36.2~GW in the interconnection queue with executed agreements. Sources: July 2026 Monthly Outlook for Resource Adequacy and Generator Interconnection Status reports \cite{mora2026,gis2026}.}
+\caption{ERCOT battery energy storage capacity by commercial-operation year, alongside 36.2~GW in the interconnection queue with executed agreements \cite{mora2026,gis2026}.}
 \label{fig:ercotbess}
 \end{figure}
 
@@ -180,7 +180,7 @@ Voltage and current interpretation depends on the selected bases and on whether 
 \draw[wire] (gfm.north) |- (j);
 \draw[arr] (j) -- (pscad.south);
 \end{tikzpicture}
-\caption{Testbed workflow. E-TRAN converts the IEEE 39-bus PSS/E case into a PSCAD EMT network; synchronous-machine dynamics from the ERCOT-supplied synchronous machine dynamics and grid-forming inverter dynamics from the PNNL REGFM\_A1 model are inserted into that network; Python test scripts set up and run the simulations, and processing scripts convert the EMTDC output into tables, metrics, and the report's figures. The interpretation of those results is not automated.}
+\caption{Testbed workflow: E-TRAN converts the IEEE 39-bus PSS/E case into a PSCAD EMT network; the ERCOT-supplied synchronous-machine dynamics and the PNNL REGFM\_A1 grid-forming inverter dynamics are inserted into that network; Python scripts set up and run the simulations and convert the EMTDC output into tables, metrics, and the report's figures. The interpretation of those results is not automated.}
 \label{fig:testbedflow}
 \end{figure}
 
@@ -380,7 +380,7 @@ The reference fault begins at 3.0~s and lasts five cycles. Figure~\ref{fig:vrms1
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.85\textwidth]{vrms_1gfm}\\[4pt]
 \includegraphics[width=0.85\textwidth]{vrms_2gfm}
-\caption{Bus-voltage responses with one replaced machine (top) and two replaced machines (bottom) under the bus-14 reference fault. Bus~14 is isolated by clearing; its trace is the residual voltage of the de-energized bus.}
+\caption{Bus-voltage responses with one replaced machine (top) and two replaced machines (bottom) under the bus-14 reference fault; bus~14 is isolated by clearing, so its trace is the residual voltage of the de-energized bus.}
 \label{fig:vrms12gfm}
 \end{figure}
 
@@ -400,19 +400,19 @@ The selected GFM responses return promptly toward their post-fault operating poi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{allgfm_vrms}
-\caption{All-GFM bus-voltage responses to the bus-14 reference fault. RMS voltages are shown in kV for the monitored network locations.}
+\caption{All-GFM bus RMS voltages, in kV, at the monitored network locations under the bus-14 reference fault.}
 \label{fig:allgfm}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{allgfm_irms}
-\caption{All-GFM RMS current responses to the bus-14 reference fault, in kA, measured on the 230~kV side of each unit's step-up transformer. The inverter transient-current setting is $I_{\mathrm{maxF}}=2.0$ per unit on each device base.}
+\caption{All-GFM RMS currents under the bus-14 reference fault, in kA on the 230~kV side of each unit's step-up transformer, with the transient-current setting $I_{\mathrm{maxF}}=2.0$ per unit on each device base.}
 \label{fig:allgfmi}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{allgfm_p}
-\caption{All-GFM active-power responses to the bus-14 reference fault, in MW, measured on the 230~kV side of each unit's step-up transformer. Signed powers follow the measurement-channel direction.}
+\caption{All-GFM active powers under the bus-14 reference fault, in MW on the 230~kV side of each unit's step-up transformer, signed by the measurement-channel direction.}
 \label{fig:allgfmp}
 \end{figure}
 
@@ -424,13 +424,13 @@ The selected GFM responses return promptly toward their post-fault operating poi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{fig2_allSYNC_3PG_2x2}
-\caption{All-machine response to the bus-14 reference fault: RMS voltage and current, active power, and reactive power at the 230~kV generator buses, on the transmission side of the step-up transformers. The generator-bus active powers oscillate together at about 1~Hz, the inter-machine swing mode, and decay over tens of seconds. The legend lists the monitored buses; bus~14 is isolated by clearing.}
+\caption{All-machine response to the bus-14 reference fault: RMS voltage and current, active power, and reactive power at the 230~kV generator buses, on the transmission side of the step-up transformers. The active powers oscillate together at about 1~Hz, the inter-machine swing mode, and decay over tens of seconds; bus~14 is isolated by clearing.}
 \label{fig:allsync}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{sweep_0_5_10_GFM_vrms}
-\caption{Bus-voltage responses with zero, five, and ten GFM units under the reference fault. The GFM transient-current setting is 2.0 per unit; configurations are identified by replacement count.}
+\caption{Bus-voltage responses with zero, five, and ten GFM units under the reference fault, with the GFM transient-current setting at 2.0 per unit.}
 \label{fig:sweep}
 \end{figure}
 
@@ -442,7 +442,7 @@ The bus-32 current falls to zero after clearing, while the other nine units cont
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_peakI_timeseries}
-\caption{Bus-10 current-limit study with a five-cycle fault and no reclosing. Each trace is the inverter's own current magnitude at its terminals, on the 10~kV side of its step-up transformer, in per unit of the unit rating. With a 1.5 per-unit setting, bus~32 reaches approximately 1.70 per unit before falling to zero; nine units continue carrying current.}
+\caption{Bus-10 current-limit study with a five-cycle fault and no reclosing: each trace is the inverter's own current magnitude at its terminals, on the 10~kV side of its step-up transformer, in per unit of the unit rating. With a 1.5 per-unit setting, bus~32 reaches approximately 1.70 per unit before falling to zero; nine units continue carrying current.}
 \label{fig:peakits}
 \end{figure}
 
@@ -450,7 +450,7 @@ Figure~\ref{fig:ilimarms} compares the bus-14 reference fault on the all-GFM fle
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_ilim_arms_bus14}
-\caption{Bus-14 reference fault on the all-GFM fleet at three transient current limits, 10~s records with identical dispatch, fault, and clearing. Left: peak of each unit's internal current magnitude (the inverter's own measurement at its terminals, 10~kV side of the step-up transformer) on its own base, with the three limit lines. Right: the same signal for the bus-32 unit through the fault. Instantaneous failures of the semiconductor switches are not modeled.}
+\caption{Bus-14 reference fault on the all-GFM fleet at three transient current limits, 10~s records with identical dispatch, fault, and clearing. Left: peak of each unit's internal current magnitude (10~kV side of the step-up transformer) on its own base, with the three limit lines; right: the same signal for the bus-32 unit through the fault. Instantaneous failures of the semiconductor switches are not modeled.}
 \label{fig:ilimarms}
 \end{figure}
 
@@ -458,7 +458,7 @@ Because the bus-14 fault is remote, Figure~\ref{fig:ilimarms13} repeats the comp
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_ilim_arms_bus13}
-\caption{Bus-13 fault on the all-GFM fleet at four transient current limits, 10~s records with identical dispatch, fault, and clearing; clearing opens lines 10--13 and 13--14. (a)~Peak of each unit's internal current magnitude (the inverter's own measurement at its terminals, 10~kV side of the step-up transformer) on its own base, with the three limit lines; the 15 per-unit arm has no practical limit. (b)~The same signal for the bus-32 unit through the fault. (c)~Reaction time of the current limiter over the first two and a half cycles after fault inception; for each setpoint the legend gives when the current first exceeds the limit (open circle) and when it is back within 2\% of the limit and held there for a cycle (filled circle). Instantaneous failures of the semiconductor switches are not modeled.}
+\caption{Bus-13 fault on the all-GFM fleet at four transient current limits (the 15 per-unit arm has no practical limit), 10~s records with identical dispatch, fault, and clearing, which opens lines 10--13 and 13--14. (a)~Peak of each unit's internal current magnitude (10~kV side of the step-up transformer) on its own base, with the three limit lines. (b)~The same signal for the bus-32 unit through the fault. (c)~The first two and a half cycles: for each setpoint the legend gives when the current first exceeds the limit (open circle) and when it is back within 2\% of it and held for a cycle (filled circle). (d)~RMS current of the bus-32 unit on the 230~kV side of its step-up transformer, in per unit of the unit rating (1083~MVA, 2.72~kA).}
 \label{fig:ilimarms13}
 \end{figure}
 
@@ -466,13 +466,13 @@ Figure~\ref{fig:peaki} compares the device-base peak currents, including a machi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_peakI_pair}
-\caption{Peak currents for the bus-10 disturbance, normalized on individual device bases. For the GFM units the quantity is the inverter's own current magnitude at its terminals, on the 10~kV side of the step-up transformer; for the machines it is the RMS current on the 230~kV side of the step-up transformer. The GFM transient-current setting is 1.5 per unit.}
+\caption{Peak currents for the bus-10 disturbance on individual device bases, with the GFM transient-current setting at 1.5 per unit. For the GFM units the quantity is the inverter's own current magnitude at its terminals (10~kV side of the step-up transformer); for the machines it is the RMS current on the 230~kV side.}
 \label{fig:peaki}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{exec_gfm_vs_sync_bus39_pu}
-\caption{Bus-39 responses in the bus-10 study, measured on the 230~kV side of the unit's step-up transformer: all-machine (blue) and all-GFM (red), each on its own device base. The GFM case shows smaller fault current and faster settling; the two cases have different pre-fault power injections.}
+\caption{Bus-39 responses in the bus-10 study, measured on the 230~kV side of the unit's step-up transformer: all-machine (blue) and all-GFM (red), each on its own device base; the two cases have different pre-fault power injections.}
 \label{fig:exec}
 \end{figure}
 
@@ -482,7 +482,7 @@ The all-machine system rides through the same reference fault as the all-GFM sys
 
 \subsection{Grid-Following Inverter Fault Ride Through}
 \label{sec:gfl}
-We also evaluated a PNNL-based GFL implementation in the testbed. The surrounding grid recovers within approximately one second, but the local voltage remains depressed over the plotted interval in Figures~\ref{fig:gflpocket} and~\ref{fig:gfldeadlock}. The filtered voltage remains below the dip threshold and the active and reactive current commands fall to zero. These signals point to a control-state response rather than demonstrating semiconductor breakdown.
+We also evaluated a PNNL-based GFL implementation in the testbed. It is the only inverter model in the 39-bus studies whose circuit includes explicit semiconductor switch elements: its average-value module carries a bridge of six IGBT and six diode elements, each a two-state switch with an on-state resistance and a snubber, whereas the REGFM\_A1 units are controlled voltage sources behind a reactance. The surrounding grid recovers within approximately one second, but the local voltage remains depressed over the plotted interval in Figures~\ref{fig:gflpocket} and~\ref{fig:gfldeadlock}. The filtered voltage remains below the dip threshold and the active and reactive current commands fall to zero. These signals point to a control-state response rather than demonstrating semiconductor breakdown.
 
 We obtained post-fault operation in a modified implementation that replaced the current-source interface with a voltage-source representation. That modification changes the model under test and does not establish a general remedy for GFL control. We did not pursue the GFL study further in the first-year work. The original and modified outcomes therefore remain distinct from the main GFM replacement results.
 
@@ -494,7 +494,7 @@ We obtained post-fault operation in a modified implementation that replaced the 
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{fig8b_gfl_deadlock}
-\caption{Voltage-dip and current-command signals in the original GFL implementation. Filtered voltage remains below the dip threshold, followed by zero active and reactive current commands.}
+\caption{Voltage-dip and current-command signals in the original GFL implementation: the filtered voltage stays below the dip threshold, and the active and reactive current commands go to zero. This grid-following model is the only inverter model in the 39-bus studies whose circuit includes explicit semiconductor switch elements (a six-IGBT, six-diode bridge inside its average-value module); the REGFM\_A1 units are controlled voltage sources behind a reactance.}
 \label{fig:gfldeadlock}
 \end{figure}
 
@@ -504,7 +504,7 @@ Single-line-to-ground (phase A) and double-line-to-ground (phases A and B) fault
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_unbal_bus14}
-\caption{Unbalanced faults at bus~14, all-machine and all-GFM fleets, 10~s records with the reference timing and clearing. Left: bus-16 RMS voltage through the fault (SLG solid, LLG dashed). Right: peak RMS current of each unit on its own base, measured on the 230~kV side of its step-up transformer.}
+\caption{Unbalanced faults at bus~14, all-machine and all-GFM fleets, 10~s records with the reference timing and clearing. Left: bus-16 RMS voltage through the fault (SLG solid, LLG dashed); right: peak RMS current of each unit on its own base, on the 230~kV side of its step-up transformer.}
 \label{fig:unbal}
 \end{figure}
 
@@ -535,7 +535,7 @@ Figure~\ref{fig:smcircuit} shows this single-machine infinite-bus representation
 
 \begin{figure}[tbp]\centering
 \input{figures/tikz_sm_basic_model.tex}
-\caption{Classical synchronous-machine model: transient internal voltage $E^\prime\angle\theta_{\mathrm{E}}$ behind reactance $X^\prime_{\mathrm{d}}$, connected to the grid at $V\angle\theta_{\mathrm{V}}$. The internal magnitude is set by the field circuit. The displacement $\delta=\theta_{\mathrm{E}}-\theta_{\mathrm{V}}$ is tied to rotor motion and satisfies $\dot\delta=\omega_0\Delta\bar{\omega}$.}
+\caption{Classical synchronous-machine model: transient internal voltage $E^\prime\angle\theta_{\mathrm{E}}$, its magnitude set by the field circuit, behind reactance $X^\prime_{\mathrm{d}}$ and connected to the grid at $V\angle\theta_{\mathrm{V}}$. The displacement $\delta=\theta_{\mathrm{E}}-\theta_{\mathrm{V}}$ is tied to rotor motion and satisfies $\dot\delta=\omega_0\Delta\bar{\omega}$.}
 \label{fig:smcircuit}
 \end{figure}
 
@@ -567,13 +567,13 @@ with $\theta_{\mathrm{E}}$ measured from the synchronous reference, so against t
 
 \begin{figure}[tbp]\centering
 \input{figures/tikz_gfm_basic_model.tex}
-\caption{Simplified inverter model used in the analysis, after Figure~1 of the REGFM\_A1 specification \cite{du2023a1}. A controllable voltage source $E\angle\theta_{\mathrm{E}}$ behind coupling reactance $X_{\mathrm{L}}$ delivers active and reactive power to the grid at $V\angle\theta_{\mathrm{V}}$. Under unsaturated filtered droop, $\dot\theta_{\mathrm{E}}=\omega_0\Delta\bar{\omega}$.}
+\caption{Simplified inverter model used in the analysis, after Figure~1 of the REGFM\_A1 specification \cite{du2023a1}: a controllable voltage source $E\angle\theta_{\mathrm{E}}$ behind coupling reactance $X_{\mathrm{L}}$ delivers active and reactive power to the grid at $V\angle\theta_{\mathrm{V}}$. Under unsaturated filtered droop, $\dot\theta_{\mathrm{E}}=\omega_0\Delta\bar{\omega}$.}
 \label{fig:gfmcircuit}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \input{figures/tikz_gfm_equiv_circuits.tex}
-\caption{Equivalent normalized circuits, after external Figure~2 of \cite{du2023a1}: internal voltage source behind reactance and its Norton representation. Here $I_{\mathrm{N}}\angle\varphi_{\mathrm{N}}$ is the equivalent injected current and $Y_{\mathrm{L}}=1/(jX_{\mathrm{L}})$ the parallel admittance; $\varphi$ denotes current phase. Solver representation does not determine GFM or GFL classification.}
+\caption{Equivalent normalized circuits, after external Figure~2 of \cite{du2023a1}: internal voltage source behind reactance and its Norton representation. Here $I_{\mathrm{N}}\angle\varphi_{\mathrm{N}}$ is the equivalent injected current and $Y_{\mathrm{L}}=1/(jX_{\mathrm{L}})$ the parallel admittance; $\varphi$ denotes current phase.}
 \label{fig:gfmequiv}
 \end{figure}
 
@@ -598,13 +598,13 @@ $s$ & Laplace variable & 1/s\\\bottomrule
 
 \begin{figure}[tbp]\centering
 \resizebox{\textwidth}{!}{\input{figures/tikz_control_blocks.tex}}
-\caption{GGOV1 governor and turbine model of the machine, redrawn block for block from Figure~3-5 of IEEE PES-TR1 \cite{pestr1} with the Table~\ref{tab:dyr_gov_params} settings and the figure's signal names; the signal path is described in Section~\ref{sec:gfmmodel}. Grey blocks and wires are present in GGOV1 but switched off by the settings ($K_{\mathrm{imw}}=K_{\mathrm{dgov}}=T_{\mathrm{eng}}=D_{\mathrm{m}}=0$) and carry no signal in any run.}
+\caption{GGOV1 governor and turbine model of the machine, redrawn block for block from Figure~3-5 of IEEE PES-TR1 \cite{pestr1} with the Table~\ref{tab:dyr_gov_params} settings and the figure's signal names; grey blocks and wires are present in GGOV1 but switched off by the settings ($K_{\mathrm{imw}}=K_{\mathrm{dgov}}=T_{\mathrm{eng}}=D_{\mathrm{m}}=0$).}
 \label{fig:controlblocks}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \input{figures/tikz_gfm_controls.tex}
-\caption{REGFM\_A1 outer controls, redrawn from Figures~3(a), 3(b), and~4 of the model specification \cite{du2023a1}: (a)~$P$--$f$ droop with overload mitigation, (b)~$Q$--$V$ droop with the voltage regulator selected by VFlag~$=1$, and (c)~fault current limiting. The inputs have passed through the $T_{\mathrm{Pf}}$, $T_{\mathrm{Qf}}$, and $T_{\mathrm{Vf}}$ measurement filters, and the droop output $\Delta\omega=\omega_0\Delta\bar{\omega}$ is in rad/s.}
+\caption{REGFM\_A1 outer controls, redrawn from Figures~3(a), 3(b), and~4 of the model specification \cite{du2023a1}: (a)~$P$--$f$ droop with overload mitigation, (b)~$Q$--$V$ droop with the voltage regulator selected by VFlag~$=1$, and (c)~fault current limiting; the droop output $\Delta\omega=\omega_0\Delta\bar{\omega}$ is in rad/s.}
 \label{fig:gfmblocks}
 \end{figure}
 
@@ -652,13 +652,13 @@ The fault is applied at the point of interconnection on the grid side of each de
 
 \begin{figure}[b]\centering
 \includegraphics[width=0.85\textwidth]{fig6_smib_sync_vs_gfm_VI}
-\caption{Single-device fault response: voltage and current at the device terminals for the synchronous machine and GFM inverter; neither single-device case has a step-up transformer. The GFM transient-current setting is 2.0 per unit; both devices are dispatched at 0.50 per unit.}
+\caption{Single-device fault response: voltage and current at the device terminals for the synchronous machine and the GFM inverter (neither case has a step-up transformer), with the GFM transient-current setting at 2.0 per unit and both devices dispatched at 0.50 per unit.}
 \label{fig:smibvi}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.85\textwidth]{narr_smib_sync_vs_gfm_Pf}
-\caption{Single-device active-power and frequency responses at matched 0.50 per-unit dispatch. The selected GFM model settles faster than the machine case. The dense band on the machine trace for about 0.5~s after clearing is a 60~Hz ripple of the instantaneous power calculation, produced by the direct-current offset of the armature current after the bolted fault; it decays with that offset and is not an oscillation of the machine. The machine's 1.5~Hz oscillation that follows decays at 1.6~s$^{-1}$ (Section~\ref{sec:smib}).}
+\caption{Single-device active-power and frequency responses at matched 0.50 per-unit dispatch. The dense band on the machine trace for about 0.5~s after clearing is a 60~Hz ripple of the instantaneous power calculation, produced by the direct-current offset of the armature current after the bolted fault; it decays with that offset and is not an oscillation of the machine. The machine's 1.5~Hz oscillation that follows decays at 1.6~s$^{-1}$ (Section~\ref{sec:smib}).}
 \label{fig:smibpf}
 \end{figure}
 
@@ -666,7 +666,7 @@ Figure~\ref{fig:smibipiq} separates the active and reactive current contribution
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{smib_IPIQ}
-\caption{Active and reactive current components for the single-device fault comparison, $I_{\mathrm{P}}=P/V$ and $I_{\mathrm{Q}}=Q/V$ on each device base, positive for injection into the grid and blanked while $V<0.2$ per unit; both devices are dispatched at 0.50 per unit. The 60~Hz ripple on the machine traces is the armature direct-current offset described for Figure~\ref{fig:smibpf}.}
+\caption{Active and reactive current components for the single-device fault comparison, $I_{\mathrm{P}}=P/V$ and $I_{\mathrm{Q}}=Q/V$ on each device base, positive for injection into the grid and blanked while $V<0.2$ per unit, with both devices dispatched at 0.50 per unit; the 60~Hz ripple on the machine traces is the armature direct-current offset described for Figure~\ref{fig:smibpf}.}
 \label{fig:smibipiq}
 \end{figure}
 
@@ -747,7 +747,7 @@ The additional term shows that damping-related power contributes to the inertia 
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.8\textwidth]{inertia_energy_split}
-\caption{Contributions to the integrated power response during a constant rate-of-change-of-frequency ramp, from Equations~\eqref{eq:dpsplit} and~\eqref{eq:esplit}. The inertial contribution is constant and forms a rectangle; the damping contribution accumulates and forms a triangle. The curves illustrate the analytical decomposition.}
+\caption{Contributions to the integrated power response during a constant rate-of-change-of-frequency ramp, from Equations~\eqref{eq:dpsplit} and~\eqref{eq:esplit}: the inertial contribution is constant and forms a rectangle, and the damping contribution accumulates and forms a triangle.}
 \label{fig:esplit}
 \end{figure}
 
@@ -755,7 +755,7 @@ The machine and inverter also differ in response timescales. The inverter's 10~m
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.8\textwidth]{inertia_timescale}
-\caption{Illustrative time-scale separation between the inertial response and the droop response. The curves isolate the effect of droop-path lag: a faster path contributes within the measurement window, while a slower path contributes less over that interval.}
+\caption{Illustrative time-scale separation between the inertial response and the droop response: a faster droop path contributes within the measurement window, while a slower path contributes less over that interval.}
 \label{fig:tscale}
 \end{figure}
 
@@ -763,7 +763,7 @@ Weakening the droop to $m_{\mathrm{p}}=0.1$ reduces the analytical equivalent in
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.8\textwidth]{hest_corrected}
-\caption{Inertia estimate from Equation~\eqref{eq:hest} compared with the PSCAD integration-window sweep at $m_{\mathrm{p}}=0.1$. The intercept is the equivalent inertia $T_{\mathrm{Pf}}/(2m_{\mathrm{p}})=0.05$~s and the slope is $1/(4m_{\mathrm{p}})=2.5$. The line predicts the inertia estimator output including damping, rather than an inertia estimate with damping removed. The dotted line is $H_{\mathrm{eq}}=0.05$~s.}
+\caption{Inertia estimate from Equation~\eqref{eq:hest} compared with the PSCAD integration-window sweep at $m_{\mathrm{p}}=0.1$: the line has intercept $T_{\mathrm{Pf}}/(2m_{\mathrm{p}})=0.05$~s, the equivalent inertia (dotted line), and slope $1/(4m_{\mathrm{p}})=2.5$. It predicts the inertia estimator output including damping, rather than an inertia estimate with damping removed.}
 \label{fig:hestfit}
 \end{figure}
 
@@ -786,7 +786,7 @@ A window sweep could separate the intercept from the damping-related slope withi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.95\textwidth]{narr_hest_vs_scr}
-\caption{PMView inertia estimate of the droop-controlled inverter versus short-circuit ratio, 0.5~s window, dispatch $P=0$. (a)~The estimate referred to the imposed $-1$~Hz/s ramp, as in Equation~\eqref{eq:agsesr}, and referred to the inverter's internal droop frequency over the same window; the dotted line is the analytic $H_{\mathrm{eq}}+T/(4m_{\mathrm{p}})$. (b)~Least-squares slope of the internal droop frequency over the window, with the imposed $-1$~Hz/s ramp as the dashed line; both are negative because the test is an under-frequency ramp. Short-circuit ratios 3, 5, 10, and 20 are the records behind the earlier 7.44 to 10.06~s range; 2, 7, and 40 were added for this figure.}
+\caption{PMView inertia estimate of the droop-controlled inverter versus short-circuit ratio, 0.5~s window, dispatch $P=0$. (a)~The estimate referred to the imposed $-1$~Hz/s ramp, as in Equation~\eqref{eq:agsesr}, and referred to the inverter's internal droop frequency over the same window; the dotted line is the analytic $H_{\mathrm{eq}}+T/(4m_{\mathrm{p}})$. (b)~Least-squares slope of the internal droop frequency over the window, with the imposed $-1$~Hz/s ramp dashed; both are negative because the test is an under-frequency ramp.}
 \label{fig:hestscr}
 \end{figure}
 
@@ -798,19 +798,19 @@ A window sweep could separate the intercept from the damping-related slope withi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.8\textwidth]{fig10_inertia_gfm}
-\caption{PMView inertia estimation test for the droop-controlled GFM inverter: $H_{\mathrm{est}}=7.44$~s. This estimate includes the controller response and is distinct from the filtered-droop equivalent inertia.}
+\caption{PMView inertia estimation test for the droop-controlled GFM inverter: $H_{\mathrm{est}}=7.44$~s, which includes the controller response and is distinct from the filtered-droop equivalent inertia.}
 \label{fig:hgfm}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.8\textwidth]{fig11_inertia_mechanism_pair}
-\caption{Estimated equivalent inertia versus integration-window length for the tested control configurations. The window dependence illustrates the contribution of damping-related power response. Configured virtual inertia and filtered-droop equivalent inertia are distinct quantities.}
+\caption{Estimated equivalent inertia versus integration-window length for the tested control configurations; the window dependence comes from the damping-related power response.}
 \label{fig:hmech}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.8\textwidth]{narr_inertia_gfm_mp0p1}
-\caption{GFM inertia estimation test at $m_{\mathrm{p}}=0.1$: $H_{\mathrm{est}}=1.22$~s. The weaker droop reduces both equivalent damping and filtered-droop equivalent inertia.}
+\caption{GFM inertia estimation test at $m_{\mathrm{p}}=0.1$: $H_{\mathrm{est}}=1.22$~s; the weaker droop reduces both equivalent damping and filtered-droop equivalent inertia.}
 \label{fig:mp01}
 \end{figure}
 
@@ -860,7 +860,7 @@ Figure~\ref{fig:efcct} summarizes the preliminary comparisons. The machine estim
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.8\textwidth]{ef_cct_machines_vs_gfm}
-\caption{Energy-method critical clearing times (navy) compared with PSCAD EMT brackets (orange). Each bracket runs from a successful to an unsuccessful clearing duration; the estimates are single values from the reduced models of Section~\ref{sec:energymethod}: the machine model is the undamped classical one, and the inverter model includes the droop damping $D=1/m_{\mathrm{p}}$. The inverter estimates exceed their brackets because those models carry no current limiter (Section~\ref{sec:gfmgap}).}
+\caption{Energy-method critical clearing times (navy) compared with PSCAD EMT brackets (orange), each bracket running from a successful to an unsuccessful clearing duration. The estimates are single values from the reduced models of Section~\ref{sec:energymethod}: the machine model is the undamped classical one, and the inverter model includes the droop damping $D=1/m_{\mathrm{p}}$ but no current limiter, which is why its estimates exceed their brackets (Section~\ref{sec:gfmgap}).}
 \label{fig:efcct}
 \end{figure}
 
@@ -877,7 +877,7 @@ Figure~\ref{fig:esbelow} shows the machine and GFM trajectories at their last st
 
 \begin{figure}[tbp]\centering
 \input{figures/energy_surface_below_cct_coi.tex}
-\caption{Potential-energy contours in equilibrium-shifted COI coordinates for the 39-bus system: (a)~ten synchronous machines and (b)~ten GFM inverters. Clearing durations are the last stable cases, 0.237~s and 1.600~s, respectively. White dotted and thin solid curves show the model's fault-on and post-clearing paths; cyan dashed curves show PSCAD EMT trajectories. The thick white curve is the model boundary estimate. Circles mark clearing, squares mark model endpoints, and cyan crosses mark EMT endpoints. The colour scale is shared by both panels.}
+\caption{Potential-energy contours in equilibrium-shifted COI coordinates for the 39-bus system at the last stable clearing durations: (a)~ten synchronous machines, 0.237~s, and (b)~ten GFM inverters, 1.600~s. White dotted and thin solid curves show the model's fault-on and post-clearing paths, cyan dashed curves the PSCAD EMT trajectories, and the thick white curve the model boundary estimate. Circles mark clearing, squares model endpoints, and cyan crosses EMT endpoints.}
 \label{fig:esbelow}
 \end{figure}
 
@@ -893,7 +893,7 @@ The larger amplitude and curvature of the GFM surface follow from the coupling r
 \input{figures/energy_surface_at_cct_coi.tex}
 \par\vspace{4pt}
 \input{figures/energy_surface_at_cct_3d.tex}
-\caption{Complementary views near the analytical critical clearing times: (a,b)~2D potential-energy contours and (c,d)~3D surfaces, with synchronous machines on the left and GFM inverters on the right. Clearing durations are 0.2455~s and 2.315~s; model estimates are 0.248~s and 2.338~s. All panels use the equilibrium-shifted COI angles in Equation~\eqref{eq:energycoi} and the shared legend above the 3D views. The GFM EMT endpoint lies in a neighboring well, unlike the model endpoint near the origin. EMT clearing-time brackets remain $(0.237,0.250]$~s and $(1.600,1.700]$~s.}
+\caption{Complementary views near the analytical critical clearing times: (a,b)~2D potential-energy contours and (c,d)~3D surfaces, synchronous machines on the left and GFM inverters on the right, in the equilibrium-shifted COI angles of Equation~\eqref{eq:energycoi} with the shared legend above the 3D views. Clearing durations are 0.2455~s and 2.315~s; model estimates are 0.248~s and 2.338~s. The GFM EMT endpoint lies in a neighboring well, unlike the model endpoint near the origin.}
 \label{fig:esat}
 \end{figure}
 
@@ -901,13 +901,13 @@ Current limiting and the ceiling on commanded voltage are plausible contributors
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.9\textwidth]{ilimit_sweep_emt}
-\caption{Measured critical clearing time of the single inverter on the infinite bus as a function of the transient current limit $I_{\max F}$, all other settings fixed. Each bar is the bracket between the longest stable and the shortest unstable fault duration.}
+\caption{Measured critical clearing time of the single inverter on the infinite bus versus the transient current limit $I_{\max F}$, all other settings fixed; each bar is the bracket between the longest stable and the shortest unstable fault duration.}
 \label{fig:ilimitsweep}
 \end{figure}
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.9\textwidth]{saturation_block}
-\caption{Conceptual effect of current saturation on the power-angle characteristic. The limited characteristic departs from the sinusoid, changing the location of the unstable equilibrium and the region of attraction represented by the classical construction.}
+\caption{Conceptual effect of current saturation on the power-angle characteristic: the limited characteristic departs from the sinusoid, changing the unstable equilibrium and the region of attraction of the classical construction.}
 \label{fig:satblock}
 \end{figure}
 

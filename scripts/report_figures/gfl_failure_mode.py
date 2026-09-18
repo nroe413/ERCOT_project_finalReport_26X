@@ -110,8 +110,7 @@ def fig8b():
                ha="left", va="bottom", fontsize=9, zorder=6,
                bbox=dict(boxstyle="square,pad=0.2", facecolor="white",
                          edgecolor="none", alpha=1.0))
-    ax[0].annotate(r"latched: $V_{\mathrm{t}}$ never re-crosses 0.5",
-                   xy=(6.5, 0.22), xytext=(5.1, 0.72), **ANN)
+    ax[0].text(5.1, 0.27, r"latched: $V_{\mathrm{t}}$ never re-crosses 0.5", ha="left", va="bottom", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
     ax[0].set_ylabel("voltage (pu)")
     ax[0].set_ylim(0, 1.28)
     ax[0].legend(loc="upper right", fontsize=9, framealpha=0.95)
@@ -120,10 +119,8 @@ def fig8b():
                label=r"$I_{p,\mathrm{cmd}}$ (active)")
     ax[1].plot(t, w.Iqcmd[::s], color=RED, lw=1.4,
                label=r"$I_{q,\mathrm{cmd}}$ (reactive)")
-    ax[1].annotate("correct WECC LVRT:\n$I_{\\mathrm{p}}\\!\\to\\!0$, $I_{\\mathrm{q}}\\!\\to\\!1$",
-                   xy=(3.25, 0.97), xytext=(4.5, 0.70), **ANN)
-    ax[1].annotate("dip logic times out;\ncommands stay zero",
-                   xy=(4.55, 0.03), xytext=(6.3, 0.42), **ANN)
+    ax[1].text(4.12, 0.80, "correct WECC LVRT:\n$I_{\\mathrm{p}}\\!\\to\\!0$, $I_{\\mathrm{q}}\\!\\to\\!1$", ha="left", va="center", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
+    ax[1].text(4.6, 0.07, "dip logic times out; commands stay zero", ha="left", va="bottom", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
     ax[1].set_ylabel("current command (pu)")
     ax[1].set_ylim(-0.1, 1.15)
     ax[1].legend(loc="center right", fontsize=9, framealpha=0.9)
@@ -131,10 +128,8 @@ def fig8b():
     ax[2].plot(t, w.P32[::s], color=BLUE, lw=1.2, label=r"$P_{32}$ (MW)")
     ax[2].plot(t, w.Q32[::s], color=RED, lw=1.2, label=r"$Q_{32}$ (MVAr)")
     ax[2].axhline(0, color="k", lw=0.8)
-    ax[2].annotate("650 MW export", xy=(2.75, 620), xytext=(3.6, 500),
-                   **ANN)
-    ax[2].annotate("dead unit absorbs 50-170 MW\n(filter/damping stays connected)",
-                   xy=(7.0, -130), xytext=(5.7, 280), **ANN)
+    ax[2].text(3.2, 640, "650 MW export", ha="left", va="center", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
+    ax[2].text(5.2, 60, "dead unit absorbs 50-170 MW (filter/damping stays connected)", ha="left", va="bottom", fontsize=9, zorder=6, bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none", alpha=0.85))
     ax[2].set_ylabel("POI power")
     ax[2].set_xlabel("time (s)")
     ax[2].set_ylim(-300, 730)
