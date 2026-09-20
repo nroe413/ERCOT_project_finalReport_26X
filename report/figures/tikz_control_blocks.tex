@@ -1,226 +1,224 @@
-% GGOV1 gas turbine governor model, redrawn to follow IEEE PES-TR1 Figure 3-5 (GGOV1 gas turbine model,
-% courtesy of GE) as closely as possible: same layout, same lower-case signal and parameter names, same
-% switches (rselect, flag), limiter glyphs and state labels s0-s9.  Coordinates are the pixel positions of
-% the original figure (y axis pointing down), so the geometry can be checked against it directly.
-\begin{tikzpicture}[x=0.0150cm, y=-0.0150cm, line cap=round, line join=round,
-    every node/.style={font=\sffamily\footnotesize, inner sep=1pt},
-    w/.style={line width=0.6pt},
-    b/.style={line width=0.7pt},
-    st/.style={font=\sffamily\scriptsize, text=black!50},
-    sg/.style={font=\sffamily\scriptsize\bfseries},
-    sm/.style={draw, circle, line width=0.7pt, inner sep=0pt, minimum size=0.36cm, fill=white},
-    mu/.style={draw, circle, line width=0.7pt, inner sep=0pt, minimum size=0.36cm, fill=white,
-               path picture={\draw[line width=0.9pt]
-                 (path picture bounding box.center) ++(-0.085cm,-0.085cm) -- ++(0.17cm,0.17cm)
-                 (path picture bounding box.center) ++(-0.085cm,0.085cm) -- ++(0.17cm,-0.17cm);}},
-    ct/.style={draw, circle, line width=0.6pt, inner sep=0pt, minimum size=0.11cm, fill=white},
-    >={Latex[length=1.9mm, width=1.3mm]}]
-  \newcommand{\fr}[2]{$\dfrac{\textsf{#1}}{\textsf{#2}}$}
-  \newcommand{\dotat}[1]{\fill #1 circle (1.4pt);}
-  % ---------------------------------------------------------------- blocks
-  \draw[b] (515,258) rectangle (578,312);   \node at (546,285) {\fr{1}{Kturb}};
-  \draw[b] (938,322) rectangle (1040,375);  \node at (989,348) {\fr{1}{1+sTfload}};
-  \draw[b] (1082,322) rectangle (1158,375); \node at (1120,348) {\fr{1+sTsa}{1+sTsb}};
-  \draw[b] (1218,235) rectangle (1258,260); \node at (1238,247) {dm};
-  \draw[b] (835,395) rectangle (908,450);   \node at (871,422) {\fr{Kiload}{Kpload}};
-  \draw[b] (782,397) rectangle (812,450);   \node at (797,423) {\fr{1}{s}};
-  \draw[b] (608,530) rectangle (678,560);   \node at (643,545) {Kpload};
-  \draw[b] (543,607) rectangle (613,657);   \node at (578,632) {\fr{s}{1+sTa}};
-  \draw[b] (705,612) rectangle (773,652);   \node at (739,632) {Ka $\Delta$t};
-  \draw[b] (708,688) rectangle (823,740);   \node at (765,714) {\fr{sKdgov}{1+sTdgov}};
-  \draw[b] (716,750) rectangle (805,788);   \node at (760,769) {Kpgov};
-  \draw[b] (960,517) rectangle (1040,805);
-  \node[anchor=west] at (966,548) {fsrt};
-  \node[anchor=west] at (966,632) {fsra};
-  \node[anchor=west] at (966,770) {fsrn};
-  \node[anchor=west, align=left, font=\sffamily\small] at (964,695) {Low\\Value\\Select};
-  \draw[b] (1198,748) rectangle (1243,798); \node at (1220,773) {\fr{1}{Tact}};
-  \draw[b] (1293,745) rectangle (1325,798); \node at (1309,772) {\fr{1}{s}};
-  \draw[b] (940,883) rectangle (1008,935);  \node at (974,909) {\fr{Kigov}{Kpgov}};
-  \draw[b] (887,883) rectangle (915,935);   \node at (901,909) {\fr{1}{s}};
-  \draw[b] (1378,408) rectangle (1453,458); \node at (1415,433) {\fr{1+sTc}{1+sTb}};
-  \draw[b] (1380,502) rectangle (1445,528); \node at (1412,515) {Kturb};
-  \draw[b] (1375,565) rectangle (1455,605); \node at (1415,585) {$\mathsf{e}^{\mathsf{-sTeng}}$};
-  \draw[b] (508,835) rectangle (533,860);   \node at (520,847) {r};
-  \draw[b] (388,915) rectangle (460,965);   \node at (424,940) {\fr{Kimw}{s}};
-  \draw[b] (462,1048) rectangle (577,1100); \node at (519,1074) {\fr{1}{1+sTpelec}};
-  % ---------------------------------------------------------------- junctions
-  \node[sm] (Swf)  at (665,287) {};
-  \node[sm] (Stl)  at (747,348) {};
-  \node[mu] (Mtex) at (1265,348) {};
-  \node[sm] (Spm)  at (1412,328) {};
-  \node[sm] (Skil) at (940,418) {};
-  \node[sm] (Skpl) at (742,548) {};
-  \node[sm] (Sac1) at (668,632) {};
-  \node[sm] (Sac2) at (815,632) {};
-  \node[sm] (S1)   at (422,768) {};
-  \node[sm] (S2)   at (522,768) {};
-  \node[sm] (S3)   at (857,772) {};
-  \node[sm] (Sv)   at (1165,772) {};
-  \node[mu] (Mfl)  at (1412,772) {};
-  \node[sm] (Swf2) at (1412,648) {};
-  \node[sm] (Skig) at (1050,905) {};
-  \node[sm] (Smw)  at (425,1027) {};
-  % ---------------------------------------------------------------- temperature limit (top)
-  \node[anchor=east] at (500,272) {Ldref};
-  \draw[w] (455,287) -- (515,287);
-  \draw[->,w] (578,287) -- (Swf);
-  \draw[->,w] (668,225) -- (Swf);
-  \node[anchor=west] at (680,243) {wfnl};
-  \node[sg] at (646,250) {+};  \node[sg] at (624,270) {+};
-  \draw[->,w] (Swf) -- (747,287) -- (Stl);
-  \node[anchor=west] at (760,300) {tlim};
-  \node[sg] at (730,306) {+};  \node[sg] at (785,328) {--};
-  \draw[->,w] (938,348) -- (Stl);
-  \node at (862,334) {texm};
-  \draw[->,w] (1082,348) -- (1040,348);
-  \draw[->,w] (Mtex) -- (1158,348);
-  \node at (1207,333) {tex};
-  \node[anchor=west] at (1010,234) {if Dm $>$ 0\quad speed};
-  \draw[->,w] (1150,245) -- (1218,245);
-  \draw[->,w] (1258,247) -- (1412,247) -- (Spm);
-  \node[anchor=west] at (1004,274) {if Dm $<$ 0\ \ speed**Dm};
-  \draw[->,w] (1130,283) -- (1265,283) -- (Mtex);
-  \draw[->,w] (Spm) -- (1497,328);
-  \node at (1462,350) {Pmech};
-  \node[sg] at (1393,312) {--}; \node[sg] at (1396,354) {+};
-  \node[st] at (1035,385) {s5}; \node[st] at (1168,385) {s9};
-  % ---------------------------------------------------------------- turbine column (right)
-  \draw[->,w] (1412,408) -- (Spm);
-  \draw[w] (1412,502) -- (1412,458);
-  \draw[w] (1412,565) -- (1412,528);
-  \draw[w] (Swf2) -- (1412,605);
-  \draw[->,w] (1490,648) -- (Swf2);
-  \node[anchor=west] at (1492,646) {wfnl};
-  \node[sg] at (1462,660) {--}; \node[sg] at (1428,689) {+};
-  \draw[->,w] (Mfl) -- (Swf2);
-  \dotat{(1412,700)}
-  \draw[->,w] (1412,700) -- (1265,700) -- (Mtex);
-  \node at (1388,730) {cfe};
-  \node at (1288,640) {Wf};
-  \node[st] at (1455,468) {s4};
-  % flag switch under the multiplier
-  \draw[->,w] (1412,828) -- (Mfl);
-  \node[ct] (fc) at (1412,832) {};
-  \node[anchor=west] at (1422,842) {flag};
-  \node[ct] (f0) at (1398,872) {}; \node[ct] (f1) at (1430,872) {};
-  \draw[w] (fc) -- (1427,866);
-  \node at (1386,861) {0}; \node at (1442,861) {1};
-  \draw[->,w] (1398,930) -- (f0);
-  \draw[->,w] (1430,930) -- (f1);
-  \node[anchor=east] at (1392,931) {1.0};
-  \node[anchor=west] at (1436,932) {speed};
-  % ---------------------------------------------------------------- governor row
-  \node[anchor=east] at (385,748) {Pref};
-  \draw[->,w] (350,768) -- (S1);
-  \node[sg] at (403,746) {+};
-  \draw[->,w] (S1) -- (S2);
-  \node[sg] at (486,748) {+}; \node[sg] at (538,727) {--}; \node[sg] at (538,797) {--};
-  \draw[w] (S2) -- (678,768);
-  % deadband and error limits
-  \draw[w] (613,760) -- (613,776); \draw[w] (621,760) -- (621,776);
-  \draw[w] (585,803) -- (600,803) -- (636,741) -- (652,741);
-  \node at (592,757) {-db}; \node at (633,782) {db};
-  \node at (620,730) {maxerr}; \node at (598,815) {minerr};
-  \dotat{(678,768)}
-  \draw[->,w] (678,768) -- (716,768);
-  \draw[->,w] (678,768) -- (678,714) -- (708,714);
-  \draw[->,w] (823,714) -- (857,714) -- (S3);
-  \draw[->,w] (805,769) -- (S3);
-  \node[st] at (838,697) {s1};
-  \node[sg] at (840,738) {+}; \node[sg] at (820,757) {+}; \node[sg] at (841,792) {+};
-  \draw[->,w] (S3) -- (960,772);
-  % fuel demand limiter, valve
-  \draw[w] (1040,772) -- (1112,772);
-  \draw[w] (1056,792) -- (1068,792) -- (1084,752) -- (1096,752);
-  \node at (1086,733) {vmax}; \node at (1068,808) {vmin};
-  \dotat{(1112,772)}
-  \node at (1126,792) {fsr};
-  \draw[->,w] (1112,772) -- (Sv);
-  \node[sg] at (1140,752) {+}; \node[sg] at (1150,803) {--};
-  \draw[->,w] (Sv) -- (1198,772);
-  \draw[w] (1243,772) -- (1293,772);
-  \draw[w] (1252,792) -- (1262,792) -- (1276,752) -- (1286,752);
-  \node at (1268,730) {ropen}; \node at (1268,803) {rclose};
-  \draw[w] (1325,772) -- (1345,772);
-  \dotat{(1345,772)}
-  \draw[->,w] (1345,772) -- (Mfl);
-  \node[st] at (1315,812) {s3};
-  \draw[->,w] (1345,772) -- (1345,835) -- (1165,835) -- (Sv);
-  \dotat{(1345,835)}
-  % ---------------------------------------------------------------- fsr feedback line (x = 1112)
-  \draw[->,w] (1112,772) -- (1112,418) -- (Skil);
-  \draw[w] (1112,772) -- (1112,970);
-  \dotat{(1112,905)}
-  \draw[->,w] (1112,905) -- (Skig);
-  % governor integral (tracking) path
-  \draw[->,w] (Skig) -- (1008,909);
-  \draw[->,w] (940,909) -- (915,909);
-  \draw[->,w] (887,909) -- (857,909) -- (S3);
-  \dotat{(857,847)}
-  \draw[->,w] (857,847) -- (1050,847) -- (Skig);
-  \node[sg] at (1030,886) {--}; \node[sg] at (1080,887) {+};
-  \node[st] at (865,928) {s2};
-  % load limit integral (tracking) path
-  \draw[->,w] (Skil) -- (908,422);
-  \draw[->,w] (835,422) -- (812,422);
-  \draw[->,w] (782,423) -- (742,423) -- (Skpl);
-  \dotat{(742,482)}
-  \draw[->,w] (742,482) -- (940,482) -- (Skil);
-  \node[sg] at (985,435) {+}; \node[sg] at (958,456) {--};
-  \node[st] at (762,450) {s6};
-  % Kpload path
-  \draw[->,w] (Stl) -- (553,348) -- (553,545) -- (608,545);
-  \draw[->,w] (678,545) -- (Skpl);
-  \node[sg] at (716,566) {+}; \node[sg] at (759,518) {+};
-  \draw[->,w] (Skpl) -- (960,548);
-  \draw[w] (822,568) -- (834,568) -- (848,528) -- (862,528);
-  \node at (852,512) {1.0}; \node[align=center, font=\sffamily\scriptsize] at (829,590) {rup\\[-2pt]rdown};
-  \node[st] at (903,510) {s6};
-  % ---------------------------------------------------------------- acceleration limit
-  \node[anchor=west] at (398,645) {speed};
-  \draw[w] (398,632) -- (543,632);
-  \dotat{(522,632)}
-  \draw[->,w] (522,632) -- (S2);
-  \draw[->,w] (613,632) -- (Sac1);
-  \node[anchor=west] at (518,563) {aset};
-  \draw[->,w] (520,578) -- (668,578) -- (Sac1);
-  \node[sg] at (636,620) {--}; \node[sg] at (681,598) {+};
-  \draw[->,w] (Sac1) -- (705,632);
-  \draw[->,w] (773,632) -- (Sac2);
-  \draw[->,w] (900,670) -- (815,670) -- (Sac2);
-  \node[anchor=west] at (902,672) {fsr};
-  \node[sg] at (792,646) {+}; \node[sg] at (836,649) {+};
-  \draw[->,w] (Sac2) -- (960,632);
-  \node[st] at (602,672) {s8};
-  % ---------------------------------------------------------------- droop feedback, rselect, MW set point
-  \draw[->,w] (520,835) -- (S2);
-  \draw[w] (520,860) -- (520,962);
-  \node[ct] (rc) at (520,966) {};
-  \node[ct] (rg) at (552,970) {}; \node[ct] (rv) at (552,995) {}; \node[ct] (re) at (520,1000) {};
-  \draw[w] (rc) -- (528,994);
-  \draw[->,w] (1112,970) -- (rg);
-  \node at (1008,960) {governor output};
-  \draw[->,w] (1345,835) -- (1345,995) -- (rv);
-  \node at (1238,978) {valve stroke};
-  \draw[->,w] (520,1048) -- (re);
-  \dotat{(520,1027)}
-  \draw[->,w] (520,1027) -- (Smw);
-  \node[anchor=east] at (412,1011) {Pmwset};
-  \draw[->,w] (350,1027) -- (Smw);
-  \node[sg] at (398,1043) {+}; \node[sg] at (446,1020) {--};
-  \draw[->,w] (Smw) -- (424,965);
-  \draw[->,w] (424,915) -- (S1);
-  \node[sg] at (443,793) {+};
-  \draw[w] (445,915) -- (455,893) -- (482,893);  \node[anchor=west] at (456,882) {1.1r};
-  \draw[w] (403,965) -- (394,983) -- (366,983);  \node[anchor=east] at (392,972) {--1.1r};
-  \node[st] at (475,968) {s7};
-  \node[anchor=east] at (385,1060) {Pe};
-  \draw[->,w] (350,1075) -- (462,1075);
-  \node[st] at (555,1113) {s0};
-  % rselect options
-  \draw[b] (652,1015) rectangle (884,1158);
-  \node[anchor=north west, align=left] at (658,1019)
-    {rselect\\\quad\ 1 - electrical power\\\quad-1 - valve stroke\\\quad-2 - governor output\\\quad\ 0 - isochronous};
-  \draw[w] (652,1040) -- (630,1034) -- (636,1026) -- (548,1012);
+% GGOV1 governor and turbine model, redrawn block for block from IEEE PES-TR1
+% Figure 3-5 (GGOV1 gas turbine model, courtesy of GE) in the report's
+% block-diagram grammar.  Signal names follow the figure (fsrn, fsra, fsrt,
+% fsr, valve stroke, Wf, tex, texm, tlim, Pmech).  Paths that the Table 1
+% settings switch off are drawn in grey with their setting:
+% Kimw = 0 (MW controller), Kdgov = 0, Teng = 0, Dm = 0.  Active selections:
+% Rselect = 1 (electrical power through Tpelec) and Flag = 1 (fuel flow
+% scaled by speed).
+\providecommand{\satlim}[4]{%
+  \node[draw, line width=0.7pt, minimum size=0.5cm, inner sep=0pt] (#1) at (#2,#3) {};
+  \draw[line width=0.6pt] (#2,#3) ++(-0.16cm,-0.10cm) -- ++(0.10cm,0) -- ++(0.12cm,0.20cm) -- ++(0.10cm,0);
+  \node[font=\footnotesize, anchor=south, yshift=1pt] at (#1.north) {#4};}
+\newcommand{\ratelim}[4]{%
+  \node[draw, line width=0.7pt, minimum size=0.5cm, inner sep=0pt] (#1) at (#2,#3) {};
+  \draw[line width=0.6pt] (#2,#3) ++(-0.14cm,-0.13cm) -- ++(0.28cm,0.26cm);
+  \draw[line width=0.6pt] (#2,#3) ++(-0.16cm,-0.13cm) -- ++(0.32cm,0);
+  \node[font=\footnotesize, anchor=south, yshift=1pt] at (#1.north) {#4};}
+\begin{tikzpicture}[x=0.84cm, y=0.84cm, line cap=round, line join=round,
+    wire/.style={line width=0.7pt},
+    gwire/.style={line width=0.7pt, black!45},
+    blk/.style={draw, line width=0.7pt, inner sep=2.5pt, minimum height=0.6cm,
+                font=\small, align=center, fill=white},
+    gblk/.style={blk, draw=black!45, text=black!45},
+    sum/.style={draw, circle, line width=0.7pt, inner sep=0pt, minimum size=0.32cm, fill=white},
+    gsum/.style={sum, draw=black!45},
+    mul/.style={draw, circle, line width=0.7pt, inner sep=0pt, minimum size=0.32cm, fill=white,
+                font=\footnotesize, path picture={\draw[line width=0.6pt]
+                  (path picture bounding box.center) ++(-0.09cm,-0.09cm) -- ++(0.18cm,0.18cm)
+                  (path picture bounding box.center) ++(-0.09cm,0.09cm) -- ++(0.18cm,-0.18cm);}},
+    lbl/.style={font=\footnotesize}, glbl/.style={font=\footnotesize, black!45},
+    sig/.style={font=\footnotesize\itshape},
+    sg/.style={font=\footnotesize, inner sep=1pt},
+    >={Stealth[length=2.0mm]}]
+  % ================= governor row (y = 0) =================================
+  \node[lbl, anchor=east] at (0.05,0) {$P_{\mathrm{ref}}$};
+  \node[sum] (A) at (0.9,0) {};
+  \draw[->,wire] (0.1,0) -- (A);
+  \node[sg] at (0.55,0.3) {$+$};
+  \node[sum] (B) at (2.4,0) {};
+  \draw[->,wire] (A) -- (B);
+  \node[sg] at (1.95,0.3) {$+$};
+  \node[sg] at (2.62,0.40) {$-$};
+  \node[sg] at (2.64,-0.40) {$-$};
+  \satlim{lim}{3.5}{0}{maxerr}
+  \node[font=\footnotesize, anchor=north, yshift=-1pt] at (lim.south) {minerr};
+  \node[glbl, anchor=north west] at (4.55,-0.06) {db};
+  \draw[->,wire] (B) -- (lim);
+  \draw[wire] (lim) -- (4.5,0);
+  \fill (4.5,0) circle (1.3pt);
+  \node[blk] (kp) at (5.8,0) {$K_{\mathrm{pgov}}$};
+  \draw[->,wire] (4.5,0) -- (kp);
+  \node[gblk] (kd) at (5.8,1.15) {$\frac{sK_{\mathrm{dgov}}}{1+sT_{\mathrm{dgov}}}$};
+  \draw[->,gwire] (4.5,0) |- (kd);
+  \node[glbl, anchor=east] at (4.4,1.3) {$K_{\mathrm{dgov}}=0$};
+  \node[sum] (C) at (7.1,0) {};
+  \draw[->,wire] (kp) -- (C);
+  \draw[->,gwire] (kd.east) -| (C);
+  \node[sg] at (6.7,0.3) {$+$};
+  \node[sg] at (7.32,0.6) {$+$};
+  \node[sg] at (7.45,-0.5) {$+$};
+  % low value select
+  \node[blk, minimum width=1.05cm, minimum height=3.9cm, anchor=center] (lvs) at (9.05,1.85) {Low\\Value\\Select};
+  \draw[->,wire] (C) -- (lvs.west |- C) node[sig, pos=0.56, above, inner sep=1.5pt] {fsrn};
+  \satlim{vlim}{10.25}{0}{$v_{\max}$}
+  \node[font=\footnotesize, anchor=north, yshift=-1pt] at (vlim.south) {$v_{\min}$};
+  \draw[->,wire] (lvs.east |- C) -- (vlim);
+  \draw[wire] (vlim) -- (11.1,0);
+  \fill (11.1,0) circle (1.3pt);
+  \node[sig, anchor=north west] at (11.18,-0.1) {fsr};
+  \node[sum] (D) at (11.9,0) {};
+  \draw[->,wire] (11.1,0) -- (D);
+  \node[sg] at (11.55,0.3) {$+$};
+  \node[sg] at (12.25,-0.5) {$-$};
+  \node[blk] (act) at (12.85,0) {$\frac{1}{T_{\mathrm{act}}}$};
+  \draw[->,wire] (D) -- (act);
+  \ratelim{rl}{13.85}{0}{$R_{\mathrm{open}}$}
+  \node[font=\footnotesize, anchor=north, yshift=-1pt] at (rl.south) {$R_{\mathrm{close}}$};
+  \draw[->,wire] (act) -- (rl);
+  \node[blk] (int3) at (14.75,0) {$\frac{1}{s}$};
+  \draw[->,wire] (rl) -- (int3);
+  \draw[wire] (int3) -- (15.5,0);
+  \fill (15.5,0) circle (1.3pt);
+  \node[sig, anchor=north] at (13.7,-1.15) {valve stroke};
+  \draw[->,wire] (15.5,0) -- (15.5,-1.05) -- (11.9,-1.05) -- (D);
+  \node[mul] (mul) at (16.4,0) {};
+  \draw[->,wire] (15.5,0) -- (mul);
+  \draw[->,wire] (16.4,-1.15) -- (mul);
+  \node[lbl, anchor=north, align=center] at (16.4,-1.2) {$\omega$ (Flag $=1$)};
+  % ================= turbine column (x = 16.4) ============================
+  \draw[wire] (mul) -- (16.4,1.1);
+  \fill (16.4,1.1) circle (1.3pt);
+  \node[sig, anchor=west] at (16.55,1.1) {Wf};
+  \node[sum] (E) at (16.4,1.85) {};
+  \draw[->,wire] (16.4,1.1) -- (E);
+  \node[sg] at (16.1,1.5) {$+$};
+  \draw[->,wire] (17.3,1.85) -- (E);
+  \node[lbl, anchor=west] at (17.35,1.85) {$W_{\mathrm{fnl}}$};
+  \node[sg] at (16.75,2.15) {$-$};
+  \node[gblk] (teng) at (16.4,2.75) {$e^{-sT_{\mathrm{eng}}}$};
+  \draw[->,wire] (E) -- (teng);
+  \node[glbl, anchor=east] at (15.42,2.75) {$T_{\mathrm{eng}}=0$};
+  \node[blk] (kt) at (16.4,3.75) {$K_{\mathrm{turb}}$};
+  \draw[->,wire] (teng) -- (kt);
+  \node[blk] (ll) at (16.4,4.85) {$\frac{1+sT_{\mathrm{c}}}{1+sT_{\mathrm{b}}}$};
+  \draw[->,wire] (kt) -- (ll);
+  \node[sum] (F) at (16.4,6.0) {};
+  \draw[->,wire] (ll) -- (F);
+  \node[sg] at (16.1,5.7) {$+$};
+  \node[gblk] (dm) at (14.9,6.0) {$D_{\mathrm{m}}$};
+  \draw[->,gwire] (dm) -- (F);
+  \draw[->,gwire] (14.0,6.0) -- (dm);
+  \node[glbl, anchor=south east] at (14.05,6.04) {$\omega$};
+  \node[glbl, anchor=south] at (14.9,6.35) {$D_{\mathrm{m}}=0$};
+  \node[sg] at (16.1,6.3) {$-$};
+  \draw[->,wire] (F) -- (17.4,6.0);
+  \node[lbl, anchor=south east] at (17.45,6.15) {$P_{\mathrm{mech}}$};
+  % ================= exhaust temperature path (y = 5.3) ===================
+  \draw[wire] (16.4,1.1) -- (13.6,1.1) -- (13.6,5.35);
+  \node[mul] (tex) at (13.6,5.7) {};
+  \draw[->,wire] (13.6,5.35) -- (tex);
+  \node[glbl, anchor=north west, align=left] at (13.8,5.45) {$\omega^{D_{\mathrm{m}}}=1$};
+  \node[blk] (tsab) at (12.1,5.7) {$\frac{1+sT_{\mathrm{sa}}}{1+sT_{\mathrm{sb}}}$};
+  \draw[->,wire] (tex) -- (tsab) node[sig, pos=0.5, below] {tex};
+  \node[blk] (tfl) at (10.3,5.7) {$\frac{1}{1+sT_{\mathrm{fload}}}$};
+  \draw[->,wire] (tsab) -- (tfl);
+  \node[sum] (I) at (4.7,5.7) {};
+  \draw[->,wire] (tfl) -- (I) node[sig, pos=0.3, above] {texm};
+  \node[sg] at (5.05,6.0) {$-$};
+  % ================= load limiter (top left) ==============================
+  \node[lbl, anchor=east] at (0.05,6.8) {$L_{\mathrm{dref}}$};
+  \node[blk] (ikt) at (1.5,6.8) {$\frac{1}{K_{\mathrm{turb}}}$};
+  \draw[->,wire] (0.1,6.8) -- (ikt);
+  \node[sum] (H) at (2.9,6.8) {};
+  \draw[->,wire] (ikt) -- (H);
+  \node[sg] at (2.5,7.1) {$+$};
+  \draw[->,wire] (2.9,7.7) -- (H);
+  \node[lbl, anchor=south] at (2.9,7.75) {$W_{\mathrm{fnl}}$};
+  \node[sg] at (3.2,7.35) {$+$};
+  \draw[->,wire] (H) -- (4.7,6.8) -- (I) ;
+  \node[sig, anchor=south west] at (3.55,6.85) {tlim};
+  \node[sg] at (4.4,6.15) {$+$};
+  \node[blk] (kpl) at (4.7,3.7) {$K_{\mathrm{pload}}$};
+  \draw[->,wire] (I) -- (kpl);
+  \node[sum] (J) at (6.0,3.7) {};
+  \draw[->,wire] (kpl) -- (J);
+  \node[sg] at (5.6,4.0) {$+$};
+  \node[sg] at (6.35,4.25) {$+$};
+  \ratelim{rud}{7.1}{3.7}{}
+  \node[font=\footnotesize, anchor=north, yshift=-1pt] at (rud.south) {$R_{\mathrm{up}},\,R_{\mathrm{down}}$};
+  \draw[->,wire] (J) -- (rud);
+  \draw[->,wire] (rud) -- (lvs.west |- rud) node[sig, pos=0.5, above, inner sep=1.5pt] {fsrt};
+  % s6 tracking integrator of the load limiter
+  \node[blk] (i6) at (6.0,5.0) {$\frac{1}{s}$};
+  \draw[->,wire] (i6) -- (J);
+  \fill (6.0,4.62) circle (1.3pt);
+  \node[blk] (kil) at (7.15,5.0) {$\frac{K_{\mathrm{iload}}}{K_{\mathrm{pload}}}$};
+  \draw[->,wire] (kil) -- (i6);
+  \node[sum] (K) at (8.35,5.0) {};
+  \draw[->,wire] (K) -- (kil);
+  \draw[->,wire] (6.0,4.62) -- (8.35,4.62) -- (K);
+  \node[sg] at (8.7,4.7) {$-$};
+  \draw[->,wire] (11.1,0) -- (11.1,5.0) -- (K);
+  \node[sg] at (9.0,5.3) {$+$};
+  \node[sig, anchor=west] at (11.2,2.6) {fsr};
+  % ================= acceleration limiter (y = 2.2) =======================
+  \node[lbl, anchor=east] at (0.05,2.0) {$\omega$};
+  \draw[wire] (0.1,2.0) -- (2.4,2.0);
+  \fill (2.4,2.0) circle (1.3pt);
+  \draw[->,wire] (2.4,2.0) -- (B);
+  \node[blk] (sta) at (3.6,2.0) {$\frac{s}{1+sT_{\mathrm{a}}}$};
+  \draw[->,wire] (2.4,2.0) -- (sta);
+  \node[sum] (M) at (4.9,2.0) {};
+  \draw[->,wire] (sta) -- (M);
+  \node[sg] at (4.5,2.3) {$-$};
+  \draw[->,wire] (4.9,2.7) -- (M);
+  \node[lbl, anchor=south] at (4.9,2.72) {$A_{\mathrm{set}}$};
+  \node[sg] at (5.2,2.5) {$+$};
+  \node[blk] (ka) at (5.95,2.0) {$K_{\mathrm{a}}\,\Delta t$};
+  \draw[->,wire] (M) -- (ka);
+  \node[sum] (N) at (7.4,2.0) {};
+  \draw[->,wire] (ka) -- (N);
+  \node[sg] at (7.0,2.3) {$+$};
+  \draw[->,wire] (7.4,1.3) -- (N);
+  \node[sig, anchor=east] at (7.3,1.45) {fsr};
+  \node[sg] at (7.7,1.65) {$+$};
+  \draw[->,wire] (N) -- (lvs.west |- N) node[sig, pos=0.5, above, inner sep=1.5pt] {fsra};
+  % ================= governor tracking integrator (y = -1.5) ==============
+  \node[blk] (i2) at (7.1,-1.5) {$\frac{1}{s}$};
+  \draw[->,wire] (i2) -- (C);
+  \fill (7.1,-0.95) circle (1.3pt);
+  \node[blk] (kig) at (8.3,-1.5) {$\frac{K_{\mathrm{igov}}}{K_{\mathrm{pgov}}}$};
+  \draw[->,wire] (kig) -- (i2);
+  \node[sum] (L) at (9.6,-1.5) {};
+  \draw[->,wire] (L) -- (kig);
+  \draw[->,wire] (7.1,-0.95) -- (9.6,-0.95) -- (L);
+  \node[sg] at (9.95,-1.2) {$-$};
+  \draw[->,wire] (11.1,0) -- (11.1,-1.5) -- (L);
+  \node[sg] at (10.25,-1.8) {$+$};
+  \node[sig, anchor=north] at (8.3,-2.02) {governor output};
+  % ================= droop feedback and Rselect (bottom left) =============
+  \node[blk] (r) at (2.4,-1.4) {$R$};
+  \draw[->,wire] (r) -- (B);
+  \node[blk] (tp) at (2.4,-2.7) {$\frac{1}{1+sT_{\mathrm{pelec}}}$};
+  \draw[->,wire] (tp) -- (r);
+  \node[lbl, anchor=east] at (0.05,-2.7) {$P_{\mathrm{e}}$};
+  \draw[->,wire] (0.1,-2.7) -- (tp);
+  \node[glbl, anchor=north west, align=left] at (3.75,-3.0)
+    {Rselect $=1$: electrical power (used);\\$-1$ valve stroke, $-2$ governor output,\\0 isochronous};
+  % MW controller (off)
+  \node[gblk] (kimw) at (0.9,-1.4) {$\frac{K_{\mathrm{imw}}}{s}$};
+  \draw[->,gwire] (kimw) -- (A);
+  \node[glbl, anchor=north east, align=center] at (1.3,-1.85) {$K_{\mathrm{imw}}=0$};
+  % ================= legend ===============================================
+  \node[gblk, minimum height=0.42cm, inner sep=2pt, font=\footnotesize] (lg1) at (12.5,-2.35) {block};
+  \node[glbl, anchor=west] at (13.1,-2.35) {grey: not used in this study};
+  \node[draw, line width=0.7pt, minimum size=0.42cm, inner sep=0pt] (lg2) at (12.5,-3.0) {};
+  \draw[line width=0.6pt] (12.5,-3.0) ++(-0.14cm,-0.09cm) -- ++(0.09cm,0) -- ++(0.10cm,0.18cm) -- ++(0.09cm,0);
+  \node[lbl, anchor=west] at (13.1,-3.0) {clips to the limits written beside it};
+  \node[draw, line width=0.7pt, minimum size=0.42cm, inner sep=0pt] (lg3) at (12.5,-3.65) {};
+  \draw[line width=0.6pt] (12.5,-3.65) ++(-0.12cm,-0.11cm) -- ++(0.24cm,0.22cm);
+  \draw[line width=0.6pt] (12.5,-3.65) ++(-0.14cm,-0.11cm) -- ++(0.28cm,0);
+  \node[lbl, anchor=west] at (13.1,-3.65) {limits the rate of change};
+  \node[lbl, anchor=north west, align=left] at (12.15,-4.05) {Low Value Select: the smallest of its three\\inputs becomes the fuel demand \textit{fsr}};
 \end{tikzpicture}
