@@ -750,7 +750,7 @@ For a different window under the same ramp, the estimator multiplier scales from
 \end{equation}
 The last equality uses the filtered-droop damping coefficient, with $H=H_{\mathrm{eq}}$.
 
-The inertia term depends on how quickly frequency changes, whereas the damping term depends on how far frequency has moved from nominal. A constant ramp therefore produces different time dependencies even though both contributions appear in the same active-power trace. Integrating that trace without separating the contributions assigns both to the inertia estimate. The distinction is between interpreting the test result and changing the configured device inertia, not between a resource with energy and one without energy.
+The inertia term depends on how quickly frequency changes, whereas the damping term depends on how far frequency has moved from nominal. A constant ramp therefore produces different time dependencies even though both contributions appear in the same active-power trace. Integrating that trace without separating the contributions from equivalent inertia versus equivalent damping assigns both to the inertia estimate. 
 
 The additional term shows that damping-related power contributes to the inertia estimate over a finite integration window. Figure~\ref{fig:esplit} illustrates the constant inertial contribution as a rectangle and the accumulating damping contribution as a triangle. A longer window therefore increases the estimate even when device parameters remain unchanged. This reduced expression contains no network-strength dependence and does not, by itself, explain the SCR variation.
 
