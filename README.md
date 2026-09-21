@@ -17,37 +17,69 @@ clone opens and builds without re-pointing paths.
 |---|---|
 | `report/` | The report: `main.tex`, `ut26x.sty`, `figures/` (PNGs and editable TikZ schematics), `prism-uploads/`, and the compiled `main.pdf`. See `report/README.md`. |
 | `systems/lib` | Shared libraries linked by every PSCAD project: E-TRAN runtime (`ETRAN_GF46.lib`, `ETRAN_IF12.lib`) and the PNNL REGFM_A1 wrapper project with its compiled library |
-| `systems/ieee39/00GFM_all_sync` | E-TRAN-converted IEEE 39-bus, 230 kV, all ten units synchronous machines (ERCOT-specified GENROU + ESST4B + GGOV1 + PSS2B) |
+| `systems/ieee39/00GFM_all_sync` | E-TRAN-converted IEEE 39-bus, 230 kV, all ten units synchronous machines (ERCOT-supplied GENROU + ESST4B + GGOV1 + PSS2B) |
 | `systems/ieee39/01GFM` ... `10GFM` | The machine-for-inverter replacement ladder: k units replaced by PNNL REGFM_A1 grid-forming inverters (ImaxF = 2.0 pu, the PNNL default) |
 | `systems/ieee39/10GFM_Vsched` | All-GFM system at the scheduled-voltage dispatch (the report's bus-14 reference case) |
 | `systems/ieee39/10GFM_Vsched_Ilim1p5` | All-GFM system with the practical current limit ImaxF = 1.5 pu (the report's bus-10 fault study) |
 | `systems/ieee39/01GFL` | One PNNL grid-following inverter at bus 32, remaining units synchronous |
-| `systems/smib_siib` | Single-machine and single-inverter infinite-bus fault harnesses used for the SMIB/SIIB comparison |
+| `systems/smib_siib` | The single-device cases of report Figures 38-40: `sync/` (one 2000 MVA machine on an infinite bus, workspace `SMIB_SYNC.pswx`) and `gfm/` (one REGFM_A1 inverter, workspace `REGFM_A1_PNNL.pswx`, dispatch 0.50 pu; report Figure 16 is the same case with `Preq = 0.6`), both with a five-cycle bolted three-phase-to-ground fault at the point of interconnection, SCR 10; `runs/` holds the two 10 s records and `smib_gfm_vs_sync.py` the comparison. The clearing-time limits of report Figure 50 and Figure 54 are these cases with the fault duration (and, for the inverter, `ImaxF`) changed |
 | `mqt/pmview24_*` | ERCOT PMView 2.4 model-quality-testing rigs: PNNL REGFM_A1, NLR GFM model, PNNL GFL |
 | `mqt/pnnl_nlr_pscad_psse_bench` | PNNL vs NLR PSCAD/PSS-E benchmark cases and per-case CSVs |
 | `mqt/pmview35_*` | PMView 3.5 advanced-grid-support (inertia) test rigs: REGFM_A1, REGFM_B1, and the Gen-32 synchronous machine |
 | `mqt/typicalgt_dwg_battery` | DWG Procedure Manual Rev. 24 tests 1-9 run as one PSCAD multiple-run battery on the Gen-32 machine (driver, exports, figures) |
 | `data/report_figure_data` | The CSV extracts behind the model-quality-testing figures (including the REGFM_A1 legacy LVRT record of Figure 13, re-run 2026-09-18 with `mqt/pmview24_regfm_a1/PMVIEW24_pnnl_GFM/run_lvrt_headless.py`) and the bus-13 current-limit figure (Figure 27: five limits from 15 to 1.1 pu, plus the 1.0 pu run that does not recover), and the result files of the CCT solver |
 | `scripts/report_figures` | The report's figure scripts (matplotlib, report style) with repository-relative paths |
-| `scripts/log_decrement` | Total damping of the single machine's swing mode from the logarithmic decrement of its fault ring-down (Section 4.6 and the last row of Table 5): zero-phase band-pass, then peaks; runs from the shipped single-machine record; results in `data/report_figure_data/log_decrement` |
+| `scripts/log_decrement` | Total damping of the single machine's swing mode from the logarithmic decrement of its fault ring-down (Section 4.6 and the last row of Table 6): zero-phase band-pass, then peaks; runs from the shipped single-machine record; results in `data/report_figure_data/log_decrement` |
 | `scripts/cct_solver` | The energy-method critical-clearing-time solver behind Figure 50 (constant-power network, swing-form devices, bisection); see its `README.md` |
 | `scripts/tools` | Bus instrumentation and .out-to-CSV stitching utilities |
 | `manifest.json` | Machine-readable map of every copied directory to its source and exclusions |
 
 **Setting a fault in the 39-bus cases.** The fault is set by four constants on the main page (`BrkFaultLocation`, `BrkFaultType`, `BrkFaultTime`, `BrkFaultDuration`) and, per line, `InstantTrip` and `RecloseEnabled`; the shipped files carry the bus-14 reference fault. The E-TRAN fault elements (`master:tpflt`) ship with `OpCur = 0`, so each phase of a fault clears at its first current zero after the set duration. For a fault at a synchronous machine's own transmission bus (the bus-39 case of report Figure 29, `BrkFaultLocation = 39` with `InstantTrip = 0` on lines 1-39 and 9-39) the machine's offset fault current has no zero crossing on two phases for about 2.9 s and the fault lingers; the report's all-machine bus-39 record was run with `OpCur = 1` (clearing possible at any current) on the fault elements of `00GFM_all_sync`. The all-GFM records and every other fault location in the report clear within 10 ms of the set time with the stock setting.
 
-## What runs directly from a clone
+## Downloading the repository as a zip
+
+GitHub's **Code > Download ZIP** gives the complete repository (about 0.7 GB, 1.8 GB unpacked);
+nothing is stored outside it. Unzip to a **short folder such as `C:\ercot26x`**. Windows "Extract
+All" nests the folder twice, and under a Downloads or OneDrive folder the longest paths then sit
+within a few characters of the 260-character limit; PSCAD's build folders add about 60 more. 7-Zip,
+or enabling long paths in Windows, also avoids the problem.
+
+## What runs directly from a clone or the zip
 
 - **Report.** `cd report && pdflatex main.tex && pdflatex main.tex` (or
   `latexmk -pdf main.tex`) rebuilds the 57-page PDF with standard TeX Live
   or MiKTeX packages; every path in `main.tex` is relative.
-- **PSCAD systems.** Open any `.pswx` under `systems/` in PSCAD 5.0.2 with
-  GFortran 4.6 and build; the E-TRAN and PNNL libraries are linked from
-  `systems/lib` by relative path. The all-machine case
-  (`00GFM_all_sync`) and the all-GFM case (`10GFM_Vsched`) were built and
-  run from a fresh copy of this repository on 2026-09-11 to confirm this;
-  `python scripts/tools/verify_pscad_build.py` repeats that check headlessly
-  (PSCAD's own automation package, `mhi.pscad`, is required).
+- **PSCAD systems.** Use PSCAD 5.0.2 with GFortran 4.6. Open the workspace
+  listed below (each folder of the replacement ladder also keeps the
+  workspaces of the earlier steps; they are not needed), wait until the
+  `ETRAN` library project has finished loading, then build and run. Every
+  library is linked from `systems/lib` by relative path, in the case
+  projects and in the `ETRAN` library projects, so no E-TRAN installation is
+  needed.
+
+  | Folder | Workspace to open | Project |
+  |---|---|---|
+  | `systems/ieee39/00GFM_all_sync` | `test2works.pswx` | `IEEE39_acLine1` |
+  | `systems/ieee39/01GFM` ... `10GFM` | `test2works<k>GFM.pswx` with k the folder's number (`test2works1GFM.pswx` ... `test2works10GFM.pswx`) | `IEEE39_acLine1` |
+  | `systems/ieee39/10GFM_Vsched`, `10GFM_Vsched_Ilim1p5` | `test2works10GFM.pswx` | `IEEE39_acLine1` |
+  | `systems/ieee39/01GFL` | `test2works1GFL.pswx` | `IEEE39_acLine1` |
+  | `systems/smib_siib/sync` | `SMIB_SYNC.pswx` | `SMIB_SYNC` |
+  | `systems/smib_siib/gfm` | `REGFM_A1_PNNL.pswx` | `REGFM_A1` |
+
+  `python scripts/tools/verify_pscad_build.py` builds and runs 0.3 s of the
+  all-machine case, the all-GFM case and the two single-device cases
+  headlessly and prints the library file each build linked (PSCAD's own
+  automation package, `mhi.pscad`, is required).
+- **The report's other cases (its Table 2)** are parameter changes on these
+  files, not separate folders. Current limits: `ImaxF` on each of the ten
+  `REGFM_A1` components of `10GFM_Vsched` (2.0 as shipped; 1.5, 1.2, 1.1,
+  1.0, and 15 for "no practical limit"). Fault location, type, start and
+  duration: the constants `BrkFaultLocation` (14 as shipped; 13, 10, 39),
+  `BrkFaultType` (7 three-phase-to-ground as shipped; 1 phase A to ground;
+  4 phases A and B to ground), `BrkFaultTime` and `BrkFaultDuration`
+  (0.0833 s as shipped; lengthened for the clearing-time limits). The
+  paragraph "Setting a fault in the 39-bus cases" above covers line tripping
+  and fault clearing.
 - **CCT solver.** `cd scripts/cct_solver && python cct_pebs_constP.py --scenario bus14_noloss`
   reruns the ten-inverter energy-method clearing time from the shipped PSCAD model's loads
   (`numpy` only; hours per scenario). `smib_cct.py` and `gfm_damping_sweep.py` are the single-device cases.
@@ -63,10 +95,17 @@ clone opens and builds without re-pointing paths.
 
 ## Known gaps
 
-- `mqt/pmview35_regfmb1_inertia`: the workspace references the PNNL
-  REGFM_B1 wrapper project, which is not bundled pending the provenance
-  review in `PROVENANCE.md`; place the PNNL REGFM_B1 release beside the
-  repository as `../PNNL_REGFM/REGFM_B1/...` or re-point that entry.
+- `mqt/pmview35_regfmb1_inertia`: the PNNL REGFM_B1 release is bundled under
+  `REGFM_B1/` exactly as PNNL ships it. The study's rig
+  (`REGFMBPMViewValidation.pscx`) links the compiled library by relative
+  path; PNNL's own demonstration projects in that folder
+  (`VSM_REGFM_B1.pscx` and the seven validation cases) still carry the
+  absolute library path of the PNNL authors' machine and need their
+  Resources entry re-pointed to the `gf46/PNNL_REGFM_B1_gf46.lib` beside
+  them before they build. The same holds for a snapshot path in the three
+  PNNL projects under `mqt/pmview24_pnnl_gfl`.
+- The "PSCAD library GFM model" of the report's model-quality tests ships
+  with PSCAD itself and is not reproduced here.
 - Three PMView 2.4 rigs reference an E-TRAN placeholder `..\inputfile.dyr`
   that is not part of the release.
 

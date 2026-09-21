@@ -8,7 +8,7 @@ held flat. No line is lost, so the post-fault network is unchanged.
 
 ## Models (branch root — PSCAD cases, run manually or via their harnesses)
 
-- **Sync**: [`single_machine_infinite_bus_1syncMachineValidation/`](../../single_machine_infinite_bus_1syncMachineValidation)
+- **Sync**: [`sync/`](sync)
   — `SMIB_SYNC.pscx`: the bus-39 machine module `G_39_0_1_DYR`
   (GENROU + ESST4B + GGOV1 + PSS2B from `IEEE 39 bus TypicalGT.dyr`,
   2000 MVA / 230 kV) transplanted into the GFM SMIB case. Dispatch 0.50 pu
@@ -16,7 +16,7 @@ held flat. No line is lost, so the post-fault network is unchanged.
   `VT∠Pheta` flow through the grid impedance only, excluding its own start-up
   XPU). Grid_Parameters: Mbase 2000 / V_base 230 / G_volt 230 / SCR 10 / XR 20.
   POI multimeter scaled 2000 MVA / 230 kV / 5.02 kA → pu outputs.
-- **GFM**: [`single_machine_infinite_bus_1GFMvalidation/`](../../single_machine_infinite_bus_1GFMvalidation)
+- **GFM**: [`gfm/`](gfm)
   — PNNL REGFM_A1 release SMIB (Mbase 0.1 MVA / 0.48 kV), Preq = 0.60 pu.
   **ImaxF = 2.0 here (PNNL default) — the 39-bus study used 1.5**; I_clip 2.1.
 

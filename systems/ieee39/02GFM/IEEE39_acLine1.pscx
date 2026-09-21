@@ -382,7 +382,7 @@ Fault at 28(28) to 29(29) 230 kV Circuit 1
         <User classid="UserCmp" name="master:const" defn="master:const" id="4117" x="252" y="306" w="76" h="22" z="60" orient="0" link="-1" q="4" disable="false">
           <paramlist link="-1" name="" crc="10628662">
             <param name="Name" value="" />
-            <param name="Value" value="0.3" />
+            <param name="Value" value="0.0833" />
             <param name="Dim" value="1" />
           </paramlist>
         </User>

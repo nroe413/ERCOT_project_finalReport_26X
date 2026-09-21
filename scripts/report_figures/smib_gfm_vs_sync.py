@@ -41,18 +41,17 @@ import figstyle_26x as st  # noqa: E402
 
 st.apply()
 
-GFM_CSV = rp.experiment(r"..\single_machine_infinite_bus_1GFMvalidation_Preq0p5\SMIB_1GFM_3PG_Preq0p5_PSD.csv")
-# canonical documented dispatch-0.50 record (original's preferred source);
-# the runs/3PG_5cyc_SCR10_10s copy is a byte-identical fallback
-SYNC_CSV = rp.EXPERIMENTS.parent / "single_machine_infinite_bus_1syncMachineValidation" / "SMIB_1SYNC_3PG_PSD.csv"
-SYNC_CSV_RUN = rp.experiment(r"smib_3PG_GFMvsSync\runs\3PG_5cyc_SCR10_10s\SMIB_1SYNC_3PG_PSD.csv")
+# both records ship with the single-device cases (systems/smib_siib), dispatch 0.50 pu on each device's own base
+RUNS = rp.ROOT / "systems" / "smib_siib" / "runs" / "3PG_5cyc_SCR10_10s"
+GFM_CSV = RUNS / "SMIB_1GFM_3PG_Preq0p5_PSD.csv"
+SYNC_CSV = RUNS / "SMIB_1SYNC_3PG_PSD.csv"
 
 FAULT_T, CLEAR_T = 3.0, 3.0833
 BLUE, RED = "#1f77b4", "#c0392b"
 
 
 def load():
-    sync_src = SYNC_CSV if SYNC_CSV.exists() else SYNC_CSV_RUN
+    sync_src = SYNC_CSV
     sy = pd.read_csv(sync_src)
     gf = pd.read_csv(GFM_CSV)
     print("sync <- %s %s" % (sync_src, sy.shape))

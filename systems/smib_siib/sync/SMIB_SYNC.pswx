@@ -1,0 +1,15 @@
+<workspace name="SMIB_SYNC" version="5.0.2" crc="101991286">
+  <projects>
+    <project type="project" name="SMIB_SYNC" filepath=".\SMIB_SYNC.pscx" />
+    <project type="library" name="ETRAN" filepath=".\ETRAN.pslx" />
+  </projects>
+  <simulations />
+  <pmr />
+  <messagegrid expanded="">
+    <column name="Icon" />
+    <column name="Id" />
+    <column name="Component" />
+    <column name="Namespace" />
+    <column name="Description" />
+  </messagegrid>
+</workspace>

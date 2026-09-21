@@ -1,18 +1,21 @@
-# Text sources are stored with LF in the repository; Git converts line endings on
-# checkout per platform (core.autocrlf), which PSCAD, Python, and LaTeX all accept.
+# Text sources are stored with LF in the repository.
+# Scripts, notes and LaTeX are delivered with LF everywhere.
 *.py    text eol=lf
 *.md    text eol=lf
 *.tex   text eol=lf
 *.sty   text eol=lf
 *.json  text eol=lf
-*.txt   text
+# PSCAD is Windows software: its project files, and the tables and dynamics files the cases read, are
+# delivered with CRLF in every checkout AND in the "Download ZIP" archive, the form in which they were
+# built and run (a plain zip would otherwise carry LF while a Windows clone carries CRLF).
+*.pscx  text eol=crlf
+*.pswx  text eol=crlf
+*.pslx  text eol=crlf
+*.dyr   text eol=crlf
+*.RAW   text eol=crlf
+*.inf   text eol=crlf
+*.txt   text eol=crlf
 *.csv   text
-*.dyr   text
-*.RAW   text
-*.inf   text
-*.pscx  text
-*.pswx  text
-*.pslx  text
 *.lib   binary
 *.png   binary
 *.pdf   binary

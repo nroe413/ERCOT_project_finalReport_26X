@@ -1,8 +1,8 @@
 {
   "title": "SMIB device-only 3PG ride-through: bus-39 synchronous machine vs REGFM_A1",
   "models": {
-    "sync": "single_machine_infinite_bus_1syncMachineValidation/SMIB_SYNC.pscx",
-    "gfm": "single_machine_infinite_bus_1GFMvalidation/REGFM_A1.pscx"
+    "sync": "systems/smib_siib/sync/SMIB_SYNC.pscx",
+    "gfm": "systems/smib_siib/gfm/REGFM_A1.pscx"
   },
   "fault": {
     "type": "3PG",
