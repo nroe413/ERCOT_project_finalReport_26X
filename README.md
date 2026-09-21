@@ -47,7 +47,7 @@ or enabling long paths in Windows, also avoids the problem.
 ## What runs directly from a clone or the zip
 
 - **Report.** `cd report && pdflatex main.tex && pdflatex main.tex` (or
-  `latexmk -pdf main.tex`) rebuilds the 57-page PDF with standard TeX Live
+  `latexmk -pdf main.tex`) rebuilds the 58-page PDF with standard TeX Live
   or MiKTeX packages; every path in `main.tex` is relative.
 - **PSCAD systems.** Use PSCAD 5.0.2 with GFortran 4.6. Open the workspace
   listed below (each folder of the replacement ladder also keeps the
