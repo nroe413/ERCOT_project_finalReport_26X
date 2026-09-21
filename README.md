@@ -29,7 +29,7 @@ clone opens and builds without re-pointing paths.
 | `mqt/typicalgt_dwg_battery` | DWG Procedure Manual Rev. 24 tests 1-9 run as one PSCAD multiple-run battery on the Gen-32 machine (driver, exports, figures) |
 | `data/report_figure_data` | The CSV extracts behind the model-quality-testing figures (including the REGFM_A1 legacy LVRT record of Figure 13, re-run 2026-09-18 with `mqt/pmview24_regfm_a1/PMVIEW24_pnnl_GFM/run_lvrt_headless.py`) and the bus-13 current-limit figure (Figure 27: five limits from 15 to 1.1 pu, plus the 1.0 pu run that does not recover), and the result files of the CCT solver |
 | `scripts/report_figures` | The report's figure scripts (matplotlib, report style) with repository-relative paths |
-| `scripts/log_decrement` | Total damping of the single machine's swing mode from the logarithmic decrement of its fault ring-down (Section 4.6 and the last row of Table 4): zero-phase band-pass, then peaks; runs from the shipped single-machine record; results in `data/report_figure_data/log_decrement` |
+| `scripts/log_decrement` | Total damping of the single machine's swing mode from the logarithmic decrement of its fault ring-down (Section 4.6 and the last row of Table 5): zero-phase band-pass, then peaks; runs from the shipped single-machine record; results in `data/report_figure_data/log_decrement` |
 | `scripts/cct_solver` | The energy-method critical-clearing-time solver behind Figure 50 (constant-power network, swing-form devices, bisection); see its `README.md` |
 | `scripts/tools` | Bus instrumentation and .out-to-CSV stitching utilities |
 | `manifest.json` | Machine-readable map of every copied directory to its source and exclusions |

@@ -59,11 +59,11 @@ We developed a reusable simulation testbed to study power systems with a high sh
 
 Battery storage motivates this work. Batteries absorb energy when supply is abundant and can inject it on short notice. Variable renewable generation and rapidly changing loads raise the value of that flexibility. ERCOT's advanced grid-support requirements for new inverter-based storage resources also make GFM behavior increasingly relevant to system studies. Understanding how these grid-forming controls behave in steady state, during faults, and in the post-fault period is therefore important.
 
-The testbed combines configurable network disturbances, electric generator models, and scripts that process the simulation outputs. Eleven configurations replace zero through ten synchronous machines with the selected droop-controlled GFM model; the testbed also supports later studies of other GFM controls, grid-following (GFL) resources, mixed generation, user-defined load profiles, and load disturbances. The results shown are specific to the GFM model and the test cases: one droop-controlled GFM implementation and a limited set of disturbances at several locations within the 39 bus network. Other GFM controls, other settings of this one, or other scenarios may behave differently.
+The testbed combines configurable network disturbances, electric generator models, and scripts that process the simulation outputs. Eleven configurations replace zero through ten synchronous machines with the selected droop-controlled GFM model; the testbed also supports later studies of other GFM controls, grid-following (GFL) resources, mixed generation, user-defined load profiles, and load disturbances. The results shown are specific to the GFM model and the test cases: one droop-controlled GFM implementation and a limited set of disturbances at several locations within the 39-bus network. Other GFM controls, other settings of this one, or other scenarios may behave differently.
 
-The reference simulations show fault-ride-through recovery of the connected network in generation configuration from all-machine systems to all-GFM systems. The selected GFM responses settle faster than the corresponding machine responses after the three-phase to ground fault. 
+The reference simulations show fault-ride-through recovery of the connected network in every generation configuration, from the all-machine system to the all-GFM system. The selected GFM responses settle faster than the corresponding machine responses after the three-phase-to-ground fault. 
 
-The analytical comparison connects these observations to familiar machine dynamics. A synchronous machine's rotor motion sets its electrical phase angle. A GFM controller generates its electrical phase angle without a rotating shaft. Under unsaturated filtered droop, the synchronous machine and GFM dynamic models can be written in the same reduced swing-equation form. The GFM droop gain sets an equivalent damping coefficient $D_{\mathrm{eq}}=1/m_{\mathrm{p}}$, while the combination of the power-measurement filter and droop gain set GFM equivalent inertia. For the selected parameters, the analytical low-frequency damping coefficient of the GFM is five times the analytical value for machine governor droop coefficient on the corresponding normalized bases.
+The analytical comparison connects these observations to familiar machine dynamics. A synchronous machine's rotor motion sets its electrical phase angle. A GFM controller generates its electrical phase angle without a rotating shaft. Under unsaturated filtered droop, the synchronous machine and GFM dynamic models can be written in the same reduced swing-equation form. The GFM droop gain sets an equivalent damping coefficient $D_{\mathrm{eq}}=1/m_{\mathrm{p}}$, while the combination of the power-measurement filter and droop gain sets the GFM equivalent inertia. For the selected parameters, the analytical low-frequency damping coefficient of the GFM is 100 per unit, five times the 20 per unit given by the machine's governor droop, on the corresponding normalized bases.
 
 This equivalent damping explains the shape of GFM fault-ride-through responses, but it is not the only control property that affects fault recovery. Current and voltage limits change the power that an inverter can deliver during severe disturbances. The inertia estimation tests further show that damping-related power contributes to the estimated inertia over the test window. The preliminary transient-stability investigation compares critical-clearing-time estimates from classical energy methods with the fault-duration limits found in EMT simulation.
 
@@ -447,13 +447,34 @@ The bus-32 current falls to zero after clearing, while the other nine units cont
 \label{fig:peakits}
 \end{figure}
 
-Figure~\ref{fig:ilimarms} compares the bus-14 reference fault on the all-GFM fleet at $I_{\max F}=2.0$, 1.5, 1.2, and 1.1 per unit with all other settings unchanged; the last two are sensitivity points well below the 2.0 per-unit default. The fault is electrically remote from the units: at 2.0 per unit no unit reaches its limit, with peaks of 1.53, 1.44, and 1.38 per unit at buses~32, 30, and~31 and the other seven below 0.92 per unit. At 1.5 per unit only the bus-32 unit touches the limit, for 1.4~ms. At 1.2 per unit the three nearest units exceed the limit in the internal current-magnitude signal, with peaks of 1.44, 1.38, and 1.31 per unit at buses~32, 30, and~31; the limiter returns the current to the limit within half a cycle at buses~30 and~31 and within 1.7 cycles at bus~32, whose current makes a second, smaller excursion, so the total time above the limit is 0.4 to 0.8 cycle. At 1.1 per unit the same three units peak at 1.43, 1.30, and 1.28 per unit and are back at the limit after 1.8, 0.9, and 0.9 cycles; unit~32's current averages 0.94 per unit over the third to fifth cycles of the fault, against 1.05 at 2.0 per unit. Instantaneous failures of the semiconductor switches, which occur on a much faster timescale than the limiter's correction, are not modeled: the units stay connected and the grid-forming controller's current limiter function alone bounds the current. In all four cases every unit rides through the fault. Post-fault active power returns to within 0.5\% of its pre-fault value and the frequency settles at 60.01~Hz.
+Figure~\ref{fig:ilimarms} compares the bus-14 reference fault on the all-GFM fleet at $I_{\max F}=2.0$, 1.5, 1.2, and 1.1 per unit with all other settings unchanged; the last two are sensitivity points well below the 2.0 per-unit default. Table~\ref{tab:ilimarms} collects the peak currents and the limiter timing of these cases and of the bus-13 cases that follow. The fault is electrically remote from the units: at 2.0 per unit no unit reaches its limit, with peaks of 1.53, 1.44, and 1.38 per unit at buses~32, 30, and~31 and the other seven below 0.92 per unit. At 1.5 per unit only the bus-32 unit touches the limit, for 1.4~ms. At 1.2 per unit the three nearest units exceed the limit in the internal current-magnitude signal, with peaks of 1.44, 1.38, and 1.31 per unit at buses~32, 30, and~31; the current is back at the limit 0.8 to 0.9 cycle after fault inception at buses~30 and~31 and 1.7 cycles after inception at bus~32, whose current makes a second, smaller excursion; the total time above the limit is 0.4 to 0.8 cycle. At 1.1 per unit the same three units peak at 1.43, 1.30, and 1.28 per unit and are back at the limit after 1.8, 0.9, and 0.9 cycles; unit~32's current averages 0.94 per unit over the third to fifth cycles of the fault, against 1.05 at 2.0 per unit. Instantaneous failures of the semiconductor switches, which occur on a much faster timescale than the limiter's correction, are not modeled: the units stay connected and the grid-forming controller's current limiter function alone bounds the current. In all four cases every unit rides through the fault. Post-fault active power returns to within 0.5\% of its pre-fault value and the frequency settles at 60.01~Hz.
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_ilim_arms_bus14}
 \caption{Bus-14 reference fault on the all-GFM fleet at four transient current limits. Left: peak of each unit's internal current magnitude, with the limit lines; right: the same signal for the bus-32 unit through the fault. }
 \label{fig:ilimarms}
 \end{figure}
+
+\begin{table}[tbp]\centering\small
+\caption{Current-limit cases on the all-GFM fleet (Figures~\ref{fig:ilimarms} and~\ref{fig:ilimarms13}): the units at buses~30, 31, and~32, the three nearest the fault. Peak is the maximum of the inverter's internal current magnitude. Time above the limit is the total within one second of fault inception. Back at the limit is the time from fault inception until the current is within 2\% of the limit and stays there for a full cycle. A dash means the limit was not reached; the 15 per-unit case has no practical limit. The other seven units stay below 0.92 per unit in every case.}
+\label{tab:ilimarms}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{cc*{9}{>{\centering\arraybackslash}p{0.9cm}}c}\toprule
+ & & \multicolumn{3}{c}{Peak (p.u.)} & \multicolumn{3}{c}{Above limit (cycles)} & \multicolumn{3}{c}{Back at limit (cycles)} & \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}\cmidrule(lr){9-11}
+Fault bus & $I_{\max F}$ & 30 & 31 & 32 & 30 & 31 & 32 & 30 & 31 & 32 & Rides through\\\midrule
+14 & 2.0 & 1.44 & 1.38 & 1.53 & -- & -- & -- & -- & -- & -- & yes\\
+14 & 1.5 & 1.41 & 1.35 & 1.51 & -- & -- & 0.08 & -- & -- & 0.67 & yes\\
+14 & 1.2 & 1.38 & 1.31 & 1.44 & 0.50 & 0.40 & 0.80 & 0.91 & 0.84 & 1.69 & yes\\
+14 & 1.1 & 1.30 & 1.28 & 1.43 & 0.55 & 0.65 & 1.12 & 0.94 & 0.89 & 1.78 & yes\\\midrule
+13 & 15 & 1.30 & 1.43 & 1.83 & -- & -- & -- & -- & -- & -- & yes\\
+13 & 2.0 & 1.30 & 1.43 & 1.69 & -- & -- & -- & -- & -- & -- & yes\\
+13 & 1.5 & 1.30 & 1.41 & 1.63 & -- & -- & 0.37 & -- & -- & 0.84 & yes\\
+13 & 1.2 & 1.28 & 1.35 & 1.59 & 0.34 & 0.42 & 1.03 & 0.83 & 0.85 & 1.75 & yes\\
+13 & 1.1 & 1.24 & 1.31 & 1.59 & 0.46 & 0.52 & 1.37 & 0.89 & 0.90 & 1.82 & yes\\
+13 & 1.0 & 1.15 & 1.24 & 1.44 & 0.54 & 0.62 & 1.81 & 0.92 & 0.97 & 1.80 & no\\\bottomrule
+\end{tabular}
+\end{table}
 
 Because the bus-14 fault is remote, Figure~\ref{fig:ilimarms13} repeats the comparison with the fault at bus~13, one short line from bus~10, the point of interconnection of unit~32, and adds an arm with the limit raised to 15 per unit, beyond any current the network can deliver. Clearing opens lines 10--13 and 13--14, and unit~32 stays connected through line 10--11. Without a practical limit the unit-32 current peaks at 1.83 per unit and the units at buses~31 and~30 at 1.43 and 1.30, so the 2.0 per-unit default is not reached even one line from the unit's point of interconnection. With the default settings the first peak is 1.69 per unit; the difference from the unlimited arm comes almost entirely from the model's hard clip on the instantaneous current at 2.1 per unit acting on the sub-cycle transient (a run with the limit at 15 and the clip at 2.1 peaks at 1.72), not from the 2.0 per-unit limiting function. Figure~\ref{fig:ilimarms13}(c) shows how quickly the limits take hold: the traces rise together for the first 5~ms, then separate, and the 1.5 per-unit limit holds unit~32 after an overshoot to 1.63 per unit that lasts 0.4 cycle, back at the limit 14~ms (0.8 cycle) after inception. The 1.2 per-unit limit holds the three nearest units after overshoots to 1.59, 1.35, and 1.28 per unit; unit~32 makes a second, smaller excursion and is back at the limit after 1.7 cycles, the other two after 0.8 cycle. The 1.1 per-unit limit holds them after overshoots to 1.59, 1.31, and 1.24 per unit, back at the limit after 1.8, 0.9, and 0.9 cycles. After the first two cycles the fault-on current of unit~32 settles at 1.16 to 1.21 per unit in the three arms at 1.5 per unit and above, so those limits act on the initial transient only; the 1.2 and 1.1 per-unit limits hold it at 1.04 and 0.98 per unit for the rest of the fault. 
 
@@ -465,7 +486,13 @@ Every unit rides through in these five arms: post-fault active power returns to 
 \label{fig:ilimarms13}
 \end{figure}
 
-Figure~\ref{fig:peaki} compares the device-base peak currents, including a machine peak of 3.72 per unit at the corresponding bus. GFM current is shaped by the modeled current limit, whereas machine fault current depends strongly on sub-transient reactance. For the synchronous machine, there is no digital limiting logic to enforce a current limit. Figure~\ref{fig:exec} makes the same peak current comparison for a separate fault at bus~39, on the 230~kV side of the largest unit's step-up transformer. Clearing opens lines 1--39 and 9--39 and leaves that unit islanded with the bus-39 load in both the all-synchronous-machine and the all-grid-forming cases. The machine's RMS current reaches 5.95 per unit of its 2000~MVA rating, against 1.25 per unit of 1667~MVA for the GFM unit at the 1.5 per-unit setting. Both units carry the islanded load after clearing, with active power within 0.02 per unit of its final value 0.6~s after fault inception; the machine's exciter returns the bus voltage to its pre-fault 1.03 per unit, whereas the GFM unit settles at 0.96 per unit. The machine's offset fault current has no zero crossing on two phases for about 2.9~s, so the fault elements of the all-machine case were set to clear at the set time rather than at a current zero; the GFM fault cleared at current zeros within 7~ms of the set time. Different ratings, dispatch, and measurement locations remain relevant even when both traces are expressed per unit. In the GFM runs, the active and reactive power traces immediately after clearing contain a 2--4~Hz settling component and a 60~Hz component below 10\% of the deviation, the latter from the power calculation during the transient; the machines that remain connected in the bus-10 study oscillate at the 0.85--1.0~Hz inter-machine mode, which is absent from the islanded machine of Figure~\ref{fig:exec}.
+Figure~\ref{fig:peaki} compares the device-base peak currents, including a machine peak of 3.72 per unit at the corresponding bus. GFM current is shaped by the modeled current limit, whereas machine fault current depends strongly on sub-transient reactance. For the synchronous machine, there is no digital limiting logic to enforce a current limit.
+
+Figure~\ref{fig:exec} makes the same peak current comparison for a separate fault at bus~39, on the 230~kV side of the largest unit's step-up transformer. Clearing opens lines 1--39 and 9--39 and leaves that unit islanded with the bus-39 load in both the all-synchronous-machine and the all-grid-forming cases. The machine's RMS current reaches 5.95 per unit of its 2000~MVA rating, against 1.25 per unit of 1667~MVA for the GFM unit at the 1.5 per-unit setting. Both units carry the islanded load after clearing, with active power within 0.02 per unit of its final value 0.6~s after fault inception; the machine's exciter returns the bus voltage to its pre-fault 1.03 per unit, whereas the GFM unit settles at 0.96 per unit.
+
+The machine's offset fault current has no zero crossing on two phases for about 2.9~s, so the fault elements of the all-machine case were set to clear at the set time rather than at a current zero; the GFM fault cleared at current zeros within 7~ms of the set time. Different ratings, dispatch, and measurement locations remain relevant even when both traces are expressed per unit.
+
+In the GFM runs, the active and reactive power traces immediately after clearing contain a 2--4~Hz settling component and a 60~Hz component below 10\% of the deviation, the latter from the power calculation during the transient; the machines that remain connected in the bus-10 study oscillate at the 0.85--1.0~Hz inter-machine mode, which is absent from the islanded machine of Figure~\ref{fig:exec}.
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=\textwidth]{narr_peakI_pair}
@@ -653,7 +680,7 @@ The fault is applied at the point of interconnection on the grid side of each de
 
 \begin{figure}[b]\centering
 \includegraphics[width=0.85\textwidth]{fig6_smib_sync_vs_gfm_VI}
-\caption{Single-device response to a bolted three-phase-to-ground fault at the point of interconnection (0.001~$\Omega$, five cycles from 3.0~s, self-clearing).}
+\caption{Single-device response to a bolted three-phase-to-ground fault at the point of interconnection (0.001~$\Omega$, five cycles from 3.0~s, self-clearing). Top: terminal voltage. Bottom: current on each device's own rating, with the GFM transient-current limit of 2.0 per unit dashed. The shaded band is the fault.}
 \label{fig:smibvi}
 \end{figure}
 
@@ -797,7 +824,7 @@ A window sweep could separate the intercept from the damping-related slope withi
 
 \begin{figure}[tbp]\centering
 \includegraphics[width=0.95\textwidth]{narr_hest_vs_scr}
-\caption{PMView inertia estimate of the droop-controlled inverter versus short-circuit ratio. (a)~The estimate referred to the imposed $-1$~Hz/s ramp. (b)~Average rate of change of the inverter's internal droop frequency over the 0.5~s test window.}
+\caption{PMView inertia estimate of the droop-controlled inverter versus short-circuit ratio. (a)~The estimate referred to the imposed $-1$~Hz/s ramp and referred to the inverter's internal droop frequency; the dotted line is the analytic $H_{\mathrm{eq}}+T/(4m_{\mathrm{p}})$. (b)~Average rate of change of the inverter's internal droop frequency over the 0.5~s test window.}
 \label{fig:hestscr}
 \end{figure}
 
@@ -834,7 +861,7 @@ We will align network topology, operating points, device ratings, bases, applica
 
 The GFM studies show recovery across the tested replacement configurations, but they do not yet explain every control parameter's influence on stability. We therefore seek analytical estimates of the maximum tolerable fault duration for systems containing multiple GFM resources. Such estimates could help manufacturers and operators interpret the effects of droop, current limits, and voltage limits. The following preliminary exploration applies familiar machine-based methods before pursuing more detailed formulations.
 
-\subsubsection{Preliminary Application of Classical Energy Methods}
+\subsubsection{Preliminary Application of Energy Functions for Transient Stability}
 \label{sec:energymethod}
 Energy-function methods offer a bridge from transient stability analysis of synchronous machines to GFM power systems \cite{sauer1998,pai1989,athay1979,bergen1981,chiang1988}. These methods compare an energy-like measure of the post-fault state with an energy boundary associated with unstable equilibria. Energy functions quantify the total energy of a system as the sum of kinetic and potential energies contributed from generators.  Applying energy functions to GFM systems requires attention to the assumptions behind the power-angle relationship and damping representation.
 
@@ -899,7 +926,7 @@ Figure~\ref{fig:esbelow} shows the machine and GFM trajectories at their last st
 \label{fig:esbelow}
 \end{figure}
 
-\subsubsection{Limits of the Present Energy Construction}
+\subsubsection{Limits of the Present Energy Function Construction}
 \label{sec:gfmgap}
 For the GFM system, the energy-function approach to quantifying transient stability overestimates the clearing margin for the tested GFM cases. In the 39-bus comparison, it predicts approximately 2.34~s against an EMT bracket of $(1.6,1.7]$~s. In the single-inverter infinite-bus comparison, it predicts 1.296~s against $(0.925,0.931]$~s.
 
@@ -920,15 +947,15 @@ The energy function approach may not work for the GFMs due to the presence of ``
 Future modeling studies will isolate the effects of these saturation blocks on critical clearing time prediction. Figure~\ref{fig:ilimitsweep} shows the measured single-inverter clearing-time bracket as the transient current limit is raised from 2.0 to 15 per unit with all other settings fixed: the bracket rises from $(0.925,0.931]$~s at 2.0 per unit to $(1.163,1.169]$~s at 12 per unit and is unchanged at 15 per unit, where the limit exceeds the unlimited fault-current demand.
 
 \begin{figure}[tbp]\centering
-\includegraphics[width=0.9\textwidth]{ilimit_sweep_emt}
-\caption{Measured critical clearing time of the single inverter on the infinite bus versus the transient current limit $I_{\max F}$, all other settings fixed.}
-\label{fig:ilimitsweep}
-\end{figure}
-
-\begin{figure}[tbp]\centering
 \includegraphics[width=0.9\textwidth]{saturation_block}
 \caption{Conceptual effect of current saturation on the power-angle dynamics during a fault.}
 \label{fig:satblock}
+\end{figure}
+
+\begin{figure}[tbp]\centering
+\includegraphics[width=0.9\textwidth]{ilimit_sweep_emt}
+\caption{Measured critical clearing time of the single inverter on the infinite bus versus the transient current limit $I_{\max F}$, all other settings fixed.}
+\label{fig:ilimitsweep}
 \end{figure}
 
 \subsubsection{Modeling Goals}
